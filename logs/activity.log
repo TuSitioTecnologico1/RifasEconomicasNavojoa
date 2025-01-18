@@ -111,3 +111,4 @@
 [18/1/2025, 9:57:06] | IP: 38.65.157.195, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la API - /api/obtener_geolocalizacion
 [18/1/2025, 9:57:06] | IP: 38.65.157.195, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: {"ip":"38.65.157.195","latitude":27.0630912,"longitude":-109.4156288,"exactitud":"Precision - 4996.424411900183 metros"}
 [18/1/2025, 10:19:56] | IP: 66.249.77.129, OS: Android 6.0.1, BROWSER: Mobile Chrome 132.0.6834.83, DEVICE: LG Nexus 5, ENGINE: Blink 132.0.6834.83, CPU: undefined | ACTION: Visita a la pagina r1_verificador.ejs
+[18/1/2025, 10:25:01] | IP: 212.41.10.41, OS: macOS 10.15.7, BROWSER: Safari 17.4.1, DEVICE: Apple Macintosh, ENGINE: WebKit 605.1.15, CPU: undefined | ACTION: Visita a la Pagina de Inicio(index.ejs)
