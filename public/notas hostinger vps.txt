@@ -1,0 +1,31 @@
+Credenciales para VPS Hostigner:
+
+PASS:
+Valdiuxs.1497
+
+
+
+sudo nano /etc/nginx/sites-available/default
+
+
+	location / {
+        	proxy_pass http://localhost:3000;  # Asume que tu app corre en el puerto 3000
+        	proxy_http_version 1.1;
+        	proxy_set_header Upgrade $http_upgrade;
+        	proxy_set_header Connection 'upgrade';
+        	proxy_set_header Host $host;
+        	proxy_cache_bypass $http_upgrade;
+    	}
+
+
+pm2 start server.js --name "mi-app"
+pm2 stop mi-app
+pm2 restart mi-app
+pm2 list
+pm2 delete mi-app
+
+
+CREATE DATABASE rifas_prueba;
+CREATE USER 'admin'@'%' IDENTIFIED BY 'valdo1497';
+GRANT ALL PRIVILEGES ON nombre_base_datos.* TO 'usuario'@'%';
+FLUSH PRIVILEGES;

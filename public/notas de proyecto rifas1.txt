@@ -1,0 +1,3 @@
+NOTAS:
+Arreglar el problema:
+1.- Cuando se cierra el modal y se pasan los boletos de la maquinita a la zona de seleccionados sigue ignorando la advertencia que indica que algunos boletos de la maquinita ya estan seleccionados.

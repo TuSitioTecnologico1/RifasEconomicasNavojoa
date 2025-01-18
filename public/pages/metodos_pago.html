@@ -1,0 +1,133 @@
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Metatags para redes sociales (Open Graph) -->
+        <meta property="og:title" content="Rifas Economicas Navojoa" />
+        <!--<meta property="og:description" content="" />-->
+        <meta property="og:url" content="https://rifaseconomicasnavojoa.site/" />
+        <meta property="og:image" content="img/rifas_economicas_navojoa-logo.png" />
+        
+        <title>Rifas Economicas Navojoa</title>
+        
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!-- Favicon en formato PNG (para que el logo aparezca en navegadores) -->
+        <link rel="icon" type="image/png" href="/img/rifas_economicas_navojoa-logo.png">
+        <!-- Opcional: Favicon para dispositivos Apple  (para que el logo aparezca en navegadores apple) -->
+        <link rel="apple-touch-icon" href="/img/rifas_economicas_navojoa-logo.png">
+
+        <link rel="preload" href="/img/rifas_economicas_navojoa-logo.png" as="image">
+        <link rel="preload" href="/img/moto_italika_deportiva_vort-x250_2024_roja_2_11zon.webp" as="image">
+        <!--
+        <link rel="preload" href="img/loading.gif" as="image">
+        <link rel="preload" href="img/cancelar.png" as="image">
+        <link rel="preload" href="img/comprobar.png" as="image">
+        <link rel="preload" href="img/maquinitaDeLaSuerte.gif" as="image">
+        -->
+        
+    </head>
+    <body>
+        <div id="locationModal">
+            <div id="infoModal">
+                <p style="font-size: 21px;">Para poder utilizar nuestro servicio es necesario que permitas el acceso a tu ubicación para fines de seguridad.</p>
+                <button id="enableLocation">Continuar</button>
+            </div>
+        </div>
+        <div id="content_page">
+            <div class="div_header">
+                <button id="theme-dark-toggle" class="dark_mode_btn"></button>
+            </div>
+    
+            <div class="logo">
+                <img src="/img/rifas_economicas_navojoa-logo.png" alt="Logo" />
+            </div>
+    
+            <div id="navbar" class="navbar_section"></div>
+            <div id="navbar_3" class="navbar_3_section"></div>
+
+    
+            <div class="div_espacio3"></div>
+    
+            
+            <div id="div_sectionHazclickAbajo_cerrado">
+                <div class="div_alinear">
+                    <div class="div_trianguloAbajo">
+                        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="10,30 50,80 90,30" fill="white" />
+                        </svg>
+                    </div>
+                    <div class="div_hazClickAbajo">
+                        <strong id="span_hazClickAbajo">METODOS DE PAGO</strong>
+                    </div>
+                    <div class="div_trianguloAbajo">
+                        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="10,30 50,80 90,30" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+    
+            <div id="load" class="load"><img src="/img/loading.gif" alt="GIF" style="width: 100px; height: 100px;"></div>
+    
+            <main id="main-content" class="main-content" style="display: none;">
+                <div id="search-section" class="search-section">
+                    <!-- Boton "Buscar" para encontrar numeros 
+                    <button id="search-btn">Buscar</button> 
+                    -->
+                    <input type="text" id="search" class="searchClass" placeholder="Buscar número" />
+                    <br>
+                    <div id="div_responseSearch"></div>
+                    <br>
+                    <div class="chosen_numbers">
+                        <span id="span_ticketAvalaible"></span>
+                    </div>
+                    <div id="div_br"></div>
+                    <div id="div_btnElegir">
+                        <button id="chooseNumber-btn" style="display: none;">Elegir</button>
+                    </div>
+                    <div id="div_btnMaquinitaSuerte">
+                        <button id="random-btn">Maquinita de la Suerte</button>
+                    </div>
+                </div>
+    
+                <section class="blancos-disponibles">
+                    <button id="btn_blancosDisponibles"></button>
+                    <h4>Blancos - Disponibles</h4>
+                </section>
+                    
+            </main>
+    
+            <footer class="footer_1">
+                <div id="div_footer_1">
+                    <p><a href="#">PREGUNTAS AL WHATSAPP</a></p>
+                    <p><a href="#">(642) 108 3787</a></p>
+                </div>
+                
+            </footer>
+            <footer class="footer_2">
+                <div id="div_footer_2">
+                    <p><a href="#">Sitio hecho por TU SITIO TECNOLÓGICO</a></p>
+                    <p><a href="#">AVISO DE PRIVACIDAD</a></p>
+                </div>
+            </footer>
+    
+        </div>
+        
+        <!--<script src="js/rifas1.js"></script>-->
+        <script src="/js/navbar3.js"></script>
+        <script src="/config.js"></script>
+        <script src="/js/metodos_pago.js"></script>
+        <!--
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlI9n0wwwoG7HPLh4bvl3RsdSk8JUuD5M&callback=initMap" async defer></script>
+        <style>
+            /* Estilo para el div que contendrá el mapa */
+            #map {
+              height: 300px;  /* Altura del mapa */
+              width: 100%;    /* Ancho del mapa (ocupa todo el ancho disponible) */
+            }
+        </style>
+        -->
+        
+    </body>
+</html>

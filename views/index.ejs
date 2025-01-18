@@ -1,0 +1,116 @@
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Metatags para redes sociales (Open Graph) -->
+        <meta property="og:title" content="Rifas Economicas Navojoa" />
+        <!--<meta property="og:description" content="" />-->
+        <meta property="og:url" content="https://rifaseconomicasnavojoa.site/" />
+        <meta property="og:image" content="img/rifas_economicas_navojoa-logo.png" />
+        
+        <title>Rifas Economicas Navojoa</title>
+        
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!-- Favicon en formato PNG (para que el logo aparezca en navegadores) -->
+        <link rel="icon" type="image/png" href="/img/rifas_economicas_navojoa-logo.png">
+        <!-- Opcional: Favicon para dispositivos Apple  (para que el logo aparezca en navegadores apple) -->
+        <link rel="apple-touch-icon" href="/img/rifas_economicas_navojoa-logo.png">
+
+        <link rel="preload" href="/img/rifas_economicas_navojoa-logo.png" as="image">
+        <link rel="preload" href="/img/moto_italika_deportiva_vort-x250_2024_roja_2_11zon.webp" as="image">
+        <!--
+        <link rel="preload" href="img/loading.gif" as="image">
+        <link rel="preload" href="img/cancelar.png" as="image">
+        <link rel="preload" href="img/comprobar.png" as="image">
+        <link rel="preload" href="img/maquinitaDeLaSuerte.gif" as="image">
+        -->
+        <!--<link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap.min.css">-->
+    </head>
+    <body>
+        <div id="locationModal">
+            <div id="infoModal">
+                <p style="font-size: 21px;">Para poder utilizar nuestro servicio es necesario que permitas el acceso a tu ubicación para fines de seguridad.</p>
+                <button id="enableLocation">Continuar</button>
+            </div>
+        </div>
+        <div id="content_page">
+            <div class="div_header">
+                <button id="theme-dark-toggle" class="dark_mode_btn"></button>
+            </div>
+    
+            <div class="logo">
+                <img src="/img/rifas_economicas_navojoa-logo.png" alt="Logo" />
+            </div>
+            
+            <%- include('partials/navbar') %>
+    
+            <div class="div_espacio4"></div>
+
+            <div class="carousel-rifasAbiertas">
+                <div class="carousel-overlay-rifasAbiertas"></div>
+                <div class="carousel-images-rifasAbiertas">
+                    <img src="/img/VORT_X_300R_2024_1.webp" alt="Imagen 1">
+                    <img src="/img/Ford_Lobo_Raptor_High_2024_1.webp" alt="Imagen 2">
+                    <img src="/img/chevrolet_cheyenne_2023_1.webp" alt="Imagen 3">
+                </div>
+                <div class="buttons-carousel-rifasAbiertas">
+                    <div class="button-group-rifasAbiertas">
+                        <button id="btn_prev" class="btn_cambiarCarousel"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                        <button id="btn-lista-boletos-rifasAbiertas">Lista disponible</button>
+                    </div>
+                    <button id="btn_next" class="btn_cambiarCarousel"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="indicators-rifasAbiertas">
+                    <span class="indicator-span-rifasAbiertas active">1</span>
+                    <span class="indicator-span-rifasAbiertas">2</span>
+                    <span class="indicator-span-rifasAbiertas">3</span>
+                </div>
+            </div>
+
+            <!--
+            <div class="div_ImageButton" style=" display: flex; justify-content: center; align-items: center; ">
+                <img src="../img/Moto_Italika_Vort_X_250_2.webp" alt=""style="width: 100%; height: auto;">
+                <button id="redirectButton" class="lista_boletos_btn_class">LISTA DE BOLETOS</button>
+            </div>
+            -->
+
+            <!--
+            <div id="div_rifas_abiertas">
+                <div class="div_card_rifasAbiertas">
+                    <img src="../img/Moto_Italika_Vort_X_250_2.webp" class="card-img-top" alt="...">
+                    <div class="card_body_rifasAbiertas">
+                        <h5 class="card_title_rifasAbiertas">#1</h5>
+                        <p class="card_text_rifasAbiertas">MOTO ITALIKA DEPORTIVA VORT-X 250 (2024)</p>
+                        <p class="card_text_rifasAbiertas">17 DE DICIEMBRE 2024</p>
+                        <a href="#" class="verificador_btn">Verificador</a><br>
+                        <a href="#" class="lista_disponibles_btn">Lista disponible</a><br>
+                        <a href="#" class="buscar_mismos_numeros_btn">Buscar los mismos numeros</a><br>
+                    </div>
+                </div>
+            </div>
+            -->
+
+            <div id="div_section_rifas_abiertas">
+                <div class="div_alinear">
+                    <div class="div_rifas_abiertas">
+                        <strong id="span_rifas_abiertas">SORTEOS ABIERTOS</strong>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container-rifasAbiertas" id="container-rifasAbiertas"></div>
+
+            <div class="div_espacio5"></div>
+    
+            <%- include('partials/footer') %>
+
+        </div>
+
+        <!--<script src="/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>-->
+        <script src="/js/script2.js"></script>
+        <script src="/js/navbar_EJS.js"></script>
+        
+        
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtualización de Números</title>
+    <style>
+        #number-list {
+            height: 500px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .number-item {
+            height: 30px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="number-list">
+        <div id="numbers"></div>
+    </div>
+
+    <script>
+        const NUMBERS_COUNT = 100000;
+        const VISIBLE_COUNT = 20; // Número de elementos visibles a la vez
+        const ITEM_HEIGHT = 30; // Altura de cada item
+        const listContainer = document.getElementById('numbers');
+        const numberList = document.getElementById('number-list');
+
+        // Calcular cuántos elementos se necesitan para cubrir la altura visible
+        let startIdx = 0;
+        let endIdx = VISIBLE_COUNT;
+
+        // Función para renderizar solo los números visibles
+        function renderNumbers() {
+            const fragment = document.createDocumentFragment();
+            for (let i = startIdx; i < endIdx && i < NUMBERS_COUNT; i++) {
+                const div = document.createElement('div');
+                div.className = 'number-item';
+                div.textContent = i + 1; // Mostrar el número
+                fragment.appendChild(div);
+            }
+            listContainer.innerHTML = ''; // Limpiar antes de volver a renderizar
+            listContainer.appendChild(fragment);
+        }
+
+        // Manejar el scroll
+        function onScroll() {
+            const scrollTop = numberList.scrollTop;
+            const visibleHeight = numberList.clientHeight;
+
+            // Calcular las posiciones de inicio y fin basados en el desplazamiento
+            startIdx = Math.floor(scrollTop / ITEM_HEIGHT);
+            endIdx = Math.min(startIdx + VISIBLE_COUNT, NUMBERS_COUNT);
+
+            renderNumbers();
+        }
+
+        // Inicializar la lista
+        renderNumbers();
+
+        // Añadir el evento de scroll
+        numberList.addEventListener('scroll', onScroll);
+
+        // Establecer la altura total del contenedor para permitir el desplazamiento
+        numberList.style.height = `${VISIBLE_COUNT * ITEM_HEIGHT}px`;
+        numberList.style.overflowY = 'scroll';
+    </script>
+</body>
+</html>

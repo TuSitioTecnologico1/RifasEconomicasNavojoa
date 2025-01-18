@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Metatags para redes sociales (Open Graph) -->
+        <meta property="og:title" content="Rifas Economicas Navojoa" />
+        <!--<meta property="og:description" content="" />-->
+        <meta property="og:url" content="https://rifaseconomicasnavojoa.site/" />
+        <meta property="og:image" content="img/rifas_economicas_navojoa-logo.png" />
+        
+        <title>Rifas Economicas Navojoa</title>
+        
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!-- Favicon en formato PNG (para que el logo aparezca en navegadores) -->
+        <link rel="icon" type="image/png" href="/img/rifas_economicas_navojoa-logo.png">
+        <!-- Opcional: Favicon para dispositivos Apple  (para que el logo aparezca en navegadores apple) -->
+        <link rel="apple-touch-icon" href="/img/rifas_economicas_navojoa-logo.png">
+
+        <link rel="preload" href="/img/rifas_economicas_navojoa-logo.png" as="image">
+        <link rel="preload" href="/img/moto_italika_deportiva_vort-x250_2024_roja_2_11zon.webp" as="image">
+        <!--
+        <link rel="preload" href="img/loading.gif" as="image">
+        <link rel="preload" href="img/cancelar.png" as="image">
+        <link rel="preload" href="img/comprobar.png" as="image">
+        <link rel="preload" href="img/maquinitaDeLaSuerte.gif" as="image">
+        -->
+        
+    </head>
+    <body>
+        <div id="locationModal">
+            <div id="infoModal">
+                <p style="font-size: 21px;">Para poder utilizar nuestro servicio es necesario que permitas el acceso a tu ubicación para fines de seguridad.</p>
+                <button id="enableLocation">Continuar</button>
+            </div>
+        </div>
+        <div id="content_page">
+            <div class="div_header">
+                <button id="theme-dark-toggle" class="dark_mode_btn"></button>
+            </div>
+    
+            <div class="logo">
+                <img src="/img/rifas_economicas_navojoa-logo.png" alt="Logo" />
+            </div>
+
+            <%- include('../partials/navbar') %>
+
+            <div class="div_espacio3"></div>
+    
+            <div id="div_section_logo_pagina_cerrado">
+                <div id="div_logo_pagina_cerrado">
+                    <img src="/img/rifas_economicas_navojoa_modified.png" alt="Logo Rifas Económicas Navojoa" class="img_logo_class">
+                </div>
+            </div>
+            
+            <div id="div_sectionHazclickAbajo_cerrado">
+                <div class="div_alinear">
+                    <div class="div_sorteo_ya_cerrado">
+                        <strong id="span_hazClickAbajo_cerrado">¡&Eacute;STE SORTEO YA SE CERR&Oacute;!</strong>
+                    </div>
+                </div>
+            </div>
+    
+            <div id="div_section_cerrado_info_sorteo">
+                <div class="div_cerrado" bis_skin_checked="1">
+                    <div class="div_cerrado_trianguloVerde" bis_skin_checked="1">
+                        <svg version="1.1" viewBox="0 0 1237 995" width="35" height="25"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path transform="translate(1,1)"
+                                d="m0 0h1235l-2 6-14 22-16 26-12 19-16 26-12 19-16 26-12 19-16 26-12 19-16 26-12 19-13 21-15 24-13 21-15 24-13 21-15 24-13 21-15 24-13 21-30 48-16 26-12 19-16 26-12 19-16 26-12 19-16 26-12 19-16 26-12 19-16 26-12 19-16 26-12 19-16 26-12 19-16 26-12 19-16 26-12 19-16 26-9 14-2 1-15-24-16-26-12-19-16-26-12-19-16-26-12-19-16-26-12-19-16-26-12-19-16-26-12-19-16-26-12-19-16-26-12-19-13-21-15-24-13-21-15-24-13-21-15-24-13-21-15-24-13-21-30-48-16-26-12-19-16-26-12-19-16-26-12-19-16-26-12-19-16-26-12-19-16-26-12-19-16-26-12-19-16-26-11-17z"
+                                fill="#80DB48"></path>
+                        </svg>
+                        <div class="cerrado_image-sizer cerrado_image-sizer-2" bis_skin_checked="1"></div>
+                    </div>
+                    <div id="div_cerrado_texto">
+                        <div id="div_cerrado_1" class="texto_div_class" style="color: rgb(128, 219, 72);" bis_skin_checked="1">
+                            <p class="texto_p_class">Puedes estar atento de los siguientes sorteos</p>
+                        </div>
+                        <div id="div_cerrado_2" class="texto_div_class" bis_skin_checked="1">
+                            <p class="texto_p_class">Lo estaremos anunciando en redes sociales</p>
+                        </div>
+                    </div>
+                    <div class="div_cerrado_logos" bis_skin_checked="1">
+                        <a class="a_cerrado_logoWhatsapp" href="#">
+                            <picture>
+                                <img id="id_whatsapp_imagen" loading="lazy" src="/img/whatsapp-logo.png" class="cerrado_imagen">
+                            </picture>
+                        </a>
+                        <a class="a_cerrado_logoFacebook" target="_blank" href="https://www.facebook.com/people/Rifas-Econ%C3%B3micas-Navojoa/61571119677271/">
+                            <picture>
+                                <img id="id_facebook_imagen" loading="lazy" src="/img/facebook-logo.png" class="cerrado_imagen">
+                            </picture>
+                        </a>
+                    </div>
+                    <div class="div_cerrado_espacio_abajo" bis_skin_checked="1"></div>
+                </div>
+            </div>
+    
+            <%- include('../partials/footer') %>
+    
+        </div>
+        
+        <!--<script src="js/rifas1.js"></script>-->
+        <!--<script src="/config.js"></script>-->
+        <script src="/js/script3.js"></script>
+        <script src="/js/navbar_EJS.js"></script>
+        <!--
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlI9n0wwwoG7HPLh4bvl3RsdSk8JUuD5M&callback=initMap" async defer></script>
+        <style>
+            /* Estilo para el div que contendrá el mapa */
+            #map {
+              height: 300px;  /* Altura del mapa */
+              width: 100%;    /* Ancho del mapa (ocupa todo el ancho disponible) */
+            }
+        </style>
+        -->
+        
+    </body>
+</html>

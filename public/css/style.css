@@ -1,0 +1,3091 @@
+@font-face {
+    /* Regla de CSS que permite cargar fuentes externas. Declara una fuente y cómo se debe cargar. */
+    font-family: "Poppins-SemiBold";
+    /* Define el nombre que usarás para referenciar la fuente en tu CSS */
+    src: url("../fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+    /* especifica la ubicación del archivo de fuente y su formato. "truetype" indica que es un archivo TTF (TrueType Font), un formato ampliamente compatible con navegadores. */
+    font-weight: 600;
+    /* Define el peso (grosor) de la fuente. 100: Thin,  200: Extra Light, 300: Light, 400: Normal/Regular, 500: Medium, 600: Semi Bold, 700: Bold, 800: Extra Bold, 900: Black */
+}
+
+
+
+
+/* Estilos del modal */
+#locationModal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000d1;
+    z-index: 1000;
+
+}
+
+#locationModal button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#infoModal {
+    position: absolute;
+    top: 50%;
+    /* Mueve al 50% desde la parte superior */
+    left: 50%;
+    /* Mueve al 50% desde la parte izquierda */
+    transform: translate(-50%, -50%);
+    /* Compensa el centro */
+    background: #202020;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0px 0px #202020;
+    width: 650px;
+    max-width: 90%;
+    text-align: center;
+}
+
+
+
+
+
+
+/* Estilo básico */
+body {
+    margin: 0;
+    padding: 0;
+    /* Elimina el margen predeterminado del navegador */
+    /*font-family: Arial, sans-serif;*/
+    font-family: "Poppins-SemiBold", serif;
+    overflow-x: hidden;
+    /* Previene desplazamiento horizontal */
+}
+
+
+/* Modo oscuro */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+
+body.dark-mode .dark-mode-toggle {
+    background-color: #333;
+    color: white;
+    border-color: #444;
+}
+
+body.dark-mode .dark-mode-toggle:hover {
+    background-color: #555;
+}
+
+body.dark-mode .div_alinear span {
+    color: white;
+}
+
+body.dark-mode #search-section input {
+    color: white !important;
+    background-color: #363535;
+}
+
+body.dark-mode #search-section-verificador input {
+    color: white !important;
+    background-color: #363535;
+}
+
+body.dark-mode .modal-content {
+    background-color: #333;
+}
+
+body.dark-mode .modal-content h2 {
+    color: white;
+}
+
+body.dark-mode .generated-tickets {
+    background-color: #333;
+    color: white;
+}
+
+body.dark-mode .select_ticket_count_class {
+    background-color: #333;
+    color: white;
+    border: 2px solid #ccc;
+}
+
+body.dark-mode .modal-person-content {
+    background-color: #333;
+}
+
+body.dark-mode .p_modal_person_class {
+    color: #68d442;
+}
+
+body.dark-mode .p2_modal_person_class {
+    color: red;
+}
+
+body.dark-mode .input_personModal {
+    color: white;
+    background-color: #444;
+}
+
+body.dark-mode .input_personModal::placeholder {
+    color: #fcfcfc8a;
+    /*opacity: 1;  /* Asegúrate de que sea completamente visible */
+}
+
+body.dark-mode .select_states_class {
+    color: white;
+    background-color: #444;
+}
+
+body.dark-mode .tableClass_verificador th {
+    color: white; /* Color del texto */
+    background-color: #444; /* Color de fondo */
+}
+
+
+/*
+body.dark-mode .available {
+    color: white !important;
+    background-color: #333333 !important;
+}
+*/
+
+
+
+
+
+
+
+#theme-dark-toggle {
+    /*
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #7fc241;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    *
+    position: absolute; /* Se posiciona relativo al contenedor fijo *
+    top: 0; /* Pegado a la parte superior del contenedor *
+    right: 0; /* Pegado al lado derecho del contenedor *
+    margin: 0px; /* Espaciado opcional *
+    margin-inline-end: 20px; 
+    width: 40px; /* Ancho del botón *
+    height: 35px; /* Altura del botón *
+    padding: 1px 1px; /* Espaciado interno: arriba/abajo y izquierda/derecha *
+    background-color: #7fc241;
+    */
+    position: absolute; /* Se posiciona relativo al contenedor fijo */
+    top: 0; /* Pegado a la parte superior del contenedor */
+    right: 0; /* Pegado al lado derecho del contenedor */
+    margin: 0px; /* Espaciado opcional */
+    margin-inline-end: 20px; 
+    width: 40px; /* Ancho del botón */
+    height: 35px; /* Altura del botón */
+    /*background-color: #f1f1f1;*/
+    background-color: #7fc241;
+    border: 2px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 50px;
+    /* Botón redondeado */
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    /* Efectos suaves */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#theme-dark-toggle:hover {
+    /*background-color: #5e9a30;*/
+    background-color: #333;
+    color: #fff;
+    transform: scale(1.1);
+    /* Efecto de agrandar al pasar el mouse */
+}
+
+.dark-mode-toggle:focus {
+    outline: none;
+}
+
+/* Estilo para los iconos */
+.fas {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle.dark-mode .fas {
+    transform: rotate(180deg);
+    /* Gira el icono al cambiar al modo oscuro */
+}
+
+
+
+
+
+
+.div_header {
+    /*position: absolute; /* Posición absoluta dentro del contenedor */
+    position: fixed;
+    /* Fija el div en su lugar */
+    z-index: 100;
+    /* Asegura que quede por debajo */
+    top: 0;
+    /* Desde la parte superior */
+    left: 0;
+    /* Desde el borde izquierdo */
+    width: 100vw;
+    /* 100% del ancho de la ventana */
+    height: 150px;
+    /* Puedes ajustar la altura según sea necesario */
+    background-color: #7fc241;
+    /* Fondo blanco semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #333;
+    /* Texto oscuro */
+    border-bottom: 2px solid #333;
+    /* Línea inferior para separación */
+    box-shadow: 0 0 15px 5px rgba(127, 194, 65, 0.8); /* Difuminado */
+}
+
+
+/*
+.navbar {
+    position: fixed;
+    /* Posición absoluta dentro del contenedor *
+    top: 35px;
+    /* Posición superior de la barra *
+    left: 0;
+    /* Posición izquierda *
+    width: 100%;
+    /* Asegura que la barra abarque todo el ancho *
+    max-width: 100%;
+    /* Asegura que no se expanda más allá de la ventana *
+    height: 50px;
+    z-index: 200;
+    /* Asegura que quede por encima del div_header *
+    background-color: #222222;
+    /* Añade un color de fondo para que sea visible *
+    display: flex;
+    /* Usa Flexbox *
+    justify-content: flex-end;
+    /* Mueve los elementos a la derecha *
+    align-items: center;
+    /* Centra verticalmente los elementos *
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Añade una sombra para destacar el nav *
+    padding: 10px 20px;
+    /* Espaciado interno *
+    padding-top: 40px;
+    /* Espaciado interno hacia arriba *
+    padding-bottom: 40px;
+    /* Espaciado interno hacia abajo *
+    box-sizing: border-box;
+    /* Incluye padding y bordes dentro del ancho *
+    /*
+    display: flex;
+    transform: translateY(35px); /* Mueve hacia abajo 50px /
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 35px 20px;
+    z-index: 2; /* Asegura que quede por encima *
+}
+*/
+
+/* Muestra un color sólido, un degradado o una versión borrosa 
+   de la imagen mientras se carga la versión completa. */
+/*
+img {
+    background: #f0f0f0;
+    filter: blur(5px);
+    transition: filter 0.5s ease;
+}
+
+img[data-loaded="true"] {
+    filter: blur(0);
+}
+*/
+
+/* Estilo para el logo */
+.logo {
+    /*position: absolute; /* Posición absoluta para salir del flujo del documento */
+    position: fixed;
+    /* Fija el div en su lugar */
+    top: -19px;
+    /* Desplaza el logo hacia arriba */
+    left: 20px;
+    /* Alinea el logo a la izquierda */
+    z-index: 300;
+    /* Coloca el logo por encima del header */
+}
+
+.logo img {
+    height: 225px;
+    /* Ajusta el tamaño del logo */
+    border-radius: 100%;
+    object-fit: cover;
+    /* Asegura que la imagen se ajuste bien */
+    /*border: 5px solid #7fc241; /* Opcional: borde alrededor */
+    /*border: 5px solid #7bff00;*/
+}
+
+
+
+/* ------------------------------------------------------------------------------------- */
+/* ----------------------------------> NAVBAR (Inicio) <-------------------------------- */
+/* ------------------------------------------------------------------------------------- */
+.div_menu_bar_section {
+    position: fixed; /* Mantiene el menú fijo */
+    top: 37px;
+    left: 0; /* Asegura que el menú esté visible desde la izquierda */
+    /*width: 100vw;*/
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end; /* Alinea las opciones a la derecha */
+    align-items: center;
+    font-size: 18px;
+    background: #023859;
+    border-bottom: 2px solid #333;
+    box-shadow: 0 0 15px 5px rgba(127, 194, 65, 0.8);
+    z-index: 200;
+}
+
+.menu_bar {
+	display: block;
+    z-index:200;
+}
+
+.navbar_section nav {
+    position: fixed; /* Mantiene el menú fijo */
+    top: 37px;
+    /*width: 100vw;*/
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end; /* Alinea las opciones a la derecha */
+    align-items: center;
+    font-size: 18px;
+    background: #023859;
+    border-bottom: 2px solid #333;
+    /*border: 5px solid yellow;*/
+    box-shadow: 0 0 15px 5px rgba(127, 194, 65, 0.8);
+    z-index: 200;
+}
+
+.navbar_section nav ul {
+	list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row; /* Mantiene las opciones en línea horizontal */
+}
+
+.navbar_section nav ul li {
+	display:inline-block;
+	position: relative;
+}
+
+.navbar_section nav ul li a {
+	color:#fff;
+	display:block;
+	text-decoration:none;
+	padding: 20px 15px; /* Ajusta el espaciado entre las opciones */
+}
+
+.navbar_section nav ul li a span {
+	margin-right:10px;
+}
+
+.navbar_section nav ul li:hover {
+	background: #E6344A; /* Cambia el color al pasar el mouse */
+}
+
+.navbar_section nav ul li .children {
+	display: none;
+    background: #011826;
+    position: absolute;
+    right: -208px; /* Alinea el submenú al lado derecho */
+    top: 0px;
+    width: 150%;
+    z-index: 1000;
+}
+
+.navbar_section nav ul li:hover .children {
+	display:block;
+}
+
+.navbar_section nav ul li .children li {
+	display: block;
+	overflow: hidden;
+	border-bottom: 1px solid rgba(255,255,255,.5);
+}
+
+.navbar_section nav ul li .children li a {
+	display: block;
+}
+
+.navbar_section nav ul li .children li a span {
+	float: right;
+	position: relative;
+	top:3px;
+	margin-right:0;
+	margin-left:10px;
+}
+
+.navbar_section nav ul li .caret {
+	position: relative;
+	top:3px;
+	margin-left:10px;
+	margin-right:0px;
+}
+
+/* Estilo para el ícono de hamburguesa */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    background-color: white;
+    height: 3px;
+    width: 25px;
+    margin: 4px 0;
+}
+
+.custom-size {
+    font-size: 30px !important;
+}
+
+
+@media screen and (max-width: 949px) {
+	/*body {
+		padding-top:80px;
+	}
+    */
+
+	.menu_bar {
+		position: fixed;
+		display: flex;
+		width: 6%;
+		height: 22px;
+		top: 37px;
+		right: 0px;
+		/*background:#E6344A;*/
+		border: 5px solid yellow;
+		z-index: 200;
+		text-align:center;
+		align-content:center;
+		align-items:center;
+		padding-top: 15px;
+		padding-left: 25px;
+		padding-right: 0px;
+		padding-bottom: 15px;
+        cursor: pointer;
+	}
+    
+	.menu_bar span {
+		float: right;
+		font-size: 40px;
+	}
+
+	.navbar_section nav {
+		position: fixed;
+        top: 98px;
+        right: -100%; /* Oculto fuera de la pantalla */
+        width: 25%; /* Ancho del menú */
+        height: calc(100% - 80px);
+        background: #023859;
+        transition: right 0.3s ease; /* Transición suave en 'right' */
+        z-index: 200;
+	}
+
+    .navbar_section nav ul {
+        position: fixed;
+	    top: 150px;
+	    list-style: none;
+	    padding: 0;
+	    margin: 0;
+	    display: flex;
+        flex-direction: column; /* Cambia a disposición vertical */
+    }
+
+    /* CONTENEDOR PRINCIPAL (menu) */
+    .navbar_section nav ul li {
+        position: relative; /* Permite que el submenú se posicione relativo a este contenedor */
+        display: block;
+        width: 100%; /* Asegura que las opciones ocupen todo el ancho */
+    }
+    /*.navbar_section nav ul li {
+        display: block;
+        width: 100%; /* Asegura que las opciones ocupen todo el ancho *
+	}*/
+
+	.navbar_section nav ul li a {
+		text-align: left; /* Alinea el texto de las opciones a la izquierda */
+        padding: 15px 20px;
+	}
+
+    /* SUBMENU */
+    .navbar_section nav ul li .children {
+        display: none; /* Oculto por defecto */
+        background: #011826; /* Color de fondo del submenú */
+        position: relative; /* Posición relativa al contenedor padre */
+        /*left: 100%; /* Alinea el borde izquierdo del submenú con el borde derecho del contenedor */
+        right: 0;
+        top: 0; /* Alinea el submenú con la parte superior del contenedor padre */
+        width: 100%; /* Ajusta el ancho del submenú */
+        z-index: 1000;
+    }
+    /*.navbar_section nav ul li .children {
+        /*position: relative;*
+        display: none;
+        background: #011826;
+        position: absolute;
+        right: 235px; /* Alinea el submenú al lado derecho *
+        top: 0px;
+        width: 122%;
+        z-index: 1000;
+    }*/
+
+    /* MOSTRAR EL SUBMENU AL PASAR EL RATON */
+    .navbar_section nav ul li:hover .children {
+        display: none;
+    }
+    /*.navbar_section nav ul li:hover .children {
+		display: none;
+	}*/
+
+    /* ESTILOS DE LOS ENLACES DEL SUBMENU */
+    .navbar_section nav ul li .children li a {
+        padding: 10px 20px;
+        color: #fff; /* Color del texto */
+        text-decoration: none;
+    }
+	/*.navbar_section nav ul li .children li a {
+		margin-left:20px;
+	}*/
+
+    /* INDICADOR DEL CARET (flecha) */
+    .navbar_section nav ul li .caret {
+        float: right;
+    }
+	/*.navbar_section nav ul li .caret {
+		float: right;
+	}*/
+}
+
+@media screen and (max-width: 799px) {
+    .menu_bar {
+		width: 7%;
+	}
+}
+
+@media screen and (max-width: 699px) {
+    .menu_bar {
+		width: 8%;
+	}
+}
+
+@media screen and (max-width: 599px) {
+    .menu_bar {
+		width: 9%;
+	}
+}
+
+@media screen and (max-width: 499px) {
+    .menu_bar {
+		width: 10%;
+	}
+}
+
+@media screen and (max-width: 449px) {
+    .menu_bar {
+		width: 12%;
+	}
+}
+
+@media screen and (max-width: 399px) {
+    .menu_bar {
+		width: 14%;
+	}
+}
+
+@media screen and (max-width: 349px) {
+    .menu_bar {
+		width: 16%;
+	}
+}
+
+@media screen and (max-width: 299px) {
+    .menu_bar {
+		width: 18%;
+	}
+}
+
+/* ------------------------------------------------------------------------------------- */
+/* ----------------------------------> NAVBAR (Fin) <-------------------------------- */
+/* ------------------------------------------------------------------------------------- */
+
+
+
+
+
+.div_espacio3 {
+    height: 150px;
+}
+
+
+.main-content {
+    text-align: center;
+    /*margin: 20px;*/
+}
+
+.main-content h1 {
+    background-color: #000;
+    color: white;
+    padding: 15px;
+}
+
+
+.search-section {
+    margin: 20px 0;
+}
+
+.search-section input {
+    padding: 10px;
+    margin-right: 10px;
+    width: 200px;
+    /* Toma todo el ancho disponible */
+}
+
+.search-section button {
+    padding: 10px 20px;
+    background-color: #7fc241;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.number-grid {
+    /*
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 3px;
+    justify-content: center;
+    margin: 20px auto;
+    /* Esto centra el contenedor horizontalmente *
+    overflow-y: auto; /* Solo permitir scroll vertical *
+    overflow-x: hidden; /* Deshabilitar scroll horizontal *
+    max-height: 400px;
+    width: 100%;
+    max-width: 1103.2px;
+    z-index: 1000;*/
+
+    display: block; /* Cambiar a block para evitar conflicto con grid */
+    position: relative; /* Asegurar que los números se posicionen correctamente */
+    overflow-y: auto; /* Solo scroll vertical */
+    overflow-x: hidden; /* Deshabilitar scroll horizontal */
+    max-height: 400px;
+    width: 100%; /* Ajustar al ancho del contenedor */
+    max-width: 1103.2px; /* Limitar al ancho máximo de la pantalla */
+    justify-content: center;
+    margin: 20px auto;
+
+}
+
+.number {
+    /*width: 50px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #7fc241;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 5px;*/
+
+    width: 50px; /* Tamaño fijo */
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #7fc241;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 5px;
+    box-sizing: border-box; /* Incluir bordes y padding */
+}
+
+.virtual-grid {
+    /* position: relative;
+    height: 100%; /* Mantiene la altura del contenedor *
+    width: 100%;*/
+
+    position: absolute; /* Posiciona los números de forma absoluta */
+    top: 0; /* Asegura que inicien en la parte superior */
+    left: 0; /* Asegura que inicien desde la izquierda */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    height: auto; /* Ajustar el alto automáticamente */
+}
+
+.virtual-item {
+    position: absolute; /* Cada número se posicionará dinámicamente */
+}
+
+
+.available {
+    background-color: white;
+    color: black;
+}
+
+.sold {
+    background-color: black;
+    color: white;
+    pointer-events: none;
+}
+
+.sentinel {
+    height: 1px; /* Elemento invisible de 1px */
+    margin-bottom: 10px;
+}
+
+
+.legend {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
+
+/* Estilos del modal */
+.modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    /*
+    display: none; /* Oculto por defecto *
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+}
+
+/* Contenido del modal */
+.modal-content {
+    position: absolute;
+    top: 50%;
+    /* Mueve al 50% desde la parte superior */
+    left: 50%;
+    /* Mueve al 50% desde la parte izquierda */
+    transform: translate(-50%, -50%);
+    /* Compensa el centro */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 650px;
+    max-width: 90%;
+    text-align: center;
+
+    /*
+    position: fixed;
+    top: 0; /* Pegado a la parte superior *
+    left: 50%; /* Centrado horizontalmente *
+    transform: translateX(-50%); /* Ajustar para centrar *
+    width: 90%; /* Ajustar al ancho de la pantalla *
+    max-width: 450px; /* Máximo ancho del modal *
+    background-color: white; /* Fondo del modal *
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+    */
+}
+
+/* Botón de cerrar */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #d40000;
+    font-size: 30px; /* Cambia el tamaño del texto (puedes ajustar el valor) */
+}
+
+/* Opciones */
+select {
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+/* Boletos generados */
+.generated-tickets {
+    margin: 20px 0;
+    padding: 15px;
+    font-size: 1.2rem;
+    background: #f4f4f4;
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    color: #333;
+}
+
+/* Botón de generar */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+
+
+#person-data-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* Contenido del modal: person-data-modal  */
+.modal-person-content {
+    position: absolute;
+    top: 50%;
+    /* Mueve al 50% desde la parte superior */
+    left: 50%;
+    /* Mueve al 50% desde la parte izquierda */
+    transform: translate(-50%, -50%);
+    /* Compensa el centro */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 650px;
+    max-width: 90%;
+    text-align: center;
+}
+
+
+
+/* Contenedor de la máquina tragamonedas */
+#slot-machine {
+    display: none;
+    /* Oculto inicialmente */
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Animación de la máquina tragamonedas */
+.slot-animation {
+    width: 250px;
+    height: 250px;
+    /*animation: spin 1.5s infinite;*/
+}
+
+/* Keyframes para simular movimiento 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    50% { transform: rotate(-10deg); }
+    75% { transform: rotate(5deg); }
+    100% { transform: rotate(0deg); }
+}
+*/
+
+
+
+
+
+
+
+
+
+.blancos-disponibles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blancos-disponibles button {
+    background-color: #ffffff;
+    /* Fondo del botón */
+    color: white;
+    /* Color del texto */
+    border: 2px solid #7fc241;
+    /* Contorno del botón */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    font-size: 16px;
+    /* Tamaño de la fuente */
+    cursor: pointer;
+    /* Cambia el cursor al pasar el ratón */
+    transition: all 0.3s ease;
+    /* Efecto suave al pasar el ratón */
+    margin-right: 10px;
+    user-select: none;
+    outline: none;
+    pointer-events: none;
+}
+
+
+
+/* Crea un contenedor donde el contenido (imágenes, texto, etc.) se alinea perfectamente en el centro, tanto horizontal como verticalmente. */
+.div_alinear {
+    display: flex;
+    /* Alinear y distribuir sus elementos hijos (contenido dentro del div) de forma más controlada y dinámica. */
+    align-items: center;
+    /* Esto asegura que el contenido (como texto e imágenes) esté centrado en el eje transversal (vertical, por defecto). */
+    justify-content: center;
+    /* Esto coloca el contenido centrado en el eje principal (horizontal, por defecto). */
+    margin-top: 20px;
+    /* Esto separa el contenedor del elemento que está encima de él, creando espacio vertical. */
+}
+
+.div_alinear img {
+    width: 30px;
+    /* Ajusta el tamaño según sea necesario */
+    margin-right: 10px;
+    /* Espaciado entre la imagen y el texto */
+}
+
+.div_alinear span {
+    font-size: 16px;
+    /* Ajusta el tamaño de la fuente */
+    color: #000;
+    /* Cambia el color del texto si es necesario */
+}
+
+
+.div_espacio2 {
+    height: 100px;
+}
+
+
+#div_section_titulo_fecha_rifa {
+    background-color: #222222;
+    color: white;
+    padding: 10px;
+    font-size: 30px;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 1px;
+}
+
+#div_tituloRifa p {
+    font-size: 50px;
+    /* Tamaño del texto */
+    line-height: 1;
+    /* Reduce la altura de la línea al mínimo */
+    margin: 0;
+    /* Elimina los márgenes de los párrafos */
+}
+
+#div_fechaRifa p {
+    font-size: 40px;
+    /* Tamaño del texto de la fecha */
+    font-weight: bold;
+    /* Texto en negritas */
+    margin: 10px 0 10px;
+    /* Margen superior e inferior */
+}
+
+#div_section_imagenPremio {
+    margin-top: -25px;
+    margin-bottom: 30px;
+}
+
+#div_lista_boletos_abajo {
+    display: flex;
+    /* Alinear y distribuir sus elementos hijos (contenido dentro del div) de forma más controlada y dinámica. */
+    align-items: center;
+    /* Esto asegura que el contenido (como texto e imágenes) esté centrado en el eje transversal (vertical, por defecto). */
+    justify-content: center;
+    /* Esto coloca el contenido centrado en el eje principal (horizontal, por defecto). */
+    margin-top: 30px;
+    /* Esto separa el contenedor del elemento que está encima de él, creando espacio vertical. */
+    margin-bottom: 10px;
+}
+
+#div_lista_boletos_abajo strong {
+    font-size: 35px;
+}
+
+.div_triangulo_boletos_abajo {
+    /*border: 3px solid black; /* El borde tendrá un grosor de 5px y color verde */
+    /*padding: 0px; /* Espaciado interno del div */
+    width: 50px;
+}
+
+
+
+#div_imagenPremio {
+    display: flex;
+    justify-content: center;
+    /* Centra la imagen dentro del div */
+    align-items: center;
+    /* Centra la imagen verticalmente */
+    height: 500px;
+    /* Definir una altura específica para el div para hacer que la imagen sea mas chica o mas gradne*/
+}
+
+#div_imagenPremio img {
+    width: auto;
+    height: 100%;
+    /* Ajusta la altura de la imagen al 100% del div */
+    border: 5px solid #7fc241;
+    /* Borde de 5 píxeles de grosor y color rojo */
+}
+
+
+
+#div_section_precio_boletos {
+    background-color: #222222;
+    color: white;
+    padding: 10px;
+    font-size: 30px;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#div_precio_boletos {
+    line-height: 0.5;
+    /* Reduce la altura de la línea al mínimo */
+    font-size: 30px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+
+
+#div_sectionHazclickAbajo {
+    background-color: #222222;
+    color: white;
+    padding: 0px;
+    font-size: 30px;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+
+
+
+/* Estilo responsivo */
+@media screen and (max-width: 1119px) {
+    /*
+    .navbar {
+        padding: 28px 20px;
+    }
+
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        /*width: 150px;*
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .navbar ul.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar ul li:not(:last-child)::after {
+        content: none;
+    }
+
+    .navbar {
+        padding: 30px 20px;
+        height: 0px;
+    }
+    */
+    .div_header {
+        height: 130px;
+    }
+
+    .logo {
+        top: -13px; /* Desplaza el logo hacia arriba */
+        left: 20px; /* Alinea el logo a la izquierda */
+    }
+
+    .logo img {
+        height: 175px;
+    }
+    
+
+    .div_espacio3 {
+        height: 130px;
+    }
+
+}
+
+@media (max-width: 999px) {
+    .logo {
+        top: -13px; /* Desplaza el logo hacia arriba */
+        left: 20px; /* Alinea el logo a la izquierda */
+    }
+
+    .logo img {
+        height: 165px;
+    }
+
+    .div_trianguloAbajo {
+        display: none;
+    }
+
+    #div_sectionHazclickAbajo {
+        margin-top: 20px;
+        padding: 36px;
+        padding-top: 16px;
+    }
+
+    #reserve-tickets-section-btn {
+        margin-top: 35px;
+    }
+
+    #div_container_titulo_fecha_rifa {
+        padding-top: 70px;
+        padding-bottom: 40px;
+    }
+
+    #div_precio_boletos {
+        line-height: 0.5;
+        /* Reduce la altura de la línea al mínimo */
+        font-size: 15px;
+        margin-top: -10px;
+        margin-bottom: -10px;
+    }
+
+}
+
+@media (max-width: 949px) {
+    #div_section_titulo_fecha_rifa {
+        padding-top: 30px;
+        padding-bottom: 1px;
+    }
+
+    #div_container_titulo_fecha_rifa {
+        padding-top: 80px;
+        padding-bottom: 40px;
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 789px) {
+    #div_tituloRifa p {
+        font-size: 45px;
+        /* Tamaño del texto */
+    }
+
+    #div_fechaRifa p {
+        font-size: 45px;
+        /* Tamaño del texto de la fecha */
+    }
+
+    #div_imagenPremio {
+        height: 400px;
+        /* Definir una altura específica para el div para hacer que la imagen sea mas chica o mas gradne*/
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /*
+    .search-section input[type="text"] {
+        width: 20%;
+    }
+    */
+    /*
+    .number-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    */
+}
+
+@media (max-width: 709px) {
+    #div_tituloRifa p {
+        font-size: 40px;
+        /* Tamaño del texto */
+    }
+
+    #div_fechaRifa p {
+        font-size: 40px;
+        /* Tamaño del texto de la fecha */
+    }
+
+    #div_lista_boletos_abajo strong {
+        font-size: 30px;
+    }
+
+    #div_imagenPremio {
+        height: 370px;
+        /* Definir una altura específica para el div para hacer que la imagen sea mas chica o mas gradne*/
+    }
+}
+
+@media (max-width: 639px) {
+    #div_tituloRifa p {
+        font-size: 35px;
+        /* Tamaño del texto */
+    }
+
+    #div_fechaRifa p {
+        font-size: 35px;
+        /* Tamaño del texto de la fecha */
+    }
+
+    #div_lista_boletos_abajo strong {
+        font-size: 25px;
+    }
+
+    #div_imagenPremio {
+        height: 350px;
+        /* Definir una altura específica para el div para hacer que la imagen sea mas chica o mas gradne*/
+    }
+}
+
+@media (max-width: 559px) {
+    #div_tituloRifa p {
+        font-size: 30px;
+        /* Tamaño del texto */
+    }
+
+    #div_fechaRifa p {
+        font-size: 30px;
+        /* Tamaño del texto de la fecha */
+    }
+
+    #div_lista_boletos_abajo strong {
+        font-size: 25px;
+    }
+
+    #div_imagenPremio {
+        height: 300px;
+        /* Definir una altura específica para el div para hacer que la imagen sea mas chica o mas gradne*/
+    }
+}
+
+@media (max-width: 500px) {
+    .div_header {
+        height: 120px;
+    }
+
+    .navbar {
+        padding: 30px 20px;
+        height: 0px;
+    }
+
+    .logo {
+        top: -11px; /* Desplaza el logo hacia arriba */
+        left: 20px; /* Alinea el logo a la izquierda */
+    }
+
+    .logo img {
+        height: 150px;
+    }
+
+    .div_espacio3 {
+        height: 120px;
+    }
+}
+
+@media (max-width: 489px) {
+    #div_tituloRifa p {
+        font-size: 25px;
+        /* Tamaño del texto */
+    }
+
+    #div_fechaRifa p {
+        font-size: 25px;
+        /* Tamaño del texto de la fecha */
+    }
+
+    #div_lista_boletos_abajo strong {
+        font-size: 22px;
+    }
+
+    #div_imagenPremio {
+        height: 270px;
+        /* Definir una altura específica para el div para hacer que la imagen sea mas chica o mas gradne*/
+    }
+}
+
+@media (max-width: 480px) {
+    /*
+    .number-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    */
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .logo {
+        top: -11px; /* Desplaza el logo hacia arriba */
+        left: 20px; /* Alinea el logo a la izquierda */
+    }
+
+    header .logo img {
+        max-height: 40px;
+    }
+
+    header .navbar ul {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 450px) {
+    .logo {
+        top: -11px; /* Desplaza el logo hacia arriba */
+        left: 20px; /* Alinea el logo a la izquierda */
+    }
+    
+    .logo img {
+        height: 150px;
+    }
+
+    #div_section_titulo_fecha_rifa {
+        padding-top: 30px;
+    }
+}
+
+@media (max-width: 419px) {
+    #div_tituloRifa p {
+        font-size: 23px;
+        /* Tamaño del texto */
+    }
+
+    #div_fechaRifa p {
+        font-size: 23px;
+        /* Tamaño del texto de la fecha */
+    }
+
+    #div_lista_boletos_abajo strong {
+        font-size: 18px;
+    }
+
+    #div_imagenPremio {
+        height: 230px;
+        /* Definir una altura específica para el div para hacer que la imagen sea mas chica o mas gradne*/
+    }
+}
+
+@media (max-width: 389px) {
+    #div_tituloRifa p {
+        font-size: 20px;
+        /* Tamaño del texto */
+    }
+
+    #div_fechaRifa p {
+        font-size: 18px;
+        /* Tamaño del texto de la fecha */
+    }
+
+    #div_lista_boletos_abajo strong {
+        font-size: 15px;
+    }
+
+    #div_imagenPremio {
+        height: 200px;
+        /* Definir una altura específica para el div para hacer que la imagen sea mas chica o mas gradne*/
+    }
+}
+
+@media (max-width: 339px) {
+    #div_tituloRifa p {
+        font-size: 15px;
+        /* Tamaño del texto */
+    }
+
+    #div_fechaRifa p {
+        font-size: 15px;
+        /* Tamaño del texto de la fecha */
+    }
+}
+
+
+
+
+
+
+
+
+.searchClass {
+    border: 2px solid #7fc241;
+    /* Define el grosor y color del contorno */
+    border-radius: 5px;
+    /* Esquinas redondeadas opcionales */
+    padding: 10px;
+    /* Espaciado interno */
+    text-align: center;
+    /* Centra el texto horizontalmente */
+}
+
+.searchClass::placeholder {
+    font-size: 18px;
+    /* Cambia el tamaño del texto del placeholder */
+    color: gray;
+    /* Cambia el color del placeholder */
+    /*font-style: italic; /* Opcional: Cambia el estilo a cursiva */
+    opacity: 1;
+    /* Asegura que el texto sea completamente visible */
+    /*font-weight: bold;*/
+    text-align: center;
+    /* Centra el texto del placeholder */
+}
+
+
+.form_personModal {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+
+.reserve-tickets button {
+    padding: 10px 20px;
+    background-color: #7fc241;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+#reserve-tickets-section-btn {
+    border: 3px solid #7fc241;
+    /* Grosor, estilo y color del borde */
+    background-color: #d40000;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    border-radius: 5px;
+    /* Esquinas redondeadas (opcional) */
+    cursor: pointer;
+    /* Cambia el cursor al pasar por encima */
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 30%;
+    margin-bottom: 10px;
+}
+
+#reserve-tickets-section-btn:hover {
+    border-color: #d40000;
+    /* Cambia el color del borde al pasar el ratón */
+    background-color: #7fc241;
+    /* Color de fondo */
+}
+
+@media (max-width: 660px) {
+    #reserve-tickets-section-btn {
+        width: 60%;
+    }
+}
+
+/*
+#div_selected_tickets_section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+    font-size: 18px;
+    flex-wrap: nowrap;
+    padding: 10px;
+}
+*/
+
+#div_selected_tickets_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    /* Agrega scroll horizontal si es necesario */
+    padding: 10px;
+    width: 100%;
+    /* Ocupa todo el ancho del contenedor padre */
+}
+
+#div_selected_tickets_section {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que los números pasen a una nueva fila si no caben */
+    justify-content: center;
+    /* Centra los números dentro del contenedor */
+    gap: 5px;
+    /* Ajusta el espacio entre los números */
+    max-width: 100%;
+    /* Limita el ancho máximo */
+}
+
+#div_selected_spanTicket {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #000;
+    /* Cambia al color que prefieras */
+    color: #fff;
+    border: 1px solid #00ff00;
+    /* Color del borde */
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+#div_text_selectedTickets_section {
+    color: yellow;
+    font-size: 5px;
+    color: yellow;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Poppins-SemiBold", serif;
+    padding-bottom: 35px;
+}
+
+#div_total_selectedTickets_section {
+    color: yellow;
+    font-size: 5px;
+    color: yellow;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Poppins-SemiBold", serif;
+}
+
+@media (max-width: 999px) {
+    #div_text_selectedTickets_section {
+        padding-bottom: 0px;
+    }
+    .lista_boletos_btn_class {
+        width: 50%;
+    }
+}
+
+
+#div_ticket_count_container {
+    max-height: 200px;
+    /* Limita la altura máxima */
+    overflow-y: auto;
+    /* Agrega scroll vertical */
+    overflow-x: hidden;
+    /* Oculta scroll horizontal */
+    /*border: 2px solid #00b707; /* Bordes verdes */
+    padding: 10px;
+    /* Espaciado interno */
+    font-family: monospace;
+    /* Asegura una fuente consistente */
+    line-height: 1.5;
+    /* Ajusta el espacio entre líneas */
+    word-wrap: break-word;
+    /* Fuerza el ajuste de texto si es necesario */
+    /*display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto; 
+    padding: 10px;
+    width: 100%;*/
+}
+
+#div_ticket_count_section {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que los números pasen a una nueva fila si no caben */
+    justify-content: center;
+    /* Centra los números dentro del contenedor */
+    gap: 5px;
+    /* Ajusta el espacio entre los números */
+    max-width: 100%;
+    /* Limita el ancho máximo */
+}
+
+#div_ticket_text {
+    padding-bottom: 10px;
+}
+
+
+.load {
+    margin: 0;
+    height: 100vh;
+    /* Toma toda la altura de la pantalla */
+    display: flex;
+    justify-content: center;
+    /* Centrado horizontal */
+    align-items: center;
+    /* Centrado vertical */
+    /*background-color: #f4f4f4; /* Color de fondo opcional */
+    width: 100%;
+    height: 200px;
+}
+
+.load_2 {
+    margin: 0;
+    height: 100vh;
+    /* Toma toda la altura de la pantalla */
+    display: flex;
+    justify-content: center;
+    /* Centrado horizontal */
+    align-items: center;
+    /* Centrado vertical */
+    /*background-color: #f4f4f4; /* Color de fondo opcional */
+    width: 100%;
+    height: 100px;
+}
+
+
+#div_con_boleto_liquidado {
+    text-align: center;
+    line-height: 0.5;
+    font-size: 30px;
+    margin-top: 50px;
+}
+
+#div_premios_por_lugar {
+    text-align: center;
+    line-height: 0.5;
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+#div_presorteos {
+    text-align: center;
+    line-height: 0.5;
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+#div_bono_pronto_pago {
+    text-align: center;
+    line-height: 0.5;
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+#div_bono {
+    text-align: center;
+    line-height: 0.5;
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+#div_bono_especial {
+    text-align: center;
+    line-height: 0.5;
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+#div_pagos_realizados_despues {
+    text-align: center;
+    line-height: 0.5;
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+#div_mensajes_tmp_whatsapp {
+    text-align: center;
+    line-height: 0.5;
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+#div_bono_envio {
+    text-align: center;
+    line-height: 0.5;
+    font-size: 30px;
+    margin-top: 80px;
+    margin-bottom: 60px;
+}
+
+
+.footer_1 {
+    text-align: center;
+    font-size: 30px;
+    background-color: #7fc241;
+    border: 2px solid #222222;
+}
+
+#div_footer_1 {
+    line-height: 0.5;
+}
+
+#div_footer_1 a {
+    color: white;
+}
+
+
+.footer_2 {
+    text-align: center;
+    font-size: 30px;
+    background-color: #222222;
+    border: 2px solid #222222;
+}
+
+#div_footer_2 {
+    line-height: 0.5;
+}
+
+#div_footer_2 a {
+    color: white;
+}
+
+@media (max-width: 629px) {
+    #div_section_info_sorteo div {
+        font-size: 25px;
+    }
+
+    .footer_1 {
+        font-size: 25px;
+    }
+
+    .footer_2 {
+        font-size: 25px;
+    }
+
+    #div_sectionHazclickAbajo {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 519px) {
+    #div_section_info_sorteo div {
+        font-size: 20px;
+    }
+
+    .footer_1 {
+        font-size: 20px;
+    }
+
+    .footer_2 {
+        font-size: 20px;
+    }
+
+    #div_sectionHazclickAbajo {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 419px) {
+    #div_section_info_sorteo div {
+        font-size: 18px;
+    }
+
+    .footer_1 {
+        font-size: 18px;
+    }
+
+    .footer_2 {
+        font-size: 18px;
+    }
+
+    #div_sectionHazclickAbajo {
+        font-size: 25px;
+    }
+}
+
+.p_modal_person_class {
+    color: #008d44;
+    margin: 0px;
+}
+
+.p2_modal_person_class {
+    color: red;
+    margin: 0px;
+}
+
+#catidad_boletos_seleccionados_modal_person {
+    color: #68d442;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+#apartar_modal_person_btn {
+    border: 3px solid #7fc241;
+    /* Grosor, estilo y color del borde */
+    background-color: #d40000;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    border-radius: 5px;
+    /* Esquinas redondeadas (opcional) */
+    cursor: pointer;
+    /* Cambia el cursor al pasar por encima */
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    /*width:40%;*/
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+#apartar_modal_person_btn:hover {
+    border-color: #d40000;
+    /* Cambia el color del borde al pasar el ratón */
+    background-color: #7fc241;
+    /* Color de fondo */
+}
+
+#redirigir_modal_person_btn {
+    border: 3px solid #7fc241;
+    /* Grosor, estilo y color del borde */
+    background-color: #d40000;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    border-radius: 5px;
+    /* Esquinas redondeadas (opcional) */
+    cursor: pointer;
+    /* Cambia el cursor al pasar por encima */
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 240px;
+    margin-bottom: 10px;
+}
+
+#redirigir_modal_person_btn:hover {
+    border-color: #d40000;
+    /* Cambia el color del borde al pasar el ratón */
+    background-color: #7fc241;
+    /* Color de fondo */
+}
+
+
+.input_personModal {
+    border: 2px solid #7fc241;
+    /* Define el grosor y color del contorno */
+    border-radius: 5px;
+    /* Esquinas redondeadas opcionales */
+    padding: 10px;
+    /* Espaciado interno */
+    /*width: 100%;*/
+    /*max-width: 625px; */
+    /*text-align: center; /* Centra el texto horizontalmente */
+}
+
+.input_personModal::placeholder {
+    font-size: 18px;
+    /* Cambia el tamaño del texto del placeholder */
+    color: gray;
+    /* Cambia el color del placeholder */
+    /*font-style: italic; /* Opcional: Cambia el estilo a cursiva */
+    opacity: 1;
+    /* Asegura que el texto sea completamente visible */
+    /*font-weight: bold;*/
+    /*text-align: center; /* Centra el texto del placeholder */
+}
+
+.select_states_class {
+    border: 2px solid #7fc241;
+    /* Define el grosor y color del contorno */
+    border-radius: 5px;
+    /* Esquinas redondeadas opcionales */
+    padding: 10px;
+    /* Espaciado interno */
+}
+
+.select_states_class::placeholder {
+    font-size: 18px;
+    /* Cambia el tamaño del texto del placeholder */
+    color: gray;
+    /* Cambia el color del placeholder */
+    opacity: 1;
+    /* Asegura que el texto sea completamente visible */
+}
+
+
+
+/* Estilo para cuando el div es deshabilitado */
+#generated-tickets.deshabilitado {
+    pointer-events: none; /* Desactiva el clic */
+    /*opacity: 0.5;         /* Hace el div semi-transparente */
+}
+
+
+
+.div_ImageButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.div_ImageButton img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.div_ImageButton button {
+    position: absolute;
+    top: 45px; /* Mueve el botón hacia arriba (puedes ajustar este valor) */
+}
+
+
+
+.lista_boletos_btn_class {
+    border: 3px solid #7fc241;
+    /* Grosor, estilo y color del borde */
+    background-color: #d40000;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    border-radius: 10px;
+    /* Esquinas redondeadas (opcional) */
+    cursor: pointer;
+    /* Cambia el cursor al pasar por encima */
+    padding: 10px 20px;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1px; /* Aumenta la separación entre letras */
+    width: 30%;
+    margin-bottom: 10px;
+}
+
+.lista_boletos_btn_class:hover {
+    border-color: #d40000;
+    /* Cambia el color del borde al pasar el ratón */
+    background-color: #7fc241;
+    /* Color de fondo */
+}
+
+
+
+#div_section_logo_pagina_cerrado {
+    margin-top: -110px;
+    margin-bottom: -135px;
+}
+
+#div_logo_pagina_cerrado {
+    display: flex;
+    justify-content: center;
+    /* Centra la imagen dentro del div */
+    align-items: center;
+    /* Centra la imagen verticalmente */
+    height: 500px;
+    /* Definir una altura específica para el div para hacer que la imagen sea mas chica o mas gradne*/
+}
+
+#div_logo_pagina_cerrado img {
+    width: auto;
+    height: 40%;
+    /* Ajusta la altura de la imagen al 100% del div */
+    /*border: 5px solid #7fc241;*/
+    /* Borde de 5 píxeles de grosor y color rojo */
+    /*border-radius: 30px;*/
+}
+
+.img_logo_class {
+    width: 200px; /* Ajusta el tamaño según lo necesites */
+    height: auto; /* Mantén las proporciones */
+    border-radius: 50%; /* Opcional: Si deseas un borde redondeado */
+    display: block;
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+    box-sizing: border-box; /* Asegura que el borde esté incluido en el tamaño */
+    /*border: 5px solid #7fc241; /* Grosor, estilo y color del borde */
+    box-shadow: 0 0 15px 5px rgba(127, 194, 65, 0.8); /* Difuminado */
+}
+
+
+
+#div_section_cerrado_info_sorteo div {
+    /*display: flex;
+    justify-content: center; /* Centra horizontalmente *
+    align-items: center; /* Centra verticalmente *
+    flex-direction: column; /* Asegura que los elementos se coloquen en columna *
+    height: 100vh; /* Asegura que el contenedor tenga al menos el alto de la pantalla */
+    text-align: center; /* Centra el texto */
+}
+
+.div_cerrado_trianguloVerde {
+    padding-top: 30px;
+}
+
+.div_cerrado {
+    /*display: flex;
+    flex-direction: column; /* Asegura que los elementos internos estén en columna */
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+}
+
+.cerrado_image {
+    max-width: 100%;
+    height: auto;
+}
+
+/*.a_cerrado_logoWhatsapp img{
+    height: 65px; /* Ajusta el tamaño del logo *
+    object-fit: cover; /* Asegura que la imagen se ajuste bien *
+}
+
+.a_cerrado_logoFacebook img{
+    height: 65px; /* Ajusta el tamaño del logo *
+    object-fit: cover; /* Asegura que la imagen se ajuste bien *
+}*/
+
+.div_cerrado_logos {
+    display: flex;
+    justify-content: center; /* Alinea las imágenes horizontalmente */
+    gap: 30px; /* Espacio entre las imágenes */
+}
+
+.cerrado_imagen {
+    width: 60px; /* Tamaño de las imágenes (ajústalo según sea necesario) */
+    height: auto; /* Mantén las proporciones */
+}
+
+.div_cerrado_espacio_abajo {
+    padding-bottom: 30px;
+}
+
+.texto_div_class {
+    font-size: 25px;
+}
+
+
+
+#div_sectionHazclickAbajo_cerrado {
+    background-color: #222222;
+    color: white;
+    padding: 0px;
+    font-size: 30px;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+
+#div_section_sorteo_cerrado_texto {
+    background-color: #222222;
+    color: white;
+    padding: 10px;
+    /*font-size: 30px;*/
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    /*padding-top: 20px;
+    padding-bottom: 20px;*/
+}
+
+#div_sorteo_cerrado_texto {
+    line-height: 0.5;
+    /* Reduce la altura de la línea al mínimo */
+    font-size: 30px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+
+
+
+#div_section_rifas_abiertas {
+    background-color: #222222;
+    color: white;
+    padding: 0px;
+    font-size: 30px;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+#div_rifas_abiertas {
+    background-color: #222222;
+    color: white;
+    padding: 10px;
+    /*font-size: 30px;*/
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    /*padding-top: 20px;
+    padding-bottom: 20px;*/
+}
+
+.div_rifa_abierta {
+    border: 5px solid #7fc241;
+}
+/*
+.div_card_rifasAbiertas {
+    border: 5px solid #0a16be; 
+    width: 450px; 
+    height: 700px;
+}
+
+.div_card_rifasAbiertas img {
+    width: auto; 
+    height: 271px;
+}
+
+.div_card_rifasAbiertas h5 {
+    font-size: 20px;
+}
+
+.div_card_rifasAbiertas p {
+    font-size: 20px;
+    margin-top: -20px; 
+    margin-bottom: 30px; 
+    padding: 0; /* Elimina cualquier relleno, si lo hubiera *
+}
+
+.div_card_rifasAbiertas a {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff; /* Texto blanco *
+    background-color: #7fc241; /* Azul *
+    text-decoration: none; /* Elimina el subrayado *
+    border: none;
+    border-radius: 5px; /* Bordes redondeados *
+    text-align: center;
+    cursor: pointer;
+}
+
+.div_card_rifasAbiertas a:hover {
+    background-color: #45a049; /* Azul más oscuro al pasar el mouse *
+}
+
+.card_body_rifasAbiertas {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+    
+.lista_disponibles_btn {
+    margin-bottom: 10px; 
+}
+
+.buscar_mismos_numeros_btn {
+    margin-bottom: 10px; 
+}
+
+.verificador_btn {
+    margin-bottom: 10px; 
+}
+*/
+
+
+
+.div_espacio4 {
+    height: 132px;
+}
+
+.div_espacio5 {
+    height: 150px;
+}
+
+
+
+
+/* --------------> Estilos para las cards de la pagina principal (index.html) (INICIO) <-------------- */
+.container-rifasAbiertas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+}
+
+.section-rifasAbiertas {
+    width: 300px;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 0 7px 6px rgba(255, 255, 255, 0.8);
+    text-align: center;
+    background-color: #fff;
+}
+/*
+.section img {
+    width: 100%;
+    height: auto;
+}*/
+
+.image-container-rifasAbiertas {
+    display: flex;
+    flex-direction: column;
+    /*gap: 10px; /* Espaciado entre las filas */
+}
+
+.main-image-rifasAbiertas img {
+    width: 100%; /* La imagen principal ocupa todo el ancho */
+    height: auto;
+    /*border-radius: 8px; /* Opcional: bordes redondeados */
+}
+
+.secondary-images-rifasAbiertas {
+    display: flex;
+    justify-content: space-between; /* Las imágenes secundarias se distribuyen horizontalmente */
+    /*gap: 10px; /* Espaciado entre imágenes */
+}
+
+.secondary-images-rifasAbiertas img {
+    width: 50%; /* Cada imagen secundaria ocupa aproximadamente la mitad del contenedor */
+    height: auto;
+    /*border-radius: 8px; /* Opcional */
+}
+
+.section-content-rifasAbiertas {
+    padding: 15px;
+    background-color: #000;
+    color: #fff;
+}
+
+.section-content-rifasAbiertas h3 {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.section-content-rifasAbiertas p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.buttons-rifasAbiertas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.buttons-rifasAbiertas button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons-rifasAbiertas .red {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.buttons-rifasAbiertas .blue {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.buttons-rifasAbiertas .orange {
+    background-color: #e67e22;
+    color: #fff;
+}
+/* --------------> Estilos para las cards de la pagina principal (index.html) (FIN) <-------------- */
+
+
+
+
+/* --------------> Estilos para la pasarela de imagenes de la pagina principal (index.html) (INICIO) <-------------- */
+.carousel-rifasAbiertas {
+    position: relative;
+    width: 100%;
+    /*max-width: 600px;*/
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-overlay-rifasAbiertas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Cortina negra transparente */
+    z-index: 1; /* Asegúrate de que esté detrás de los botones */
+}
+
+.carousel-images-rifasAbiertas {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    z-index: 2; /* Las imágenes están encima de la cortina */
+    /*overflow-x: auto; /* Permite el desplazamiento horizontal */
+}
+
+.carousel-images-rifasAbiertas img {
+    width: 100%;
+    height: 1000px;
+    flex-shrink: 0;
+}
+
+.buttons-carousel-rifasAbiertas {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 3; /* Los botones están encima de la cortina */
+}
+
+.button-group-rifasAbiertas {
+    display: flex;
+    gap: 10px;  /* Espacio entre los dos botones */
+}
+
+#btn_prev {
+    position: absolute;
+    right: 95%;
+}
+
+#btn_next {
+    position: absolute;
+    left: 95%;
+}
+
+#btn-lista-boletos-rifasAbiertas {
+    position: absolute;
+    padding: 14px;
+    right: 80%;
+    background-color: #e74c3c !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+/*
+.btn_cambiarCarousel button {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.btn_cambiarCarousel button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+*/
+.btn_cambiarCarousel {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.btn_cambiarCarousel:hover {
+    /*background-color: rgba(0, 0, 0, 0.8);*/
+    background-color: rgba(127, 194, 65, 0.6);
+}
+
+.indicators-rifasAbiertas {
+    /*
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    */
+    position: absolute;
+    /*bottom: 10px;/* Mueve los indicadores a la parte inferior */ 
+    top: 10px;  /* Mueve los indicadores a la parte superior */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    z-index: 3; /* Los indicadores también están encima */
+}
+
+.indicator-span-rifasAbiertas {
+    /*
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    */
+    /*
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    */
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    /*color: #fff;*/
+    color: #ffffff78;
+    font-weight: bold;
+}
+
+.indicator-span-rifasAbiertas.active {
+    /* background-color: #000; */
+    /*background-color: #fff;*/
+    background-color: rgb(127, 194, 95, 0.7);
+    color: #ffffff;
+}
+
+/* --------------> Estilos para la pasarela de imagenes de la pagina principal (index.html) (FIN) <-------------- */
+
+
+
+
+
+
+
+
+
+@media (max-width: 1199px) {
+    .lista_boletos_btn_class {
+        width: 40%;
+    }
+}
+
+@media (max-width: 1119px) {
+    .div_espacio4 {
+        height: 112px;
+    }
+    #btn-lista-boletos-rifasAbiertas {
+        right: 77%;
+    }
+}
+/*
+@media (max-width: 1009px) {
+    .lista_boletos_btn_class {
+        width: 50%;
+    }
+    .carousel-images-rifasAbiertas img {
+        height: 900px;
+    }
+}
+*/
+@media (max-width: 999px) {
+    .lista_boletos_btn_class {
+        width: 50%;
+    }
+    .carousel-images-rifasAbiertas img {
+        height: 800px;
+    }
+    #btn_prev {
+        right: 93%;
+    }
+    
+    #btn_next {
+        left: 93%;
+    }
+    
+    #btn-lista-boletos-rifasAbiertas {
+        right: 74%;
+    }
+}
+
+@media (max-width: 899px) {
+    .carousel-images-rifasAbiertas img {
+        height: 700px;
+    }
+    #btn_prev {
+        right: 92%;
+    }
+    
+    #btn_next {
+        left: 92%;
+    }
+    
+    #btn-lista-boletos-rifasAbiertas {
+        right: 71%;
+    }
+}
+
+@media (max-width: 799px) {
+    .lista_boletos_btn_class {
+        width: 60%;
+    }
+    #div_sectionHazclickAbajo_cerrado {
+        font-size: 25px;
+    }
+    .carousel-images-rifasAbiertas img {
+        height: 600px;
+    }
+    #btn_prev {
+        right: 91%;
+    }
+    
+    #btn_next {
+        left: 91%;
+    }
+    
+    #btn-lista-boletos-rifasAbiertas {
+        right: 67%;
+    }
+}
+
+@media (max-width: 699px) {
+    .carousel-images-rifasAbiertas img {
+        height: 500px;
+    }
+    #btn_prev {
+        right: 90%;
+    }
+    
+    #btn_next {
+        left: 90%;
+    }
+    
+    #btn-lista-boletos-rifasAbiertas {
+        right: 63%;
+    }
+}
+
+@media (max-width: 599px) {
+    .lista_boletos_btn_class {
+        width: 70%;
+    }
+    #div_logo_pagina_cerrado img {
+        width: auto;
+        height: 35%;
+    }
+    #div_section_logo_pagina_cerrado {
+        margin-top: -115px;
+        margin-bottom: -145px;
+    }
+    .div_trianguloAbajo_cerrado_1 {
+        display: none;
+    }
+    .div_trianguloAbajo_cerrado_2 {
+        display: block;
+    }
+    .texto_div_class {
+        font-size: 20px;
+    }
+    .carousel-images-rifasAbiertas img {
+        height: 400px;
+    }
+    #btn_prev {
+        right: 89%;
+    }
+    
+    #btn_next {
+        left: 89%;
+    }
+    
+    #btn-lista-boletos-rifasAbiertas {
+        right: 58%;
+    }
+}
+
+@media (max-width: 499px) {
+    .div_espacio4 {
+        height: 101px;
+    }
+    .texto_div_class {
+        font-size: 17px;
+    }
+    .carousel-images-rifasAbiertas img {
+        height: 300px;
+    }
+    #btn_prev {
+        right: 88%;
+    }
+    
+    #btn_next {
+        left: 88%;
+    }
+    
+    #btn-lista-boletos-rifasAbiertas {
+        right: 51%;
+    }
+}
+
+@media (max-width: 449px) {
+    #btn-lista-boletos-rifasAbiertas {
+        right: 48%;
+    }
+}
+
+@media (max-width: 399px) {
+    .lista_boletos_btn_class {
+        font-size: 20px;
+        width: 75%;
+    }
+    .carousel-images-rifasAbiertas img {
+        height: 250px;
+    }
+    #btn_prev {
+        right: 87%;
+    }
+    
+    #btn_next {
+        left: 87%;
+    }
+    
+    #btn-lista-boletos-rifasAbiertas {
+        right: 41%;
+    }
+}
+
+@media (max-width: 349px) {
+    #btn-lista-boletos-rifasAbiertas {
+        right: 36%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+.navbar_3 {
+    /*position: relative;*/
+    position: fixed;
+    width: 100%;
+	top: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 9px 20px;
+    color: white;
+    z-index: 200;
+}
+
+.navbar_3 .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar_3 ul {
+    list-style: none;
+    display: flex;
+    position: relative;
+}
+
+.navbar_3 ul li {
+    position: relative;
+    margin: 0 0px;
+}
+
+.navbar_3 ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 15px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.navbar_3 ul li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.navbar_3 ul li a i {
+    padding-right: 10px;
+	padding-left: 5px;
+}
+
+.navbar_3 ul li ul {
+    display: none;
+    position: absolute;
+    top: 34px;
+    left: 0;
+    background-color: #444;
+    list-style: none;
+    padding: 10px 0;
+    width: 200px;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+.navbar_3 ul li:hover ul {
+    display: block;
+}
+
+.navbar_3 ul li ul li {
+    margin: 0;
+}
+
+.navbar_3 ul li ul li a {
+    padding: 10px 20px;
+    color: white;
+    display: block;
+}
+
+.navbar_3 ul li ul li a:hover {
+    background-color: #555;
+}
+
+.menu-3-btn {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Sidebar menu for mobile */
+.sidebar_3 {
+    position: fixed;
+    top: 99px;
+    right: -400px;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    /*padding: 20px;*/
+    padding-right: 30px;
+    transition: right 0.3s;
+    z-index: 200;
+}
+
+.sidebar_3 ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.sidebar_3 ul li {
+    margin: 20px 0;
+    position: relative;
+}
+
+.sidebar_3 ul li ul {
+    display: none;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar_3 ul li.active ul {
+    display: block;
+}
+
+.sidebar_3 ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+    width: 110%;
+}
+
+.sidebar_3 ul li a:hover {
+    text-decoration: underline;
+}
+
+.sidebar_3 ul li a i {
+    padding-right: 10px;
+	padding-left: 5px;
+}
+
+.sidebar_3.active {
+    right: 0;
+}
+
+@media (max-width: 1119px) {
+    .navbar_3 {
+        padding: 0px 20px;
+    }
+}
+
+/*@media (max-width: 768px) {*/
+@media (max-width: 999px) {
+    .navbar_3 {
+        padding: 20px 20px;
+    }
+
+    .navbar_3 ul {
+        display: none;
+    }
+
+    .menu-3-btn {
+        display: block;
+        position: relative;
+		right: 50px;
+    }
+}
+
+@media (max-width: 500px) {
+    .navbar_3 {
+        padding: 15px 20px;
+    }
+
+    .sidebar_3 {
+        top: 89px;
+    }
+}
+
+
+
+
+
+.main-content-verificador {
+    text-align: center;
+    /*margin: 20px;*/
+}
+
+.main-content-verificador h1 {
+    background-color: #000;
+    color: white;
+    padding: 15px;
+}
+
+
+.blancos-disponibles-verificador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blancos-disponibles-verificador button {
+    background-color: #ffffff;
+    /* Fondo del botón */
+    color: white;
+    /* Color del texto */
+    border: 2px solid #7fc241;
+    /* Contorno del botón */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    font-size: 16px;
+    /* Tamaño de la fuente */
+    cursor: pointer;
+    /* Cambia el cursor al pasar el ratón */
+    transition: all 0.3s ease;
+    /* Efecto suave al pasar el ratón */
+    margin-right: 10px;
+    user-select: none;
+    outline: none;
+    pointer-events: none;
+}
+
+#btn_pagado_verificador {
+    background-color: rgb(16 226 16);
+    border: 2px solid rgb(16 226 16);
+}
+
+#btn_noPagado_verificador {
+    background-color: red;
+    border: 2px solid red;
+    margin-left: 30px;
+}
+
+
+.search-section-verificador {
+    margin: 20px 0;
+}
+
+.search-section-verificador input {
+    padding: 10px;
+    margin-right: 10px;
+    width: 200px;
+    /* Toma todo el ancho disponible */
+}
+
+/* Cambios cuando el input es tocado (focus) */
+.search-section-verificador input:focus {
+    outline: none;/* Elimina el contorno predeterminado */
+    box-shadow: 0 0 15px 5px rgba(127, 194, 65, 0.8); /* Difuminado */
+}
+
+/* Mantén el box-shadow si hay texto en el input */
+.search-section-verificador input:not(:placeholder-shown) {
+    box-shadow: 0 0 15px 5px rgba(127, 194, 65, 0.8); /* Difuminado */
+}
+
+/* Cambios cuando el input está activo (cuando haces clic y mantienes presionado) *
+.search-section-verificador input:active {
+    border-color: rgb(247, 5, 255);
+    background-color: lightblue;
+}
+*/
+
+.search-section-verificador button {
+    padding: 10px 20px;
+    background-color: #7fc241;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.searchClass-verificador {
+    border: 2px solid #7fc241;
+    /* Define el grosor y color del contorno */
+    border-radius: 5px;
+    /* Esquinas redondeadas opcionales */
+    padding: 10px;
+    /* Espaciado interno */
+    text-align: center;
+    /* Centra el texto horizontalmente */
+}
+
+.searchClass-verificador::placeholder {
+    font-size: 18px;
+    /* Cambia el tamaño del texto del placeholder */
+    color: gray;
+    /* Cambia el color del placeholder */
+    /*font-style: italic; /* Opcional: Cambia el estilo a cursiva */
+    opacity: 1;
+    /* Asegura que el texto sea completamente visible */
+    /*font-weight: bold;*/
+    text-align: center;
+    /* Centra el texto del placeholder */
+}
+
+
+
+
+.div_espacio5 {
+    height: 221px;
+}
+
+
+
+.tableClass_verificador {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%; /* Asegura que el contenedor no exceda el ancho de la pantalla */
+    /*border: 1px solid #ddd; /* Borde opcional para resaltar */
+    overflow-x: auto; /* Activa el scroll horizontal */
+    white-space: nowrap; /* Evita el ajuste de líneas dentro de las celdas */
+    padding: 10px; /* Opcional: espacio alrededor de la tabla */
+    box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+}
+
+.tableClass_verificador table {
+    width: 100%; /* Escala la tabla al tamaño del contenedor */
+    border: 1px solid #ccc;
+    border-collapse: collapse; /* Evita bordes dobles */
+    min-width: 800px; /* Define un ancho mínimo para la tabla */
+}
+
+.tableClass_verificador th,
+.tableClass_verificador td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.tableClass_verificador th {
+    color: #ffffff; /* Color del texto */
+    background-color: #222222; /* Color de fondo */
+}
+
+
+.td_status_pagadoClass_verificador {
+    background-color: #28a745; /* Verde para "PAGADO" */
+    color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
+}
+
+.td_status_noPagadoClass_verificador {
+    background-color: #dc3545; /* Rojo para "NO_PAGADO" */
+    color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
+}
+
+.td_class_verificador {
+    font-size: 16px; /* Reducir tamaño de texto */
+}
+
+
+.div_btnConsultar_verificador {
+    margin-top: 30px;
+}

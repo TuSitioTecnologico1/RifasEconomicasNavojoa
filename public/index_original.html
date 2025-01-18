@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Metatags para redes sociales (Open Graph) -->
+        <meta property="og:title" content="Rifas Economicas Navojoa" />
+        <!--<meta property="og:description" content="" />-->
+        <meta property="og:url" content="https://rifaseconomicasnavojoa.site/" />
+        <meta property="og:image" content="https://rifaseconomicasnavojoa.site/img/rifas_economicas_navojoa.png" />
+        
+        <title>Rifas Economicas Navojoa</title>
+        
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- Favicon en formato PNG (para que el logo aparezca en navegadores) -->
+        <link rel="icon" type="image/png" href="https://rifaseconomicasnavojoa.site/img/rifas_economicas_navojoa.png">
+        <!-- Opcional: Favicon para dispositivos Apple  (para que el logo aparezca en navegadores apple) -->
+        <link rel="apple-touch-icon" href="https://rifaseconomicasnavojoa.site/img/rifas_economicas_navojoa.png">
+    </head>
+    <body>
+        <div class="div_header"></div>
+
+        <div class="logo">
+            <img src="img/rifas_economicas_navojoa.png" alt="Logo" />
+        </div>
+
+        <nav class="navbar">
+            <div class="div_espacio"></div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#faq">Preguntas Frecuentes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#metodos">Métodos de Pago</a></li>
+                <li><a href="#boletos">Comprar Boletos</a></li>
+            </ul>
+        </nav>
+
+        <div class="div_espacio3"></div>
+
+        <div id="div_section_titulo_fecha_rifa">
+            <div id="div_tituloRifa">
+                <p><strong>EDICIÓN #11 DE ANIVERSARIO</strong></p>
+                <p><strong>MOTO ITALIKA DEPORTIVA</strong></p>
+                <p><strong>VORT-X 250 (2024)</strong></p>
+                <p><strong>O EFECTIVO</strong></p>
+            </div>
+            <div id="div_fechaRifa">
+                <p>
+                    <strong>17 DE DICIEMBRE 2024</strong>
+                </p>
+            </div>
+        </div>
+
+        <div id="div_section_imagenPremio">
+            <div id="div_lista_boletos_abajo">
+                    <div class="div_triangulo_boletos_abajo">
+                        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="1,15 21,50 41,15" fill="#7fc241" /> <!-- points="ejeX,ejeY ejeX,ejeY ejeX,ejeY" -->
+                        </svg>                        
+                    </div>
+                    <div class="div_text_lista_boletos_abajo">
+                        <strong id="span_listaBoletosAbajo">LISTA DE BOLETOS ABAJO</strong>
+                    </div>
+                    <div class="div_triangulo_boletos_abajo">
+                        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="10,15 30,50 50,15" fill="#7fc241" /> <!-- points="ejeX,ejeY ejeX,ejeY ejeX,ejeY" -->
+                        </svg>
+                    </div>
+            </div>
+            <div id="div_imagenPremio">
+                <img src="img/moto_italika_deportiva_vort-x250_2024_roja.jpg" alt="">
+            </div>
+        </div>
+
+        <div id="div_section_precio_boletos">
+            <div id="div_precio_boletos">
+                <p><strong>1 BOLETO POR $5</strong></p>
+                <p><strong>2 BOLETOS POR $10</strong></p>
+                <p><strong>3 BOLETOS POR $15</strong></p>
+                <p><strong>4 BOLETOS POR $20</strong></p>
+                <p><strong>5 BOLETOS POR $25</strong></p>
+                <p><strong>6 BOLETOS POR $30</strong></p>
+                <p><strong>7 BOLETOS POR $35</strong></p>
+                <p><strong>8 BOLETOS POR $40</strong></p>
+                <p><strong>9 BOLETOS POR $45</strong></p>
+                <p><strong>10 BOLETOS POR $50</strong></p>
+                <p><strong>15 BOLETOS POR $75</strong></p>
+                <p><strong>20 BOLETOS POR $100</strong></p>
+                <p><strong>30 BOLETOS POR $150</strong></p>
+                <p><strong>40 BOLETOS POR $200</strong></p>
+                <p><strong>50 BOLETOS POR $250</strong></p>
+                <p><strong>100 BOLETOS POR $500</strong></p>
+                <p><strong>200 BOLETOS POR $1,000</strong></p>
+                <p><strong>500 BOLETOS POR $2,500</strong></p>
+            </div>
+        </div>
+
+        <div id="div_section_info_sorteo">
+            <div id="div_con_boleto_liquidado">
+                <p>Con tu boleto liquidado participas por:</p>
+                <p>
+                    <span style="color: #7fc241;">ITALIKA VORT-X 250</span>
+                    <span> - </span>
+                    <span>17 DICIEMBRE</span>
+                </p>
+            </div>
+            <div id="div_premios_por_lugar">
+                <p>
+                    <span style="color: #7fc241;">2DO LUGAR</span>
+                    <span >$10,000</span>
+                </p>
+                <p>
+                    <span style="color: #7fc241;">3ER LUGAR</span>
+                    <span >$5,000</span>
+                </p>
+                <p>
+                    <span style="color: #7fc241;">4TO LUGAR</span>
+                    <span >$5,000</span>
+                </p>
+                <p>
+                    <span style="color: #7fc241;">5TO LUGAR</span>
+                    <span >$5,000</span>
+                </p>
+                
+            </div>
+            <div id="div_presorteos">
+                <p><span style="color: #7fc241;">PRESORTEO</span></p>
+                <p><span>13 DICIEMBRE</span></p>
+                <p><span style="color: #7fc241;">12 LUGARES DE $5,000</span><span> CADA UNO</span></p>
+                <p><span>(PARTICIPAN TODOS LOS QUE TENGAN</span></p>
+                <p><span>BOLETOS COMPRADOS DE ESTA EDICION)</span></p>
+                <p><span>(NO ACUMULABLE)</span></p>
+            </div>
+            <div id="div_bono_pronto_pago">
+                <p><span style="color: #7fc241;">BONO PRONTO PAGO:</span></p>
+                <p><span>PAGANDO DENTRO DE LA PRIMERA</span></p>
+                <p><span>HORA DE APARTADO</span></p>
+                <p><span>TE LLEVAS</span><span style="color: #7fc241;"> $5,000 MXN</span></p>
+            </div>
+            <div id="div_bono">
+                <p><span style="color: #7fc241;">BONO:</span></p>
+                <p><span>SI COMPRA MÁS DE 100 BOLETOS</span></p>
+                <p><span>EN UNA SOLA EXHIBICIÓN</span></p>
+                <p><span>TE LLEVAS</span><span style="color: #7fc241;"> $10,000 MXN</span></p>
+            </div>
+            <div id="div_bono_especial">
+                <p><span style="color: #7fc241;">BONO ESPECIAL:</span></p>
+                <p><span>SI INTERACTUA Y COMPARTE NUESTRA</span></p>
+                <p><span>EDICIÓN EN FACEBOOK</span></p>
+                <p><span>TE LLEVAS</span><span style="color: #7fc241;"> $10,000 MXN</span></p>
+                <p><span>(CON CAPTURAS ENVIADAS A DONDE</span></p>
+                <p><span>SE RESERVARON SUS BOLETOS)</span></p>
+            </div>
+            <div id="div_pagos_realizados_despues">
+                <p><span>PAGOS REALIZADOS DESPUÉS DE</span></p>
+                <p><span>LAS 7:00 PM (HORA DEL PACÍFICO</span></p>
+                <p><span>O MONTAÑA) NO PARTICIPAN EN</span></p>
+                <p><span>EL DÍA DEL EVENTO.</span></p>
+            </div>
+            <div id="div_mensajes_tmp_whatsapp">
+                <p><span>QUITAR MENSAJES TEMPORALES</span></p>
+                <p><span>EN SU WHATSAPP YA QUE PARA</span></p>
+                <p><span>ESTE TIPO DE EVENTOS LA</span></p>
+                <p><span>EVIDENCIA ES DE SUMA</span></p>
+                <p><span>IMPORTANCIA.</span></p>
+            </div>
+            <div id="div_bono_envio">
+                <p><span style="color: red;">BONO DE ENVIO A TODO MEXICO -</span></p>
+                <p><span style="color: red;">COMPRANDO 50 BOLETOS O MÁS</span></p>
+                <p><span style="color: red;">CON EL MISMO NOMBRE Y SI SON</span></p>
+                <p><span style="color: red;">ACUMULABLES</span></p>
+            </div>
+        </div>
+        <!--
+        <div class="div_espacio2"></div>
+        -->
+        <div id="div_sectionHazclickAbajo">
+            <div class="div_alinear">
+                <div class="div_trianguloAbajo">
+                    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="10,30 50,80 90,30" fill="white" />
+                    </svg>
+                </div>
+                <div class="div_hazClickAbajo">
+                    <strong id="span_hazClickAbajo">HAZ CLICK ABAJO EN TU NÚMERO DE LA SUERTE</strong>
+                </div>
+                <div class="div_trianguloAbajo">
+                    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="10,30 50,80 90,30" fill="white" />
+                    </svg>
+                </div>
+            </div>
+            <div id="div_reserveTickets" style="display: none;">
+                <button id="reserve-tickets-section-btn"> → APARTAR ← </button>
+                <div id="div_selected_tickets_container">
+                    <div id="div_selected_tickets_section"></div>
+                </div>
+                <div id="div_total_selectedTickets_section"></div>
+                <div id="div_text_selectedTickets_section"></div>
+            </div>
+        </div>
+
+        <div id="load" class="load"><img src="img/loading.gif" alt="GIF" style="width: 100px; height: 100px;"></div>
+
+        <main id="main-content" class="main-content" style="display: none;">
+            <div class="search-section">
+                <!-- Boton "Buscar" para encontrar numeros 
+                <button id="search-btn">Buscar</button> 
+                -->
+                <input type="text" id="search" placeholder="Buscar número" />
+                <br>
+                <div id="div_responseSearch"></div>
+                <br>
+                <div class="chosen_numbers">
+                    <span id="span_ticketAvalaible"></span>
+                </div>
+                <div id="div_br"></div>
+                <div id="div_btnElegir">
+                    <button id="chooseNumber-btn" style="display: none;">Elegir</button>
+                </div>
+                <div id="div_btnMaquinitaSuerte">
+                    <button id="random-btn">Maquinita de la Suerte</button>
+                </div>
+            </div>
+
+            <section class="blancos-disponibles">
+                <button id="btn_blancosDisponibles"></button>
+                <h4>Blancos - Disponibles</h4>
+            </section>
+
+            <div class="number-grid" id="number-grid" style="overflow: auto; max-height: 200px; z-index: 1000">
+                <!-- Números generados dinámicamente -->
+            </div>
+        </main>
+
+        <footer class="footer_1">
+            <div id="div_footer_1">
+                <p><a href="#">PREGUNTAS AL WHATSAPP</a></p>
+                <p><a href="#">(642) 108 3787</a></p>
+            </div>
+            
+        </footer>
+        <footer class="footer_2">
+            <div id="div_footer_2">
+                <p><a href="#">Sitio hecho por TU SITIO TECNOLÓGICO</a></p>
+                <p><a href="#">AVISO DE PRIVACIDAD</a></p>
+            </div>
+        </footer>
+
+        <!-- Modal para la Maquinita de la Suerte -->
+        <div id="luck-machine-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn" id="close-modal">&times;</span>
+                <h2>Boletos a Generar</h2>
+                <select id="ticket-count">
+                    <option value="1">1 Boleto</option>
+                    <option value="2">2 Boletos</option>
+                    <option value="3">3 Boletos</option>
+                    <option value="4">4 Boletos</option>
+                    <option value="5">5 Boletos</option>
+                    <option value="6">6 Boletos</option>
+                    <option value="7">7 Boletos</option>
+                    <option value="8">8 Boletos</option>
+                    <option value="9">9 Boletos</option>
+                    <option value="10">10 Boletos</option>
+                    <option value="20">20 Boletos</option>
+                    <option value="30">30 Boletos</option>
+                    <option value="40">40 Boletos</option>
+                    <option value="50">50 Boletos</option>
+                    <option value="100">100 Boletos</option>
+                    <option value="200">200 Boletos</option>
+                    <option value="300">300 Boletos</option>
+                    <option value="400">400 Boletos</option>
+                    <option value="500">500 Boletos</option>
+                </select>
+                <div id="generated-tickets" class="generated-tickets">
+                    <div id="div_ticket-count-text" style="user-select: none">
+                        <div id="div_ticket_count_container">
+                            <div id="div_ticket_count_section"></div>
+                        </div>
+                        <div id="div_ticket_text">
+                            HAZ CLICK AQUÍ PARA GENERAR
+                            <span id="ticket-count-text">1</span> BOLETO(S) AL AZAR
+                        </div>
+                    </div>
+                    <!-- Máquina Tragamonedas -->
+                    <div id="slot-machine" style="display: none">
+                        <img
+                            src="img/maquinitaDeLaSuerte.gif"
+                            alt="Máquina tragamonedas"
+                            class="slot-animation" />
+                    </div>
+                </div>
+                <div id="reserve-tickets" class="reserve-tickets">
+                    <button id="reserve-btn" style="display: none;">Apartar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para llenar los datos de la persona -->
+        <div id="person-data-modal" class="modal hidden">
+            <div class="modal-person-content">
+                <span class="close-btn" id="close-person-modal">&times;</span>
+                <h2>LLENA TUS DATOS Y DA CLICK EN APARTAR</h2>
+                <div id="catidad_boletos_seleccionados_modal_person"></div>
+                <!--<form action="/submit" id="form_personModal" class="form_personModal">-->
+                <form action="#" id="form_personModal" class="form_personModal">
+                    <input type="text" class="input_personModal" id="phone" pattern="\d{10}" maxlength="10" inputmode="numeric" placeholder="NÚMERO DE WHATSAPP (10 dígitos)" title="Por favor, ingresa solo números">
+                    <input type="text" class="input_personModal" id="name" placeholder="NOMBRE(S)">
+                    <input type="text" class="input_personModal" id="lastname" placeholder="APELLIDOS">
+                    <select name="select_states" id="select_states" class="select_states_class">
+                        <option value="no_select_estate">SELECCIONA ESTADO</option>
+                    </select>
+                    <p class="p_modal_person_class">¡Al finalizar serás redirigido a whatsapp para enviar la información de tu boleto!</small>
+                    <div id="reserve-tickets-modalPerson" class="reserve-tickets-modalPerson">
+                        <button id="apartar_modal_person_btn">Apartar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--<script src="js/rifas1.js"></script>-->
+        <script src="config.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
