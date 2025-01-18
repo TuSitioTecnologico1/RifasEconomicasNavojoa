@@ -10,6 +10,9 @@ const compression = require('compression');
 const UAParser = require('ua-parser-js');
 const logActivity = require('./utils/log_activity_USANDO_ua_parser_js');
 
+// Importar el archivo de variables para las vistas EJS
+const variables = require('./config/variables');
+
 // Cargar las variables de entorno desde el archivo .env
 dotenv.config();
 
