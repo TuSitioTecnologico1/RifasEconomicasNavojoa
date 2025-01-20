@@ -95,8 +95,33 @@
             <input type="text" id="<%= key %>" name="<%= key %>" value="<%= config[key] %>" class="api-url"><br><br>
         <% } } %>
 
+        
+        <h2>-------------------------------> Archivo variables.js <-------------------------------</h2>
+
+
+        <h2>Variables para vistas EJS</h2>
+        <% 
+            for (let key in variables) {
+                if (key == 'url_edicion') {
+                    for (let key2 in url_edicion) {
+        %>
+                        <label for="<%= key2 %>"><%= key2 %>:</label>
+                        <input type="text" id="<%= key2 %>" name="<%= key2 %>" value="<%= url_edicion[key2] %>" class="api-url"><br><br>
+        <%          }
+                }else{
+        %>
+                    <label for="<%= key %>"><%= key %>:</label>
+                    <input type="text" id="<%= key %>" name="<%= key %>" value="<%= variables[key] %>" class="api-url"><br><br>
+        <%
+                }
+            }
+        %>
+
+
         <button type="submit">Guardar cambios</button>
     </form>
+
+
 
     <script>
         document.querySelector('.form_configAplication').addEventListener('submit', function (e) {

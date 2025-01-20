@@ -49,7 +49,7 @@ app.use((req, res, next) => {
     res.locals.url_contacto = variables.url_contacto,
     res.locals.url_metodosDePago = variables.url_metodosDePago,
     res.locals.url_verificador = variables.url_verificador,
-    res.locals.url_edicion1 = variables.url_edicion1,
+    res.locals.url_edicion = variables.url_edicion,
 
     // views/pages/pronto_iniciaremos.ejs - views/pages/cerrado.ejs
     res.locals.url_facebookPage = variables.url_facebookPage,
@@ -76,11 +76,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Ruta para cargar el formulario de configuración
 app.get('/config', (req, res) => {
-    // Importar archivo de configuración
-    //const config = require(path.join(__dirname, 'public', 'config.js'));
-    const configPath = path.join(__dirname, 'public', 'config.js');
-    delete require.cache[require.resolve(configPath)];
-    const config = require(configPath);
 
     // Variables de entorno
     const envConfig = {
@@ -92,12 +87,27 @@ app.get('/config', (req, res) => {
         HTTPS_ENABLED: process.env.HTTPS_ENABLED || '',
     };
 
+    // Importar archivo de configuración
+    //const config = require(path.join(__dirname, 'public', 'config.js'));
+    const configPath = path.join(__dirname, 'public', 'config.js');
+    delete require.cache[require.resolve(configPath)];
+    const config = require(configPath);
+
+    // Importar archivo de variables para las vistas EJS
+    const variablesPath = path.join(__dirname, 'config', 'variables.js');
+    delete require.cache[require.resolve(variablesPath)];
+    const variables = require(variablesPath);
+
+    // Asegúrate de incluir url_edicion
+    const url_edicion = variables.url_edicion;
+
     // Verificar el contenido de config y envConfig
     console.log('Configuración .env:', envConfig);
     console.log('Configuración config.js:', config);
+    console.log('Configuración variables.js:', variables);
 
     // Pasar las configuraciones a la vista
-    res.render('config', { config, envConfig, message: null });
+    res.render('config', { config, envConfig, variables, url_edicion, message: null });
 });
 
 
@@ -109,7 +119,10 @@ app.post('/update-config', (req, res) => {
             local_url, online_url, server_url, URL, STATES_URL, GET_STATES_URL,
             BUSCAR_URL, CAMBIAR_ESTADO_NUMEROS_URL, SAVE_PERSON_DATA_URL,
             ADQUIRIR_BOLETO_URL, NUMEROS_PAGINACION_URL, GEOLOCALIZACION_URL,
-            CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, BUSCAR_APARTADOS_URL
+            CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, BUSCAR_APARTADOS_URL,
+            appName, companyName, currentYear, supportEmail, url_inicio, 
+            url_preguntasFrecuentes, url_contacto, url_metodosDePago, url_verificador, 
+            url_edicion, url_facebookPage, url_whatsappPage
         } = req.body;
 
         // Actualizar .env
@@ -150,7 +163,10 @@ app.post('/update-config', (req, res) => {
             BUSCAR_APARTADOS_URL: '${BUSCAR_APARTADOS_URL}',
         };
         
-        module.exports = config;
+        // Exportar el objeto config
+        if (typeof module !== "undefined" && module.exports) {
+            module.exports = config; // Para entornos que soportan CommonJS
+        }
         `.trim();
 
         const configPath = path.join(__dirname, 'public', 'config.js');
