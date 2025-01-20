@@ -11,7 +11,10 @@ const UAParser = require('ua-parser-js');
 const logActivity = require('./utils/log_activity_USANDO_ua_parser_js');
 
 // Importar el archivo de variables para las vistas EJS
-const variables = require('./config/variables');
+//const variables = require('./config/variables');
+const variablesPath = path.join(__dirname, 'config', 'variables.js');
+delete require.cache[require.resolve(variablesPath)];
+const variables = require(variablesPath);
 
 // Cargar las variables de entorno desde el archivo .env
 dotenv.config();
@@ -93,11 +96,6 @@ app.get('/config', (req, res) => {
     delete require.cache[require.resolve(configPath)];
     const config = require(configPath);
 
-    // Importar archivo de variables para las vistas EJS
-    const variablesPath = path.join(__dirname, 'config', 'variables.js');
-    delete require.cache[require.resolve(variablesPath)];
-    const variables = require(variablesPath);
-
     // Asegúrate de incluir url_edicion
     const url_edicion = variables.url_edicion;
 
@@ -122,65 +120,135 @@ app.post('/update-config', (req, res) => {
             CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, BUSCAR_APARTADOS_URL,
             appName, companyName, currentYear, supportEmail, url_inicio, 
             url_preguntasFrecuentes, url_contacto, url_metodosDePago, url_verificador, 
-            url_edicion, url_facebookPage, url_whatsappPage
+            url_facebookPage, url_whatsappPage
         } = req.body;
 
-        // Actualizar .env
-        const envContent = `
-        DB_HOST=${DB_HOST}
-        DB_USER=${DB_USER}
-        DB_PASS=${DB_PASS}
-        DATABASE=${DATABASE}
-        PORT=${PORT}
-        HTTPS_ENABLED=${HTTPS_ENABLED}
-        `.trim();
 
+        // Lista de claves desestructuradas
+        const expectedKeys = [
+            "DB_HOST", "DB_USER", "DB_PASS", "DATABASE", "PORT", "HTTPS_ENABLED",
+            "local_url", "online_url", "server_url", "URL", "STATES_URL", "GET_STATES_URL",
+            "BUSCAR_URL", "CAMBIAR_ESTADO_NUMEROS_URL", "SAVE_PERSON_DATA_URL",
+            "ADQUIRIR_BOLETO_URL", "NUMEROS_PAGINACION_URL", "GEOLOCALIZACION_URL",
+            "CAPTURAR_ERRORES_URL", "OBTENER_NUMEROS_APARTADOS_URL", "BUSCAR_APARTADOS_URL",
+            "appName", "companyName", "currentYear", "supportEmail", "url_inicio", 
+            "url_preguntasFrecuentes", "url_contacto", "url_metodosDePago", "url_verificador", 
+            "url_facebookPage", "url_whatsappPage"
+        ];
+
+        // Actualizar .env
+        const envContent = `DB_HOST=${DB_HOST}\nDB_USER=${DB_USER}\nDB_PASS=${DB_PASS}\nDATABASE=${DATABASE}\nPORT=${PORT}\nHTTPS_ENABLED=${HTTPS_ENABLED}`;
         const envPath = path.join(__dirname, '.env');
         fs.writeFileSync(envPath, envContent, 'utf8');
         console.log(`Archivo .env actualizado:\n${envContent}`);
 
         // Actualizar config.js
         const newConfigContent = `
-        const local_url = '${local_url}';
-        const online_url = '${online_url}';
-        const server_url = '${server_url}';
-        
-        const config = {
-            local_url: '${local_url}',
-            online_url: '${online_url}',
-            server_url: '${server_url}',
-            URL: '${URL}',
-            STATES_URL: '${STATES_URL}',
-            GET_STATES_URL: '${GET_STATES_URL}',
-            BUSCAR_URL: '${BUSCAR_URL}',
-            CAMBIAR_ESTADO_NUMEROS_URL: '${CAMBIAR_ESTADO_NUMEROS_URL}',
-            SAVE_PERSON_DATA_URL: '${SAVE_PERSON_DATA_URL}',
-            ADQUIRIR_BOLETO_URL: '${ADQUIRIR_BOLETO_URL}',
-            NUMEROS_PAGINACION_URL: '${NUMEROS_PAGINACION_URL}',
-            GEOLOCALIZACION_URL: '${GEOLOCALIZACION_URL}',
-            CAPTURAR_ERRORES_URL: '${CAPTURAR_ERRORES_URL}',
-            OBTENER_NUMEROS_APARTADOS_URL: '${OBTENER_NUMEROS_APARTADOS_URL}',
-            BUSCAR_APARTADOS_URL: '${BUSCAR_APARTADOS_URL}',
-        };
-        
-        // Exportar el objeto config
-        if (typeof module !== "undefined" && module.exports) {
-            module.exports = config; // Para entornos que soportan CommonJS
-        }
-        `.trim();
+const local_url = '${local_url}';
+const online_url = '${online_url}';
+const server_url = '${server_url}';
+const config = {
+    local_url: '${local_url}',
+    online_url: '${online_url}',
+    server_url: '${server_url}',
+    URL: '${URL}',
+    STATES_URL: '${STATES_URL}',
+    GET_STATES_URL: '${GET_STATES_URL}',
+    BUSCAR_URL: '${BUSCAR_URL}',
+    CAMBIAR_ESTADO_NUMEROS_URL: '${CAMBIAR_ESTADO_NUMEROS_URL}',
+    SAVE_PERSON_DATA_URL: '${SAVE_PERSON_DATA_URL}',
+    ADQUIRIR_BOLETO_URL: '${ADQUIRIR_BOLETO_URL}',
+    NUMEROS_PAGINACION_URL: '${NUMEROS_PAGINACION_URL}',
+    GEOLOCALIZACION_URL: '${GEOLOCALIZACION_URL}',
+    CAPTURAR_ERRORES_URL: '${CAPTURAR_ERRORES_URL}',
+    OBTENER_NUMEROS_APARTADOS_URL: '${OBTENER_NUMEROS_APARTADOS_URL}',
+    BUSCAR_APARTADOS_URL: '${BUSCAR_APARTADOS_URL}',
+};
+if (typeof module !== "undefined" && module.exports) {
+    module.exports = config;
+}`;
 
         const configPath = path.join(__dirname, 'public', 'config.js');
         fs.writeFileSync(configPath, newConfigContent, 'utf8');
         console.log(`Archivo config.js actualizado:\n${newConfigContent}`);
+        
 
-        // Redirigir de nuevo a la vista de configuración
-        //res.redirect('/config');
-        res.render('config', { config: req.body, envConfig: req.body, message: { type: 'success', text: 'Configuración actualizada exitosamente.' } });
+        // Claves reales en el body
+        const actualKeys = Object.keys(req.body);
+
+        // Crear objeto JSON para almacenar las claves y valores adicionales
+        const url_edicion = actualKeys
+            .filter(key => !expectedKeys.includes(key)) // Filtra las claves adicionales
+            .reduce((obj, key) => {
+                obj[key] = req.body[key]; // Agrega clave y valor al objeto
+                return obj;
+            }, {}); // Inicializa el objeto vacío
+
+        if (Object.keys(url_edicion).length > 0) {
+            console.log("Contenido de url_edicion:", url_edicion);
+        } else {
+            console.log("No hay claves adicionales para agregar a url_edicion.");
+        }
+
+        // Convierte el objeto `url_edicion` a una cadena JSON válida para JavaScript
+        const urlEdicionString = JSON.stringify(url_edicion, null, 4) // null para evitar un replacer y 4 para la indentación
+        .replace(/"([^"]+)":/g, '$1:') // Elimina las comillas de las claves
+        .replace(/"/g, "'"); // Cambia las comillas dobles por simples en los valores
+
+        // Actualizar variables.js
+        const newVarialesContent = `
+const local_url = '${local_url}';
+const online_url = '${online_url}';
+const server_url = '${server_url}';
+const variables = {
+    appName: '${appName}',
+    companyName: '${companyName}',
+    currentYear: '${currentYear}',
+    supportEmail: '${supportEmail}',
+    
+    url_inicio: '${url_inicio}',
+    url_preguntasFrecuentes: '${url_preguntasFrecuentes}',
+    url_contacto: '${url_contacto}',
+    url_metodosDePago: '${url_metodosDePago}',
+    url_verificador: '${url_verificador}',
+    
+    url_edicion: ${urlEdicionString},
+
+    url_facebookPage: '${url_facebookPage}',
+    url_whatsappPage: '${url_whatsappPage}',
+};
+if (typeof module !== "undefined" && module.exports) {
+    module.exports = variables;
+}
+        `;
+
+        // Cargar variables.js
+        const variablesPath = path.join(__dirname, 'config', 'variables.js');
+        fs.writeFileSync(variablesPath, newVarialesContent, 'utf8');
+        // Recargar variables y configuraciones actualizadas
+        delete require.cache[require.resolve(variablesPath)];
+        const updatedVariables = require(variablesPath);
+        console.log(`Archivo variables.js actualizado:\n${newVarialesContent}`);
+
+        // Redirigir con los datos actualizados
+        res.render('config', {
+            config: req.body, 
+            envConfig: req.body, 
+            variables: updatedVariables, // Asegúrate de pasar 'variables' aquí
+            message: { type: 'success', text: 'Configuración actualizada exitosamente.' }
+        });
+
     } catch (error) {
         console.error('Error al actualizar configuración:', error);
-        res.render('config', { config: {}, envConfig: {}, message: { type: 'error', text: 'Error al actualizar configuración.' } });
+        res.render('config', { 
+            config: {}, 
+            envConfig: {}, 
+            variables: {},  // Pasar 'variables' vacías en caso de error
+            message: { type: 'error', text: 'Error al actualizar configuración.' }
+        });
     }
 });
+
 
 
 
@@ -191,10 +259,42 @@ app.post('/test-data', (req, res) => {
         local_url, online_url, server_url, URL, STATES_URL, GET_STATES_URL,
         BUSCAR_URL, CAMBIAR_ESTADO_NUMEROS_URL, SAVE_PERSON_DATA_URL,
         ADQUIRIR_BOLETO_URL, NUMEROS_PAGINACION_URL, GEOLOCALIZACION_URL,
-        CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS, BUSCAR_APARTADOS_URL
+        CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, BUSCAR_APARTADOS_URL,
+        appName, companyName, currentYear, supportEmail, url_inicio, 
+        url_preguntasFrecuentes, url_contacto, url_metodosDePago, url_verificador, 
+        url_facebookPage, url_whatsappPage
     } = req.body;
 
-    console.log("DB_HOST: "+DB_HOST);
+    // Lista de claves desestructuradas
+    const expectedKeys = [
+        "DB_HOST", "DB_USER", "DB_PASS", "DATABASE", "PORT", "HTTPS_ENABLED",
+        "local_url", "online_url", "server_url", "URL", "STATES_URL", "GET_STATES_URL",
+        "BUSCAR_URL", "CAMBIAR_ESTADO_NUMEROS_URL", "SAVE_PERSON_DATA_URL",
+        "ADQUIRIR_BOLETO_URL", "NUMEROS_PAGINACION_URL", "GEOLOCALIZACION_URL",
+        "CAPTURAR_ERRORES_URL", "OBTENER_NUMEROS_APARTADOS_URL", "BUSCAR_APARTADOS_URL",
+        "appName", "companyName", "currentYear", "supportEmail", "url_inicio", 
+        "url_preguntasFrecuentes", "url_contacto", "url_metodosDePago", "url_verificador", 
+        "url_facebookPage", "url_whatsappPage"
+    ];
+
+    // Claves reales en el body
+    const actualKeys = Object.keys(req.body);
+
+    // Crear objeto JSON para almacenar las claves y valores adicionales
+    const url_edicion = actualKeys
+        .filter(key => !expectedKeys.includes(key)) // Filtra las claves adicionales
+        .reduce((obj, key) => {
+            obj[key] = req.body[key]; // Agrega clave y valor al objeto
+            return obj;
+        }, {}); // Inicializa el objeto vacío
+
+    if (Object.keys(url_edicion).length > 0) {
+        console.log("Contenido de url_edicion:", url_edicion);
+    } else {
+        console.log("No hay claves adicionales para agregar a url_edicion.");
+    }
+
+
     res.json({ message: 'Datos recibidos', data: req.body });
 });
 
@@ -213,15 +313,19 @@ app.use((req, res) => {
 
 // Configuración de HTTPS si es necesario
 if (process.env.HTTPS_ENABLED === '1') {
-    const options = {
-        key: fs.readFileSync('/etc/letsencrypt/live/rifaseconomicasnavojoa.site/privkey.pem'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/rifaseconomicasnavojoa.site/fullchain.pem'),
-    };
-
-    // Crear un servidor HTTPS
-    https.createServer(options, app).listen(process.env.PORT, () => {
-        console.log(`Servidor HTTPS corriendo en puerto ${process.env.PORT}`);
-    });
+    const certPath = '/etc/letsencrypt/live/rifaseconomicasnavojoa.site/';
+    if (fs.existsSync(`${certPath}privkey.pem`) && fs.existsSync(`${certPath}fullchain.pem`)) {
+        const options = {
+            key: fs.readFileSync(`${certPath}privkey.pem`),
+            cert: fs.readFileSync(`${certPath}fullchain.pem`),
+        };
+        https.createServer(options, app).listen(process.env.PORT, () => {
+            console.log(`Servidor HTTPS corriendo en puerto ${process.env.PORT}`);
+        });
+    } else {
+        console.error('Certificados HTTPS no encontrados. Servidor no puede iniciar en modo HTTPS.');
+        process.exit(1);
+    }
 } else {
     // Si no usamos HTTPS, usar HTTP normal
     app.listen(process.env.PORT, '0.0.0.0', () => {

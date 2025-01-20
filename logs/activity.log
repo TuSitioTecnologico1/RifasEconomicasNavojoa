@@ -487,3 +487,386 @@
 [19/1/2025, 20:52:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
 [19/1/2025, 20:52:53] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: {"ip":"127.0.0.1","latitude":27.0630912,"longitude":-109.4189056,"exactitud":"Precision - 4945.162404789176 metros"}
 [19/1/2025, 20:52:53] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la API - /api/obtener_geolocalizacion
+[19/1/2025, 21:41:09] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:41:09] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:41:22] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:41:22] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:48:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:48:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:48:29] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:48:29] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:52:09] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:52:09] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:52:18] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:52:18] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:54:47] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:54:47] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:54:51] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:54:51] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:54:53] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:54:53] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:55:16] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:55:16] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:55:24] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:55:24] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:57:32] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:57:32] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 21:57:43] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 21:57:43] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 22:01:41] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 22:01:41] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 22:01:51] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 22:01:51] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 22:03:25] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 22:03:25] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 22:12:42] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 22:12:42] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 22:12:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 22:12:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 22:16:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 22:16:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 22:17:08] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 22:17:08] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 22:21:32] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 22:21:32] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[19/1/2025, 22:21:41] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[19/1/2025, 22:21:41] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:28:55] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:28:55] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:29:25] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:29:25] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:30:32] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:30:32] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:30:53] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:30:53] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:33:19] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:33:19] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:33:31] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:33:31] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:33:48] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:33:48] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:47:53] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:47:54] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:48:29] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:48:29] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:49:06] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:49:06] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:51:55] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:51:55] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:52:07] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:52:07] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:56:21] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:56:21] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 9:56:39] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 9:56:40] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:01:50] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:01:50] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:02:10] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:02:10] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:03:25] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:03:26] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:03:26] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:03:34] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:03:34] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:04:44] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:04:45] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:04:45] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:05:05] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:05:05] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:06:15] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:06:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:06:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:06:48] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:06:48] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:06:51] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:06:51] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:07:04] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:07:05] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:08:33] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:08:33] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:08:39] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:08:39] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:17:57] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:17:57] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:18:16] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:18:16] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:18:49] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:18:49] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:18:56] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:18:56] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:22:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:22:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:22:30] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:22:30] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:26:07] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:26:07] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:26:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:26:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:34:19] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:34:19] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:34:37] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:34:37] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:35:41] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:35:41] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:35:51] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:35:51] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:37:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:37:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 10:38:24] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 10:38:24] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:34:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:34:36] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:41:27] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:41:27] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:41:45] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:41:45] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:42:01] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:42:01] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:42:20] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:42:20] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:42:44] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:42:45] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:43:12] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:43:12] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:44:39] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:44:39] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:45:11] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:45:11] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:45:11] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:45:11] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:45:12] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:45:12] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:45:12] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:45:12] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:45:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:45:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:45:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:46:00] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:46:02] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:46:02] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:46:02] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:46:02] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:46:06] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:46:06] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:46:06] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:46:06] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:46:40] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:46:40] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:46:40] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:46:40] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:46:48] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:46:48] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:46:48] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:46:48] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:47:29] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:47:29] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:47:29] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:47:29] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:47:30] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:47:30] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:47:30] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:47:30] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:47:37] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:47:37] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:47:37] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:47:37] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:47:38] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:47:38] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:47:38] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:47:38] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:48:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:48:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:48:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:48:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:49:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:49:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:49:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:49:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:49:41] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:49:41] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:49:41] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:49:41] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:49:46] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:49:46] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:49:46] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:49:46] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:49:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:49:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:49:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:49:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:50:27] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:50:27] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:50:27] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:50:27] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:50:28] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:50:28] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:50:28] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:50:28] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:50:38] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:50:38] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:50:38] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:50:38] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:50:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:50:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:50:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:50:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:50:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:50:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:50:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:50:59] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:51:06] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:51:06] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:51:06] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:51:07] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:51:21] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:51:21] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:51:21] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:51:21] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:51:36] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:51:36] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:51:36] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:51:36] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:51:43] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:51:43] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:51:43] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:51:43] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:52:13] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:52:13] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:52:13] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:52:13] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:52:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:52:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:52:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:52:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:52:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /public/fonts/poppins/Poppins-SemiBold.ttf
+[20/1/2025, 12:52:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:52:15] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:52:15] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:52:25] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:52:25] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:52:39] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:52:39] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:53:01] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:53:01] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:53:10] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:53:10] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:53:11] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:53:11] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:53:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:53:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:53:42] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:53:42] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:54:04] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:54:04] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:54:22] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:54:22] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:54:28] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:54:28] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:54:44] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:54:44] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:54:46] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:54:46] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:55:42] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:55:42] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 12:55:58] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 12:55:58] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:01:51] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:01:51] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:02:16] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:02:16] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:16:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:16:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:18:11] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:18:11] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:18:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:18:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:19:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:19:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:19:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:19:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:26:26] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:26:26] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:27:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:27:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:28:27] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:28:27] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:28:54] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:28:54] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:29:49] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:29:49] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:30:56] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:30:56] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:31:16] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:31:16] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:33:04] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:33:04] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:36:33] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:36:33] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:36:48] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:36:48] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:37:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:37:15] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:37:56] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:37:56] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:41:57] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:41:57] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:44:01] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:44:01] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:44:26] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:44:26] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:45:53] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:45:53] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:46:30] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:46:30] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:47:42] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:47:42] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:56:00] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:56:00] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:56:37] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:56:37] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:57:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:57:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:58:29] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:58:29] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 13:58:57] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 13:58:57] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:00:08] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:00:08] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:02:25] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:02:25] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:02:44] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:02:44] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:02:50] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:02:50] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:03:40] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:03:40] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:06:03] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:06:03] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:06:20] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:06:20] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:06:55] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:06:55] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:07:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:07:14] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:07:54] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:07:54] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:08:24] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:08:24] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:08:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:08:35] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:09:33] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:09:34] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:09:40] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:09:40] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:09:46] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:09:46] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:10:55] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:10:55] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:11:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:11:17] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:13:47] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:13:47] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:16:26] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:16:26] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)
+[20/1/2025, 14:16:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Ruta no encontrada: /favicon.ico
+[20/1/2025, 14:16:52] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Visita a la Pagina de Inicio(index.ejs)

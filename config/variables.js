@@ -1,31 +1,28 @@
 
-// Variables para las vistas EJS del proeycto.
-
-
-const local_url = "http://localhost:3000";
-const online_url = "https://rifaseconomicasnavojoa.site";
-const server_url = local_url;
-
-// config/variables.js
-module.exports = {
-    appName: "Rifas Economicas Navojoa",
-    companyName: "Tu Sitio Tecnologico",
-    currentYear: new Date().getFullYear(),
-    supportEmail: "tusitiotecnologico@gmail.com",
-
-    // views/partials/navbar.ejs
-    url_inicio: server_url+"/",
-    url_preguntasFrecuentes: server_url+"/preguntas-frecuentes",
-    url_contacto: server_url+"/contacto",
-    url_metodosDePago: server_url+"/metodos-pago",
-    url_verificador: server_url+"/verificador/r1",
+const local_url = 'http://localhost:3000';
+const online_url = 'https://rifaseconomicasnavojoa.site';
+const server_url = '';
+const variables = {
+    appName: 'Rifas Economicas Navojoa',
+    companyName: 'Tu Sitio Tecnologico',
+    currentYear: '2025',
+    supportEmail: 'tusitiotecnologico@gmail.com',
+    
+    url_inicio: 'http://localhost:3000/',
+    url_preguntasFrecuentes: 'http://localhost:3000/preguntas-frecuentes',
+    url_contacto: 'http://localhost:3000/contacto',
+    url_metodosDePago: 'http://localhost:3000/metodos-pago',
+    url_verificador: 'http://localhost:3000/verificador/r1',
+    
     url_edicion: {
-        url_edicion_1: server_url+"/lista-boletos/r1",
-    },
+    url_edicion_1: 'http://localhost:3000/lista-boletos/r1',
+    url_edicion_2: 'http://localhost:3000/lista-boletos/r25'
+},
 
-    // views/pages/pronto_iniciaremos.ejs - views/pages/cerrado.ejs
-    url_facebookPage: "https://www.facebook.com/people/Rifas-Econ%C3%B3micas-Navojoa/61571119677271/",
-    url_whatsappPage: "#",
-
-
+    url_facebookPage: 'https://www.facebook.com/people/Rifas-Econ%C3%B3micas-Navojoa/61571119677271/',
+    url_whatsappPage: '#',
 };
+if (typeof module !== "undefined" && module.exports) {
+    module.exports = variables;
+}
+        

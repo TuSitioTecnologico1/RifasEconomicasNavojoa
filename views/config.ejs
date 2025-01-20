@@ -5,9 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurar Aplicación</title>
     <style>
+        @font-face {
+            /* Regla de CSS que permite cargar fuentes externas. Declara una fuente y cómo se debe cargar. */
+            font-family: "Poppins-SemiBold";
+            /* Define el nombre que usarás para referenciar la fuente en tu CSS */
+            src: url("../public/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+            /* especifica la ubicación del archivo de fuente y su formato. "truetype" indica que es un archivo TTF (TrueType Font), un formato ampliamente compatible con navegadores. */
+            font-weight: 600;
+            /* Define el peso (grosor) de la fuente. 100: Thin,  200: Extra Light, 300: Light, 400: Normal/Regular, 500: Medium, 600: Semi Bold, 700: Bold, 800: Extra Bold, 900: Black */
+        }
+        .body {
+            background-color: black;
+            color: white;
+        }
+        .body input{
+            background-color: rgb(46, 46, 46);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 17px;
+            
+        }
+        .body select{
+            background-color: rgb(46, 46, 46);
+            color: white;
+            font-size: 17px;
+        }
+        .body label{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 17px;
+        }
+        .body h1, h2{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .body h1{
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        /*
         .form_configAplication input {
             width: 55%;
         }
+        */
         .success {
             color: green;
         }
@@ -22,9 +60,42 @@
             pointer-events: none; 
             background-color: #c6c5c5;
         }
+        .div_archivo input{
+            width: 45%;
+        }
+        @media (max-width: 1299px) {
+            .div_archivo input{
+                width: 54%;
+            }
+        }
+        @media (max-width: 999px) {
+            .div_archivo input{
+                width: 60%;
+            }
+        }
+        @media (max-width: 849px) {
+            .div_archivo input{
+                width: 70%;
+            }
+        }
+        @media (max-width: 749px) {
+            .div_archivo input{
+                width: 80%;
+            }
+        }
+        @media (max-width: 649px) {
+            .div_archivo input{
+                width: 90%;
+            }
+        }
+        @media (max-width: 549px) {
+            .div_archivo input{
+                width: 100%;
+            }
+        }
     </style>
 </head>
-<body>
+<body class="body">
     <h1>Configurar parámetros de la aplicación</h1>
 
     <% if (message) { %>
@@ -32,90 +103,100 @@
     <% } %>
 
     <form class="form_configAplication" action="/update-config" method="POST">
-        <h2>-------------------------------> Archivo .env <-------------------------------</h2>
-        <h2>Configuracion de la BD</h2>
-        <label for="DB_HOST">DB_HOST:</label>
-        <input type="text" id="DB_HOST" name="DB_HOST" value="<%= envConfig.DB_HOST %>"><br><br>
+        <h2>ARCHIVO .env</h2>
+        <div class="div_archivo" id="div_archivo_env_class">
+            <h2>Configuracion de la BD</h2>
+            <label for="DB_HOST">DB_HOST:</label><br>
+            <input type="text" id="DB_HOST" name="DB_HOST" value="<%= envConfig.DB_HOST %>"><br><br>
+            
+            <label for="DB_USER">DB_USER:</label><br>
+            <input type="text" id="DB_USER" name="DB_USER" value="<%= envConfig.DB_USER %>"><br><br>
+            
+            <div class="input_pass_container_class">
+                <label for="DB_USER">DB_PASS:</label><br>
+                <input type="password" id="DB_PASS" name="DB_PASS" value="<%= envConfig.DB_PASS %>" placeholder="Contraseña">
+                <button type="button" class="toggle-btn" id="togglePassword">👁️</button>
+            </div>
+            
+            <label for="DATABASE">DATABASE:</label><br>
+            <input type="text" id="DATABASE" name="DATABASE" value="<%= envConfig.DATABASE %>"><br><br>
+
+            <label for="PORT">PORT:</label><br>
+            <input type="text" id="PORT" name="PORT" pattern="\d{4}" maxlength="4" inputmode="numeric" value="<%= envConfig.PORT %>" placeholder="PORT" title="Por favor, ingresa solo números"><br><br>
+
+            <label for="HTTPS_ENABLED">HTTPS_ENABLED:</label><br>
+            <!--<input type="text" id="HTTPS_ENABLED" name="HTTPS_ENABLED" pattern="\d{1}" maxlength="1" inputmode="numeric" value="<%= envConfig.HTTPS_ENABLED %>" placeholder="HTTPS_ENABLED" title="Por favor, ingresa solo números"><br><br>-->
+            <select id="HTTPS_ENABLED" name="HTTPS_ENABLED" title="Selecciona un valor">
+                <option value="0" <% if (envConfig.HTTPS_ENABLED == 0) { %> selected <% } %>>No</option>
+                <option value="1" <% if (envConfig.HTTPS_ENABLED == 1) { %> selected <% } %>>Sí</option>
+            </select>
+        </div><br><br>
+
+
+        <h2>ARCHIVO config.js</h2>
+        <div class="div_archivo" id="div_archivo_config_class">
+            <h2>Configuración del servidor</h2>
+            <label for="local_url">Local URL:</label><br>
+            <input 
+                type="url" 
+                id="local_url" 
+                name="local_url" 
+                value="<%= config.local_url %>" 
+                placeholder="http://localhost:3000" 
+                class="local_url_class"
+                required
+                readonly><br><br>
+
+            <label for="online_url">Online URL:</label><br>
+            <input 
+                type="url" 
+                id="online_url" 
+                name="online_url" 
+                value="<%= config.online_url %>" 
+                placeholder="https://example.com" 
+                class="online_url_class"
+                required
+                readonly><br><br>
+
+            <label for="server_url">Server URL:</label><br>
+            <select id="server_url" name="server_url" onchange="updateApiUrls()">
+                <option value=""> Selecciona el server . . . </option>
+                <option value="<%= config.local_url %>"> Local </option>
+                <option value="<%= config.online_url %>"> Online </option>
+                <!--<option value="<%= config.local_url %>" <%= config.server_url === config.local_url ? 'selected' : '' %>>Local</option>-->
+                <!--<option value="<%= config.online_url %>" <%= config.server_url === config.online_url ? 'selected' : '' %>>Online</option>-->
+            </select><br><br>
+
+            <h2>Rutas API</h2>
+            <% for (let key in config) { 
+                if (key.includes('URL') && key !== 'local_url' && key !== 'online_url' && key !== 'server_url') { %>
+                <label for="<%= key %>"><%= key %>:</label><br>
+                <input type="text" id="<%= key %>" name="<%= key %>" value="<%= config[key] %>" class="api-url"><br><br>
+            <% } } %>
+        </div><br><br>
+
         
-        <label for="DB_USER">DB_USER:</label>
-        <input type="text" id="DB_USER" name="DB_USER" value="<%= envConfig.DB_USER %>"><br><br>
+        <h2>ARCHIVO variables.js</h2>
+        <div class="div_archivo" id="div_archivo_variables_class">
+            <h2>Variables para vistas EJS</h2>
+            <% if (variables) { %>
+                <% for (let key in variables) { %>
+                    <% if (key == 'url_edicion') { %>
+                        <% for (let key2 in variables.url_edicion) { %>
+                            <label for="<%= key2 %>"><%= key2 %>:</label><br>
+                            <input type="text" id="<%= key2 %>" name="<%= key2 %>" value="<%= variables.url_edicion[key2] %>" class="variables-url"><br><br>
+                        <% } %>
+                    <% } else { %>
+                        <label for="<%= key %>"><%= key %>:</label><br>
+                        <input type="text" id="<%= key %>" name="<%= key %>" value="<%= variables[key] %>" class="variables-url"><br><br>
+                    <% } %>
+                <% } %>
+            <% } else { %>
+                <p>No se ha cargado correctamente el objeto de variables.</p>
+            <% } %>
+        </div>
         
-        <label for="DB_PASS">DB_PASS:</label>
-        <input type="password" id="DB_PASS" name="DB_PASS" value="<%= envConfig.DB_PASS %>"><br><br>
-        
-        <label for="DATABASE">DATABASE:</label>
-        <input type="text" id="DATABASE" name="DATABASE" value="<%= envConfig.DATABASE %>"><br><br>
 
-        <label for="PORT">PORT:</label>
-        <input type="text" id="PORT" name="PORT" pattern="\d{4}" maxlength="4" inputmode="numeric" value="<%= envConfig.PORT %>" placeholder="PORT" title="Por favor, ingresa solo números"><br><br>
-
-        <label for="HTTPS_ENABLED">HTTPS_ENABLED:</label>
-        <input type="text" id="HTTPS_ENABLED" name="HTTPS_ENABLED" pattern="\d{1}" maxlength="1" inputmode="numeric" value="<%= envConfig.HTTPS_ENABLED %>" placeholder="HTTPS_ENABLED" title="Por favor, ingresa solo números"><br><br>
-
-
-        <h2>-------------------------------> Archivo config.js <-------------------------------</h2>
-
-        <h2>Configuración del servidor</h2>
-        <label for="local_url">Local URL:</label>
-        <input 
-            type="url" 
-            id="local_url" 
-            name="local_url" 
-            value="<%= config.local_url %>" 
-            placeholder="http://localhost:3000" 
-            class="local_url_class"
-            required
-            readonly><br><br>
-
-        <label for="online_url">Online URL:</label>
-        <input 
-            type="url" 
-            id="online_url" 
-            name="online_url" 
-            value="<%= config.online_url %>" 
-            placeholder="https://example.com" 
-            class="online_url_class"
-            required
-            readonly><br><br>
-
-
-        <label for="server_url">Server URL:</label>
-        <select id="server_url" name="server_url" onchange="updateApiUrls()">
-            <option value=""> Selecciona el server . . . </option>
-            <option value="<%= config.local_url %>"> Local </option>
-            <option value="<%= config.online_url %>"> Online </option>
-            <!--<option value="<%= config.local_url %>" <%= config.server_url === config.local_url ? 'selected' : '' %>>Local</option>-->
-            <!--<option value="<%= config.online_url %>" <%= config.server_url === config.online_url ? 'selected' : '' %>>Online</option>-->
-        </select><br><br>
-
-        <h2>Rutas API</h2>
-        <% for (let key in config) { 
-            if (key.includes('URL') && key !== 'local_url' && key !== 'online_url' && key !== 'server_url') { %>
-            <label for="<%= key %>"><%= key %>:</label>
-            <input type="text" id="<%= key %>" name="<%= key %>" value="<%= config[key] %>" class="api-url"><br><br>
-        <% } } %>
-
-        
-        <h2>-------------------------------> Archivo variables.js <-------------------------------</h2>
-
-
-        <h2>Variables para vistas EJS</h2>
-        <% 
-            for (let key in variables) {
-                if (key == 'url_edicion') {
-                    for (let key2 in url_edicion) {
-        %>
-                        <label for="<%= key2 %>"><%= key2 %>:</label>
-                        <input type="text" id="<%= key2 %>" name="<%= key2 %>" value="<%= url_edicion[key2] %>" class="api-url"><br><br>
-        <%          }
-                }else{
-        %>
-                    <label for="<%= key %>"><%= key %>:</label>
-                    <input type="text" id="<%= key %>" name="<%= key %>" value="<%= variables[key] %>" class="api-url"><br><br>
-        <%
-                }
-            }
-        %>
 
 
         <button type="submit">Guardar cambios</button>
@@ -124,11 +205,17 @@
 
 
     <script>
-        document.querySelector('.form_configAplication').addEventListener('submit', function (e) {
-            const port = document.getElementById('PORT').value;
-            if (!/^\d{4}$/.test(port)) {
-                alert("El campo PORT debe ser un número de 4 dígitos.");
-                e.preventDefault();
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordField = document.getElementById("DB_PASS");
+
+        togglePassword.addEventListener("click", () => {
+            // Alternar entre 'password' y 'text'
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                togglePassword.textContent = "🙈"; // Cambiar el icono o texto
+            } else {
+                passwordField.type = "password";
+                togglePassword.textContent = "👁️"; // Cambiar el icono o texto
             }
         });
 
@@ -136,6 +223,7 @@
             //console.log("function updateApiUrls() {");
             const serverUrl = document.getElementById('server_url').value; // Obtener valor del servidor seleccionado
             const apiInputs = document.querySelectorAll('.api-url'); // Seleccionar todas las rutas API
+            const variblesInputs = document.querySelectorAll('.variables-url'); // Seleccionar todas las rutas de las VARIABLES de las vistas EJS
 
             apiInputs.forEach(input => {
                 //console.log("input: ");
@@ -147,6 +235,36 @@
                     input.value = `${serverUrl}/api/numeros/${endpoint}`; // Actualizar la URL con el servidor seleccionado
                 }else{
                     input.value = `${serverUrl}/api/${endpoint}`; // Actualizar la URL con el servidor seleccionado
+                }
+            });
+
+            variblesInputs.forEach(input => {
+                const input_data = input.value.toLowerCase(); // Convertir a minúsculas si no quieres que sea sensible a mayúsculas
+                const input_localURL = document.getElementById("local_url").value.toLowerCase(); // Texto que deseas buscar
+                const input_onlineURL = document.getElementById("online_url").value.toLowerCase(); // Texto que deseas buscar
+                
+                if (input_data.includes(input_localURL) || input_data.includes(input_onlineURL)) {
+                    //console.log("El input contiene el texto deseado.");
+                    const endpoint_split = input_data.split('/'); // Extraer el endpoint
+                    let endpoint = "";
+                    //console.log("endpoint_split.length: "+endpoint_split.length);
+                    if(endpoint_split.length == 5){
+                        //console.log("if(endpoint_split.length == 5){");
+                        //console.log("endpoint_split:");
+                        //console.log(endpoint_split);
+                        endpoint = endpoint_split[3]+"/"+endpoint_split[4];
+                        //console.log(endpoint);
+                        let input_data_update = input.value = `${serverUrl}/${endpoint}`; // Actualizar la URL con el servidor seleccionado
+                        //console.log(input_data_update);
+                    }else{
+                        //console.log("else - if(endpoint_split.length == 5){");
+                        const endpoint = input.value.split('/').slice(-1)[0]; // Extraer el endpoint
+                        //console.log(endpoint);
+                        let input_data_update = input.value = `${serverUrl}/${endpoint}`; // Actualizar la URL con el servidor seleccionado
+                        //console.log(input_data_update);
+                    }
+                } else {
+                    console.log("El input NO contiene el texto deseado.");
                 }
             });
         }
