@@ -6,9 +6,9 @@ require('dotenv').config(); // Cargar las variables de entorno desde el archivo 
 
 // Crear un pool de conexiones a la base de datos
 const db = mysql.createPool({
-    host: process.env.HOST,         // Host de la base de datos
-    user: process.env.USER_BD,      // Usuario de la base de datos
-    password: process.env.PASS,     // Contraseña de la base de datos
+    host: process.env.DB_HOST,         // Host de la base de datos
+    user: process.env.DB_USER,      // Usuario de la base de datos
+    password: process.env.DB_PASS,     // Contraseña de la base de datos
     database: process.env.DATABASE, // Nombre de la base de datos
     timezone: '-07:00',             // Zona horaria (si es necesario para tu caso)
     waitForConnections: true,       // Esperar si todas las conexiones están en uso

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurar Aplicación</title>
+    <style>
+        .form_configAplication input {
+            width: 55%;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        .local_url_class {
+            pointer-events: none; 
+            background-color: #c6c5c5;
+        }
+        .online_url_class {
+            pointer-events: none; 
+            background-color: #c6c5c5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Configurar parámetros de la aplicación</h1>
+
+    <% if (message) { %>
+        <p class="<%= message.type %>"><%= message.text %></p>
+    <% } %>
+
+    <form class="form_configAplication" action="/update-config" method="POST">
+        <h2>-------------------------------> Archivo .env <-------------------------------</h2>
+        <h2>Configuracion de la BD</h2>
+        <label for="DB_HOST">DB_HOST:</label>
+        <input type="text" id="DB_HOST" name="DB_HOST" value="<%= envConfig.DB_HOST %>"><br><br>
+        
+        <label for="DB_USER">DB_USER:</label>
+        <input type="text" id="DB_USER" name="DB_USER" value="<%= envConfig.DB_USER %>"><br><br>
+        
+        <label for="DB_PASS">DB_PASS:</label>
+        <input type="password" id="DB_PASS" name="DB_PASS" value="<%= envConfig.DB_PASS %>"><br><br>
+        
+        <label for="DATABASE">DATABASE:</label>
+        <input type="text" id="DATABASE" name="DATABASE" value="<%= envConfig.DATABASE %>"><br><br>
+
+        <label for="PORT">PORT:</label>
+        <input type="text" id="PORT" name="PORT" pattern="\d{4}" maxlength="4" inputmode="numeric" value="<%= envConfig.PORT %>" placeholder="PORT" title="Por favor, ingresa solo números"><br><br>
+
+        <label for="HTTPS_ENABLED">HTTPS_ENABLED:</label>
+        <input type="text" id="HTTPS_ENABLED" name="HTTPS_ENABLED" pattern="\d{1}" maxlength="1" inputmode="numeric" value="<%= envConfig.HTTPS_ENABLED %>" placeholder="HTTPS_ENABLED" title="Por favor, ingresa solo números"><br><br>
+
+
+        <h2>-------------------------------> Archivo config.js <-------------------------------</h2>
+
+        <h2>Configuración del servidor</h2>
+        <label for="local_url">Local URL:</label>
+        <input 
+            type="url" 
+            id="local_url" 
+            name="local_url" 
+            value="<%= config.local_url %>" 
+            placeholder="http://localhost:3000" 
+            class="local_url_class"
+            required
+            readonly><br><br>
+
+        <label for="online_url">Online URL:</label>
+        <input 
+            type="url" 
+            id="online_url" 
+            name="online_url" 
+            value="<%= config.online_url %>" 
+            placeholder="https://example.com" 
+            class="online_url_class"
+            required
+            readonly><br><br>
+
+
+        <label for="server_url">Server URL:</label>
+        <select id="server_url" name="server_url" onchange="updateApiUrls()">
+            <option value=""> Selecciona el server . . . </option>
+            <option value="<%= config.local_url %>"> Local </option>
+            <option value="<%= config.online_url %>"> Online </option>
+            <!--<option value="<%= config.local_url %>" <%= config.server_url === config.local_url ? 'selected' : '' %>>Local</option>-->
+            <!--<option value="<%= config.online_url %>" <%= config.server_url === config.online_url ? 'selected' : '' %>>Online</option>-->
+        </select><br><br>
+
+        <h2>Rutas API</h2>
+        <% for (let key in config) { 
+            if (key.includes('URL') && key !== 'local_url' && key !== 'online_url' && key !== 'server_url') { %>
+            <label for="<%= key %>"><%= key %>:</label>
+            <input type="text" id="<%= key %>" name="<%= key %>" value="<%= config[key] %>" class="api-url"><br><br>
+        <% } } %>
+
+        <button type="submit">Guardar cambios</button>
+    </form>
+
+    <script>
+        document.querySelector('.form_configAplication').addEventListener('submit', function (e) {
+            const port = document.getElementById('PORT').value;
+            if (!/^\d{4}$/.test(port)) {
+                alert("El campo PORT debe ser un número de 4 dígitos.");
+                e.preventDefault();
+            }
+        });
+
+        function updateApiUrls() {
+            //console.log("function updateApiUrls() {");
+            const serverUrl = document.getElementById('server_url').value; // Obtener valor del servidor seleccionado
+            const apiInputs = document.querySelectorAll('.api-url'); // Seleccionar todas las rutas API
+
+            apiInputs.forEach(input => {
+                //console.log("input: ");
+                //console.log(input);
+                const endpoint = input.value.split('/').slice(-1)[0]; // Extraer el endpoint
+                //console.log("endpoint: ");
+                //console.log(endpoint);
+                if(endpoint == "cambiar_estado_numeros"){
+                    input.value = `${serverUrl}/api/numeros/${endpoint}`; // Actualizar la URL con el servidor seleccionado
+                }else{
+                    input.value = `${serverUrl}/api/${endpoint}`; // Actualizar la URL con el servidor seleccionado
+                }
+            });
+        }
+    </script>
+</body>
+</html>
