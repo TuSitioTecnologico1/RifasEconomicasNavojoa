@@ -93,46 +93,71 @@
                 width: 100%;
             }
         }
+        #p_message{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .nota_class {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 17px;
+            text-align: center;
+        }
+        #h2_nota_title {
+            margin-bottom: -12px;
+        }
+        #p_nota_https {
+            margin-top: -10px;
+        }
+        
     </style>
 </head>
 <body class="body">
     <h1>Configurar parámetros de la aplicación</h1>
 
+    <h2 id="h2_nota_title" class="nota_class"> NOTA: </h2>
+    <p id="p_nota_bd" class="nota_class">
+        La configuracion para la BD esta en el archivo ".env" el cual esta en la raiz del proyecto,
+        por lo que se tiene que configurar manualmente antes de correr el servidor.
+    </p>
+    <p id="p_nota_https" class="nota_class">
+        Tambien la la configuracion para indicar si el servidor usara HTTP(0) o HTTPS(1) tambien se encuentra ahí.
+    </p><br><br>
+
     <% if (message) { %>
-        <p class="<%= message.type %>"><%= message.text %></p>
+        <p id="p_message" class="<%= message.type %>"><%= message.text %></p>
     <% } %>
 
-    <form class="form_configAplication" action="/update-config" method="POST">
+    <form id="form_configAplication_id" class="form_configAplication" action="/update-config" method="POST">
+        <!--
         <h2>ARCHIVO .env</h2>
         <div class="div_archivo" id="div_archivo_env_class">
             <h2>Configuracion de la BD</h2>
             <label for="DB_HOST">DB_HOST:</label><br>
-            <input type="text" id="DB_HOST" name="DB_HOST" value="<%= envConfig.DB_HOST %>"><br><br>
+            <input type="text" id="DB_HOST" name="DB_HOST" value="<%= //envConfig.DB_HOST %>"><br><br>
             
             <label for="DB_USER">DB_USER:</label><br>
-            <input type="text" id="DB_USER" name="DB_USER" value="<%= envConfig.DB_USER %>"><br><br>
+            <input type="text" id="DB_USER" name="DB_USER" value="<%= //envConfig.DB_USER %>"><br><br>
             
             <div class="input_pass_container_class">
                 <label for="DB_USER">DB_PASS:</label><br>
-                <input type="password" id="DB_PASS" name="DB_PASS" value="<%= envConfig.DB_PASS %>" placeholder="Contraseña">
+                <input type="password" id="DB_PASS" name="DB_PASS" value="<%= //envConfig.DB_PASS %>" placeholder="Contraseña">
                 <button type="button" class="toggle-btn" id="togglePassword">👁️</button>
-            </div>
+            </div><br>
             
             <label for="DATABASE">DATABASE:</label><br>
-            <input type="text" id="DATABASE" name="DATABASE" value="<%= envConfig.DATABASE %>"><br><br>
+            <input type="text" id="DATABASE" name="DATABASE" value="<%= //envConfig.DATABASE %>"><br><br>
 
             <label for="PORT">PORT:</label><br>
-            <input type="text" id="PORT" name="PORT" pattern="\d{4}" maxlength="4" inputmode="numeric" value="<%= envConfig.PORT %>" placeholder="PORT" title="Por favor, ingresa solo números"><br><br>
+            <input type="text" id="PORT" name="PORT" pattern="\d{4}" maxlength="4" inputmode="numeric" value="<%= //envConfig.PORT %>" placeholder="PORT" title="Por favor, ingresa solo números"><br><br>
 
             <label for="HTTPS_ENABLED">HTTPS_ENABLED:</label><br>
-            <!--<input type="text" id="HTTPS_ENABLED" name="HTTPS_ENABLED" pattern="\d{1}" maxlength="1" inputmode="numeric" value="<%= envConfig.HTTPS_ENABLED %>" placeholder="HTTPS_ENABLED" title="Por favor, ingresa solo números"><br><br>-->
             <select id="HTTPS_ENABLED" name="HTTPS_ENABLED" title="Selecciona un valor">
-                <option value="0" <% if (envConfig.HTTPS_ENABLED == 0) { %> selected <% } %>>No</option>
-                <option value="1" <% if (envConfig.HTTPS_ENABLED == 1) { %> selected <% } %>>Sí</option>
+                <option value="0" <% //if (envConfig.HTTPS_ENABLED == 0) { %> selected <% //} %>>No</option>
+                <option value="1" <% //if (envConfig.HTTPS_ENABLED == 1) { %> selected <% //} %>>Sí</option>
             </select>
         </div><br><br>
-
-
+        -->
+        
         <h2>ARCHIVO config.js</h2>
         <div class="div_archivo" id="div_archivo_config_class">
             <h2>Configuración del servidor</h2>
@@ -187,8 +212,12 @@
                             <input type="text" id="<%= key2 %>" name="<%= key2 %>" value="<%= variables.url_edicion[key2] %>" class="variables-url"><br><br>
                         <% } %>
                     <% } else { %>
+                        <% if(key != 'message'){ %>
                         <label for="<%= key %>"><%= key %>:</label><br>
                         <input type="text" id="<%= key %>" name="<%= key %>" value="<%= variables[key] %>" class="variables-url"><br><br>
+                        <% }else{ %>
+                        <input type="text" id="<%= key %>" name="<%= key %>" value="<%= variables[key] %>" class="variables-url" style="display: none;">
+                        <% } %>
                     <% } %>
                 <% } %>
             <% } else { %>
@@ -205,7 +234,25 @@
 
 
     <script>
-        const togglePassword = document.getElementById("togglePassword");
+        // Manejador del evento submit
+        document.getElementById('form_configAplication_id').addEventListener('submit', function(e) {
+            e.preventDefault();  // Evita que el formulario se envíe de inmediato
+
+            // Llamar a una función antes de enviar el formulario
+            myFunction();
+
+            // Ahora, si todo está bien, puedes enviar el formulario
+            // Usar el método submit() para enviarlo manualmente
+            this.submit();  // Enviar el formulario después de ejecutar la función
+        });
+
+        function myFunction() {
+            alert('Configuración actualizada exitosamente.');
+            // Aquí puedes realizar cualquier lógica que necesites antes de enviar el formulario
+            document.getElementById("message").value = "1";
+        }
+
+        /*const togglePassword = document.getElementById("togglePassword");
         const passwordField = document.getElementById("DB_PASS");
 
         togglePassword.addEventListener("click", () => {
@@ -218,6 +265,7 @@
                 togglePassword.textContent = "👁️"; // Cambiar el icono o texto
             }
         });
+        */
 
         function updateApiUrls() {
             //console.log("function updateApiUrls() {");
@@ -228,10 +276,11 @@
             apiInputs.forEach(input => {
                 //console.log("input: ");
                 //console.log(input);
-                const endpoint = input.value.split('/').slice(-1)[0]; // Extraer el endpoint
+                const input_data = input.value.toLowerCase(); // Convertir a minúsculas si no quieres que sea sensible a mayúsculas
+                const endpoint = input_data.split('/').slice(-1)[0]; // Extraer el endpoint
                 //console.log("endpoint: ");
                 //console.log(endpoint);
-                if(endpoint == "cambiar_estado_numeros"){
+                if(endpoint == "cambiar_estado_numeros" && input_data != "#"){
                     input.value = `${serverUrl}/api/numeros/${endpoint}`; // Actualizar la URL con el servidor seleccionado
                 }else{
                     input.value = `${serverUrl}/api/${endpoint}`; // Actualizar la URL con el servidor seleccionado

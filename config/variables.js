@@ -3,6 +3,7 @@ const local_url = 'http://localhost:3000';
 const online_url = 'https://rifaseconomicasnavojoa.site';
 const server_url = '';
 const variables = {
+    message: '0',
     appName: 'Rifas Economicas Navojoa',
     companyName: 'Tu Sitio Tecnologico',
     currentYear: '2025',
@@ -16,7 +17,8 @@ const variables = {
     
     url_edicion: {
     url_edicion_1: 'http://localhost:3000/lista-boletos/r1',
-    url_edicion_2: 'http://localhost:3000/lista-boletos/r25'
+    url_edicion_2: '#',
+    url_edicion_3: '#'
 },
 
     url_facebookPage: 'https://www.facebook.com/people/Rifas-Econ%C3%B3micas-Navojoa/61571119677271/',
@@ -25,4 +27,3 @@ const variables = {
 if (typeof module !== "undefined" && module.exports) {
     module.exports = variables;
 }
-        

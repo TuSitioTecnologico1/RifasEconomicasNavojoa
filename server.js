@@ -12,9 +12,9 @@ const logActivity = require('./utils/log_activity_USANDO_ua_parser_js');
 
 // Importar el archivo de variables para las vistas EJS
 //const variables = require('./config/variables');
-const variablesPath = path.join(__dirname, 'config', 'variables.js');
+let variablesPath = path.join(__dirname, 'config', 'variables.js');
 delete require.cache[require.resolve(variablesPath)];
-const variables = require(variablesPath);
+let variables = require(variablesPath);
 
 // Cargar las variables de entorno desde el archivo .env
 dotenv.config();
@@ -79,33 +79,95 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Ruta para cargar el formulario de configuración
 app.get('/config', (req, res) => {
+    try {
+        //const envPath = path.join(__dirname, '.env');
+        //delete require.cache[require.resolve(envPath)];
 
-    // Variables de entorno
-    const envConfig = {
-        DB_HOST: process.env.DB_HOST || '',
-        DB_USER: process.env.DB_USER || '',
-        DB_PASS: process.env.DB_PASS || '',
-        DATABASE: process.env.DATABASE || '',
-        PORT: process.env.PORT || '',
-        HTTPS_ENABLED: process.env.HTTPS_ENABLED || '',
-    };
+        // Recargar archivo .env
+        //dotenv.config(); // <<--- AQUÍ recarga las variables de entorno
 
-    // Importar archivo de configuración
-    //const config = require(path.join(__dirname, 'public', 'config.js'));
-    const configPath = path.join(__dirname, 'public', 'config.js');
-    delete require.cache[require.resolve(configPath)];
-    const config = require(configPath);
+        /* Variables de entorno
+        const envConfig = {
+            DB_HOST: process.env.DB_HOST || '',
+            DB_USER: process.env.DB_USER || '',
+            DB_PASS: process.env.DB_PASS || '',
+            DATABASE: process.env.DATABASE || '',
+            PORT: process.env.PORT || '',
+            HTTPS_ENABLED: process.env.HTTPS_ENABLED || '',
+        };*/
+        
 
-    // Asegúrate de incluir url_edicion
-    const url_edicion = variables.url_edicion;
+        // Importar archivo de configuración
+        //const config = require(path.join(__dirname, 'public', 'config.js'));
+        const configPath = path.join(__dirname, 'public', 'config.js');
+        delete require.cache[require.resolve(configPath)];
+        const config = require(configPath);
 
-    // Verificar el contenido de config y envConfig
-    console.log('Configuración .env:', envConfig);
-    console.log('Configuración config.js:', config);
-    console.log('Configuración variables.js:', variables);
+        variablesPath = path.join(__dirname, 'config', 'variables.js');
+        delete require.cache[require.resolve(variablesPath)];
+        variables = require(variablesPath);
 
-    // Pasar las configuraciones a la vista
-    res.render('config', { config, envConfig, variables, url_edicion, message: null });
+        // Asegúrate de incluir url_edicion
+        const url_edicion = variables.url_edicion;
+
+        // Verificar el contenido de config y envConfig
+        //console.log('Configuración .env:', envConfig);
+        console.log('Configuración config.js:', config);
+        console.log('Configuración variables.js:', variables);
+
+        if (variables.message == "1") {
+
+            // Cambiar el valor de "message" en el archivo
+            let variablesContent = fs.readFileSync(variablesPath, 'utf8');
+            const updatedContent = variablesContent.replace(
+                /message: ['"]\d+['"]/,
+                `message: '0'`
+            );
+
+            // Sobrescribir el archivo con el nuevo contenido
+            fs.writeFileSync(variablesPath, updatedContent, 'utf8');
+            console.log('Archivo variables.js actualizado: message cambiado a 0');
+
+            // Recargar el archivo actualizado
+            delete require.cache[require.resolve(variablesPath)];
+            variables = require(variablesPath);
+
+            // Establecer un mensaje de éxito
+            res.locals.message = {
+                type: 'success',
+                text: 'Configuración actualizada exitosamente.'
+            };
+        }else{
+            res.locals.message = null;
+        }
+
+        
+
+        // Pasar las configuraciones a la vista
+        //res.render('config', { config, envConfig, variables, url_edicion, message: null });
+
+        // Renderiza la vista con los datos actualizados
+        res.render('config', {
+            config,
+            //envConfig,
+            variables,
+            url_edicion,
+            //message: null, // Opcional: mensaje si es necesario
+        });
+    }catch(error){
+        console.error('Error al cargar la configuración:', error);
+
+        // Manejo de errores
+        res.render('config', {
+            config: {},
+            variables: {},
+            url_edicion: {},
+            message: {
+                type: 'error',
+                text: 'Error al cargar la configuración.',
+            },
+        });
+    }
 });
 
 
@@ -113,12 +175,11 @@ app.get('/config', (req, res) => {
 app.post('/update-config', (req, res) => {
     try {
         const {
-            DB_HOST, DB_USER, DB_PASS, DATABASE, PORT, HTTPS_ENABLED,
             local_url, online_url, server_url, URL, STATES_URL, GET_STATES_URL,
             BUSCAR_URL, CAMBIAR_ESTADO_NUMEROS_URL, SAVE_PERSON_DATA_URL,
             ADQUIRIR_BOLETO_URL, NUMEROS_PAGINACION_URL, GEOLOCALIZACION_URL,
             CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, BUSCAR_APARTADOS_URL,
-            appName, companyName, currentYear, supportEmail, url_inicio, 
+            message, appName, companyName, currentYear, supportEmail, url_inicio, 
             url_preguntasFrecuentes, url_contacto, url_metodosDePago, url_verificador, 
             url_facebookPage, url_whatsappPage
         } = req.body;
@@ -131,16 +192,16 @@ app.post('/update-config', (req, res) => {
             "BUSCAR_URL", "CAMBIAR_ESTADO_NUMEROS_URL", "SAVE_PERSON_DATA_URL",
             "ADQUIRIR_BOLETO_URL", "NUMEROS_PAGINACION_URL", "GEOLOCALIZACION_URL",
             "CAPTURAR_ERRORES_URL", "OBTENER_NUMEROS_APARTADOS_URL", "BUSCAR_APARTADOS_URL",
-            "appName", "companyName", "currentYear", "supportEmail", "url_inicio", 
+            "message", "appName", "companyName", "currentYear", "supportEmail", "url_inicio", 
             "url_preguntasFrecuentes", "url_contacto", "url_metodosDePago", "url_verificador", 
             "url_facebookPage", "url_whatsappPage"
         ];
 
         // Actualizar .env
-        const envContent = `DB_HOST=${DB_HOST}\nDB_USER=${DB_USER}\nDB_PASS=${DB_PASS}\nDATABASE=${DATABASE}\nPORT=${PORT}\nHTTPS_ENABLED=${HTTPS_ENABLED}`;
-        const envPath = path.join(__dirname, '.env');
-        fs.writeFileSync(envPath, envContent, 'utf8');
-        console.log(`Archivo .env actualizado:\n${envContent}`);
+        //const envContent = `DB_HOST=${DB_HOST}\nDB_USER=${DB_USER}\nDB_PASS=${DB_PASS}\nDATABASE=${DATABASE}\nPORT=${PORT}\nHTTPS_ENABLED=${HTTPS_ENABLED}`;
+        //const envPath = path.join(__dirname, '.env');
+        //fs.writeFileSync(envPath, envContent, 'utf8');
+        //console.log(`Archivo .env actualizado:\n${envContent}`);
 
         // Actualizar config.js
         const newConfigContent = `
@@ -175,6 +236,8 @@ if (typeof module !== "undefined" && module.exports) {
 
         // Claves reales en el body
         const actualKeys = Object.keys(req.body);
+        console.log("actualKeys:");
+        console.log(actualKeys);
 
         // Crear objeto JSON para almacenar las claves y valores adicionales
         const url_edicion = actualKeys
@@ -201,6 +264,7 @@ const local_url = '${local_url}';
 const online_url = '${online_url}';
 const server_url = '${server_url}';
 const variables = {
+    message: '${message}',
     appName: '${appName}',
     companyName: '${companyName}',
     currentYear: '${currentYear}',
@@ -220,23 +284,72 @@ const variables = {
 if (typeof module !== "undefined" && module.exports) {
     module.exports = variables;
 }
-        `;
+`;
 
         // Cargar variables.js
         const variablesPath = path.join(__dirname, 'config', 'variables.js');
         fs.writeFileSync(variablesPath, newVarialesContent, 'utf8');
+
         // Recargar variables y configuraciones actualizadas
-        delete require.cache[require.resolve(variablesPath)];
+        /*delete require.cache[require.resolve(variablesPath)];
         const updatedVariables = require(variablesPath);
         console.log(`Archivo variables.js actualizado:\n${newVarialesContent}`);
+        */
 
-        // Redirigir con los datos actualizados
+        // Recargar archivos en memoria
+        delete require.cache[require.resolve(variablesPath)];
+        delete require.cache[require.resolve(configPath)];
+        //delete require.cache[require.resolve(envPath)];
+
+        // Recargar archivo .env
+        //dotenv.config(); // <<--- AQUÍ recarga las variables de entorno
+
+        // Cargar los nuevos valores
+        const updatedVariables = require(variablesPath);
+        const updatedConfig = require(configPath);
+
+        // Actualizar las referencias en la aplicación
+        res.locals.appName = updatedVariables.appName;
+        res.locals.companyName = updatedVariables.companyName;
+        res.locals.currentYear = updatedVariables.currentYear;
+        res.locals.supportEmail = updatedVariables.supportEmail;
+
+        res.locals.server_url = updatedVariables.server_url;
+
+        res.locals.url_inicio = updatedVariables.url_inicio;
+        res.locals.url_preguntasFrecuentes = updatedVariables.url_preguntasFrecuentes;
+        res.locals.url_contacto = updatedVariables.url_contacto;
+        res.locals.url_metodosDePago = updatedVariables.url_metodosDePago;
+        res.locals.url_verificador = updatedVariables.url_verificador;
+
+        res.locals.url_facebookPage = updatedVariables.url_facebookPage;
+        res.locals.url_whatsappPage = updatedVariables.url_whatsappPage;
+
+        /* Redirigir con los datos actualizados
         res.render('config', {
             config: req.body, 
             envConfig: req.body, 
             variables: updatedVariables, // Asegúrate de pasar 'variables' aquí
             message: { type: 'success', text: 'Configuración actualizada exitosamente.' }
-        });
+        });*/
+
+        // Almacena una variable en res.locals
+        //res.locals.message = 'Configuración actualizada exitosamente';
+        // Almacena un objeto en res.locals
+        res.locals.message = {
+            type: 'success',
+            text: 'Configuración actualizada exitosamente.'
+        };
+
+        // Redirige a /config después de actualizar
+        res.redirect('/config');
+
+        /*res.render('config', {
+            config: updatedConfig,
+            envConfig: process.env,
+            variables: updatedVariables,
+            message: { type: 'success', text: 'Configuración actualizada exitosamente.' },
+        });*/
 
     } catch (error) {
         console.error('Error al actualizar configuración:', error);
