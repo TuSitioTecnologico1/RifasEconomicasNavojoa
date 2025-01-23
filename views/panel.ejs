@@ -1,0 +1,149 @@
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Metatags para redes sociales (Open Graph) -->
+        <meta property="og:title" content="Rifas Economicas Navojoa" />
+        <!--<meta property="og:description" content="" />-->
+        <meta property="og:url" content="https://rifaseconomicasnavojoa.site/" />
+        <meta property="og:image" content="img/rifas_economicas_navojoa-logo.png" />
+        
+        <title>Rifas Economicas Navojoa</title>
+        
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!-- Favicon en formato PNG (para que el logo aparezca en navegadores) -->
+        <link rel="icon" type="image/png" href="/img/rifas_economicas_navojoa-logo.png">
+        <!-- Opcional: Favicon para dispositivos Apple  (para que el logo aparezca en navegadores apple) -->
+        <link rel="apple-touch-icon" href="/img/rifas_economicas_navojoa-logo.png">
+
+        <link rel="preload" href="/img/rifas_economicas_navojoa-logo.png" as="image">
+        <link rel="preload" href="/img/moto_italika_deportiva_vort-x250_2024_roja_2_11zon.webp" as="image">
+        <!--
+        <link rel="preload" href="img/loading.gif" as="image">
+        <link rel="preload" href="img/cancelar.png" as="image">
+        <link rel="preload" href="img/comprobar.png" as="image">
+        <link rel="preload" href="img/maquinitaDeLaSuerte.gif" as="image">
+        -->
+        
+    </head>
+    <body>
+        <div id="locationModal">
+            <div id="infoModal">
+                <p style="font-size: 21px;">Para poder utilizar nuestro servicio es necesario que permitas el acceso a tu ubicación para fines de seguridad.</p>
+                <button id="enableLocation">Continuar</button>
+            </div>
+        </div>
+
+        <div id="content_page_panel" class="content_page_panel_class">
+            <div id="div_header_panel" class="div_header">
+                <!--
+                <div id="div_darkModeBtn" class="div_darkModeBtn_class">
+                    <button id="dark_mode_btn" class="dark_mode_btn_class"></button>
+                </div>
+                -->
+            </div>
+    
+            <div id="logo_panel" class="logo">
+                <img src="/img/rifas_economicas_navojoa-logo.png" alt="Logo" />
+            </div>
+    
+            <%- include('partials/navbar_panel') %>
+    
+            <!--
+            <div class="div_sectionAbajo_panel">
+                <div id="div_alinear_panel" class="div_alinear">
+                    <div class="div_trianguloAbajo_izq_panel">
+                        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <polygon points="50,70 25,30 75,30" fill="white" />
+                        </svg>
+                    </div>
+                    <div class="div_hazClickAbajo">
+                        <strong id="span_hazClickAbajo">PANEL DE CONTROL</strong>
+                    </div>
+                    <div class="div_trianguloAbajo_der_panel">
+                        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <polygon points="50,70 25,30 75,30" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            -->
+
+            <div class="div_sectionAbajo_panel">
+                <div id="div_alinear_panel" class="div_alinear">
+                    <div class="div_trianguloAbajo_panel_class">
+                        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <polygon points="50,70 25,30 75,30" fill="white" />
+                        </svg>
+                    </div>
+                    <div class="div_hazClickAbajo">
+                        <strong id="span_hazClickAbajo">PANEL DE CONTROL</strong>
+                    </div>
+                    <div class="div_trianguloAbajo_panel_class">
+                        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <polygon points="50,70 25,30 75,30" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <main id="main-content-panel" class="main_content_panel_class">
+                    <!--
+                    <div class="input-group-panel">
+                        <label for="edicion"># Edición</label>
+                        <input type="text" name="edicion" id="edicion">
+                    </div>
+                    <div class="input-group-panel">
+                        <label for="premio">Premio</label>
+                        <input type="text" name="premio" id="premio">
+                    </div>
+
+                    <div class="input-group-panel">
+                        <label for="">Descripcion</label>
+                        <input type="text" name="descripcion" id="descripcion">
+                    </div>
+
+                    <div class="input-group-panel">
+                        <label for="">Fecha</label>
+                        <input type="text" name="fecha" id="fecha">
+                    </div>
+
+                    <div class="input-group-panel">
+                        <label for="">Activo</label>
+                        <input type="text" name="activo" id="activo">
+                    </div>
+                    -->
+                    <div class="div_input_panel_class">
+                        <label for=""># Edicion</label>
+                        <input type="text" name="edicion" id="edicion">
+
+                        <label for="">Premio</label>
+                        <input type="text" name="premio" id="premio">
+
+                        <label for="">Descripcion</label>
+                        <input type="text" name="descripcion" id="descripcion">
+
+                        <label for="">Fecha</label>
+                        <input type="text" name="fecha" id="fecha">
+
+                        <label for="">Activo</label>
+                        <input type="text" name="activo" id="activo">
+                    </div>
+            </main>
+            
+            <!--<div class="div_espacio5"></div>-->
+
+
+            <%- include('partials/footer_panel') %>
+    
+        </div>
+        
+
+        <script src="/config.js"></script>
+        <script src="/js/panel.js"></script>
+        <script src="/js/navbar_panel_EJS.js"></script>
+        
+        
+    </body>
+</html>

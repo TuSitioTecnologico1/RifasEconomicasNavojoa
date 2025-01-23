@@ -3,6 +3,7 @@
 const logActivity = require('../utils/log_activity_USANDO_ua_parser_js'); // Importar el módulo de logs para la ACTIVIDAD de la pagina
 const logError = require('../utils/log_error'); // Importar el módulo de logs para los ERRORES de la pagina
 const db = require('../db'); // Suponiendo que la base de datos está configurada en db.js
+const moment = require('moment');
 
 
 
@@ -328,10 +329,26 @@ const getReservedNumbersBD = async (req, res) => {
         console.log("LOG ACTIVITY:");
         console.log(log_activity);
 
-        const query = "SELECT id_boleto, boleto, id_usuario, usuario, estado, pagado fecha_creacion, fecha_modificacion FROM boletos_adquiridos";
+        const query = "SELECT id_boleto, boleto, id_usuario, usuario, telefono, estado, pagado, fecha_creacion, fecha_modificacion FROM boletos_adquiridos";
         const [results] = await db.query(query); // Cambiado para usar await
-        res.json(results);
+
+
         arr_numeros_apartados = results;
+        //console.log(arr_numeros_apartados);
+
+        // Usar moment para formatear la fecha
+        const nuevo_arr_numeros_apartados = arr_numeros_apartados.map(obj => ({
+            ...obj,
+            fecha_creacion: moment(obj.fecha_creacion).format('YYYY-MM-DD HH:mm:ss'),
+            fecha_modificacion: moment(obj.fecha_modificacion).format('YYYY-MM-DD HH:mm:ss')
+        }));
+
+        //console.log(nuevo_arr_numeros_apartados);
+
+
+        //res.json(results);
+        res.json(nuevo_arr_numeros_apartados);
+        
         /*db.query(query, (err, results) => {
             if (err) {
                 console.error("Error en la consulta:", err);

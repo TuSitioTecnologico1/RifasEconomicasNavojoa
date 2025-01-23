@@ -121,18 +121,18 @@ const saveUserInfo = async (req, res) => {
 const savePurchasedTicketsUser = async (req, res) => {
     try {
         //console.log("Haz entrado a: /api/adquirir_boleto");
-        const { arr_reservedTickets_ID_and_NUMBER, userId, name, option } = req.body;
+        const { arr_reservedTickets_ID_and_NUMBER, userId, name, phone, option } = req.body;
         
         const log_activity = logActivity(req, 'Visita a la API "/api/adquirir_boleto" - La persona ha apartado la cantidad de '+arr_reservedTickets_ID_and_NUMBER.length+' numero(s).'); // Registrar acción
         console.log("LOG ACTIVITY:");
         console.log(log_activity);
         
         // Insertar datos en la base de datos
-        const query = 'INSERT INTO boletos_adquiridos (id_boleto, boleto, id_usuario, usuario, estado) VALUES (?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO boletos_adquiridos (id_boleto, boleto, id_usuario, usuario, telefono, estado) VALUES (?, ?, ?, ?, ?, ?)';
         
         const values = arr_reservedTickets_ID_and_NUMBER.map(item => {
             const [id_boleto, boleto] = item.split("_");
-            return [id_boleto, boleto, userId, name, option];
+            return [id_boleto, boleto, userId, name, phone, option];
         });
 
         // Insertar todos los boletos adquiridos en una sola consulta
@@ -142,6 +142,7 @@ const savePurchasedTicketsUser = async (req, res) => {
             ticket_Id_Number: arr_reservedTickets_ID_and_NUMBER,
             userId,
             userName: name,
+            userPhone: phone,
             select_state_option: option,
         };
 

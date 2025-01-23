@@ -3089,3 +3089,354 @@ textarea {
 .div_btnConsultar_verificador {
     margin-top: 30px;
 }
+
+
+
+
+
+
+
+#div_header_panel {
+    height: 70px;
+}
+
+#navbar_panel {
+    height: 30px;
+    top: 11px;
+}
+
+#logo_panel img {
+    position: fixed;
+    top: -10px;
+    height: 100px;
+}
+
+.div_sectionAbajo_panel {
+    background-color: #222222;
+    color: white;
+    font-size: 30px;
+    width: 100%;
+    height: 50px;
+    margin-top: 88px;
+    padding-top: 0px;
+    box-shadow: 0 0 15px 5px rgb(255, 255, 255); /* Difuminado */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#div_alinear_panel {
+    font-size: 20px;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.div_trianguloAbajo_panel_class {
+    display: block;
+}
+
+.div_trianguloAbajo_izq_panel {
+    position: fixed;
+    left: 450px;
+
+}
+
+.div_trianguloAbajo_der_panel {
+    position: fixed;
+    right: 450px;
+}
+
+
+
+
+/* BOTON PARA MODO OSCURO */
+.div_darkModeBtn_class {
+    z-index: 1000;
+}
+
+#dark_mode_btn {
+    position: absolute; /* Se posiciona relativo al contenedor fijo */
+    top: 0; /* Pegado a la parte superior del contenedor */
+    right: 0; /* Pegado al lado derecho del contenedor */
+    margin: 0px; /* Espaciado opcional */
+    margin-inline-end: 20px; 
+    width: 40px; /* Ancho del botón */
+    height: 35px; /* Altura del botón */
+    /*background-color: #7fc241;*/
+    background-color: #333;
+    border: 2px solid #ccc;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    /* Botón redondeado */
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    /* Efectos suaves */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#dark_mode_btn:hover {
+    /*background-color: #333;*/
+    background-color: #7fc241;
+    /*color: #fff;*/
+    transform: scale(1.1); /* Efecto de agrandar al pasar el mouse */
+    box-shadow: 0 0 15px 5px rgb(255, 255, 255); /* Difuminado */
+}
+
+.dark_mode_btn_class:focus {
+    outline: none;
+}
+
+/* Estilo para los iconos */
+.fas {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.dark_mode_btn .dark_mode_btn_class .fas {
+    transform: rotate(180deg);
+    /* Gira el icono al cambiar al modo oscuro */
+}
+
+
+
+
+
+.navbar_panel_class {
+    /*position: relative;*/
+    position: fixed;
+    width: 100%;
+	top: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 9px 20px;
+    color: white;
+    z-index: 200;
+}
+
+.navbar_panel_class .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar_panel_class ul {
+    list-style: none;
+    display: flex;
+    position: relative;
+}
+
+.navbar_panel_class ul li {
+    position: relative;
+    margin: 0 0px;
+}
+
+.navbar_panel_class ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 15px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.navbar_panel_class ul li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.navbar_panel_class ul li a i {
+    padding-right: 10px;
+	padding-left: 5px;
+}
+
+.navbar_panel_class ul li ul {
+    display: none;
+    position: absolute;
+    top: 34px;
+    left: 0;
+    background-color: #444;
+    list-style: none;
+    padding: 10px 0;
+    width: 200px;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+.navbar_panel_class ul li:hover ul {
+    display: block;
+}
+
+.navbar_panel_class ul li ul li {
+    margin: 0;
+}
+
+.navbar_panel_class ul li ul li a {
+    padding: 10px 20px;
+    color: white;
+    display: block;
+}
+
+.navbar_panel_class ul li ul li a:hover {
+    background-color: #555;
+}
+
+.menu-panel-btn {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Sidebar menu for mobile */
+.sidebar_panel_class {
+    position: fixed;
+    top: 59px;
+    right: -400px;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    /*padding: 20px;*/
+    padding-right: 30px;
+    transition: right 0.3s;
+    z-index: 200;
+}
+
+.sidebar_panel_class ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.sidebar_panel_class ul li {
+    margin: 20px 0;
+    position: relative;
+}
+
+.sidebar_panel_class ul li ul {
+    display: none;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar_panel_class ul li.active ul {
+    display: block;
+}
+
+.sidebar_panel_class ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+    width: 110%;
+}
+
+.sidebar_panel_class ul li a:hover {
+    text-decoration: underline;
+}
+
+.sidebar_panel_class ul li a i {
+    padding-right: 10px;
+	padding-left: 5px;
+}
+
+.sidebar_panel_class.active {
+    right: 0;
+}
+
+#li_comprarBoletos_menu_3 {
+    margin-right: 65px;
+}
+
+@media (max-width: 989px) {
+
+    .navbar_panel_class ul {
+        display: none;
+    }
+
+    .menu-panel-btn {
+        display: block;
+        position: relative;
+		right: 50px;
+    }
+}
+
+
+
+
+
+/* Contenedor principal que usa Flexbox */
+.content_page_panel_class {
+    display: flex;
+    flex-direction: column; /* Alinea los hijos en columna */
+    min-height: 100vh;     /* Ocupa al menos toda la altura del viewport */
+}
+
+/* Main debe ocupar el espacio restante */
+.main_content_panel_class {
+    flex: 1; /* Toma el espacio disponible entre el header y el footer */
+    display: flex;
+    flex-direction: column;
+    /*flex-direction: row;*/
+    justify-content: center; /* Opcional: Centra el contenido en el eje vertical */
+}
+
+/* Grupo de inputs (label + input) */
+.input-group-panel {
+    display: flex;
+    flex-direction: column; /* Label arriba del input */
+    text-align: left; /* Asegura alineación de texto */
+}
+
+/* Opcional: Estilo para inputs */
+.input-group-panel input {
+    padding: 8px 12px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño del texto */
+    width: 50%;
+}
+
+/* Opcional: Estilo de los labels */
+.input-group-panel label {
+    margin-bottom: 5px; /* Espacio entre label e input */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+
+.div_input_panel_class{
+    position: fixed;
+    top: 300px;
+    flex: 1; /* Toma el espacio disponible entre el header y el footer */
+    display: flex;
+    flex-direction: column;
+    /*flex-direction: row;*/
+    justify-content: center; /* Opcional: Centra el contenido en el eje vertical */
+}
+
+
+
+
+/* Footer PANEL */
+.footer_panel_class {
+    text-align: center;
+    font-size: 15px;
+    background-color: #7fc241;
+    border: 2px solid #222222;
+    padding: 0px;
+}
+
+#div_footer_panel_class {
+    line-height: 0.5;
+}
+
+#div_footer_panel_class a {
+    color: white;
+}
+

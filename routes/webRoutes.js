@@ -37,8 +37,8 @@ router.get('/lista-boletos/r1', (req, res) => {
         console.log("");
         const path = require('path');
         //res.sendFile(path.resolve(__dirname, '../public/pages/r1_lista.html')); // Este se utiliza para llamar a r1_lista.html
-        //res.render('pages/r1_lista', { title: 'Lista de Boletos' }); // Este se utiliza para renderizar r1_lista.ejs
-        res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
+        res.render('pages/r1_lista', { title: 'Lista de Boletos' }); // Este se utiliza para renderizar r1_lista.ejs
+        //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
     } catch (error) {
         const log_error = logError(req, 'Error en la ruta "/lista-boletos/r1": '+error); // Registrar acción
         console.log("LOG ERROR:");
@@ -58,8 +58,8 @@ router.get('/verificador/r1', (req, res) => {
         console.log("");
         const path = require('path');
         //res.sendFile(path.resolve(__dirname, '../public/pages/r1_verificador.html')); // Este se utiliza para llamar a r1_verificador.html
-        //res.render('pages/r1_verificador', { title: 'Verificador de Boletos' }); // Este se utiliza para renderizar r1_verificador.ejs
-        res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
+        res.render('pages/r1_verificador', { title: 'Verificador de Boletos' }); // Este se utiliza para renderizar r1_verificador.ejs
+        //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
     } catch (error) {
         const log_error = logError(req, 'Error en la ruta "/verificador/r1": '+error); // Registrar acción
         console.log("LOG ERROR:");
@@ -143,6 +143,25 @@ router.get('/cerrado', (req, res) => {
         res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
     } catch (error) {
         const log_error = logError(req, 'Error en la ruta "/cerrado": '+error); // Registrar acción
+        console.log("LOG ERROR:");
+        console.log(log_error);
+        console.log("");
+        res.status(500).send('Error interno del servidor');
+    }
+});
+
+// Ruta para la página donde esta el panel de control - https://rifaseconomicasnavojoa.site/panel-control
+router.get('/panel-control', (req, res) => {
+    try {
+        const log_activity = logActivity(req, 'Visita a la pagina panel.ejs'); // Registrar acción
+        console.log("LOG ACTIVITY:");
+        console.log(log_activity);
+        console.log("");
+        const path = require('path');
+        res.render('panel', { title: 'Panel' }); // Este se utiliza para renderizar panel.ejs
+        //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
+    } catch (error) {
+        const log_error = logError(req, 'Error en la ruta "/panel-control": '+error); // Registrar acción
         console.log("LOG ERROR:");
         console.log(log_error);
         console.log("");

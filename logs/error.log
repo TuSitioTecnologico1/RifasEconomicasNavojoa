@@ -1,0 +1,2 @@
+[22/1/2025, 16:20:37] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Error al obtener la geolocalización: read ECONNRESET
+[22/1/2025, 16:45:19] | IP: 127.0.0.1, OS: Windows 10, BROWSER: Chrome 131.0.0.0, DEVICE: undefined, ENGINE: Blink 131.0.0.0, CPU: amd64 | ACTION: Error en la API "/api/numeros_apartados": arr is not defined

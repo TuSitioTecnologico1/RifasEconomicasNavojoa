@@ -2,6 +2,7 @@ const config_API = config;
 
 // URLs del servidor backend
 const API_GEOLOCALIZACION_URL = config_API.GEOLOCALIZACION_URL;
+const API_OBTENER_NUMEROS_APARTADOS_URL = config_API.OBTENER_NUMEROS_APARTADOS_URL;
 
 
 
@@ -169,6 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (activate_desactivate_function_checkLocation == 1) {
         checkLocationPermissionAndGetData();
     }
+    get_reserved_numbers();
     //localStorage.clear();
     //console.log(localStorage.getItem('dark-mode'));
 });
@@ -221,20 +223,17 @@ themeToggleButton.addEventListener('click', () => {
 
 
 // Obtener números 
+let arr_numeros_apartados = [];
 async function get_reserved_numbers() {
     try {
         //console.log("Se ejecutó: async function getNumbers()");
-        const response = await fetch(API_URL);
+        const response = await fetch(API_OBTENER_NUMEROS_APARTADOS_URL);
         const data = await response.json();
-        //arr_numeros = data;
-        arr_numeros = data.filter(item => item.visible === 1); // Filtrar solo los visibles
+        arr_numeros_apartados = data;
+        //arr_numeros_apartados = data.filter(item => item.visible === 1); // Filtrar solo los visibles
 
-        //console.log("arr_numeros:");
-        //console.log(arr_numeros);
-        
-        //calculateGrid();
-        //renderVirtualGrid();
-        load_data ();
+        //console.log("arr_numeros_apartados:");
+        //console.log(arr_numeros_apartados);
         
         return data;
     } catch (error) {
@@ -258,9 +257,9 @@ async function get_reserved_numbers() {
 
 // Datos para la tabla (puedes reemplazar con datos dinámicos)
 const data = [
-    { ticket: "00000", payment: "1", name: "SAUL EDUARDO LEAL ONTIVEROS", state: "SONORA", phone: "6421123456", fecha_hora: "2025-01-03 17:13:04" },
-    { ticket: "36286", payment: "0", name: "SAUL EDUARDO LEAL ONTIVEROS", state: "SONORA", phone: "6421123456", fecha_hora: "2025-01-03 17:13:04" },
-    { ticket: "54710", payment: "1", name: "SAUL EDUARDO LEAL ONTIVEROS", state: "SONORA", phone: "6421123456", fecha_hora: "2025-01-03 17:13:04" }
+    { boleto: "00000", usuario: "SAUL EDUARDO LEAL ONTIVEROS", telefono: "6421123456", estado: "SONORA", pagado: "1", fecha_creacion: "2025-01-03 17:13:04" },
+    { boleto: "36286", usuario: "SAUL EDUARDO LEAL ONTIVEROS", telefono: "6421123456", estado: "SONORA", pagado: "0", fecha_creacion: "2025-01-03 17:13:04" },
+    { boleto: "54710", usuario: "SAUL EDUARDO LEAL ONTIVEROS", telefono: "6421123456", estado: "SONORA", pagado: "1", fecha_creacion: "2025-01-03 17:13:04" }
 ];
 
 // Función para generar la tabla
@@ -293,18 +292,18 @@ function generateTable(data) {
     data.forEach(item => {
         const row = document.createElement("tr");
         // Determina el estado y asigna la clase y el texto adecuado
-        const isPaid = item.payment === "1";
+        const isPaid = item.pagado === "1";
         const statusText = isPaid ? "SI" : "NO"; // Define el texto a mostrar
         const statusClass = isPaid
             ? "td_status_pagadoClass_verificador td_class_verificador"
             : "td_status_noPagadoClass_verificador td_class_verificador"; // Define la clase CSS
         row.innerHTML = `
-            <td>${item.ticket}</td>
+            <td>${item.boleto}</td>
             <td class="${statusClass}">${statusText}</td> <!-- Muestra el texto correspondiente -->
-            <td>${item.name}</td>
-            <td>${item.state}</td>
-            <td>${item.phone}</td>
-            <td>${item.fecha_hora}</td>
+            <td>${item.usuario}</td>
+            <td>${item.estado}</td>
+            <td>${item.telefono}</td>
+            <td>${item.fecha_creacion}</td>
         `;
         tbody.appendChild(row);
     });
@@ -316,12 +315,73 @@ function generateTable(data) {
 }
 
 // Genera la tabla al cargar la página
-generateTable(data);
-
+//generateTable(data);
 
 
 
 
 const btn_consultar = document.getElementById("consultar-btn");
+const loadingIndicator = document.getElementById("loading");
+
+btn_consultar.addEventListener("click", () => {
+    try {
+        const numero_a_verificar = document.getElementById("search_verificador").value;
+        let arr_numeros_apartados_verificados = [];
+
+        if (numero_a_verificar != "" && numero_a_verificar != undefined) {
+            if (numero_a_verificar.toString().length === 10) {
+                arr_numeros_apartados_verificados = arr_numeros_apartados.filter(
+                    item => item.telefono == numero_a_verificar
+                );
+            }
+            if (numero_a_verificar.toString().length === 5) {
+                arr_numeros_apartados_verificados = arr_numeros_apartados.filter(
+                    item => item.boleto == numero_a_verificar
+                );
+            }
+            if (numero_a_verificar.toString().length !== 10 && numero_a_verificar.toString().length !== 5) {
+                alert(
+                    "Escribe el número del boleto apartado (5 dígitos) o el teléfono con el que se apartó (10 dígitos)."
+                );
+            } else {
+                // Muestra el indicador de carga
+                loadingIndicator.style.display = "block";
+
+                setTimeout(() => {
+                    if (arr_numeros_apartados_verificados.length === 0) {
+                        alert("No se ha encontrado el boleto o el número de celular.");
+                    } else {
+                        generateTable(arr_numeros_apartados_verificados);
+                    }
+
+                    // Oculta el indicador de carga después de procesar
+                    loadingIndicator.style.display = "none";
+                }, 500); // Simula un pequeño retraso (500 ms)
+            }
+        } else {
+            alert("Ingresa tu numero de boleto o tu numero de telefono con el cual apartaste boletos.");
+        }
+            
+    } catch (error) {
+        const message_error = String(error).split(":")[1]?.trim() || "Error desconocido";
+        console.error({
+            function: "document.getElementById('consultar-btn').addEventListener('click')",
+            message_error,
+        });
+
+        // Oculta el indicador de carga si ocurre un error
+        loadingIndicator.style.display = "none";
+    }
+});
+
+
+
+
+
+
+
+
+
+
 
 

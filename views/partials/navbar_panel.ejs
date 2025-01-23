@@ -1,0 +1,97 @@
+<div id="navbar_3" class="navbar_3_section">
+    <nav id="navbar_panel" class="navbar_panel_class">
+        <!---->
+        <div class="logo_navbar_panel"><!--<i class="fa fa-home"></i> Mi Sitio--></div>
+        <ul class="ul_menu_panel">
+            <li class="li_menu_panel">
+                <a class="a_menu_panel" href="<%= url_inicio %>"><i id="i_menu_panel_inicio" class="fa fa-home i_menu_panel_class"></i>Inicio</a>
+            </li>
+            <li class="li_menu_panel">
+                <a class="a_menu_panel" href="#"><i id="i_menu_panel_nosotros" class="fa fa-users i_menu_panel_class"></i>Nosotros<i class="fa fa-caret-down"></i></a>
+                <ul class="ul_submenu_panel">
+                    <li class="li_submenu_panel"><a class="a_submenu_panel" href="<%= url_preguntasFrecuentes %>"><i id="i_submenu_panel_preguntasFrecuentes1" class="fa fa-question i_submenu_panel_class"></i>Preguntas Frecuentes</a>
+                    </li>
+                    <li class="li_submenu_panel"><a class="a_submenu_panel" href="<%= url_contacto %>"><i id="i_submenu_panel_contacto" class="fa fa-address-card i_submenu_panel_class"></i>Contacto</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="li_menu_panel">
+                <a class="a_menu_panel" href="<%= url_metodosDePago %>"><i id="i_menu_panel_metodosPago" class="fa fa-credit-card-alt i_menu_panel_class"></i>M&eacute;todos de Pago</a>
+            </li>
+            <li class="li_menu_panel">
+                <a class="a_menu_panel" href="<%= url_verificador %>"><i id="i_menu_panel_verificador" class="fa fa-check-square-o i_menu_panel_class"></i>Verificador</a>
+            </li>
+            <li id="li_comprarBoletos_menu_3" class="li_menu_panel">
+                <a class="a_menu_panel" href="#"><i id="i_menu_panel_comprarBoletos" class="fa fa-ticket i_menu_panel_class"></i>Comprar boletos<i class="fa fa-caret-down i_menu_panel"></i></a>
+                <ul class="ul_submenu_panel">
+                    <% for (let key in url_edicion) { %>
+                        <li class="li_submenu_panel">
+                            <a class="a_submenu_panel" href="<%= url_edicion[key] %>">
+                                <i id="i_submenu_panel_<%= key %>" class="fa fa-mobile i_submenu_panel_class"></i>
+                                EDICION <%= key.split('_')[2] %> <!-- Esto extrae el número de la edición -->
+                            </a>
+                        </li>
+                    <% } %>
+                    <!--
+                    <li class="li_submenu_panel">
+                        <a class="a_submenu_panel" href="<%= url_edicion.url_edicion_1 %>">
+                            <i id="i_submenu_panel_edicion1" class="fa fa-mobile i_submenu_panel_class"></i>
+                            EDICION #1
+                        </a>
+                    </li>
+                    -->
+                </ul>
+            </li>
+            <li class="li_menu_panel">
+                <div id="div_darkModeBtn" class="div_darkModeBtn_class">
+                    <button id="dark_mode_btn" class="dark_mode_btn_class"></button>
+                </div>
+            </li>
+        </ul>
+        <div class="menu-panel-btn" id="menu-panel-btn"><i class="fa fa-bars"></i></div>
+    </nav>
+    
+    <div class="sidebar_panel_class" id="sidebar_panel">
+        <ul class="ul_menu_panel">
+            <li class="li_menu_panel">
+                <a class="a_menu_panel" href="<%= url_inicio %>"><i id="i_menu_panel_inicio" class="fa fa-home i_menu_panel_class"></i>Inicio</a>
+            </li>
+            <li class="li_menu_panel">
+                <a class="a_menu_panel" href="#"><i id="i_menu_panel_nosotros" class="fa fa-users i_menu_panel_class"></i>Nosotros<i class="fa fa-caret-down"></i></a>
+                <ul class="ul_submenu_panel">
+                    <li class="li_submenu_panel"><a class="a_submenu_panel" href="<%= url_preguntasFrecuentes %>"><i id="i_submenu_panel_preguntasFrecuentes1" class="fa fa-question i_submenu_panel_class"></i>Preguntas Frecuentes</a>
+                    </li>
+                    <li class="li_submenu_panel"><a class="a_submenu_panel" href="<%= url_contacto %>"><i id="i_submenu_panel_contacto" class="fa fa-address-card i_submenu_panel_class"></i>Contacto</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="li_menu_panel">
+                <a class="a_menu_panel" href="<%= url_metodosDePago %>"><i id="i_menu_panel_metodosPago" class="fa fa-credit-card-alt i_menu_panel_class"></i>M&eacute;todos de Pago</a>
+            </li>
+            <li class="li_menu_panel">
+                <a class="a_menu_panel" href="<%= url_verificador %>"><i id="i_menu_panel_verificador" class="fa fa-check-square-o i_menu_panel_class"></i>Verificador</a>
+            </li>
+            <li class="li_menu_panel">
+                <a class="a_menu_panel" href="#"><i id="i_menu_panel_comprarBoletos" class="fa fa-ticket i_menu_panel_class"></i>Comprar boletos<i class="fa fa-caret-down i_menu_panel"></i></a>
+                <ul class="ul_submenu_panel">
+                    <% for (let key in url_edicion) { %>
+                        <li class="li_submenu_panel">
+                            <a class="a_submenu_panel" href="<%= url_edicion[key] %>">
+                                <i id="i_submenu_panel_<%= key %>" class="fa fa-mobile i_submenu_panel_class"></i>
+                                EDICION <%= key.split('_')[2] %> <!-- Esto extrae el número de la edición -->
+                            </a>
+                        </li>
+                    <% } %>
+                    <!--
+                    <li class="li_submenu_panel">
+                        <a class="a_submenu_panel" href="<%= url_edicion.url_edicion_1 %>">
+                            <i id="i_submenu_panel_edicion1" class="fa fa-mobile i_submenu_panel_class"></i>
+                            EDICION #1
+                        </a>
+                    </li>
+                    -->
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

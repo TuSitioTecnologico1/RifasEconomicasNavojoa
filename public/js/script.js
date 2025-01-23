@@ -1980,7 +1980,8 @@ async function save_person_data_modal (whatsapp, name, last_name, select_states)
         if (data.userData) {
             const { userId, phone, name, lastname, option } = data.userData;
             const data_ApiSavePerson = {};
-            reservar_boletos_seleccionados(userId, name, option);
+            let full_name = name + " " + lastname;
+            reservar_boletos_seleccionados(userId, full_name, phone, option);
         } else {
             console.error('Error al guardar los datos:', data.message);
         }
@@ -2080,7 +2081,7 @@ async function checar_boletos_seleccionados_persona(userId, name, option) {
 
 
 // Reservar boletos seleccionados
-async function reservar_boletos_seleccionados(userId, name, option) {
+async function reservar_boletos_seleccionados(userId, name, phone, option) {
     try {
         //console.log("async function reservar_boletos_seleccionados");
         let get_numbersDB = arr_numeros;
@@ -2115,7 +2116,7 @@ async function reservar_boletos_seleccionados(userId, name, option) {
             //console.log(tickets_notAvailable);
             //console.log(tickets_notAvailable.length);
             if (tickets_notAvailable.length == 0) {
-                mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, option);
+                mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, phone, option);
             }else{
                 let str_ticketsApartados = "";
                 let aux = 1;
@@ -2185,7 +2186,7 @@ function findCommonNumbers(array1, array2) {
 
 
 // Apartar varios numeros
-async function mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, option) {
+async function mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, phone, option) {
     //console.log("async function mark_multiple_tickets_as_sold");
     try {
         //console.log("arr_reservedTickets:");
@@ -2252,6 +2253,7 @@ async function mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, 
                 arr_reservedTickets_ID_and_NUMBER: arr_reservedTickets_ID_and_NUMBER,
                 userId: userId,
                 name: name.toUpperCase(),
+                phone:  phone,
                 option: option.toUpperCase()
             };
             //console.log("data_to_server:");
@@ -2271,7 +2273,7 @@ async function mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, 
                 if (data.data_server) {
                     //console.log('Datos del nuevo registro en la tabla "boletos_adquiridos":', data.data_server);
                     // Ahora tienes todos los datos insertados en 'data_server'
-                    const { ticket_Id_Number, userId, userName, select_state_option } = data.data_server;
+                    const { ticket_Id_Number, userId, userName, userPhone, select_state_option } = data.data_server;
                     //console.log('ID y NUMERO del boleto:', ticket_Id_Number);
                     //console.log('ID usuario:', userId);
                     //console.log('NOMBRE usuario:', userName);
