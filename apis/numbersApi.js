@@ -274,18 +274,18 @@ const changeStatusMultipleNumbers = async (req, res) => {
         //console.log("Haz entrado a: /api/numeros/cambiar_estado_numeros");
         const receivedArray = req.body; // Aquí se obtiene el array enviado
 
-        const log_activity = logActivity(req, 'Visita a la API "/api/numeros/cambiar_estado_numeros" - Sa ha cambiado el estado de multiples numeros a vendidos. Cantidad - '+receivedArray.length); // Registrar acción
-        console.log("LOG ACTIVITY:");
-        console.log(log_activity);
-        console.log("");
-
         // Validar que es un array
-        if (!Array.isArray(receivedArray)) {
-            return res.status(400).json({ error: "El cuerpo de la solicitud debe ser un array." });
+        if (!Array.isArray(receivedArray) || receivedArray.length === 0) {
+            return res.status(400).json({ error: "El cuerpo de la solicitud debe ser un array no vacío." });
         }
-        
-        const query = "UPDATE numeros SET disponible = 0 WHERE id = ?";
-        await db.query(query, [receivedArray]);
+
+        // Crear la lista de marcadores de posición (?, ?, ?) basada en la longitud del array
+        const placeholders = receivedArray.map(() => "?").join(", ");
+        const query = `UPDATE numeros SET disponible = 0 WHERE id IN (${placeholders})`;
+
+        // Ejecutar la consulta con los valores del array
+        await db.query(query, receivedArray);
+
         res.status(200).json({
             status: "success",
             message: "Números apartados con éxito.",

@@ -147,10 +147,27 @@ body.dark-mode .select_states_class {
     background-color: #444;
 }
 
-body.dark-mode .tableClass_verificador th {
+body.dark-mode .tableClass_panel th {
     color: white; /* Color del texto */
     background-color: #444; /* Color de fondo */
 }
+
+body.dark-mode .modal-content-panel {
+    background-color: #333;
+}
+
+body.dark-mode .modal-body-panel {
+    background-color: #333;
+    color: white;
+}
+
+body.dark-mode .td_class_panel {
+    color: white;
+}
+
+
+
+
 
 
 /*
@@ -3038,7 +3055,7 @@ textarea {
 
 
 
-.tableClass_verificador {
+.tableClass_panel {
     margin-top: 20px;
     border-collapse: collapse;
     width: 100%;
@@ -3050,22 +3067,22 @@ textarea {
     box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
 }
 
-.tableClass_verificador table {
+.tableClass_panel table {
     width: 100%; /* Escala la tabla al tamaño del contenedor */
     border: 1px solid #ccc;
     border-collapse: collapse; /* Evita bordes dobles */
     min-width: 800px; /* Define un ancho mínimo para la tabla */
 }
 
-.tableClass_verificador th,
-.tableClass_verificador td {
+.tableClass_panel th,
+.tableClass_panel td {
     padding: 10px;
     text-align: left;
     border: 1px solid #ccc;
     text-align: center;
 }
 
-.tableClass_verificador th {
+.tableClass_panel th {
     color: #ffffff; /* Color del texto */
     background-color: #222222; /* Color de fondo */
 }
@@ -3419,6 +3436,240 @@ textarea {
     /*flex-direction: row;*/
     justify-content: center; /* Opcional: Centra el contenido en el eje vertical */
 }
+
+
+
+
+
+/* Contenedor principal dividido en tres secciones */
+.div_conteiner_panel_class {
+    display: flex;
+    justify-content: space-between; /* Espacio entre las secciones */
+    align-items: center; /* Centra verticalmente */
+    padding: 10px;
+    gap: 10px; /* Espacio entre secciones */
+    /*background-color: #f4f4f4; /* Color de fondo del contenedor */
+}
+
+/* Sección individual */
+.div_section_panel_class {
+    flex: 1; /* Todas las secciones tienen el mismo ancho */
+    text-align: center; /* Centrar el contenido dentro de cada sección */
+    padding: 10px;
+    /*background-color: #fff; /* Fondo blanco para cada sección */
+    border: 1px solid #ddd; /* Bordes para visualizar */
+    border-radius: 5px;
+}
+
+
+
+.div_buttons {
+    /*position: fixed;
+    top: 180;*/
+}
+
+/* Botón estilo "btn-outline-primary" */
+.btn_panel_class {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 2px solid #007bff; /* Borde azul */
+    padding: 0.375rem 0.75rem; /* Espaciado interno */
+    /*font-size: 1rem; /* Tamaño de la fuente */
+    font-size: 15px; 
+    line-height: 1.5;
+    border-radius: 0.25rem; /* Bordes redondeados */
+    color: #007bff; /* Texto azul */
+    background-color: transparent; /* Fondo transparente */
+    text-decoration: none; /* Sin subrayado */
+    transition: all 0.2s ease-in-out; /* Animación suave */
+    cursor: pointer;
+    margin-bottom: 5px;
+    width: 165px;
+    left: 10;
+}
+
+/* Hover: Cambia el fondo y el texto */
+.btn_panel_class:hover {
+    background-color: #007bff; /* Fondo azul */
+    color: #fff; /* Texto blanco */
+}
+
+/* Activo: Efecto de presionar */
+.btn_panel_class:active {
+    background-color: #0056b3; /* Fondo más oscuro */
+    border-color: #004085; /* Borde más oscuro */
+    color: #fff; /* Texto blanco */
+    transform: scale(0.98); /* Pequeño efecto de "presionar" */
+}
+
+/* Botón deshabilitado */
+.btn_panel_class:disabled {
+    background-color: transparent; /* Fondo transparente */
+    color: #6c757d; /* Texto gris */
+    border-color: #6c757d; /* Borde gris */
+    cursor: not-allowed; /* Cursor no permitido */
+    opacity: 0.65; /* Más transparente */
+}
+
+
+
+.tableClass_panel {
+    /*position: fixed;
+    top: 330px;*/
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%; /* Asegura que el contenedor no exceda el ancho de la pantalla */
+    /*border: 1px solid #ddd; /* Borde opcional para resaltar */
+    overflow-x: auto; /* Activa el scroll horizontal */
+    white-space: nowrap; /* Evita el ajuste de líneas dentro de las celdas */
+    padding: 10px; /* Opcional: espacio alrededor de la tabla */
+    box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+}
+
+.tableClass_panel table {
+    width: 100%; /* Escala la tabla al tamaño del contenedor */
+    border: 1px solid #ccc;
+    border-collapse: collapse; /* Evita bordes dobles */
+    min-width: 1150px; /* Define un ancho mínimo para la tabla */
+}
+
+.tableClass_panel th,
+.tableClass_panel td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.tableClass_panel th {
+    color: #ffffff; /* Color del texto */
+    background-color: #222222; /* Color de fondo */
+}
+
+
+.td_status_disponibleClass_panel {
+    background-color: #28a745; /* Verde para "PAGADO" */
+    color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
+}
+
+.td_status_noDisponibleClass_panel {
+    background-color: #dc3545; /* Rojo para "NO_PAGADO" */
+    color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
+}
+
+.td_class_panel {
+    font-size: 16px; /* Reducir tamaño de texto */
+}
+
+
+
+
+/* Aumenta el tamaño del checkbox */
+.row-checkbox-panel {
+    transform: scale(1.5); /* Aumenta el tamaño del checkbox */
+    cursor: pointer;      /* Cambia el cursor a pointer para mejor UX */
+}
+
+
+
+
+
+/* Estilos del modal */
+.modal-panel {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content-panel {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: scale(0.7); /* Escala inicial */
+    opacity: 0; /* Transparente al inicio */
+    transition: transform 0.2s ease, opacity 0.2s ease; /* Animación suave */
+}
+/* Cuando el modal está visible */
+.modal-panel.show .modal-content-panel {
+    transform: scale(1); /* Escala normal */
+    opacity: 1; /* Totalmente visible */
+}
+.modal-header-panel {
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+.modal-body-panel {
+    background: #f4f4f4;
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+}
+.modal-footer-panel {
+    text-align: right;
+}
+.modal-footer-panel button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.modal-footer-panel button:hover {
+    background-color: #0056b3;
+}
+/* Estilo para el texto "Etiqueta" (Boleto, Pagado, etc.) */
+.modal-label {
+    color: #ffffff; /* Color para las etiquetas */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Estilo para el texto "Valor" (resultado, como el boleto, fecha, etc.) */
+.modal-value {
+    color: #7fc241; /* Color para los valores */
+    font-weight: normal;
+}
+.p_label_modal_class_panel {
+    margin-bottom: -20px;
+}
+.span_status_disponibleClass_panel {
+    /*background-color: #28a745; /* Verde para "DISPONIBLE" */
+    color: #28a745; /* Texto blanco para mayor contraste */
+}
+
+.span_status_noDisponibleClass_panel {
+    /*background-color: #dc3545; /* Rojo para "NO_DISPONIBLE" */
+    color: #dc3545; /* Texto blanco para mayor contraste */
+}
+.close-modal-panel-class {
+    position: absolute;
+    top: 0px;
+    right: 12px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #d40000;
+    font-size: 30px; /* Cambia el tamaño del texto (puedes ajustar el valor) */
+}
+
+
+
 
 
 

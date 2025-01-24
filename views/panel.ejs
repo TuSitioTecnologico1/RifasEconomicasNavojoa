@@ -25,7 +25,6 @@
         <link rel="preload" href="img/comprobar.png" as="image">
         <link rel="preload" href="img/maquinitaDeLaSuerte.gif" as="image">
         -->
-        
     </head>
     <body>
         <div id="locationModal">
@@ -49,26 +48,6 @@
             </div>
     
             <%- include('partials/navbar_panel') %>
-    
-            <!--
-            <div class="div_sectionAbajo_panel">
-                <div id="div_alinear_panel" class="div_alinear">
-                    <div class="div_trianguloAbajo_izq_panel">
-                        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                            <polygon points="50,70 25,30 75,30" fill="white" />
-                        </svg>
-                    </div>
-                    <div class="div_hazClickAbajo">
-                        <strong id="span_hazClickAbajo">PANEL DE CONTROL</strong>
-                    </div>
-                    <div class="div_trianguloAbajo_der_panel">
-                        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                            <polygon points="50,70 25,30 75,30" fill="white" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            -->
 
             <div class="div_sectionAbajo_panel">
                 <div id="div_alinear_panel" class="div_alinear">
@@ -89,51 +68,76 @@
             </div>
             
             <main id="main-content-panel" class="main_content_panel_class">
-                    <!--
-                    <div class="input-group-panel">
-                        <label for="edicion"># Edición</label>
-                        <input type="text" name="edicion" id="edicion">
+                <div class="div_conteiner_panel_class">
+                    <div class="div_section_panel_class">
+                        
                     </div>
-                    <div class="input-group-panel">
-                        <label for="premio">Premio</label>
-                        <input type="text" name="premio" id="premio">
+                    <div class="div_section_panel_class">
+                        RIFA
                     </div>
-
-                    <div class="input-group-panel">
-                        <label for="">Descripcion</label>
-                        <input type="text" name="descripcion" id="descripcion">
+                    <div class="div_section_panel_class">
+                        
                     </div>
-
-                    <div class="input-group-panel">
-                        <label for="">Fecha</label>
-                        <input type="text" name="fecha" id="fecha">
+                </div>
+                <div class="div_conteiner_panel_class">
+                    <div class="div_section_panel_class">
+                        
                     </div>
-
-                    <div class="input-group-panel">
-                        <label for="">Activo</label>
-                        <input type="text" name="activo" id="activo">
+                    <div class="div_section_panel_class">
+                        RIFA
                     </div>
-                    -->
-                    <div class="div_input_panel_class">
-                        <label for=""># Edicion</label>
-                        <input type="text" name="edicion" id="edicion">
-
-                        <label for="">Premio</label>
-                        <input type="text" name="premio" id="premio">
-
-                        <label for="">Descripcion</label>
-                        <input type="text" name="descripcion" id="descripcion">
-
-                        <label for="">Fecha</label>
-                        <input type="text" name="fecha" id="fecha">
-
-                        <label for="">Activo</label>
-                        <input type="text" name="activo" id="activo">
+                    <div class="div_section_panel_class">
+                        
                     </div>
+                </div>
+                <div class="div_conteiner_panel_class">
+                    <div class="div_section_panel_class">
+                        
+                    </div>
+                    <div class="div_section_panel_class">
+                        RIFA
+                    </div>
+                    <div class="div_section_panel_class">
+                        
+                    </div>
+                </div>
+                <div class="div_conteiner_panel_class">
+                    <div class="div_section_panel_class">
+                        <div class="div_buttons">
+                            <button id="btn_enviarBoleto_panel" class="btn_panel_class">Enviar Boleto</button><br>
+                            <button id="btn_pagado_panel" class="btn_panel_class">Pagado</button><br>
+                            <button id="btn_detalles_panel" class="btn_panel_class">Detalles</button>
+                        </div>
+                    </div>
+                    <div class="div_section_panel_class">
+                        <div class="div_buttons">
+                            <button id="btn_enviarBoleto_panel" class="btn_panel_class">Enviar Whatsapp</button><br>
+                            <button id="btn_eliminarPago_panel" class="btn_panel_class">Eliminar Pago</button><br>
+                            <button id="btn_eliminarApartado_panel" class="btn_panel_class">Eliminar Apartado</button>
+                        </div>
+                    </div>
+                </div>
+                    
+                    
+                <div id="loading" style="display: none;">Cargando...</div>
+                <div id="table-panel" class="tableClass_panel"></div>
             </main>
             
             <!--<div class="div_espacio5"></div>-->
 
+            <!-- Modal -->
+            <div id="info-modal-panel" class="modal-panel">
+                <div class="modal-content-panel">
+                    <div class="modal-header-panel">Información del Boleto <span class="close-modal-panel-class" id="close-modal-panel">&times;</span></div>
+                    <div class="modal-body-panel" id="modal-body-panel">
+                        <!-- Aquí se cargará la información del boleto -->
+                    </div>
+                    <!--
+                    <div class="modal-footer">
+                    </div>
+                    -->
+                </div>
+            </div>
 
             <%- include('partials/footer_panel') %>
     
