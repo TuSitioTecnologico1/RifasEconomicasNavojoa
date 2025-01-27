@@ -5,9 +5,11 @@ const router = express.Router();
 const db = require('../db'); // Suponiendo que la base de datos está configurada en db.js
 const { getGeolocation } = require('../apis/geolocationApi');  // Importa las funciones de geolocationApi.js
 //const { catchErrors } = require('../apis/erroresApi');  // Importa las funciones de userApi.js
-const { getNumbersBD, getNumbersPagination, changeStatusNumber, getNumersRandom, searchNumber, changeStatusMultipleNumbers, getReservedNumbersBD, searchReservedTicket } = require('../apis/numbersApi');  // Importa las funciones de numerosApi.js
 const { getStatesBD, getStatesARRAY } = require('../apis/statesApi');  // Importa las funciones de stateApi.js
 const { saveUserInfo, savePurchasedTicketsUser } = require('../apis/userApi');  // Importa las funciones de userApi.js
+const { getNumbersBD, getNumbersPagination, changeStatusNumber, getNumersRandom, 
+        searchNumber, changeStatusMultipleNumbers, getReservedNumbersBD, searchReservedTicket, 
+        paidReservedNumbersBD, deletePaidReservedNumbersBD, deleteReservedNumbersBD } = require('../apis/numbersApi');  // Importa las funciones de numerosApi.js
 
 
 
@@ -44,6 +46,15 @@ router.get('/numeros_apartados', getReservedNumbersBD);  // Llamará a la API pa
 
 // Ruta para buscar numero(s) apartado(s)
 router.get('/buscar_apartdos', searchReservedTicket);  // Llamará a la API para buscar numero(s) apartado(s)
+
+// Ruta para pagar numero(s) apartado(s)
+router.post('/numeros/pagar_numeros_apartados', paidReservedNumbersBD);  // Llamará a la API para pagar numero(s) apartado(s)
+
+// Ruta para eliminar pago numero(s) apartado(s)
+router.post('/numeros/eliminar_pago_numeros_apartados', deletePaidReservedNumbersBD);  // Llamará a la API para eliminar pago numero(s) apartado(s)
+
+// Ruta para eliminar numero(s) apartado(s)
+router.post('/numeros/eliminar_numeros_apartados', deleteReservedNumbersBD);  // Llamará a la API para eliminar pago numero(s) apartado(s)
 
 
 

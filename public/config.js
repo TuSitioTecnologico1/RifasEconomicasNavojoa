@@ -18,6 +18,9 @@ const config = {
     CAPTURAR_ERRORES_URL: 'http://localhost:3000/api/capturar_errores',
     OBTENER_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros_apartados',
     BUSCAR_APARTADOS_URL: 'http://localhost:3000/api/buscar_apartdos',
+    PAGAR_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros/pagar_numeros_apartados',
+    ELIMINAR_PAGO_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros/eliminar_pago_numeros_apartados',
+    ELIMINAR_NUMEROS_APARTADOS_UR: 'http://localhost:3000/api/numeros/eliminar_numeros_apartados',
 };
 if (typeof module !== "undefined" && module.exports) {
     module.exports = config;

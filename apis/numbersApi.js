@@ -319,7 +319,6 @@ const changeStatusMultipleNumbers = async (req, res) => {
 
 
 let arr_numeros_apartados = [];
-
 // Obtener todos los números apartados
 const getReservedNumbersBD = async (req, res) => {
     try {
@@ -425,5 +424,142 @@ const searchReservedTicket = async (req, res) => {
 
 
 
+// Pagar numeros apartados
+const paidReservedNumbersBD = async (req, res) => {
+    try {
+        //console.log("Haz entrado a: /api/numeros/pagar_numeros_reservados");
+        //const receivedArray_ticketsPagados = req.body; // Aquí se obtiene el array enviado
+        const { received_array_ticketsPagados_ID, received_array_ticketsPagados_NUMERO } = req.body;
+        //console.log("received_array_ticketsPagados_ID:");
+        //console.log(received_array_ticketsPagados_ID);
+        //console.log("received_array_ticketsPagados_NUMERO:");
+        //console.log(received_array_ticketsPagados_NUMERO);
+
+        const log_activity = logActivity(req, 'Visita a la API "/api/numeros/pagar_numeros_apartados" - Se pagaran a la cantidad de '+received_array_ticketsPagados_NUMERO.length+' numero(s). Numeros: '+JSON.stringify(received_array_ticketsPagados_NUMERO)+''); // Registrar acción
+        console.log("LOG ACTIVITY:");
+        console.log(log_activity);
+
+        // Validar que es un array
+        if (!Array.isArray(received_array_ticketsPagados_ID) || received_array_ticketsPagados_ID.length === 0) {
+            return res.status(400).json({ error: "El cuerpo de la solicitud debe ser un array no vacío." });
+        }
+
+        // Crear la lista de marcadores de posición (?, ?, ?) basada en la longitud del array
+        const placeholders = received_array_ticketsPagados_ID.map(() => "?").join(", ");
+        const query = `UPDATE boletos_adquiridos SET pagado = 1 WHERE id_boleto IN (${placeholders})`;
+
+        // Ejecutar la consulta con los valores del array
+        await db.query(query, received_array_ticketsPagados_ID);
+
+        res.status(200).json({
+            status: "success",
+            message: "Números pagados con éxito.",
+            received_array_ticketsPagados_ID,
+            received_array_ticketsPagados_NUMERO,
+        });
+
+    } catch (error) {
+        console.error("Error general en la API:", error);
+        const log_error = logError(req, 'Error en la API "/api/numeros/pagar_numeros_apartados": '+error+''); // Registrar acción
+        console.log("LOG ERROR:");
+        console.log(log_error);
+        res.status(500).json({ error: "Error interno del servidor" });
+        console.log("");
+    }
+};
+
+
+
+// Eliminar pago numeros apartados
+const deletePaidReservedNumbersBD = async (req, res) => {
+    try {
+        //const receivedArray_ticketsEliminarPago = req.body; // Aquí se obtiene el array enviado
+        const { received_arr_eliminar_pago_boletos_ID, received_arr_eliminar_pago_boletos_NUMERO } = req.body;
+        //console.log("received_arr_eliminar_pago_boletos_ID:");
+        //console.log(received_arr_eliminar_pago_boletos_ID);
+        //console.log("received_arr_eliminar_pago_boletos_NUMERO:");
+        //console.log(received_arr_eliminar_pago_boletos_NUMERO);
+
+        const log_activity = logActivity(req, 'Visita a la API "/api/numeros/eliminar_pago_numeros_apartados" - Se le eliminara el pago a la cantidad de '+received_arr_eliminar_pago_boletos_NUMERO.length+' numero(s). Numeros: '+JSON.stringify(received_arr_eliminar_pago_boletos_NUMERO)+''); // Registrar acción
+        console.log("LOG ACTIVITY:");
+        console.log(log_activity);
+
+        // Validar que es un array
+        if (!Array.isArray(received_arr_eliminar_pago_boletos_ID) || received_arr_eliminar_pago_boletos_ID.length === 0) {
+            return res.status(400).json({ error: "El cuerpo de la solicitud debe ser un array no vacío." });
+        }
+
+        // Crear la lista de marcadores de posición (?, ?, ?) basada en la longitud del array
+        const placeholders = received_arr_eliminar_pago_boletos_ID.map(() => "?").join(", ");
+        const query = `UPDATE boletos_adquiridos SET pagado = 0 WHERE id_boleto IN (${placeholders})`;
+
+        // Ejecutar la consulta con los valores del array
+        await db.query(query, received_arr_eliminar_pago_boletos_ID);
+
+        res.status(200).json({
+            status: "success",
+            message: "Se ha borrado el pago de los numeros seleccionados con éxito.",
+            received_arr_eliminar_pago_boletos_ID,
+            received_arr_eliminar_pago_boletos_NUMERO,
+        });
+
+    } catch (error) {
+        console.error("Error general en la API:", error);
+        const log_error = logError(req, 'Error en la API "/api/numeros/eliminar_pago_numeros_apartados": '+error+''); // Registrar acción
+        console.log("LOG ERROR:");
+        console.log(log_error);
+        res.status(500).json({ error: "Error interno del servidor" });
+        console.log("");
+    }
+};
+
+
+
+// Eliminar numeros apartados
+const deleteReservedNumbersBD = async (req, res) => {
+    try {
+        //const receivedArray_ticketsEliminarPago = req.body; // Aquí se obtiene el array enviado
+        const { received_arr_eliminar_boletos_ID, received_arr_eliminar_boletos_NUMERO } = req.body;
+        //console.log("received_arr_eliminar_boletos_ID:");
+        //console.log(received_arr_eliminar_boletos_ID);
+        //console.log("received_arr_eliminar_boletos_NUMERO:");
+        //console.log(received_arr_eliminar_boletos_NUMERO);
+
+        const log_activity = logActivity(req, 'Visita a la API "/api/numeros/eliminar_numeros_apartados" - Se le eliminara el pago a la cantidad de '+received_arr_eliminar_boletos_NUMERO.length+' numero(s). Numeros: '+JSON.stringify(received_arr_eliminar_boletos_NUMERO)+''); // Registrar acción
+        console.log("LOG ACTIVITY:");
+        console.log(log_activity);
+
+        // Validar que es un array
+        if (!Array.isArray(received_arr_eliminar_boletos_ID) || received_arr_eliminar_boletos_ID.length === 0) {
+            return res.status(400).json({ error: "El cuerpo de la solicitud debe ser un array no vacío." });
+        }
+
+        // Crear la lista de marcadores de posición (?, ?, ?) basada en la longitud del array
+        const placeholders = received_arr_eliminar_boletos_ID.map(() => "?").join(", ");
+        const query = `DELETE FROM boletos_adquiridos WHERE id_boleto IN (${placeholders})`;
+
+        // Ejecutar la consulta con los valores del array
+        await db.query(query, received_arr_eliminar_boletos_ID);
+
+        res.status(200).json({
+            status: "success",
+            message: "Se ha borrado el pago de los numeros seleccionados con éxito.",
+            received_arr_eliminar_boletos_ID,
+            received_arr_eliminar_boletos_NUMERO,
+        });
+
+    } catch (error) {
+        console.error("Error general en la API:", error);
+        const log_error = logError(req, 'Error en la API "/api/numeros/eliminar_numeros_apartados": '+error+''); // Registrar acción
+        console.log("LOG ERROR:");
+        console.log(log_error);
+        res.status(500).json({ error: "Error interno del servidor" });
+        console.log("");
+    }
+};
+
+
+
 module.exports = { getNumbersBD, getNumbersPagination, changeStatusNumber, getNumersRandom, 
-                    searchNumber, changeStatusMultipleNumbers, getReservedNumbersBD, searchReservedTicket };
+                    searchNumber, changeStatusMultipleNumbers, getReservedNumbersBD, searchReservedTicket,
+                    paidReservedNumbersBD, deletePaidReservedNumbersBD, deleteReservedNumbersBD };
