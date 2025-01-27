@@ -1,7 +1,7 @@
 
 const local_url = 'http://localhost:3000';
 const online_url = 'https://rifaseconomicasnavojoa.site';
-const server_url = '';
+const server_url = 'http://localhost:3000';
 const variables = {
     message: '0',
     appName: 'Rifas Economicas Navojoa',

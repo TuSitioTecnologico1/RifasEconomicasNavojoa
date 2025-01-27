@@ -179,6 +179,7 @@ app.post('/update-config', (req, res) => {
             BUSCAR_URL, CAMBIAR_ESTADO_NUMEROS_URL, SAVE_PERSON_DATA_URL,
             ADQUIRIR_BOLETO_URL, NUMEROS_PAGINACION_URL, GEOLOCALIZACION_URL,
             CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, BUSCAR_APARTADOS_URL,
+            PAGAR_NUMEROS_APARTADOS_URL, ELIMINAR_PAGO_NUMEROS_APARTADOS_URL, ELIMINAR_NUMEROS_APARTADOS_URL,
             message, appName, companyName, currentYear, supportEmail, url_inicio, 
             url_preguntasFrecuentes, url_contacto, url_metodosDePago, url_verificador, 
             url_facebookPage, url_whatsappPage
@@ -192,9 +193,10 @@ app.post('/update-config', (req, res) => {
             "BUSCAR_URL", "CAMBIAR_ESTADO_NUMEROS_URL", "SAVE_PERSON_DATA_URL",
             "ADQUIRIR_BOLETO_URL", "NUMEROS_PAGINACION_URL", "GEOLOCALIZACION_URL",
             "CAPTURAR_ERRORES_URL", "OBTENER_NUMEROS_APARTADOS_URL", "BUSCAR_APARTADOS_URL",
+            "PAGAR_NUMEROS_APARTADOS_URL", "ELIMINAR_PAGO_NUMEROS_APARTADOS_URL", "ELIMINAR_NUMEROS_APARTADOS_URL",
             "message", "appName", "companyName", "currentYear", "supportEmail", "url_inicio", 
-            "url_preguntasFrecuentes", "url_contacto", "url_metodosDePago", "url_verificador", 
-            "url_facebookPage", "url_whatsappPage"
+            "url_preguntasFrecuentes", "url_contacto", "url_metodosDePago", "url_verificador", "url_facebookPage", 
+            "url_whatsappPage"
         ];
 
         // Actualizar .env
@@ -224,6 +226,9 @@ const config = {
     CAPTURAR_ERRORES_URL: '${CAPTURAR_ERRORES_URL}',
     OBTENER_NUMEROS_APARTADOS_URL: '${OBTENER_NUMEROS_APARTADOS_URL}',
     BUSCAR_APARTADOS_URL: '${BUSCAR_APARTADOS_URL}',
+    PAGAR_NUMEROS_APARTADOS_URL: '${PAGAR_NUMEROS_APARTADOS_URL}',
+    ELIMINAR_PAGO_NUMEROS_APARTADOS_URL: '${ELIMINAR_PAGO_NUMEROS_APARTADOS_URL}',
+    ELIMINAR_NUMEROS_APARTADOS_URL: '${ELIMINAR_NUMEROS_APARTADOS_URL}',
 };
 if (typeof module !== "undefined" && module.exports) {
     module.exports = config;
