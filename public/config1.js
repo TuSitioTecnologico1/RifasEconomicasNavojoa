@@ -1,32 +1,30 @@
 // config.js
 
-const local_url = "http://localhost:3000";
-const online_url = "https://rifaseconomicasnavojoa.site";
-const server_url = online_url;
-
+const local_url = 'http://localhost:3000';
+const online_url = 'https://rifaseconomicasnavojoa.site';
+const server_url = 'http://localhost:3000';
 const config = {
-    local_url,
-    online_url,
-    URL: server_url+"/api/numeros",
-    //STATES_URL: server_url+"/api/states",
-    //GET_STATES_URL: server_url+"/api/getStates",
-    STATES_URL: server_url+"/api/estados",
-    GET_STATES_URL: server_url+"/api/obtener_estados", 
-    BUSCAR_URL : server_url+"/api/buscar",
-    CAMBIAR_ESTADO_NUMEROS_URL : server_url+"/api/numeros/cambiar_estado_numeros",
-    SAVE_PERSON_DATA_URL : server_url+"/api/submit",
-    ADQUIRIR_BOLETO_URL : server_url+"/api/adquirir_boleto",
-    NUMEROS_PAGINACION_URL : server_url+"/api/numeros_paginacion",
-    GEOLOCALIZACION_URL : server_url+"/api/obtener_geolocalizacion",
-    CAPTURAR_ERRORES_URL : server_url+"/api/capturar_errores",
-    OBTENER_NUMEROS_APARTADOS: server_url+"/api/numeros_apartados",
-    BUSCAR_APARTADOS_URL : server_url+"/api/buscar_apartdos",
-    
+    local_url: 'http://localhost:3000',
+    online_url: 'https://rifaseconomicasnavojoa.site',
+    server_url: 'http://localhost:3000',
+    URL: 'http://localhost:3000/api/numeros',
+    STATES_URL: 'http://localhost:3000/api/estados',
+    GET_STATES_URL: 'http://localhost:3000/api/obtener_estados',
+    BUSCAR_URL: 'http://localhost:3000/api/buscar',
+    CAMBIAR_ESTADO_NUMEROS_URL: 'http://localhost:3000/api/numeros/cambiar_estado_numeros',
+    SAVE_PERSON_DATA_URL: 'http://localhost:3000/api/submit',
+    ADQUIRIR_BOLETO_URL: 'http://localhost:3000/api/adquirir_boleto',
+    NUMEROS_PAGINACION_URL: 'http://localhost:3000/api/numeros_paginacion',
+    GEOLOCALIZACION_URL: 'http://localhost:3000/api/obtener_geolocalizacion',
+    CAPTURAR_ERRORES_URL: 'http://localhost:3000/api/capturar_errores',
+    OBTENER_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros/numeros_apartados',
+    BUSCAR_APARTADOS_URL: 'http://localhost:3000/api/buscar_apartdos',
+    PAGAR_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros/pagar_numeros_apartados',
+    ELIMINAR_PAGO_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros/eliminar_pago_numeros_apartados',
+    ELIMINAR_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros/eliminar_numeros_apartados',
+    OBTENER_CONTEO_NUMEROS_URL: 'http://localhost:3000/api/numeros/obtener_conteo_numeros',
+    ACTUALIZAR_CONTEO_NUMEROS_URL: 'http://localhost:3000/api/numeros/actualizar_conteo_numeros',
 };
-
-
-
-// Exportar el objeto config
 if (typeof module !== "undefined" && module.exports) {
-    module.exports = config; // Para entornos que soportan CommonJS
+    module.exports = config;
 }

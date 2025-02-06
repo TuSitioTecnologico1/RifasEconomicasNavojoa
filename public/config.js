@@ -16,11 +16,13 @@ const config = {
     NUMEROS_PAGINACION_URL: 'http://localhost:3000/api/numeros_paginacion',
     GEOLOCALIZACION_URL: 'http://localhost:3000/api/obtener_geolocalizacion',
     CAPTURAR_ERRORES_URL: 'http://localhost:3000/api/capturar_errores',
-    OBTENER_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros_apartados',
+    OBTENER_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros/numeros_apartados',
     BUSCAR_APARTADOS_URL: 'http://localhost:3000/api/buscar_apartdos',
-    PAGAR_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/pagar_numeros_apartados',
-    ELIMINAR_PAGO_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/eliminar_pago_numeros_apartados',
-    ELIMINAR_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/eliminar_numeros_apartados',
+    PAGAR_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros/pagar_numeros_apartados',
+    ELIMINAR_PAGO_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros/eliminar_pago_numeros_apartados',
+    ELIMINAR_NUMEROS_APARTADOS_URL: 'http://localhost:3000/api/numeros/eliminar_numeros_apartados',
+    OBTENER_CONTEO_NUMEROS_URL: 'http://localhost:3000/api/numeros/obtener_conteo_numeros',
+    ACTUALIZAR_CONTEO_NUMEROS_URL: 'http://localhost:3000/api/numeros/actualizar_conteo_numeros',
 };
 if (typeof module !== "undefined" && module.exports) {
     module.exports = config;

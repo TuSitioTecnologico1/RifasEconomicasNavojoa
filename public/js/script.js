@@ -11,6 +11,7 @@ const API_SAVE_PERSON_DATA_URL = config_API.SAVE_PERSON_DATA_URL;
 const API_ADQUIRIR_BOLETO_URL = config_API.ADQUIRIR_BOLETO_URL;
 const API_NUMEROS_PAGINACION_URL = config_API.NUMEROS_PAGINACION_URL;
 const API_GEOLOCALIZACION_URL = config_API.GEOLOCALIZACION_URL;
+const API_ACTUALIZAR_CONTEO_NUMEROS_URL = config_API.ACTUALIZAR_CONTEO_NUMEROS_URL;
 
 /*
 console.log("API_URL: "+API_URL);
@@ -486,7 +487,6 @@ async function initialize() {
 
 
 
-
 // Obtener números 
 async function getNumbers() {
     try {
@@ -518,7 +518,6 @@ async function getNumbers() {
     }
     
 }
-
 
 
 
@@ -593,7 +592,6 @@ function renderVirtualGrid() {
     }
         
 }
-
 
 // Objeto para almacenar los boletos seleccionados
 let seleccionados = {};  // Usamos un objeto para recordar el estado de los boletos
@@ -678,177 +676,6 @@ function renderItems(numberGrid, renderContainer) {
 
 
 
-
-
-
-
-
-
-/* Obtener números desde el backend
-async function fetchNumbers() {
-    try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
-        renderNumbers(data);
-    } catch (error) {
-        console.log("error_en_fetchNumbers(): "+error);
-    }
-    
-}
-
-
-// Renderizar números en la cuadrícula
-function renderNumbers(numbers) {
-    numberGrid.innerHTML = ""; // Limpiar la cuadrícula
-    //console.log("function renderNumbers(numbers) - numbers:");
-    //console.log(numbers);
-    numbers.forEach((num) => {
-        const numberElement = document.createElement("div");
-        numberElement.classList.add("number", num.disponible ? "available" : "sold");
-        numberElement.id = "ticket_"+num.id;
-        numberElement.textContent = num.numero;
-
-        // Cambiar a vendido al hacer clic
-        if (num.disponible) {
-            numberElement.addEventListener("click", () => {
-                //markAsSold(num.id);
-                //let numero_seleccionado_cuadricula = numberElement.getElementById("ticket_"+num.id);
-                numberElement.style.backgroundColor = "#94c33d"; // Cambiar el color del ticket seleccionado en la cuadricula
-                //numberElement.classList.replace('available', 'reserved');
-                elegir_boleto_cuadricula_para_seleccionados(num.id, num.numero);
-            });
-        }
-        numberGrid.appendChild(numberElement);
-        load_data(); // Oculta la animacion de carga de boletos
-    });
-}
-*/
-
-
-/*
-let currentPage = 1;  // Página inicial
-let totalPages = 0;   // Total de páginas
-const limit = 10000;    // Número de boletos por página
-
-// Obtener números desde el backend
-async function fetchNumbers(page) {
-    try {
-        const response = await fetch(API_NUMEROS_PAGINACION_URL+`?page=${page}&limit=${limit}`);
-        const data = await response.json();
-        const numbers = data.numbers;
-        totalPages = data.totalPages;  // Total de páginas
-        renderNumbers(numbers);
-        renderPagination(page);
-    } catch (error) {
-        console.error("Error al obtener números:", error);
-    }
-}
-*/
-
-
-/* Renderizar los números en la cuadrícula
-function renderNumbers(numbers) {
-    const numberGrid = document.getElementById("number-grid");
-    numberGrid.innerHTML = "";  // Limpiar los boletos existentes
-
-    numbers.forEach((num) => {
-        const numberElement = document.createElement("div");
-        numberElement.classList.add("number", num.disponible ? "available" : "sold");
-        numberElement.id = `ticket_${num.id}`;
-        numberElement.textContent = num.numero;
-
-        // Cambiar a vendido al hacer clic
-        if (num.disponible) {
-            numberElement.addEventListener("click", () => {
-                numberElement.style.backgroundColor = "#94c33d";  // Cambiar color del boleto seleccionado
-                elegir_boleto_cuadricula_para_seleccionados(num.id, num.numero);
-            });
-        }
-        numberGrid.appendChild(numberElement);
-        load_data(); // Oculta la animacion de carga de boletos
-    });
-}*/
-
-
-/*
-function renderNumbers(numbers) {
-    const numberGrid = document.getElementById("number-grid");
-    numberGrid.innerHTML = "";  // Limpiar los boletos existentes
-
-    numbers.forEach((num) => {
-        const numberElement = document.createElement("div");
-        numberElement.classList.add("number", num.disponible ? "available" : "sold");
-        numberElement.id = `ticket_${num.id}`;
-        numberElement.textContent = num.numero;
-
-        // Cambiar a vendido al hacer clic
-        if (num.disponible) {
-            numberElement.addEventListener("click", () => {
-                numberElement.style.backgroundColor = "#94c33d";  // Cambiar color del boleto seleccionado
-                elegir_boleto_cuadricula_para_seleccionados(num.id, num.numero);
-            });
-        }
-        numberGrid.appendChild(numberElement);
-        load_data(); // Oculta la animacion de carga de boletos
-    });
-}
-
-
-
-// Renderizar la paginación (numeración de las páginas)
-function renderPagination(currentPage) {
-    const paginationContainer = document.getElementById("pagination");
-
-    // Limpiar la paginación anterior
-    paginationContainer.innerHTML = "";
-
-    // Botón "Anterior"
-    const prevButton = document.createElement("button");
-    prevButton.innerText = "Anterior";
-    prevButton.onclick = () => changePage(-1);
-    prevButton.disabled = currentPage === 1;
-    paginationContainer.appendChild(prevButton);
-
-    /* Botones de número de página
-    for (let i = 1; i <= totalPages; i++) {
-        const pageButton = document.createElement("button");
-        pageButton.innerText = i;
-        pageButton.onclick = () => changePageTo(i);
-        pageButton.disabled = i === currentPage;
-        paginationContainer.appendChild(pageButton);
-    }*
-
-    // Botón "Siguiente"
-    const nextButton = document.createElement("button");
-    nextButton.innerText = "Siguiente";
-    nextButton.onclick = () => changePage(1);
-    nextButton.disabled = currentPage === totalPages;
-    paginationContainer.appendChild(nextButton);
-}
-
-
-
-// Cambiar de página (anterior/siguiente)
-function changePage(direction) {
-    currentPage += direction;  // Aumentar o disminuir la página
-    fetchNumbers(currentPage);  // Obtener boletos de la nueva página
-}
-
-
-
-// Cambiar a una página específica
-function changePageTo(page) {
-    currentPage = page;
-    fetchNumbers(currentPage);  // Obtener boletos de la página seleccionada
-}
-
-
-
-// Inicializar con la primera página de boletos
-fetchNumbers(currentPage);
-*/
-
-
 function elegir_boleto_cuadricula_para_seleccionados(id_boleto, numero_boleto) {
     try {
         //console.log("Haz entrado a: function elegir_boleto_cuadricula_para_seleccionados(id_boleto, numero_boleto) ");
@@ -910,19 +737,6 @@ function elegir_boleto_cuadricula_para_seleccionados(id_boleto, numero_boleto) {
 
 
 
-/* Cargar estados desde la BD
-async function getStates() {
-    try {
-        const response = await fetch(API_GET_STATES_URL);
-        const data = await response.json();
-        //console.log("async function getStatesBD() - data: ");
-        //console.log(data);
-        return data;
-    } catch (error) {
-        console.log("error_en_getStates(): "+error);
-    }
-}
-*/
 // Función para realizar la consulta a la API que llena el arreglo
 function getStates() {
     try {
@@ -1152,63 +966,6 @@ reserve_btn.addEventListener("click", async () => {
     //console.log("Click en apartar de la maquinita de la suerte");
     //reset_modal();
 });
-
-
-
-/*
-search_btn.addEventListener('click', async (event) => {
-    const searchValue = document.getElementById('search').value.trim();
-
-    //console.log(searchValue);
-    if (searchValue.length !== 5) {
-        //event.preventDefault();
-        alert('El número debe tener exactamente 5 dígitos.');
-        return;
-    }
-
-    if(!/^\d+$/.test(searchValue)){ // Validar si el valor contiene solo números
-        alert('Solo debes ingresar números.');
-        return;
-    }
-
-    if (!searchValue) {
-        alert("Por favor ingresa un número.");
-        return;
-    }
-
-    // Hacer una solicitud al servidor
-    const response = await fetch("http://localhost:5000/api/buscar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ number_search: searchValue }),
-    });
-
-    const result = await response.json();
-
-    if (result.found) {
-        if (result.available == 1) {
-            //alert(`¡Número ${result.number_search} encontrado!`);
-            div_responseSearch.innerHTML = '<div class="div_alinear"><img src="img/comprobar.png" alt="exist" class="img_exist"><span>Número disponible</span></div>';
-            //div_responseSearch.innerHTML += '<br><div class="chosen_numbers"><span id="span_ticketAvalaible">Estos serían tus números: '+result.number_search+'</span></div>';
-            span_ticketAvalaible.innerHTML = 'Estos serían tus números: '+result.number_search;
-            //div_responseSearch.innerHTML += '<br><button id="chooseNumber-btn">Elegir</button>';
-            chooseNumber_btn.style = '';
-            //div_btnMaquinitaSuerte.innerHTML = '';
-            randomBtn.style.display = 'none';
-            div_br.innerHTML = '<br>';
-        }else{
-            div_responseSearch.innerHTML = '<div class="div_alinear"><img src="img/cancelar.png" alt="exist" class="img_exist"><span>Número no disponible</span></div>';
-        }
-        
-    } else {
-        //alert(`Número ${searchValue} NO encontrado.`);
-        div_responseSearch.innerHTML = '<div class="div_alinear"><img src="img/cancelar.png" alt="exist" class="img_exist"><span>Número no disponible</span></div>';
-    }
-    
-
-    
-});
-*/
 
 
 
@@ -2154,10 +1911,6 @@ async function reservar_boletos_seleccionados(userId, name, phone, option) {
 
 
 
-
-
-
-
 function findCommonNumbers(array1, array2) {
     try {
         const array2_numeros = array2.map(item => item.numero);
@@ -2241,146 +1994,149 @@ async function mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, 
         //console.log(arr_reservedTickets_ID_and_NUMBER);
 
         // Hacer una solicitud al servidor
-        const response = await fetch(API_CAMBIAR_ESTADO_NUMEROS_URL, {
+        const response_updateCountingTickets = await fetch(API_ACTUALIZAR_CONTEO_NUMEROS_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify( arr_reservedTicketsID ),
+            body: JSON.stringify( arr_reservedTicketsNUMERO ),
         });
-        
-        if (response.ok) {
-            //console.log("if (response.ok)");
-            const data_to_server = {
-                arr_reservedTickets_ID_and_NUMBER: arr_reservedTickets_ID_and_NUMBER,
-                userId: userId,
-                name: name.toUpperCase(),
-                phone:  phone,
-                option: option.toUpperCase()
-            };
-            //console.log("data_to_server:");
-            //console.log(data_to_server);
 
-            // Hacer una solicitud al servidor para guardar los numeros aquiridos por la persona
-            const response = await fetch(API_ADQUIRIR_BOLETO_URL, {
+        if (response_updateCountingTickets.ok) {
+            console.log("response_updateCountingTickets:");
+            console.log(response_updateCountingTickets);
+            // Hacer una solicitud al servidor
+            const response = await fetch(API_CAMBIAR_ESTADO_NUMEROS_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                //body: JSON.stringify(arr_reservedTickets_ID_and_NUMBER, userId, name, option),
-                body: JSON.stringify(data_to_server),
-            })
-            .then(response => response.json())  // Convertir la respuesta en formato JSON
-            .then(data => {
-                //console.log("data: ");
-                //console.log(data);
-                if (data.data_server) {
-                    //console.log('Datos del nuevo registro en la tabla "boletos_adquiridos":', data.data_server);
-                    // Ahora tienes todos los datos insertados en 'data_server'
-                    const { ticket_Id_Number, userId, userName, userPhone, select_state_option } = data.data_server;
-                    //console.log('ID y NUMERO del boleto:', ticket_Id_Number);
-                    //console.log('ID usuario:', userId);
-                    //console.log('NOMBRE usuario:', userName);
-                    //console.log('Estado seleccionado:', select_state_option);
-
-                    //console.log("arr_reservedTicketsID - if (data.data_server) {");
-                    //console.log(arr_reservedTicketsID); //Imprime el siguiente formato: ['64']
-                    
-                    
-                    // El codigo siguiente determina que numeros adquiridos existen en el "arr_numeros" para despues cambiar la propiedad "diponible"de 1 a 0
-                    // Normalizar los valores de "arr_reservedTicketsID" para que tengan ceros a la izquierda
-                    const formattedArr = arr_reservedTicketsNUMERO.map(num => num.padStart(5, '0')); // Asegura formato. Ejemplo: '00064'
-                    //console.log("formattedArr:");
-                    //console.log(formattedArr);
-                    
-                    // Crear un conjunto con los números de arr_reservedTicketsID para búsquedas rápidas
-                    const numerosInArr = new Set(formattedArr);
-                    //console.log("numerosInArr:");
-                    //console.log(numerosInArr);
-                    
-                    //console.log("arr_numeros:");
-                    //console.log(arr_numeros);
-                    
-                    arr_numeros.forEach(itemArrNum => {
-                        //console.log(`Verificando si "${itemArrNum.numero}" está en numerosInArr1...`);
-                        if (numerosInArr.has(itemArrNum.numero)) {
-                            //console.log(`¡Encontrado! Cambiando "disponible" a 0 para el objeto:`, itemArrNum);
-                            itemArrNum.disponible = 0;
-                        } else {
-                            //console.log(`No encontrado. Sin cambios para:`, itemArrNum);
-                        }
-                    });
-
-
-                    arr_reservedTicketsID.forEach(reservedTicketPerson => {
-                        //console.log("reservedTicketPerson:");
-                        //console.log(reservedTicketPerson);
-                        const div_number = document.getElementById("ticket_"+reservedTicketPerson);
-                        //console.log("div_number:");
-                        //console.log(div_number);
-                        if(div_number != undefined && div_number != ""){    
-                            div_number.classList.replace('available', 'sold');
-                            div_number.style.backgroundColor = "#ffcccc"; // Rojo para no disponible
-                            div_number.style.cursor = "not-allowed";
-                        }
-                    });
-
-                    load_2.style.display = "none";
-                    //reserve_tickets_modalPerson.innerHTML = "";
-                    reserve_tickets_modalPerson.style.display = "none"
-                    p_modal_person.innerHTML = "Ya quedaron apartados tus boletos! Te estamos redirigiendo a WhatsApp..."
-                    p_modal_person.style = "";
-                    p2_modal_person.innerHTML = "Si no te redirige haz click en el botón";
-                    p2_modal_person.style = "";
-                    redirect_to_whatsapp_modalPerson.style = "";
-                    //redirect_to_whatsapp_modalPerson.style = "";
-                    setTimeout(() => {
-                        window.open(
-                            'https://wa.me/526421084845?text=' + 
-                            '☘️🚨https://rifaseconomicasnavojoa.site%0A%0A' +
-                            'Buenos%20dias%20sus%20boletos%20que%20📢daron%20apartados%20🙌🏻%20🍀%20Le%20sugerimos%20verificar%20su%20apartado%20de%20boletos%20🎫%20aquí%20👇🏻%0A' +
-                            'https://rifaseconomicasnavojoa.site/s2-verificador%0A%0A' +
-                            '🚨🍀Recuerde%20que%20son%20🚨%202horas%20de%20apartado🍀%0A%0A' +
-                            '🚨🚨🧨📢📢%0Aojo,%20cuentas%20actualizadas%20📄🍀%0A' +
-                            'Métodos%20de%20Pago%20💳%20🏧%0Ahttps://rifaseconomicasnavojoa.site/pagos%0A%0A' +
-                            'Nota%20importante%20,%20checar%20que%20su%20pago%20no.se%20allá%20devuelto%20también%20es%20su%20responsabilidad%20gracias',
-                            '_blank'
-                        );
-                    }, 1000);
-                } else {
-                    //console.log('Error al guardar los datos:', data.message);
-                    console.log('Error al guardar los datos: ');
-                }
-            })
-            .catch(error => {
-                console.error('Hubo un error:', error);
-                return;
+                body: JSON.stringify( arr_reservedTicketsID ),
             });
             
+            if (response.ok) {
+                //console.log("if (response.ok)");
+                const data_to_server = {
+                    arr_reservedTickets_ID_and_NUMBER: arr_reservedTickets_ID_and_NUMBER,
+                    userId: userId,
+                    name: name.toUpperCase(),
+                    phone:  phone,
+                    option: option.toUpperCase()
+                };
+                //console.log("data_to_server:");
+                //console.log(data_to_server);
+
+                
+                // Hacer una solicitud al servidor para guardar los numeros aquiridos por la persona
+                const response = await fetch(API_ADQUIRIR_BOLETO_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    //body: JSON.stringify(arr_reservedTickets_ID_and_NUMBER, userId, name, option),
+                    body: JSON.stringify(data_to_server),
+                })
+                .then(response => response.json())  // Convertir la respuesta en formato JSON
+                .then(data => {
+                    //console.log("data: ");
+                    //console.log(data);
+                    if (data.data_server) {
+                        //console.log('Datos del nuevo registro en la tabla "boletos_adquiridos":', data.data_server);
+                        // Ahora tienes todos los datos insertados en 'data_server'
+                        const { ticket_Id_Number, userId, userName, userPhone, select_state_option } = data.data_server;
+                        //console.log('ID y NUMERO del boleto:', ticket_Id_Number);
+                        //console.log('ID usuario:', userId);
+                        //console.log('NOMBRE usuario:', userName);
+                        //console.log('Estado seleccionado:', select_state_option);
+
+                        //console.log("arr_reservedTicketsID - if (data.data_server) {");
+                        //console.log(arr_reservedTicketsID); //Imprime el siguiente formato: ['64']
+                        
+                        
+                        // El codigo siguiente determina que numeros adquiridos existen en el "arr_numeros" para despues cambiar la propiedad "diponible"de 1 a 0
+                        // Normalizar los valores de "arr_reservedTicketsID" para que tengan ceros a la izquierda
+                        const formattedArr = arr_reservedTicketsNUMERO.map(num => num.padStart(5, '0')); // Asegura formato. Ejemplo: '00064'
+                        //console.log("formattedArr:");
+                        //console.log(formattedArr);
+                        
+                        // Crear un conjunto con los números de arr_reservedTicketsID para búsquedas rápidas
+                        const numerosInArr = new Set(formattedArr);
+                        //console.log("numerosInArr:");
+                        //console.log(numerosInArr);
+                        
+                        //console.log("arr_numeros:");
+                        //console.log(arr_numeros);
+                        
+                        arr_numeros.forEach(itemArrNum => {
+                            //console.log(`Verificando si "${itemArrNum.numero}" está en numerosInArr1...`);
+                            if (numerosInArr.has(itemArrNum.numero)) {
+                                //console.log(`¡Encontrado! Cambiando "disponible" a 0 para el objeto:`, itemArrNum);
+                                itemArrNum.disponible = 0;
+                            } else {
+                                //console.log(`No encontrado. Sin cambios para:`, itemArrNum);
+                            }
+                        });
+
+
+                        arr_reservedTicketsID.forEach(reservedTicketPerson => {
+                            //console.log("reservedTicketPerson:");
+                            //console.log(reservedTicketPerson);
+                            const div_number = document.getElementById("ticket_"+reservedTicketPerson);
+                            //console.log("div_number:");
+                            //console.log(div_number);
+                            if(div_number != undefined && div_number != ""){    
+                                div_number.classList.replace('available', 'sold');
+                                div_number.style.backgroundColor = "#ffcccc"; // Rojo para no disponible
+                                div_number.style.cursor = "not-allowed";
+                            }
+                        });
+
+                        load_2.style.display = "none";
+                        //reserve_tickets_modalPerson.innerHTML = "";
+                        reserve_tickets_modalPerson.style.display = "none"
+                        p_modal_person.innerHTML = "Ya quedaron apartados tus boletos! Te estamos redirigiendo a WhatsApp..."
+                        p_modal_person.style = "";
+                        p2_modal_person.innerHTML = "Si no te redirige haz click en el botón";
+                        p2_modal_person.style = "";
+                        redirect_to_whatsapp_modalPerson.style = "";
+                        //redirect_to_whatsapp_modalPerson.style = "";
+                        setTimeout(() => {
+                            window.open(
+                                'https://wa.me/526421084845?text=' + 
+                                '☘️🚨https://rifaseconomicasnavojoa.site%0A%0A' +
+                                'Buenos%20dias%20sus%20boletos%20que%20📢daron%20apartados%20🙌🏻%20🍀%20Le%20sugerimos%20verificar%20su%20apartado%20de%20boletos%20🎫%20aquí%20👇🏻%0A' +
+                                'https://rifaseconomicasnavojoa.site/s2-verificador%0A%0A' +
+                                '🚨🍀Recuerde%20que%20son%20🚨%202horas%20de%20apartado🍀%0A%0A' +
+                                '🚨🚨🧨📢📢%0Aojo,%20cuentas%20actualizadas%20📄🍀%0A' +
+                                'Métodos%20de%20Pago%20💳%20🏧%0Ahttps://rifaseconomicasnavojoa.site/pagos%0A%0A' +
+                                'Nota%20importante%20,%20checar%20que%20su%20pago%20no.se%20allá%20devuelto%20también%20es%20su%20responsabilidad%20gracias',
+                                '_blank'
+                            );
+                        }, 1000);
+                    } else {
+                        //console.log('Error al guardar los datos:', data.message);
+                        console.log('Error al guardar los datos: ');
+                    }
+                })
+                .catch(error => {
+                    console.error('Hubo un error:', error);
+                    return;
+                });
+                
+                
+
+                //alert("Números seleccionados apartados con éxito.");
+
+                //fetchNumbers(); // Volver a cargar los números
+                div_selected_tickets_section.innerHTML = '';
+                div_total_selectedTickets_section.innerHTML = '';
+                div_text_selectedTickets_section.innerHTML = '';
+                div_reserveTickets.style.display = "none";
+            }
             
-            /*
-            // Crear un elemento de tipo botón
-            const button_redirect_to_whatsapp = document.createElement("button");
-            // Establecer el texto del botón
-            button_redirect_to_whatsapp.textContent = "Redirigir a WhatsApp";
-            // Añadir una clase al botón (opcional)
-            button_redirect_to_whatsapp.classList.add("my-button");
-            // Establecer un ID al botón (opcional)
-            button_redirect_to_whatsapp.id = "redirigir_modal_person_btn";
-            // Añadir un evento al botón (opcional)
-            button_redirect_to_whatsapp.addEventListener("click", function() {
-                alert("¡Has hecho clic en el botón!");
-            });
-            */
-
-            //alert("Números seleccionados apartados con éxito.");
-
-            //fetchNumbers(); // Volver a cargar los números
-            div_selected_tickets_section.innerHTML = '';
-            div_total_selectedTickets_section.innerHTML = '';
-            div_text_selectedTickets_section.innerHTML = '';
-            div_reserveTickets.style.display = "none";
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud a la api: "API_CAMBIAR_ESTADO_NUMEROS_URL" - response.status: ${response.status}`);
+            }
+        } else {
+            if (!response_updateCountingTickets.ok) {
+                throw new Error(`Error en la solicitud a la api: "API_ACTUALIZAR_CONTEO_NUMEROS_URL" - response.status: ${response.status}`);
+            }
         }
-        
-        if (!response.ok) {
-            throw new Error(`Error en la solicitud: ${response.status}`);
-        }
+            
     } catch (error) {
         //console.error("Error al enviar el array:", error);
         // (?.trim()) - Si el valor existe (es decir, no es undefined ni null), ejecuta el método .trim() y si el valor es undefined o null, la evaluación simplemente devuelve undefined y no intenta llamar a .trim().
@@ -2538,13 +2294,6 @@ async function initMap() {
         //title: 'Ubicación de Nueva York'
     });
 }*/
-
-
-
-
-
-
-
 
 
 

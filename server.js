@@ -38,25 +38,58 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // Carpeta donde estarán las vistas EJS
 
 // Middleware para cargar variables globales del archivo config/variables.ejs
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
+    // Variables generales
     res.locals.appName = variables.appName;
     res.locals.companyName = variables.companyName;
     res.locals.currentYear = variables.currentYear;
     res.locals.supportEmail = variables.supportEmail;
-    
-    res.locals.server_url = variables.server_url,
+    res.locals.server_url = variables.server_url;
 
-    // views/partials/navbar.ejs
-    res.locals.url_inicio = variables.url_inicio,
-    res.locals.url_preguntasFrecuentes = variables.url_preguntasFrecuentes,
-    res.locals.url_contacto = variables.url_contacto,
-    res.locals.url_metodosDePago = variables.url_metodosDePago,
-    res.locals.url_verificador = variables.url_verificador,
-    res.locals.url_edicion = variables.url_edicion,
+    // URLs para el navbar(views/partials/navbar.ejs)
+    res.locals.url_inicio = variables.url_inicio;
+    res.locals.url_preguntasFrecuentes = variables.url_preguntasFrecuentes;
+    res.locals.url_contacto = variables.url_contacto;
+    res.locals.url_metodosDePago = variables.url_metodosDePago;
+    res.locals.url_verificador = variables.url_verificador;
+    res.locals.url_edicion = variables.url_edicion;
 
-    // views/pages/pronto_iniciaremos.ejs - views/pages/cerrado.ejs
-    res.locals.url_facebookPage = variables.url_facebookPage,
-    res.locals.url_whatsappPage = variables.url_whatsappPage,
+    // Redes sociales(views/pages/pronto_iniciaremos.ejs - views/pages/cerrado.ejs)
+    res.locals.url_facebookPage = variables.url_facebookPage;
+    res.locals.url_whatsappPage = variables.url_whatsappPage;
+    /*
+    try {
+        // Obtener datos de las APIs
+        //const numeros = await fetch(`${variables.server_url}/api/numeros`).then((res) => res.json());
+        //const numerosApartados = await fetch(`${variables.server_url}/api/numeros_apartados`).then((res) => res.json());
+        const numeros = await fetch(`http://localhost:3000/api/numeros`).then((res) => res.json());
+        const numerosApartados = await fetch(`http://localhost:3000/api/numeros_apartados`).then((res) => res.json());
+
+        // Total de boletos disponibles
+        const totalBoletos = numeros.length;
+
+        // Calcular boletos reservados (de la API de apartados)
+        const reservados = numerosApartados.length;
+
+        // Calcular boletos pagados (de los apartados que tienen pagado = '1')
+        const pagados = numerosApartados.filter((item) => item.pagado === '1').length;
+
+        // Calcular boletos libres (total - reservados)
+        const libres = totalBoletos - reservados;
+
+        // Hacer las variables disponibles globalmente en las vistas
+        res.locals.reservados = reservados;
+        res.locals.pagados = pagados;
+        res.locals.libres = libres;
+    } catch (error) {
+        console.error("Error al obtener datos dinámicos:", error);
+
+        // Valores predeterminados en caso de error
+        res.locals.reservados = 0;
+        res.locals.pagados = 0;
+        res.locals.libres = 0;
+    }
+    */
     next();
 });
 

@@ -3502,13 +3502,15 @@ textarea {
     white-space: nowrap;
     vertical-align: middle;
     user-select: none;
-    border: 2px solid #007bff; /* Borde azul */
+    /*border: 2px solid #007bff; /* Borde azul */
+    border: 2px solid #7fc241; /* Borde verde */
     padding: 0.375rem 0.75rem; /* Espaciado interno */
     /*font-size: 1rem; /* Tamaño de la fuente */
     font-size: 15px; 
     line-height: 1.5;
     border-radius: 0.25rem; /* Bordes redondeados */
-    color: #007bff; /* Texto azul */
+    /*color: #007bff; /* Texto azul */
+    color: #7fc241; /* Texto verde */
     background-color: transparent; /* Fondo transparente */
     text-decoration: none; /* Sin subrayado */
     transition: all 0.2s ease-in-out; /* Animación suave */
@@ -3520,14 +3522,16 @@ textarea {
 
 /* Hover: Cambia el fondo y el texto */
 .btn_panel_class:hover {
-    background-color: #007bff; /* Fondo azul */
+    /*background-color: #007bff; /* Fondo azul */
+    background-color: #7fc241; /* Fondo verde */
     color: #fff; /* Texto blanco */
 }
 
 /* Activo: Efecto de presionar */
 .btn_panel_class:active {
-    background-color: #0056b3; /* Fondo más oscuro */
-    border-color: #004085; /* Borde más oscuro */
+    /*background-color: #0056b3; /* Fondo más oscuro */
+    background-color: #5a8730; /* Fondo más oscuro */
+    border-color: #476b25; /* Borde más oscuro */
     color: #fff; /* Texto blanco */
     transform: scale(0.98); /* Pequeño efecto de "presionar" */
 }
@@ -3578,6 +3582,16 @@ textarea {
 }
 
 
+.td_status_pagadoClass_panel {
+    background-color: #28a745; /* Verde para "PAGADO" */
+    color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
+}
+
+.td_status_noPagadoClass_panel {
+    background-color: #dc3545; /* Rojo para "NO_PAGADO" */
+    color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
+}
+
 .td_status_disponibleClass_panel {
     background-color: #28a745; /* Verde para "PAGADO" */
     color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
@@ -3597,7 +3611,7 @@ textarea {
 
 /* Aumenta el tamaño del checkbox */
 .row-checkbox-panel {
-    transform: scale(1.5); /* Aumenta el tamaño del checkbox */
+    transform: scale(2); /* Aumenta el tamaño del checkbox */
     cursor: pointer;      /* Cambia el cursor a pointer para mejor UX */
 }
 

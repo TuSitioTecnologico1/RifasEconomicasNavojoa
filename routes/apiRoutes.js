@@ -9,7 +9,8 @@ const { getStatesBD, getStatesARRAY } = require('../apis/statesApi');  // Import
 const { saveUserInfo, savePurchasedTicketsUser } = require('../apis/userApi');  // Importa las funciones de userApi.js
 const { getNumbersBD, getNumbersPagination, changeStatusNumber, getNumersRandom, 
         searchNumber, changeStatusMultipleNumbers, getReservedNumbersBD, searchReservedTicket, 
-        paidReservedNumbersBD, deletePaidReservedNumbersBD, deleteReservedNumbersBD } = require('../apis/numbersApi');  // Importa las funciones de numerosApi.js
+        paidReservedNumbersBD, deletePaidReservedNumbersBD, deleteReservedNumbersBD, 
+        getCountingNumbersBD, updateCountingNumbersBD } = require('../apis/numbersApi');  // Importa las funciones de numerosApi.js
 
 
 
@@ -42,7 +43,7 @@ router.post('/buscar', searchNumber);  // Llamará a la API para buscar un núme
 router.post('/numeros/cambiar_estado_numeros', changeStatusMultipleNumbers);  // Llamará a la API para cambiar el estado de varios números a vendido
 
 // Ruta para obtener todos los números
-router.get('/numeros_apartados', getReservedNumbersBD);  // Llamará a la API para obtener los numeros apartados
+router.get('/numeros/numeros_apartados', getReservedNumbersBD);  // Llamará a la API para obtener los numeros apartados
 
 // Ruta para buscar numero(s) apartado(s)
 router.get('/buscar_apartdos', searchReservedTicket);  // Llamará a la API para buscar numero(s) apartado(s)
@@ -55,6 +56,12 @@ router.post('/numeros/eliminar_pago_numeros_apartados', deletePaidReservedNumber
 
 // Ruta para eliminar numero(s) apartado(s)
 router.post('/numeros/eliminar_numeros_apartados', deleteReservedNumbersBD);  // Llamará a la API para eliminar pago numero(s) apartado(s)
+
+// Ruta para obtener numero(s) reservados, pagados y libres
+router.get('/numeros/obtener_conteo_numeros', getCountingNumbersBD);  // Llamará a la API para obtener numero(s) reservados, pagados y libres
+
+// Ruta para actualizar numero(s) reservados, pagados y libres
+router.post('/numeros/actualizar_conteo_numeros', updateCountingNumbersBD);  // Llamará a la API para actualizar numero(s) reservados, pagados y libres
 
 
 
