@@ -273,17 +273,39 @@
             const apiInputs = document.querySelectorAll('.api-url'); // Seleccionar todas las rutas API
             const variblesInputs = document.querySelectorAll('.variables-url'); // Seleccionar todas las rutas de las VARIABLES de las vistas EJS
 
+            let input_api_obj = {
+                serverUrl,
+                apiInputs,
+                variblesInputs,
+            };
+
+            console.log("input_api_obj: ", input_api_obj);
+
             apiInputs.forEach(input => {
-                //console.log("input: ");
-                //console.log(input);
+                console.log("input: ");
+                console.log(input);
+                
                 const input_data = input.value.toLowerCase(); // Convertir a minúsculas si no quieres que sea sensible a mayúsculas
-                const endpoint = input_data.split('/').slice(-1)[0]; // Extraer el endpoint
-                //console.log("endpoint: ");
-                //console.log(endpoint);
-                if(endpoint == "cambiar_estado_numeros" && input_data != "#"){
-                    input.value = `${serverUrl}/api/numeros/${endpoint}`; // Actualizar la URL con el servidor seleccionado
+                console.log("input_data: ", input_data);
+
+                const input_data_split = input_data.split('/')
+                console.log("input_data_split: ", input_data_split);
+
+                const endpoint = input_data_split.slice(-1)[0]; // Extraer el endpoint
+                console.log("endpoint: ", endpoint);
+
+                //if(endpoint == "cambiar_estado_numeros" && input_data != "#"){
+                    //console.log('IF - if(endpoint == "cambiar_estado_numeros" && input_data != "#"){');
+                if(input_data_split.length == 6){
+                    console.log('IF - if(input_data_split.length == 6){');
+                    let new_url = `${serverUrl}/api/numeros/${endpoint}`;
+                    console.log("new_url: ", new_url);
+                    input.value = new_url; // Actualizar la URL con el servidor seleccionado
                 }else{
-                    input.value = `${serverUrl}/api/${endpoint}`; // Actualizar la URL con el servidor seleccionado
+                    console.log('ELSE - if(input_data_split.length == 6){');
+                    let new_url = `${serverUrl}/api/${endpoint}`;
+                    console.log("new_url: ", new_url);
+                    input.value = new_url; // Actualizar la URL con el servidor seleccionado
                 }
             });
 
@@ -292,6 +314,15 @@
                 const input_localURL = document.getElementById("local_url").value.toLowerCase(); // Texto que deseas buscar
                 const input_onlineURL = document.getElementById("online_url").value.toLowerCase(); // Texto que deseas buscar
                 
+                let input_obj = {
+                    input_data,
+                    input_localURL,
+                    input_onlineURL,
+                };
+
+                //console.log("input_obj: ", input_obj);
+
+
                 if (input_data.includes(input_localURL) || input_data.includes(input_onlineURL)) {
                     //console.log("El input contiene el texto deseado.");
                     const endpoint_split = input_data.split('/'); // Extraer el endpoint
@@ -313,7 +344,7 @@
                         //console.log(input_data_update);
                     }
                 } else {
-                    console.log("El input NO contiene el texto deseado.");
+                    //console.log("El input NO contiene el texto deseado.");
                 }
             });
         }
