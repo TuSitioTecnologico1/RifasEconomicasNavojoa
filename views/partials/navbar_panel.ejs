@@ -3,6 +3,7 @@
         <!---->
         <div class="logo_navbar_panel"><!--<i class="fa fa-home"></i> Mi Sitio--></div>
         <ul class="ul_menu_panel">
+            <!--
             <li class="li_menu_panel">
                 <a id="a_menu_panel_reservados" class="a_menu_panel" href="#">Reservados:&nbsp;<span id="span_menu_panel_reservados_cantidad" class="span_navbar_panel_reservados_cantidad_class">-----</span></a>
             </li>
@@ -12,12 +13,18 @@
             <li class="li_menu_panel">
                 <a id="a_menu_panel_libres" class="a_menu_panel" href="#">Libres:&nbsp;<span id="span_menu_panel_libres_cantidad" class="span_navbar_panel_libres_cantidad_class">-----</span></a>
             </li>
+            -->
+            <!--
             <li id="li_comprarBoletos_menu_3" class="li_menu_panel">
-                <a id="a_menu_panel_usuario" class="a_menu_panel" href="#"><i id="i_menu_panel_comprarBoletos" class="fa fa-user-circle i_menu_panel_class"></i>Usuario:&nbsp;<span id="span_menu_panel_nombreUsuario">Valdo</span><i class="fa fa-caret-down i_menu_panel"></i></a>
+                <a id="a_menu_panel_usuario" class="a_menu_panel" href="#"><i id="i_menu_panel_comprarBoletos" class="fa fa-user-circle i_menu_panel_class"></i>Usuario:&nbsp;<span id="span_menu_panel_nombreUsuario"><%= user.username %></span><i class="fa fa-caret-down i_menu_panel"></i></a>
                 <ul class="ul_submenu_panel">
                     <li class="li_submenu_panel"><a class="a_submenu_panel" href="#"><i id="i_submenu_panel_preguntasFrecuentes1" class="fa fa-sign-out i_submenu_panel_class"></i>Cerrar Sesion</a>
                     </li>
                 </ul>
+            </li>
+            -->
+            <li id="li_comprarBoletos_menu_3" class="li_menu_panel">
+                <a id="a_menu_panel_usuario" class="a_menu_panel" href="/logout"><i id="i_menu_panel_comprarBoletos" class="fa fa-sign-out i_menu_panel_class"></i><span id="span_menu_panel_nombreUsuario">Cerrar Sesion</span></a>
             </li>
             <li class="li_menu_panel">
                 <div id="div_darkModeBtn" class="div_darkModeBtn_class">
@@ -30,6 +37,7 @@
     
     <div class="sidebar_panel_class" id="sidebar_panel">
         <ul class="ul_menu_panel">
+            <!--
             <li class="li_menu_panel">
                 <a id="a_menu_panel_reservados" class="a_menu_panel" href="#">Reservados:&nbsp;<span id="span_menu_sidebar_panel_reservados_cantidad" class="span_navbar_panel_reservados_cantidad_class">-----</span></a>
             </li>
@@ -39,8 +47,9 @@
             <li class="li_menu_panel">
                 <a id="a_menu_panel_libres" class="a_menu_panel" href="#">Libres:&nbsp;<span id="span_menu_sidebar_panel_libres_cantidad" class="span_navbar_panel_libres_cantidad_class">-----</span></a>
             </li>
+            -->
             <li id="li_comprarBoletos_menu_3" class="li_menu_panel">
-                <a id="a_menu_panel_usuario" class="a_menu_panel" href="#"><i id="i_menu_panel_comprarBoletos" class="fa fa-user-circle i_menu_panel_class"></i>Usuario:&nbsp;<span id="span_menu_panel_nombreUsuario">Valdo</span><i class="fa fa-caret-down i_menu_panel"></i></a>
+                <a id="a_menu_panel_usuario" class="a_menu_panel" href="#"><i id="i_menu_panel_comprarBoletos" class="fa fa-user-circle i_menu_panel_class"></i>Usuario:&nbsp;<span id="span_menu_panel_nombreUsuario"><%= user.username %></span><i class="fa fa-caret-down i_menu_panel"></i></a>
                 <ul class="ul_submenu_panel">
                     <li class="li_submenu_panel"><a class="a_submenu_panel" href="#"><i id="i_submenu_panel_preguntasFrecuentes1" class="fa fa-sign-out i_submenu_panel_class"></i>Cerrar Sesion</a>
                     </li>

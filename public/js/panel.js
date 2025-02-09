@@ -188,15 +188,20 @@ document.addEventListener("DOMContentLoaded", function () {
     get_number_counting().then((data) => {
         if (data && data.length > 0) {
             // Actualizar todos los elementos con los mismos valores en el navbar y sidebar
+            /*
             document.querySelectorAll(".span_navbar_panel_reservados_cantidad_class").forEach(element => element.innerHTML = data[0].reservados);
             document.querySelectorAll(".span_navbar_panel_pagados_cantidad_class").forEach(element => element.innerHTML = data[0].pagados);
             document.querySelectorAll(".span_navbar_panel_libres_cantidad_class").forEach(element => element.innerHTML = data[0].libres);
+            */
+            document.querySelectorAll(".span_reservados_class").forEach(element => element.innerHTML = data[0].reservados);
+            document.querySelectorAll(".span_pagados_class").forEach(element => element.innerHTML = data[0].pagados);
+            document.querySelectorAll(".span_libres_class").forEach(element => element.innerHTML = data[0].libres);
         } else {
             //console.log("No hay datos para mostrar.");
             // Actualizar todos los elementos con los mismos valores en el navbar y sidebar
-            document.querySelectorAll(".span_navbar_panel_reservados_cantidad_class").forEach(element => element.innerHTML = "-----");
-            document.querySelectorAll(".span_navbar_panel_pagados_cantidad_class").forEach(element => element.innerHTML = "-----");
-            document.querySelectorAll(".span_navbar_panel_libres_cantidad_class").forEach(element => element.innerHTML = "-----");
+            document.querySelectorAll(".span_reservados_class").forEach(element => element.innerHTML = "-----");
+            document.querySelectorAll(".span_pagados_class").forEach(element => element.innerHTML = "-----");
+            document.querySelectorAll(".span_libres_class").forEach(element => element.innerHTML = "-----");
         }
     });
     //localStorage.clear();
@@ -1196,21 +1201,23 @@ async function actualizar_boletos_conteo(arr_boletos, boton_click) {
         //console.log("Datos recibidos:", data);
         
         // Actualizar todos los elementos con los mismos valores en el navbar y sidebar
-        /*document.querySelectorAll(".span_navbar_panel_reservados_cantidad_class").forEach(element => element.innerHTML = data.reserved_numbers);
-        document.querySelectorAll(".span_navbar_panel_pagados_cantidad_class").forEach(element => element.innerHTML = data.paid_numbers);
-        document.querySelectorAll(".span_navbar_panel_libres_cantidad_class").forEach(element => element.innerHTML = data.free_numbers);*/
+        /*
         document.querySelectorAll(".span_navbar_panel_reservados_cantidad_class").forEach(element => element.innerHTML = data.reserved_numbers_actualizado);
         document.querySelectorAll(".span_navbar_panel_pagados_cantidad_class").forEach(element => element.innerHTML = data.paid_numbers_actualizado);
         document.querySelectorAll(".span_navbar_panel_libres_cantidad_class").forEach(element => element.innerHTML = data.free_numbers_actualizado);
+        */
+        document.querySelectorAll(".span_reservados_class").forEach(element => element.innerHTML = data.reserved_numbers_actualizado);
+        document.querySelectorAll(".span_pagados_class").forEach(element => element.innerHTML = data.paid_numbers_actualizado);
+        document.querySelectorAll(".span_libres_class").forEach(element => element.innerHTML = data.free_numbers_actualizado);
     }
     if (!response_updateCountingTickets.ok) {
         //console.log("Error - API_ACTUALIZAR_CONTEO_NUMEROS_URL:");
         console.error("Error en la solicitud:", response_updateCountingTickets.status);
         
         // Actualizar todos los elementos con los mismos valores en el navbar y sidebar
-        document.querySelectorAll(".span_navbar_panel_reservados_cantidad_class").forEach(element => element.innerHTML = "-----");
-        document.querySelectorAll(".span_navbar_panel_pagados_cantidad_class").forEach(element => element.innerHTML = "-----");
-        document.querySelectorAll(".span_navbar_panel_libres_cantidad_class").forEach(element => element.innerHTML = "-----");
+        document.querySelectorAll(".span_reservados_class").forEach(element => element.innerHTML = "-----");
+        document.querySelectorAll(".span_pagados_class").forEach(element => element.innerHTML = "-----");
+        document.querySelectorAll(".span_libres_class").forEach(element => element.innerHTML = "-----");
     }
     return response_updateCountingTickets;
 }

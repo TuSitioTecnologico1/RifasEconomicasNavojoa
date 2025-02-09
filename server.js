@@ -9,6 +9,8 @@ const cors = require('cors');
 const compression = require('compression');
 const UAParser = require('ua-parser-js');
 const logActivity = require('./utils/log_activity_USANDO_ua_parser_js');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 // Importar el archivo de variables para las vistas EJS
 //const variables = require('./config/variables');
@@ -95,12 +97,20 @@ app.use(async (req, res, next) => {
 
 
 // Middleware
-// Middleware
 app.use(compression()); // Habilitar compresión
 app.use(express.json()); // Parsear JSON
 app.use(express.urlencoded({ extended: true })); // Parsear datos de formularios
 app.use(cors()); // Habilitar CORS
 
+// Configuración de sesiones
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: process.env.HTTPS_ENABLED === '1' } // Solo en HTTPS
+}));
+
+app.use(flash());
 
 // Usar las rutas API
 app.use('/api', apiRoutes); // Rutas para APIs
@@ -487,6 +497,7 @@ if (process.env.HTTPS_ENABLED === '1') {
         console.log(`Servidor HTTP corriendo en puerto ${process.env.PORT}`);
     });
 }
+
 
 
 

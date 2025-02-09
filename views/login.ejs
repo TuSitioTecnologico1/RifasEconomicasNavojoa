@@ -1,0 +1,380 @@
+<!-- views/login.ejs -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <style>
+        body {
+            background: #e0f7fa;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-container h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #00796b;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .input-container {
+            position: relative;
+            margin: 30px 0; /* Modificado: Aqui se agrega un margen entre los inputs para que se sepren un poco */
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 0;
+            border-radius: 5px;
+            border: 1px solid #00796b;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            color: #00796b;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+            padding-left: 5px;
+            padding-top: 18px;
+        }
+
+        .input-field:focus {
+            border-color: #004d40;
+            box-shadow: 0 0 5px rgba(0, 77, 64, 0.6);
+        }
+
+        .input-label {
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #00796b;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus + .input-label,
+        .input-field:not(:placeholder-shown) + .input-label {
+            top: -12px;
+            left: 5px;
+            font-size: 14px;
+            color: #004d40;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s 0.4s ease-out forwards;
+        }
+
+        .btn:hover {
+            background: #004d40;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 1.2s 0.6s ease-out forwards;
+        }
+
+        .footer a {
+            color: #00796b;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Medias Queries para dispositivos móviles */
+        /*@media (max-width: 768px) {*/
+        @media (max-width: 499px) {
+            .login-container {
+                padding: 30px 20px; /* Menos padding en dispositivos móviles */
+            }
+
+            .input-field {
+                font-size: 14px; /* Ajustar tamaño de fuente para pantallas pequeñas */
+                padding: 10px 0;
+            }
+
+            .btn {
+                font-size: 14px; /* Reducir el tamaño del texto en el botón */
+                padding: 12px;
+            }
+
+            .footer {
+                font-size: 14px; /* Ajuste de tamaño de texto para la parte inferior */
+            }
+        }
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    
+        .error-message {
+            display: block;
+            animation: slideDown 0.5s ease-out;
+            font-size: 18px;
+            padding: 10px;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            color: #721c24;
+            margin: 15px 0;
+        }
+    
+        .error-message.highlight {
+            animation: slideDown 0.5s ease-out, highlight 0.3s infinite alternate;
+        }
+    
+        @keyframes highlight {
+            0% {
+                background-color: #f8d7da;
+            }
+            100% {
+                background-color: #f1a7a7;
+            }
+        }
+
+        /* Estilos para la capa de carga */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Atenúa la pantalla */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        /* Estilo para el gif o ícono animado */
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilo para el gif o ícono animado */
+        .gift-icon {
+            width: 150px;  /* Aumenta el tamaño del ícono */
+            height: 150px;  /* Aumenta el tamaño del ícono */
+            /*animation: spin 2s infinite linear;  /* Mantén la animación de giro */
+        }
+
+        /* Animación del ícono (opcional, si deseas que gire) */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <% if (error) { %>
+            <p style="color: red; text-align: center; "><%= error %></p>
+        <% } %>
+        <!-- Mensaje de error -->
+        <p id="error-message" style="color: red; text-align: center; display: none;"></p>
+        <!-- <form action="/login" method="POST"> -->
+        <form id="loginForm">
+            <!-- Contenedor para el input y la etiqueta -->
+            <div class="input-container">
+                <!-- Placeholder vacío y agregado el ID para el enlace con la etiqueta -->
+                <input type="text" id="username" name="username" class="input-field" placeholder=" " required>
+                <!-- Etiqueta flotante que aparece encima del input -->
+                <label for="username" class="input-label">Username</label>
+            </div>
+            <div class="input-container">
+                <input type="password" id="password" name="password" class="input-field" placeholder=" " required>
+                <label for="password" class="input-label">Password</label>
+            </div>
+            <button type="submit" class="btn">Iniciar sesión</button>
+        </form>
+        <div class="footer">
+            <p>¿No tienes una cuenta? <a href="#">Registrate</a></p>
+        </div>
+    </div>
+
+
+    <!-- Contenedor de la animación de carga -->
+    <!-- Capa de carga (por defecto oculta) -->
+    <div id="loading-overlay" style="display: none;">
+        <!-- Ícono de carga (puedes reemplazar el src con el enlace de tu gif) -->
+        <div class="loading-spinner">
+            <img src="img/loading.gif" alt="Cargando..." class="gift-icon">
+        </div>
+    </div>
+
+
+
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Evitar el envío del formulario
+
+            ocultar_mensaj_error();
+        
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+        
+            const loadingOverlay = document.getElementById('loading-overlay'); // Capa de carga
+            const errorElement = document.getElementById('error-message');
+        
+            try {
+                // Mostrar la capa de carga
+                loadingOverlay.style.display = 'flex';
+        
+                // Enviar los datos mediante fetch
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+        
+                // Verificar la respuesta del servidor
+                if (response.ok) {
+                    // Mantener la capa de carga visible por 2 segundos
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none'; // Ocultar la capa de carga después de 2 segundos
+                    }, 2000); // Ajusta este tiempo según sea necesario
+
+                    // Redirigir si el login es exitoso
+                    window.location.href = '/panel-control';
+                } else {
+                    // Mostrar el error si las credenciales son incorrectas
+                    const errorMessage = await response.text();
+                    errorElement.textContent = errorMessage;
+                    errorElement.classList.add('error-message', 'highlight'); // Animar el error
+                    errorElement.style.display = 'block'; // Mostrar el error
+        
+                    // Mantener la capa de carga visible por 2 segundos después del error
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none'; // Ocultar la capa de carga después de 2 segundos
+                    }, 1000); // Ajusta este tiempo según sea necesario
+                }
+            } catch (error) {
+                console.error('Error al intentar iniciar sesión:', error);
+            }
+            
+        });
+        
+        // Agregar el evento de 'input' para limpiar el mensaje de error cuando el usuario escribe
+        document.querySelectorAll('.input-field').forEach(input => {
+            input.addEventListener('input', function() {
+                ocultar_mensaj_error();
+            });
+        });
+
+        function ocultar_mensaj_error(){
+            const errorElement = document.getElementById('error-message');
+            errorElement.style.display = 'none'; // Ocultar el mensaje de error
+            errorElement.classList.remove('error-message', 'highlight'); // Quitar las clases de animación
+        }
+    </script>
+
+    <script>
+        /*
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();  // Evita el envío tradicional del formulario
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    // Guarda el token en localStorage
+                    localStorage.setItem('token', data.token);
+                    // Redirige al panel de control o la página protegida
+                    window.location.href = '/panel-control';
+                } else {
+                    const error = await response.json();
+                    alert(error.message); // Muestra el error si las credenciales no son correctas
+                }
+            } catch (error) {
+                console.error('Error de login:', error);
+                alert('Hubo un error al intentar iniciar sesión. Por favor, inténtalo nuevamente.');
+            }
+        });
+        */
+    </script>
+    
+
+</body>
+</html>
+

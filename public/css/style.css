@@ -3400,8 +3400,10 @@ textarea {
     margin-right: 65px;
 }
 
+/* Esto oculta las opciones y muestra el boton para el sidebar */
 @media (max-width: 799px) {
 
+    /*
     .navbar_panel_class ul {
         display: none;
     }
@@ -3411,6 +3413,7 @@ textarea {
         position: relative;
 		right: 50px;
     }
+    */
 }
 
 
@@ -3780,6 +3783,37 @@ textarea {
     display: flex;
     gap: 10px;
     margin-top: 20px;
+}
+
+
+
+.div_conteoBoletos_panel_class {
+    display: flex; /* Establece Flexbox en el contenedor */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos de manera equitativa */
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
+    width: 380px;
+	margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+.div_reservados_class,
+.div_pagados_class,
+.div_libres_class {
+    margin: 0 10px; /* Agrega un pequeño margen entre los divs */
+    font-size: 15px;
+}
+
+.p_reservados_class,
+.p_pagados_class,
+.p_libres_class {
+    margin: 0; /* Elimina los márgenes por defecto de los párrafos */
+}
+
+.p_reservados_cantidad_class,
+.p_pagados_cantidad_class,
+.p_libres_cantidad_class {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 

@@ -4,6 +4,46 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config(); // Cargar las variables de entorno desde el archivo .env
 
+console.log('DB_HOST:', process.env.DB_HOST);
+console.log('DB_USER:', process.env.DB_USER);
+console.log('DB_PASS:', process.env.DB_PASS);
+console.log('DB_NAME:', process.env.DB_NAME);
+
+// Crear un pool de conexiones a la base de datos
+const db = mysql.createPool({
+    host: process.env.DB_HOST,         // Host de la base de datos
+    user: process.env.DB_USER,      // Usuario de la base de datos
+    password: process.env.DB_PASS,     // ContraseÃ±a de la base de datos
+    database: process.env.DB_NAME, // Nombre de la base de datos
+    timezone: '-07:00',             // Zona horaria (si es necesario para tu caso)
+    waitForConnections: true,       // Esperar si todas las conexiones estÃ¡n en uso
+    connectionLimit: 10,            // NÃºmero mÃ¡ximo de conexiones en el pool
+    queueLimit: 0,                  // LÃ­mite de cola (0 = sin lÃ­mite)
+});
+
+// Verificar la conexiÃ³n inicial
+(async () => {
+    try {
+        const connection = await db.getConnection();
+        console.log('ConexiÃ³n a la base de datos exitosa');
+        connection.release(); // Liberar la conexiÃ³n de vuelta al pool
+    } catch (err) {
+        console.error('Error conectando a la base de datos:', err);
+        process.exit(1); // Salir si hay error de conexiÃ³n
+    }
+})();
+
+module.exports = db; // Exportar el pool para usarlo en otros archivos
+
+
+
+
+
+
+
+
+
+/*
 // Crear un pool de conexiones a la base de datos
 const db = mysql.createPool({
     host: process.env.DB_HOST,         // Host de la base de datos
@@ -29,7 +69,7 @@ const db = mysql.createPool({
 })();
 
 module.exports = db; // Exportar el pool para usarlo en otros archivos
-
+*/
 
 
 
