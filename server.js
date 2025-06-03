@@ -175,12 +175,12 @@ app.get('/config', (req, res) => {
 app.post('/update-config', (req, res) => {
     try {
         const {
-            local_url, online_url, server_url, URL, STATES_URL, GET_STATES_URL,
+            local_url, online_url, online_test_url, server_url, URL, STATES_URL, GET_STATES_URL,
             BUSCAR_URL, CAMBIAR_ESTADO_NUMEROS_URL, SAVE_PERSON_DATA_URL,
             ADQUIRIR_BOLETO_URL, NUMEROS_PAGINACION_URL, GEOLOCALIZACION_URL,
             CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, BUSCAR_APARTADOS_URL,
             PAGAR_NUMEROS_APARTADOS_URL, ELIMINAR_PAGO_NUMEROS_APARTADOS_URL, ELIMINAR_NUMEROS_APARTADOS_URL,
-            message, appName, companyName, currentYear, supportEmail, url_inicio, 
+            OBTENER_CONTEO_NUMEROS_URL, message, appName, companyName, currentYear, supportEmail, url_inicio, 
             url_preguntasFrecuentes, url_contacto, url_metodosDePago, url_verificador, 
             url_facebookPage, url_whatsappPage
         } = req.body;
@@ -189,12 +189,12 @@ app.post('/update-config', (req, res) => {
         // Lista de claves desestructuradas
         const expectedKeys = [
             "DB_HOST", "DB_USER", "DB_PASS", "DATABASE", "PORT", "HTTPS_ENABLED",
-            "local_url", "online_url", "server_url", "URL", "STATES_URL", "GET_STATES_URL",
+            "local_url", "online_url", "online_test_url", "server_url", "URL", "STATES_URL", "GET_STATES_URL",
             "BUSCAR_URL", "CAMBIAR_ESTADO_NUMEROS_URL", "SAVE_PERSON_DATA_URL",
             "ADQUIRIR_BOLETO_URL", "NUMEROS_PAGINACION_URL", "GEOLOCALIZACION_URL",
             "CAPTURAR_ERRORES_URL", "OBTENER_NUMEROS_APARTADOS_URL", "BUSCAR_APARTADOS_URL",
             "PAGAR_NUMEROS_APARTADOS_URL", "ELIMINAR_PAGO_NUMEROS_APARTADOS_URL", "ELIMINAR_NUMEROS_APARTADOS_URL",
-            "message", "appName", "companyName", "currentYear", "supportEmail", "url_inicio", 
+            "OBTENER_CONTEO_NUMEROS_URL", "message", "appName", "companyName", "currentYear", "supportEmail", "url_inicio", 
             "url_preguntasFrecuentes", "url_contacto", "url_metodosDePago", "url_verificador", "url_facebookPage", 
             "url_whatsappPage"
         ];
@@ -209,10 +209,12 @@ app.post('/update-config', (req, res) => {
         const newConfigContent = `
 const local_url = '${local_url}';
 const online_url = '${online_url}';
+const online_test_url = '${online_test_url}';
 const server_url = '${server_url}';
 const config = {
     local_url: '${local_url}',
     online_url: '${online_url}',
+    online_test_url: '${online_test_url}',
     server_url: '${server_url}',
     URL: '${URL}',
     STATES_URL: '${STATES_URL}',
@@ -229,6 +231,7 @@ const config = {
     PAGAR_NUMEROS_APARTADOS_URL: '${PAGAR_NUMEROS_APARTADOS_URL}',
     ELIMINAR_PAGO_NUMEROS_APARTADOS_URL: '${ELIMINAR_PAGO_NUMEROS_APARTADOS_URL}',
     ELIMINAR_NUMEROS_APARTADOS_URL: '${ELIMINAR_NUMEROS_APARTADOS_URL}',
+    OBTENER_CONTEO_NUMEROS_URL: '${OBTENER_CONTEO_NUMEROS_URL}',
 };
 if (typeof module !== "undefined" && module.exports) {
     module.exports = config;
@@ -267,6 +270,7 @@ if (typeof module !== "undefined" && module.exports) {
         const newVarialesContent = `
 const local_url = '${local_url}';
 const online_url = '${online_url}';
+const online_test_url= '${online_test_url}';
 const server_url = '${server_url}';
 const variables = {
     message: '${message}',
@@ -374,7 +378,7 @@ app.post('/test-data', (req, res) => {
     console.log('Datos recibidos:', req.body);
     const {
         DB_HOST, DB_USER, DB_PASS, DATABASE, PORT, HTTPS_ENABLED,
-        local_url, online_url, server_url, URL, STATES_URL, GET_STATES_URL,
+        local_url, online_url, online_test_url, server_url, URL, STATES_URL, GET_STATES_URL,
         BUSCAR_URL, CAMBIAR_ESTADO_NUMEROS_URL, SAVE_PERSON_DATA_URL,
         ADQUIRIR_BOLETO_URL, NUMEROS_PAGINACION_URL, GEOLOCALIZACION_URL,
         CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, BUSCAR_APARTADOS_URL,
@@ -386,7 +390,7 @@ app.post('/test-data', (req, res) => {
     // Lista de claves desestructuradas
     const expectedKeys = [
         "DB_HOST", "DB_USER", "DB_PASS", "DATABASE", "PORT", "HTTPS_ENABLED",
-        "local_url", "online_url", "server_url", "URL", "STATES_URL", "GET_STATES_URL",
+        "local_url", "online_url", "online_test_url", "server_url", "URL", "STATES_URL", "GET_STATES_URL",
         "BUSCAR_URL", "CAMBIAR_ESTADO_NUMEROS_URL", "SAVE_PERSON_DATA_URL",
         "ADQUIRIR_BOLETO_URL", "NUMEROS_PAGINACION_URL", "GEOLOCALIZACION_URL",
         "CAPTURAR_ERRORES_URL", "OBTENER_NUMEROS_APARTADOS_URL", "BUSCAR_APARTADOS_URL",

@@ -11,6 +11,7 @@ const API_SAVE_PERSON_DATA_URL = config_API.SAVE_PERSON_DATA_URL;
 const API_ADQUIRIR_BOLETO_URL = config_API.ADQUIRIR_BOLETO_URL;
 const API_NUMEROS_PAGINACION_URL = config_API.NUMEROS_PAGINACION_URL;
 const API_GEOLOCALIZACION_URL = config_API.GEOLOCALIZACION_URL;
+const API_VERIFY_PHONE_DATA_URL = config_API.VERIFY_PHONE_DATA_URL;
 
 /*
 console.log("API_URL: "+API_URL);
@@ -291,9 +292,37 @@ enableLocationButton.addEventListener('click', function() {
 
 
 
+
+
+function startTour() {
+    if (typeof introJs !== 'undefined') {
+        //introJs().start();
+        introJs().setOptions({
+            nextLabel: '➡️ Siguiente',
+            prevLabel: '⬅️ Anterior',
+            //skipLabel: '❌ Omitir',   // Ya lo edito desde CSS
+            doneLabel: '✅ Finalizar',
+            exitOnOverlayClick: false,  // **NO cerrar al hacer click fuera**
+            exitOnEsc: false,           // también puedes desactivar el escape si quieres:
+            //showSkip: false,    // Oculta el botón skip (X)
+            //skipLabel: '',      // Vacía el label para evitar que quede texto o ícono residual
+            showProgress: true,
+            showBullets: false
+        }).start();
+    } else {
+        console.error("introJs no está disponible");
+    }
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     if (activate_desactivate_function_checkLocation == 1) {
         checkLocationPermissionAndGetData();
+    }
+    if (!localStorage.getItem('tourShown')) {
+        startTour();
+        //localStorage.setItem('tourShown', 'true');
     }
     div_br.innerHTML = '<br><br>';
     getStates();
@@ -303,6 +332,9 @@ document.addEventListener("DOMContentLoaded", function () {
     //localStorage.clear();
     //console.log(localStorage.getItem('dark-mode'));
 });
+
+
+
 
 
 /*
@@ -1278,7 +1310,8 @@ async function search_number() {
         if (get_dataJSON_buscarNumero.found) {
             if (get_dataJSON_buscarNumero.available == 1) {
                 //alert(`¡Número ${result.number_search} encontrado!`);
-                div_responseSearch.innerHTML = '<div class="div_alinear"><img src="img/comprobar_4_11zon.webp" alt="exist" class="img_exist"><span class="">Número disponible</span></div>';
+                //div_responseSearch.innerHTML = '<div class="div_alinear"><img src="img/comprobar_4_11zon.webp" alt="exist" class="img_exist"><span class="">Número disponible</span></div>';
+                div_responseSearch.innerHTML = '<div class="div_alinear"><span class="">✅ Número disponible</span></div>';
                 //div_responseSearch.innerHTML += '<br><div class="chosen_numbers"><span id="span_ticketAvalaible">Estos serían tus números: '+result.number_search+'</span></div>';
                 span_ticketAvalaible.innerHTML = 'Estos serían tus números: <span class="" style="'+style_disponible+'">'+get_dataJSON_buscarNumero.number_search+"</span>";
                 //div_responseSearch.innerHTML += '<br><button id="chooseNumber-btn">Elegir</button>';
@@ -1298,7 +1331,8 @@ async function search_number() {
                 
             }else{
                 input_search.style.border = "5px solid #ff3e3e"; /* Borde de 5px color rojo */
-                div_responseSearch.innerHTML = '<div class="div_alinear"><img src="img/cancelar_3_11zon.webp" alt="exist" class="img_exist"><span>Número no disponible</span></div>';
+                //div_responseSearch.innerHTML = '<div class="div_alinear"><img src="img/cancelar_3_11zon.webp" alt="exist" class="img_exist"><span>Número no disponible</span></div>';
+                div_responseSearch.innerHTML = '<div class="div_alinear"><span>❌ Número no disponible</span></div>';
                 span_ticketAvalaible.innerHTML = '';
                 chooseNumber_btn.style.display = 'none';
             }
@@ -1306,7 +1340,8 @@ async function search_number() {
         } else {
             //alert(`Número ${searchValue} NO encontrado.`);
             input_search.style.border = "5px solid orange"; /* Borde de 5px color naranja */
-            div_responseSearch.innerHTML = '<div class="div_alinear"><img src="img/cancelar_3_11zon.webp" alt="exist" class="img_exist"><span>Número no existe.</span></div>';
+            //div_responseSearch.innerHTML = '<div class="div_alinear"><img src="img/cancelar_3_11zon.webp" alt="exist" class="img_exist"><span>Número no existe.</span></div>';
+            div_responseSearch.innerHTML = '<div class="div_alinear"><span>🚫 Número no existe.</span></div>';
             span_ticketAvalaible.innerHTML = '';
             chooseNumber_btn.style.display = 'none';
         }
@@ -1811,10 +1846,13 @@ input_numberWhatsApp.addEventListener("input", () => {
 
 
 
+let arr_estates = [];
 // Cargar estados desde el servidor y actualizar el <select>
 async function fill_select() {
     try {
         const data = await get_API_States();
+        arr_estates = data;
+        
         const selectElement = document.getElementById('select_states');
         selectElement.innerHTML = "";
         selectElement.innerHTML = '<option value="no_select_estate">SELECCIONA ESTADO</option>';
@@ -1822,7 +1860,7 @@ async function fill_select() {
         data.forEach(state => {
             const option = document.createElement('option');
             option.value = state.id;
-            option.textContent = state.name;
+            option.textContent = state.name.toUpperCase();
             selectElement.appendChild(option);
         });
     } catch (error) {
@@ -1843,7 +1881,14 @@ async function fill_select() {
 
 
 apartar_modal_person_btn.addEventListener("click", (event) => {
+    console.log('-----> apartar_modal_person_btn.addEventListener("click", (event) => {} <-----');
     try {
+        // Esto eliminará todo el atributo style, así que solo úsalo si no tienes más propiedades dentro de style="".
+        document.getElementById("reserve-tickets-modalPerson").removeAttribute("style");
+        
+        // Quita el mensaje "El numero de telefono ya esta registrado."
+        document.getElementById("conflicto_al_guardar_modal_person").innerHTML = "";
+
         let whatsapp = input_modal_whatsapp.value;
         let name = input_modal_name.value;
         let last_name = input_modal_last_name.value;
@@ -1934,8 +1979,8 @@ apartar_modal_person_btn.addEventListener("click", (event) => {
 
 
 async function save_person_data_modal (whatsapp, name, last_name, select_states) {
+    console.log('-----> async function save_person_data_modal (whatsapp, name, last_name, select_states) {} <-----');
     try {
-        //console.log("async function save_person_data_modal");
         let getGeolocationData = await checkLocationPermission();
         //console.log("getGeolocationData:");
         //console.log(getGeolocationData);
@@ -1952,12 +1997,15 @@ async function save_person_data_modal (whatsapp, name, last_name, select_states)
         //console.log("select_state_option_value:", select_state_option_value);
         //console.log("input_modal_select_states: "+ input_modal_select_states.value);
 
+        let user_folio = generarFolio(name);
+
         const person_data = {
             phone: input_modal_whatsapp.value,
             name: input_modal_name.value.toUpperCase(),
             lastname: input_modal_last_name.value.toUpperCase(),
             option: select_state_option_value.toUpperCase(),
             geolocationData: getGeolocationData,
+            folio: user_folio,
         };
 
         // Hacer una solicitud al servidor
@@ -1974,19 +2022,49 @@ async function save_person_data_modal (whatsapp, name, last_name, select_states)
             console.log(response);
         }
 
-        const data = await response.json();
+        const statusCode = response.status; // 👉 Aquí tienes el código, por ejemplo: 409
+        const data = await response.json(); // 👉 Aquí accedes a todo el JSON de la respuesta
 
-        // Manejar los datos de la respuesta
-        if (data.userData) {
-            const { userId, phone, name, lastname, option } = data.userData;
-            const data_ApiSavePerson = {};
-            let full_name = name + " " + lastname;
-            reservar_boletos_seleccionados(userId, full_name, phone, option);
+        if (statusCode === 409) {
+            console.log("⚠️ Teléfono duplicado:");
+            console.log("Código:", statusCode);                 // 409
+            console.log("Mensaje:", data.message);              // 'El numero de telefono ya esta registrado.'
+            console.log("Datos del usuario:", data.userData);   // contenido de data_person
+
+            document.getElementById("load_2").setAttribute("style", "display: none;");;
+            document.getElementById("conflicto_al_guardar_modal_person").innerHTML = data.message;
+            document.getElementById("phone").style.backgroundColor = "rgb(97, 76, 39)";
+            document.getElementById("phone").style.border = "2px solid orange";
+
+            // Esto eliminará todo el atributo style, así que solo úsalo si no tienes más propiedades dentro de style="".
+            document.getElementById("reserve-tickets-modalPerson").removeAttribute("style");
+
+            // Esto elimina la propiedad display que está inline (como en tu ejemplo: style="display: none;").
+            //document.getElementById("reserve-tickets-modalPerson").style.removeProperty("display");
+            
+            // Deshabilita el boton apartar hasta que cambie el numero de telefono
+            const btnApartar = document.getElementById("apartar_modal_person_btn");
+            btnApartar.setAttribute("disabled", "disabled"); // Refuerzo
+            btnApartar.style.pointerEvents = "none"; // Previene clicks visualmente
+            btnApartar.style.opacity = "0.2"; // Indica visualmente que está deshabilitado
+
+            //document.getElementById("apartar_modal_person_btn").disabled = true;
+
+            //document.getElementById("load_2").innerHTML = "<p>"+data.message+"</p>";
+            //document.getElementById("load_2").innerHTML = '<p id="p2_modal_person" class="p2_modal_person_class" style="">'+data.message+'</p>';
         } else {
-            console.error('Error al guardar los datos:', data.message);
+            console.log("✅ Registro exitoso:", data);
+            // Manejar los datos de la respuesta
+            if (data.userData) {
+                const { userId, phone, name, lastname, option } = data.userData;
+                const data_ApiSavePerson = {};
+                let full_name = name + " " + lastname;
+                reservar_boletos_seleccionados(userId, full_name, phone, option, user_folio);
+            } else {
+                console.error('Error al guardar los datos:', data.message);
+            }
         }
-
-
+        
         /* Hacer una solicitud al servidor
         const response = await fetch(API_SAVE_PERSON_DATA_URL, {
             method: "POST",
@@ -2081,7 +2159,8 @@ async function checar_boletos_seleccionados_persona(userId, name, option) {
 
 
 // Reservar boletos seleccionados
-async function reservar_boletos_seleccionados(userId, name, phone, option) {
+async function reservar_boletos_seleccionados(userId, name, phone, option, folio) {
+    console.log('-----> async function reservar_boletos_seleccionados(userId, name, phone, option) {} <-----');
     try {
         //console.log("async function reservar_boletos_seleccionados");
         let get_numbersDB = arr_numeros;
@@ -2116,7 +2195,7 @@ async function reservar_boletos_seleccionados(userId, name, phone, option) {
             //console.log(tickets_notAvailable);
             //console.log(tickets_notAvailable.length);
             if (tickets_notAvailable.length == 0) {
-                mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, phone, option);
+                mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, phone, option, folio);
             }else{
                 let str_ticketsApartados = "";
                 let aux = 1;
@@ -2186,7 +2265,8 @@ function findCommonNumbers(array1, array2) {
 
 
 // Apartar varios numeros
-async function mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, phone, option) {
+async function mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, phone, option, folio) {
+    console.log('-----> async function mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, phone, option) {} <-----');
     //console.log("async function mark_multiple_tickets_as_sold");
     try {
         //console.log("arr_reservedTickets:");
@@ -2251,10 +2331,12 @@ async function mark_multiple_tickets_as_sold(arr_reservedTickets, userId, name, 
             //console.log("if (response.ok)");
             const data_to_server = {
                 arr_reservedTickets_ID_and_NUMBER: arr_reservedTickets_ID_and_NUMBER,
+                arr_reservedTicketsNUMERO,
                 userId: userId,
                 name: name.toUpperCase(),
                 phone:  phone,
-                option: option.toUpperCase()
+                option: option.toUpperCase(),
+                folio: folio,
             };
             //console.log("data_to_server:");
             //console.log(data_to_server);
@@ -2415,6 +2497,77 @@ redirigir_modal_person_btn.addEventListener("click", (event) =>{
 
 
 
+
+
+// Crear y mostrar modal del formulario para el envio de datos del usuario (AUN NO APLICADO)
+function showPersonDataModal() {
+    // Elimina el modal anterior si ya existe
+    const existingModal = document.getElementById("person-data-modal");
+    if (existingModal) existingModal.remove();
+
+    // Crea el contenedor principal
+    const modal = document.createElement("div");
+    modal.id = "person-data-modal";
+    modal.className = "modal";
+
+    // Contenido HTML del modal
+    modal.innerHTML = `
+        <div class="modal-person-content">
+            <span class="close-btn" id="close-person-modal">&times;</span>
+            <h2>LLENA TUS DATOS Y DA CLICK EN APARTAR</h2>
+            <div id="catidad_boletos_seleccionados_modal_person"></div>
+            <div id="conflicto_al_guardar_modal_person"></div>
+            <form action="#" id="form_personModal" class="form_personModal">
+                <input type="text" class="input_personModal" id="phone" pattern="\\d{10}" maxlength="10" inputmode="numeric" placeholder="NÚMERO DE WHATSAPP (10 dígitos)" title="Por favor, ingresa solo números">
+                <input type="text" class="input_personModal" id="name" placeholder="NOMBRE(S)">
+                <input type="text" class="input_personModal" id="lastname" placeholder="APELLIDOS">
+                <select name="select_states" id="select_states" class="select_states_class">
+                    <option value="no_select_estate">SELECCIONA ESTADO</option>
+                </select>
+                <div id="load_2" class="load_2" style="display: none;"><img src="/img/loading.gif" alt="GIF" style="width: 60px; height: 60px;"></div>
+                <p id="p_modal_person" class="p_modal_person_class">¡Al finalizar serás redirigido a whatsapp para enviar la información de tu boleto!</p>
+                <p id="p2_modal_person" class="p2_modal_person_class" style="display: none;"></p>
+                <div id="reserve-tickets-modalPerson" class="reserve-tickets-modalPerson">
+                    <button id="apartar_modal_person_btn" type="button">Apartar</button>
+                </div>
+                <div id="redirect-to-whatsapp-modalPerson" class="reserve-tickets-modalPerson" style="display: none;">
+                    <button id="redirigir_modal_person_btn" type="button">Redirigir a WhatsApp</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+    // Agregar el modal al body
+    document.body.appendChild(modal);
+
+    // Evento para cerrar y eliminar el modal
+    document.getElementById("close-person-modal").addEventListener("click", () => {
+        modal.remove();
+    });
+
+    // Aquí puedes añadir eventos a tus inputs/botones
+    document.getElementById("apartar_modal_person_btn").addEventListener("click", () => {
+        const whatsapp = document.getElementById("phone").value;
+        const name = document.getElementById("name").value;
+        const lastname = document.getElementById("lastname").value;
+        const state = document.getElementById("select_states").value;
+        save_person_data_modal(whatsapp, name, lastname, state);
+    });
+
+    // Mostrar el modal (si estaba oculto por CSS)
+    modal.classList.remove("hidden");
+}
+
+// Cierre y elimina el modal del DOM (AUN NO APLICADO)
+function closePersonDataModal() {
+    const modal = document.getElementById("person-data-modal");
+    if (modal) modal.remove();
+}
+
+
+
+
+
 input_modal_whatsapp.addEventListener("input", (event) => {
     const value_whatsapp = event.target.value;
     if (!value_whatsapp) {
@@ -2422,6 +2575,21 @@ input_modal_whatsapp.addEventListener("input", (event) => {
         //input_modal_whatsapp.style.border = "2px solid red";
     } else {
         input_modal_whatsapp.style = "";
+        document.getElementById("conflicto_al_guardar_modal_person").innerHTML = "";
+        // Habilita el boton apartar
+        const btnApartar = document.getElementById("apartar_modal_person_btn");
+        btnApartar.disabled = false; // Habilita el boton(segun dicen -_-)
+        btnApartar.style.pointerEvents = ""; // Previene clicks visualmente
+        btnApartar.style.opacity = "1"; // Indica visualmente que está deshabilitado
+
+        // 👇 Aquí va la nueva lógica: si hay exactamente 10 dígitos
+        const numericOnly = value_whatsapp.replace(/\D/g, ''); // Elimina letras o símbolos
+        if (numericOnly.length === 10) {
+            console.log("📞 Número válido de 10 dígitos detectado:", numericOnly);
+
+            // Verifica si el numero existe, y si es así llenar los campos de Nombre, Apellido y Estado.
+            verificarSiExisteTelefono(numericOnly);
+        }
     }
 });
 
@@ -2458,6 +2626,135 @@ input_modal_select_states.addEventListener("change", (event) => {
         input_modal_select_states.style = "";
     }
 });
+
+
+
+
+
+// Verifica si el numero existe, y si es así llenar los campos de Nombre, Apellido y Estado.
+async function verificarSiExisteTelefono(phone) {
+    console.log('-----> async function verificarSiExisteTelefono(phone) {} <-----');
+
+    const loader_carga_info_modal = document.getElementById("loader_page_complete");
+    
+    try {
+        // Mostrar el loader
+        //loader_carga_info_modal.style.display = "flex";
+        document.getElementById("loader_page_complete").style.setProperty("display", "flex", "important");
+
+
+        // Hacer una solicitud al servidor
+        const response = await fetch(API_VERIFY_PHONE_DATA_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({phone}),
+        });
+
+        // Verificar si la respuesta tiene éxito
+        if (!response.ok) {
+            //throw new Error(`Error en la solicitud: ${response.statusText}`);
+            console.log("response: ");
+            console.log(response);
+        }
+
+        const statusCode = response.status; // 👉 Aquí tienes el código, por ejemplo: 409
+        const data = await response.json(); // 👉 Aquí accedes a todo el JSON de la respuesta
+
+        if (statusCode === 409) {
+            console.log("data: ", data);
+            console.log("Código:", statusCode);                  // 409
+            console.log("Mensaje:", data.message);               // 'El numero de telefono ya esta registrado.'
+            console.log("Datos del usuario:", data.data_user);  // contenido de data_USERS
+            
+            //verificarTelefonoConUsuario(data.data_USERS);
+
+            // Imprime el array de estados
+            console.log("arr_estates: ", arr_estates);
+
+            let estadoID = "";
+            // Recorre el array de estados
+            arr_estates.forEach(data_state => {
+                //console.log("data_state: ", data_state);
+                // Si el nombre del estado asociado al usuario es igual a algun nombre del array de estados(QUE AFUERZAS TIENE QUE HABER UNO)
+                if (data.data_user.state.toUpperCase() == data_state.name.toUpperCase()) {
+                    estadoID = data_state.id; // Almacena el valor del ID que corresponde al NOMBRE del estado del array de estados seleccionado
+                }
+            });
+
+            // Imprime el ID del estado que le corresponde al NOMBRE del estado que esta relacionado con los datos del usuario
+            console.log("estadoID: ", estadoID);
+
+            // Obtiene el elemento <select> con id="select_states"
+            // Este elemento contiene las opciones de estados que se mostrarán al usuario
+            const select_estate_element = document.getElementById('select_states');
+
+            // Asigna un valor al select, es decir, selecciona automáticamente una opción
+            // estadoID debe coincidir con el atributo `value` de una de las <option> del select
+            // Si existe una opción con value igual a estadoID, esa será la que se muestre seleccionada
+            select_estate_element.value = estadoID;
+
+            document.getElementById("name").value = data.data_user.name.toUpperCase();
+            document.getElementById("lastname").value = data.data_user.lastname.toUpperCase();
+        } 
+
+        if (statusCode === 200) {
+            console.log("Código:", statusCode);                 // 200
+            console.log("Mensaje:", data.message);              // 'El telefono NO existe.'
+            console.log("Datos del usuario:", data.data_USERS);   // contenido de data_USERS
+        }
+    } catch (error) {
+        // (?.trim()) - Si el valor existe (es decir, no es undefined ni null), ejecuta el método .trim() y si el valor es undefined o null, la evaluación simplemente devuelve undefined y no intenta llamar a .trim().
+        const message_error = String(error).split(":")[1]?.trim() || "Error desconocido";
+        //console.log("message_error:");
+        //console.log(message_error);
+        let errorObj = {
+            function: "async function verificarSiExisteTelefono(phone)",
+            message_error
+        };
+        console.log(errorObj);
+    } finally {
+        // Ocultar el loader siempre, incluso si hay error
+        //loader.style.display = "none";
+        document.getElementById("loader_page_complete").style.setProperty("display", "none", "important");
+
+    }
+}
+
+
+
+
+
+// 
+async function verificarTelefonoConUsuario(phone) {
+
+}
+
+
+
+
+
+// Genera un folio de 10 caracteres usando los primeros 4 caracteres del input name y 6 digitos aleatorios
+function generarFolio(nombre) {
+    console.log('-----> function generarFolio(nombre) {} <-----');
+
+    if (nombre === "") {
+        alert("Por favor ingresa un nombre.");
+        return;
+    }
+
+    const nombre_4_caracteres = nombre.substring(0, 4); // Toma solo los primeros 4 caracteres
+    const digitosAleatorios = Math.floor(100000 + Math.random() * 90000); // 6 dígitos aleatorios, el indicador es el "100000"
+    const folio = `${nombre_4_caracteres}${digitosAleatorios}`;
+    
+    //document.getElementById("folioResultado").textContent = `Folio generado: ${folio}`;
+    console.log("folio: ", folio);
+
+    return folio;
+}
+
+
+
+
 
 
 

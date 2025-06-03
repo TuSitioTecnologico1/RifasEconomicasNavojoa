@@ -175,6 +175,36 @@ body.dark-mode .form-group-panel input {
     background-color: #444;
 }
 
+body.dark-mode .tableClass_verificador th {
+    color: white; /* Color del texto */
+    background-color: #444; /* Color de fondo */
+}
+
+
+
+body.dark-mode .chat-box-class{
+    color: white; /* Color del texto */
+    background-color: #444; /* Color de fondo */
+}
+
+body.dark-mode .chat-input-class{
+    color: white; /* Color del texto */
+    background-color: #444; /* Color de fondo */
+}
+
+body.dark-mode .chat-messages-class {
+    color: white; /* Color del texto */
+    background-color: #444; /* Color de fondo */
+}
+
+body.dark-mode .chat-messages-class .message {
+    color: white; /* Color del texto */
+    /*background-color: #444; /* Color de fondo */
+}
+
+
+
+
 
 
 
@@ -1909,6 +1939,12 @@ textarea {
     font-size: 20px;
 }
 
+#conflicto_al_guardar_modal_person {
+    color: orange;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
 #apartar_modal_person_btn {
     border: 3px solid #7fc241;
     /* Grosor, estilo y color del borde */
@@ -1983,6 +2019,7 @@ textarea {
     /* Asegura que el texto sea completamente visible */
     /*font-weight: bold;*/
     /*text-align: center; /* Centra el texto del placeholder */
+    text-transform: uppercase;
 }
 
 .select_states_class {
@@ -1992,6 +2029,7 @@ textarea {
     /* Esquinas redondeadas opcionales */
     padding: 10px;
     /* Espaciado interno */
+    text-transform: uppercase;
 }
 
 .select_states_class::placeholder {
@@ -2003,6 +2041,10 @@ textarea {
     /* Asegura que el texto sea completamente visible */
 }
 
+.select_states_class option {
+    text-transform: uppercase;
+  }
+
 
 
 /* Estilo para cuando el div es deshabilitado */
@@ -2010,6 +2052,39 @@ textarea {
     pointer-events: none; /* Desactiva el clic */
     /*opacity: 0.5;         /* Hace el div semi-transparente */
 }
+
+
+
+
+
+#crearRifa_modal_btn {
+    border: 3px solid #7fc241;
+    /* Grosor, estilo y color del borde */
+    background-color: #d40000;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    border-radius: 5px;
+    /* Esquinas redondeadas (opcional) */
+    cursor: pointer;
+    /* Cambia el cursor al pasar por encima */
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    /*width:40%;*/
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+#crearRifa_modal_btn:hover {
+    border-color: #d40000;
+    /* Cambia el color del borde al pasar el ratón */
+    background-color: #7fc241;
+    /* Color de fondo */
+}
+
+
+
 
 
 
@@ -3065,7 +3140,9 @@ textarea {
 
 
 
-.tableClass_panel {
+.tableClass_verificador {
+    /*position: fixed;
+    top: 330px;*/
     margin-top: 20px;
     border-collapse: collapse;
     width: 100%;
@@ -3077,22 +3154,22 @@ textarea {
     box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
 }
 
-.tableClass_panel table {
+.tableClass_verificador table {
     width: 100%; /* Escala la tabla al tamaño del contenedor */
     border: 1px solid #ccc;
     border-collapse: collapse; /* Evita bordes dobles */
-    min-width: 800px; /* Define un ancho mínimo para la tabla */
+    min-width: 1150px; /* Define un ancho mínimo para la tabla */
 }
 
-.tableClass_panel th,
-.tableClass_panel td {
+.tableClass_verificador th,
+.tableClass_verificador td {
     padding: 10px;
     text-align: left;
     border: 1px solid #ccc;
     text-align: center;
 }
 
-.tableClass_panel th {
+.tableClass_verificador th {
     color: #ffffff; /* Color del texto */
     background-color: #222222; /* Color de fondo */
 }
@@ -3696,6 +3773,13 @@ textarea {
 
 
 
+#modal_content_panel_editarRifa {
+    width: 80%;
+    max-width: 950px;
+}
+
+
+
 
 
 .p_label_boletos_modal_panel {
@@ -3767,6 +3851,533 @@ textarea {
     gap: 10px;
     margin-top: 20px;
 }
+
+
+
+
+
+
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------
+    ESTILOS PARA EL FORMULARIO DE MULTIPLES PASOS MODAL QUE ESTA EN LA VISTA "panel_super_admin.ejs" o la ruta /panel-control-super-admin (INICIO)
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/* Botón que abre el modal */
+#openModalBtn {
+  padding: 12px 24px;
+  background: #6b5bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Modal formModal *
+.modal {*/
+.formModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.formModal.hidden {
+  display: none;
+}
+
+.modal-formularioMultiplesPasos-content {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Formulario multipaso */
+.container_indicador_pasos {
+  margin-top: 20px;
+}
+
+.step-progress {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.step-progress::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  right: 8%;
+  height: 3px;
+  background: #444;
+  z-index: 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  flex: 1;
+}
+
+.step .circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+}
+
+.step.active .circle {
+  background: #6b5bff;
+  color: #fff;
+}
+
+.step::after {
+  content: attr(data-title);
+  margin-top: 10px;
+  font-size: 12px;
+  color: #aaa;
+  text-align: center;
+}
+
+.step.active::after {
+  color: #fff;
+}
+
+.form-step {
+  display: none;
+  flex-direction: column;
+}
+
+.form-step.active {
+  display: flex;
+}
+
+.input_form_pasos_modal {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+  background: #2c2c2c;
+  color: #fff;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button_form_pasos_modal {
+  padding: 10px 20px;
+  border: none;
+  background: #6b5bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button_form_pasos_modal:hover {
+  background: #847aff;
+}
+
+.button_form_pasos_modal.prev {
+  background: #333;
+}
+
+.button_form_pasos_modal.prev:hover {
+  background: #444;
+}
+
+
+.buttons.only-next {
+  justify-content: flex-end; /* <-- Esto alinea el botón a la derecha */
+}
+
+
+.buttons.only-next-center{
+    justify-content: center;
+}
+
+.textarea_panelSuperAdmin{
+    width: 100%;       /* Ancho deseado */
+    height: 300px;      /* Alto deseado */
+    resize: none;       /* Evita que el usuario cambie el tamaño */
+    padding: 10px;      /* Espaciado interno opcional */
+    font-size: 16px;    /* Tamaño de letra opcional */
+}
+
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------
+    ESTILOS PARA EL FORMULARIO DE MULTIPLES PASOS MODAL QUE ESTA EN LA VISTA "panel_super_admin.ejs" o la ruta /panel-control-super-admin (FIN)
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+
+
+
+.btn_editar_rifa {
+    border: 3px solid #7fc241;
+    /* Grosor, estilo y color del borde */
+    background-color: #d40000;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    border-radius: 5px;
+    /* Esquinas redondeadas (opcional) */
+    cursor: pointer;
+    /* Cambia el cursor al pasar por encima */
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    /*width:40%;*/
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.btn_editar_rifa:hover {
+    border-color: #d40000;
+    /* Cambia el color del borde al pasar el ratón */
+    background-color: #7fc241;
+    /* Color de fondo */
+}
+
+
+
+
+
+
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------
+    ESTILOS PARA LA LIBRERIA: intro-js, QUE ES UN GUIA DE PAGINAS WEB (INICIO)
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/* Cambiar fondo y texto del tooltip */
+.introjs-tooltip {
+  background-color: #333 !important;
+  color: #fff !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5) !important;
+}
+
+.introjs-tooltiptext {
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+}
+
+
+/* Cambiar color de botones */
+/* Botones modernos con transición e íconos */
+.introjs-button {
+  background-color: #007bff !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 7px 10px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2) !important;
+  transition: all 0.25s ease !important;
+  /* Estilo limpio para botones del tooltip (INICIO) */
+  letter-spacing: normal !important;
+  text-shadow: none !important;
+  transform: none !important;
+  white-space: nowrap !important;
+  /* Estilo limpio para botones del tooltip (FIN) */
+}
+
+.introjs-button:hover {
+  background-color: #0056b3 !important;
+  box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3) !important;
+}
+
+/* Icono tipo flecha (puedes usar emojis o SVG inline también) */
+/*.introjs-button::after {
+  content: '➡️';
+  font-size: 14px;
+}*/
+
+
+/* Ajuste para el botón de "Siguiente" *
+.introjs-nextbutton::before {
+  content: '➡️ ';
+}*/
+
+/* Ajuste para el botón de "Anterior" *
+.introjs-prevbutton::after {
+  content: '⬅️';
+}
+
+.introjs-skipbutton::before {
+  content: '❌ ';
+}
+
+.introjs-donebutton::before {
+  content: '✅ ';
+}
+*/
+
+
+/* ----------------------- Codigo usado para mostrar y editar la "X" que aparece en el cuadrito del guia (INICIO) ----------------------- */
+/*
+.introjs-skipbutton {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #dc3545 !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  z-index: 9999 !important;
+  transition: text-shadow 0.3s ease;
+  /* Oculta cualquier contenido real *
+  font-size: 0 !important;
+}
+
+.introjs-skipbutton::before {
+  content: '❌';
+  font-size: 24px; /* este sí se muestra *
+  display: inline-block;
+  color: #dc3545;
+}
+
+.introjs-skipbutton:hover::before {
+  text-shadow: 0 0 8px rgba(220, 53, 69, 0.8);
+}
+*/
+/* ----------------------- Codigo usado para mostrar y editar la "X" que aparece en el cuadrito del guia (FIN) ----------------------- */
+
+/* Quitar la X para evitar cerrar la ventana */
+/*
+.introjs-skipbutton {
+  display: none !important;
+}
+*/
+
+/* Cambiar overlay */
+.introjs-overlay {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------
+    ESTILOS PARA LA LIBRERIA: intro-js, QUE ES UN GUIA DE PAGINAS WEB (FIN)
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+
+
+
+
+
+/*
+.chat-box-class{
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow: auto;
+    z-index: 1000;
+}
+
+.chat-messages-class {
+    height:320px; 
+    overflow-y:auto;
+}
+
+.chat-input-class {
+    border: 2px solid #7fc241;      
+    border-radius: 5px;               
+    padding: 10px;                    
+}
+*/
+
+
+
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------
+    ESTILOS PARA EL CHATBOT (Inicio)
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+.chat-container-class {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100000;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.chat-toggle-class {
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.chat-box-class {
+    display: none;
+    width: 320px;
+    height: 440px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.chat-header-class {
+    background: #0d6efd;
+    color: white;
+    padding: 12px 15px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-messages-class {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo común de burbujas */
+.chat-messages-class .message {
+    max-width: 75%;
+    padding: 10px 14px;
+    margin: 6px 0;
+    border-radius: 16px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    position: relative;
+    font-size: 14px;
+}
+
+.message {
+    max-width: 80%;
+    margin: 8px 12px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    opacity: 1;
+    transition: all 0.4s ease;
+}
+
+.message.hidden {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.message.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.message.error {
+    background-color: #ffe0e0;
+    color: #a00;
+    border-left: 4px solid #d00;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
+
+
+
+/* Mensaje del usuario alineado a la derecha */
+.chat-messages-class .user {
+    align-self: flex-end;
+    background-color: #009925;
+    text-align: right;
+    border-bottom-right-radius: 0;
+}
+
+/* Mensaje del bot alineado a la izquierda */
+.chat-messages-class .bot {
+    align-self: flex-start;
+    background-color: #0097ec;
+    text-align: left;
+    border-bottom-left-radius: 0;
+}
+
+.chat-input-class {
+    border: none;
+    border-top: 1px solid #ddd;
+    padding: 12px;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+}
+
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------
+    ESTILOS PARA EL CHATBOT (Fin)
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
 
 
 

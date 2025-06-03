@@ -16,8 +16,8 @@ router.get('/', (req, res) => {
         console.log(log_activity);
         console.log("");
         //res.sendFile(__dirname + '/../public/index.html'); // Este se utiliza para llamar a index.html
-        //res.render('index', { title: 'Página Principal' }); // Este se utiliza para renderizar index.ejs
-        res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
+        res.render('index', { title: 'Página Principal' }); // Este se utiliza para renderizar index.ejs
+        //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
     } catch (error) {
         const log_error = logError(req, 'Error en la ruta "/": '+error); // Registrar acción
         console.log("LOG ERROR:");
@@ -41,6 +41,26 @@ router.get('/lista-boletos/r1', (req, res) => {
         //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
     } catch (error) {
         const log_error = logError(req, 'Error en la ruta "/lista-boletos/r1": '+error); // Registrar acción
+        console.log("LOG ERROR:");
+        console.log(log_error);
+        console.log("");
+        res.status(500).send('Error interno del servidor');
+    }
+});
+
+// Ruta para la página donde estan los boletos - https://rifaseconomicasnavojoa.site/lista-boletos-plantilla-editable-iframe
+router.get('/lista-boletos-plantilla-editable-iframe', (req, res) => {
+    try {
+        //const log_activity = logActivity(req, 'Visita a la pagina r1_lista.html'); // Registrar acción
+        const log_activity = logActivity(req, 'Visita a la pagina r1_lista_editable_iframe.ejs'); // Registrar acción
+        console.log("LOG ACTIVITY:");
+        console.log(log_activity);
+        console.log("");
+        const path = require('path');
+        res.render('pages/editables/r1_lista_editable_iframe', { title: 'Lista de Boletos Editable IFrame' }); // Este se utiliza para renderizar r1_lista_editable_iframe.ejs
+        //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
+    } catch (error) {
+        const log_error = logError(req, 'Error en la ruta "/lista-boletos-plantilla-editable-iframe": '+error); // Registrar acción
         console.log("LOG ERROR:");
         console.log(log_error);
         console.log("");
@@ -79,8 +99,8 @@ router.get('/metodos-pago', (req, res) => {
         console.log("");
         const path = require('path');
         //res.sendFile(path.resolve(__dirname, '../public/pages/metodos_pago.html')); // Este se utiliza para llamar a metodos_pago.html
-        //res.render('pages/metodos_pago', { title: 'Metodos de Pago' }); // Este se utiliza para renderizar metodos_pago.ejs
-        res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
+        res.render('pages/metodos_pago', { title: 'Metodos de Pago' }); // Este se utiliza para renderizar metodos_pago.ejs
+        //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
     } catch (error) {
         const log_error = logError(req, 'Error en la ruta "/metodos-pago": '+error); // Registrar acción
         console.log("LOG ERROR:");
@@ -99,8 +119,8 @@ router.get('/preguntas-frecuentes', (req, res) => {
         console.log("");
         const path = require('path');
         //res.sendFile(path.resolve(__dirname, '../public/pages/preguntas_frecuentes.html')); // Este se utiliza para llamar a metodos_pago.html
-        //res.render('pages/preguntas_frecuentes', { title: 'Preguntas Frecuentes' }); // Este se utiliza para renderizar metodos_pago.ejs
-        res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
+        res.render('pages/preguntas_frecuentes', { title: 'Preguntas Frecuentes' }); // Este se utiliza para renderizar metodos_pago.ejs
+        //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
     } catch (error) {
         const log_error = logError(req, 'Error en la ruta "/preguntas-frecuentes": '+error); // Registrar acción
         console.log("LOG ERROR:");
@@ -119,8 +139,8 @@ router.get('/contacto', (req, res) => {
         console.log("");
         const path = require('path');
         //res.sendFile(path.resolve(__dirname, '../public/pages/contacto.html')); // Este se utiliza para llamar a metodos_pago.html
-        //res.render('pages/contacto', { title: 'Contacto' }); // Este se utiliza para renderizar metodos_pago.ejs
-        res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
+        res.render('pages/contacto', { title: 'Contacto' }); // Este se utiliza para renderizar metodos_pago.ejs
+        //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
     } catch (error) {
         const log_error = logError(req, 'Error en la ruta "/contacto": '+error); // Registrar acción
         console.log("LOG ERROR:");
@@ -162,6 +182,25 @@ router.get('/panel-control', (req, res) => {
         //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
     } catch (error) {
         const log_error = logError(req, 'Error en la ruta "/panel-control": '+error); // Registrar acción
+        console.log("LOG ERROR:");
+        console.log(log_error);
+        console.log("");
+        res.status(500).send('Error interno del servidor');
+    }
+});
+
+// Ruta para la página donde esta el panel de control - https://rifaseconomicasnavojoa.site/panel-control-super_admin
+router.get('/panel-control-super-admin', (req, res) => {
+    try {
+        const log_activity = logActivity(req, 'Visita a la pagina panel_super_admin.ejs - Ruta: "/panel-control-super-admin"'); // Registrar acción
+        console.log("LOG ACTIVITY:");
+        console.log(log_activity);
+        console.log("");
+        const path = require('path');
+        res.render('panel_super_admin', { title: 'Panel Super Admin' }); // Este se utiliza para renderizar panel_super_admin.ejs
+        //res.render('pages/pronto_iniciaremos', { title: 'Pronto Iniciaremos Rifas' }); // Este se utiliza para renderizar pronto_iniciaremos.ejs
+    } catch (error) {
+        const log_error = logError(req, 'Error en la ruta "/panel-control-super-admin": '+error); // Registrar acción
         console.log("LOG ERROR:");
         console.log(log_error);
         console.log("");

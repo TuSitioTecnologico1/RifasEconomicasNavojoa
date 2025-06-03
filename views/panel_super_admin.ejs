@@ -1,0 +1,557 @@
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Metatags para redes sociales (Open Graph) -->
+        <meta property="og:title" content="Rifas Economicas Navojoa" />
+        <!--<meta property="og:description" content="" />-->
+        <meta property="og:url" content="https://rifaseconomicasnavojoa.site/" />
+        <meta property="og:image" content="img/rifas_economicas_navojoa-logo.png" />
+        
+        <title>Rifas Economicas Navojoa</title>
+        
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!-- Favicon en formato PNG (para que el logo aparezca en navegadores) -->
+        <link rel="icon" type="image/png" href="/img/rifas_economicas_navojoa-logo.png">
+        <!-- Opcional: Favicon para dispositivos Apple  (para que el logo aparezca en navegadores apple) -->
+        <link rel="apple-touch-icon" href="/img/rifas_economicas_navojoa-logo.png">
+
+        <link rel="preload" href="/img/rifas_economicas_navojoa-logo.png" as="image">
+        <link rel="preload" href="/img/moto_italika_deportiva_vort-x250_2024_roja_2_11zon.webp" as="image">
+        <!--
+        <link rel="preload" href="img/loading.gif" as="image">
+        <link rel="preload" href="img/cancelar.png" as="image">
+        <link rel="preload" href="img/comprobar.png" as="image">
+        <link rel="preload" href="img/maquinitaDeLaSuerte.gif" as="image">
+        -->
+    </head>
+    <body>
+        <div id="locationModal">
+            <div id="infoModal">
+                <p style="font-size: 21px;">Para poder utilizar nuestro servicio es necesario que permitas el acceso a tu ubicación para fines de seguridad.</p>
+                <button id="enableLocation">Continuar</button>
+            </div>
+        </div>
+
+        <div id="content_page_panel" class="content_page_panel_class">
+            <div id="div_header_panel" class="div_header">
+                <!--
+                <div id="div_darkModeBtn" class="div_darkModeBtn_class">
+                    <button id="dark_mode_btn" class="dark_mode_btn_class"></button>
+                </div>
+                -->
+            </div>
+    
+            <div id="logo_panel" class="logo_panel_class">
+                <img src="/img/rifas_economicas_navojoa-logo.png" alt="Logo" />
+            </div>
+            
+            <%- include('partials/navbar_panel') %>
+            
+            <div class="div_sectionAbajo_panel">
+                <div id="div_alinear_panel" class="div_alinear">
+                    <div class="div_trianguloAbajo_panel_class">
+                        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <polygon points="50,70 25,30 75,30" fill="white" />
+                        </svg>
+                    </div>
+                    <div class="div_hazClickAbajo">
+                        <strong id="span_hazClickAbajo">PANEL DE CONTROL</strong>
+                    </div>
+                    <div class="div_trianguloAbajo_panel_class">
+                        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <polygon points="50,70 25,30 75,30" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <main id="main-content-panel" class="main_content_panel_class">
+                <!--
+                <div class="div_conteiner_panel_class">
+                    <div class="div_section_panel_class">
+                        
+                    </div>
+                    <div class="div_section_panel_class">
+                        RIFA
+                    </div>
+                    <div class="div_section_panel_class">
+                        
+                    </div>
+                </div>
+                <div class="div_conteiner_panel_class">
+                    <div class="div_section_panel_class">
+                        
+                    </div>
+                    <div class="div_section_panel_class">
+                        RIFA
+                    </div>
+                    <div class="div_section_panel_class">
+                        
+                    </div>
+                </div>
+                <div class="div_conteiner_panel_class">
+                    <div class="div_section_panel_class">
+                        
+                    </div>
+                    <div class="div_section_panel_class">
+                        RIFA
+                    </div>
+                    <div class="div_section_panel_class">
+                        
+                    </div>
+                </div>
+                -->
+                
+                <!--
+                <iframe id="vista_previa" src="http://localhost:3000/lista-boletos/r1" style="width:100%; height:600px;"></iframe>
+                -->
+                <div class="div_conteiner_panel_class">
+                    <div class="div_section_panel_class">
+                        <div class="div_buttons">
+                            <button id="btn_enviarWhatsapp_panel" class="btn_panel_class" disabled>Enviar Whatsapp</button><br>
+                            <button id="btn_enviarBoleto_panel" class="btn_panel_class" disabled>Enviar Boleto</button><br>
+                            <button id="btn_detalles_panel" class="btn_panel_class" disabled>Detalles</button><br>
+                            <button id="btn_crearRifa_panel" class="btn_panel_class">Crear Rifa</button>
+                        </div>
+                    </div>
+                    <div class="div_section_panel_class">
+                        <div class="div_buttons">
+                            <button id="btn_pagado_panel" class="btn_panel_class" disabled>Pagado</button><br>
+                            <button id="btn_eliminarPago_panel" class="btn_panel_class" disabled>Eliminar Pago</button><br>
+                            <button id="btn_eliminarApartado_panel" class="btn_panel_class" disabled>Eliminar Apartado</button><br>
+                            <button id="btn_editarMecanicaRifa_panel" class="btn_panel_class" >Editar Rifa</button>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="div_conteiner_filtros_panel_class">
+                    <div class="form-group-panel">
+                        <label for="buscar_year_panel" class="lbl_search_year_panel_class">A&ntilde;o:</label>
+                        <select name="select_filtro_year_panel" id="select_filtro_year_panel">
+                            <option value="">Seleccionar a&ntilde;o</option>
+                            <option value="2025">2025</option>
+                        </select>
+                    </div>
+                    <div class="form-group-panel">
+                        <label for="buscar_mes_panel" class="lbl_buscar_mes_panel_class">Mes:</label>
+                        <select name="select_filtro_mes_panel" id="select_filtro_mes_panel">
+                            <option value="">Seleccionar mes</option>
+                            <option value="Enero">Enero</option>
+                            <option value="Febrero">Febrero</option>
+                            <option value="Marzo">Marzo</option>
+                            <option value="Abril">Abril</option>
+                            <option value="Mayo">Mayo</option>
+                            <option value="Junio">Junio</option>
+                            <option value="Julio">Julio</option>
+                            <option value="Agosto">Agosto</option>
+                            <option value="Septiembre">Septiembre</option>
+                            <option value="Octubre">Octubre</option>
+                            <option value="Noviembre">Noviembre</option>
+                            <option value="Diciembre">Diciembre</option>
+                        </select>
+                    </div>
+                    <div class="form-group-panel">
+                        <label for="buscar_estado_panel" class="lbl_buscar_estado_panel_class">Estado:</label>
+                        <select name="select_filtro_estado_panel" id="select_filtro_estado_panel">
+                            <option value="" disabled selected>Selecciona un estado</option>
+                            <option value="aguascalientes">Aguascalientes</option>
+                            <option value="baja_california">Baja California</option>
+                            <option value="baja_california_sur">Baja California Sur</option>
+                            <option value="campeche">Campeche</option>
+                            <option value="chiapas">Chiapas</option>
+                            <option value="chihuahua">Chihuahua</option>
+                            <option value="cdmx">Ciudad de M&eacute;xico</option>
+                            <option value="coahuila">Coahuila</option>
+                            <option value="colima">Colima</option>
+                            <option value="durango">Durango</option>
+                            <option value="guanajuato">Guanajuato</option>
+                            <option value="guerrero">Guerrero</option>
+                            <option value="hidalgo">Hidalgo</option>
+                            <option value="jalisco">Jalisco</option>
+                            <option value="estado_mexico">Estado de M&eacute;xico</option>
+                            <option value="michoacan">Michoac&aacute;n</option>
+                            <option value="morelos">Morelos</option>
+                            <option value="nayarit">Nayarit</option>
+                            <option value="nuevo_leon">Nuevo Le&oacute;n</option>
+                            <option value="oaxaca">Oaxaca</option>
+                            <option value="puebla">Puebla</option>
+                            <option value="queretaro">Quer&eacute;taro</option>
+                            <option value="quintana_roo">Quintana Roo</option>
+                            <option value="san_luis_potosi">San Luis Potos&iacute;</option>
+                            <option value="sinaloa">Sinaloa</option>
+                            <option value="sonora">Sonora</option>
+                            <option value="tabasco">Tabasco</option>
+                            <option value="tamaulipas">Tamaulipas</option>
+                            <option value="tlaxcala">Tlaxcala</option>
+                            <option value="veracruz">Veracruz</option>
+                            <option value="yucatan">Yucat&aacute;n</option>
+                            <option value="zacatecas">Zacatecas</option>
+                        </select>                    
+                    </div>
+                    <div class="form-group-panel">
+                        <label for="buscar_nombre_panel" class="lbl_buscar_nombre_panel_class">Nombre:</label>
+                        <input type="text" id="input_buscar_nombre_panel" class="input_buscar_nombre_panel_class">
+                    </div>
+                    <div class="form-group-panel">
+                        <label for="buscar_pagado_panel" class="lbl_buscar_pagado_panel_class">Pagado:</label>
+                        <select name="select_filtro_pagado_panel" id="select_filtro_pagado_panel">
+                            <option value="">Seleccionar</option>
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group-panel">
+                        <label for="buscar_year_panel" class="lbl_search_year_panel_class">Disponible:</label>
+                        <select name="select_filtro_disponible_panel" id="select_filtro_disponible_panel">
+                            <option value="">Seleccionar</option>
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group-panel">
+                        <label for="buscar_boleto_panel" class="lbl_buscar_boleto_panel_class">Boleto:</label>
+                        <input type="text" id="input_buscar_boleto_panel" class="input_buscar_boleto_panel_class">
+                    </div>
+                    <div class="form-buttons-panel">
+                        <button id="btn_buscarBoleto_panel" class="btn_panel_class">Buscar</button>
+                        <button id="btn_limpiarFiltros_panel" class="btn_panel_class">Limpiar Filtros</button>
+                    </div>
+                </div>
+                -->
+                <div id="loading" style="display: none;">Cargando...</div>
+                <div id="table-panel" class="tableClass_panel"></div>
+            </main>
+            
+            <!--<div class="div_espacio5"></div>-->
+
+            <!-- Modal - Detalles -->
+            <div id="info-modal-panel" class="modal-panel">
+                <div class="modal-content-panel">
+                    <div class="modal-header-panel">Información del Boleto <span class="close-modal-panel-class" id="close-modal-panel">&times;</span></div>
+                    <div class="modal-body-panel" id="modal-body-panel">
+                        <!-- Aquí se cargará la información del boleto -->
+                    </div>
+                    <!--
+                    <div class="modal-footer">
+                    </div>
+                    -->
+                </div>
+            </div>
+
+            <!-- Modal - Crear Rifa-->
+            <div id="formularioMultiplesPasosModal" class="formModal hidden">
+                <div class="modal-formularioMultiplesPasos-content">
+                    <span id="closeModalBtn" class="close-btn">&times;</span>
+                    <!-- Formulario multipaso -->
+                    <div class="container_indicador_pasos">
+                        <div class="step-progress">
+                            <div class="step active" data-title="Plantilla Pagina">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Rifa Info">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Success">
+                                <div class="circle">✓</div>
+                            </div>
+                        </div>
+            
+                        <form id="multiStepForm">
+                            <div class="form-step active">
+                                <h2>Plantilla Pagina Boletos</h2>
+                                <iframe id="vista_previa" src="http://localhost:3000/lista-boletos-plantilla-editable-iframe" style="width:100%; height:600px;"></iframe>
+                                <div class="buttons only-next">
+                                    <button type="button" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>Informacion de la Rifa</h2>
+                                <input type="number" class="input_form_pasos_modal" id="edicion" min="1" placeholder="NUMERO DE EDICION">
+                                <input type="text" class="input_form_pasos_modal" id="emisiones" pattern="\d{6}" maxlength="6" inputmode="numeric" placeholder="NÚMERO DE EMISIONES" title="Por favor, ingresa solo números">
+                                <input type="text" class="input_form_pasos_modal" id="oportunidades" pattern="\d{6}" maxlength="6" inputmode="numeric" placeholder="NÚMERO DE OPORTUNIDADES" title="Por favor, ingresa solo números">
+                                <input type="text" class="input_form_pasos_modal" id="cantidad_boletos" pattern="\d{6}" maxlength="6" inputmode="numeric" placeholder="CANTIDAD DE BOLETOS" title="Por favor, ingresa solo números">
+                                <input type="date" class="input_form_pasos_modal" id="fecha" placeholder="FECHA">
+                                <input type="text" class="input_form_pasos_modal" id="premio" placeholder="PREMIO">
+                                ACTIVO: <select name="rifa_activa" id="rifa_activa" class="input_form_pasos_modal">
+                                    <option value="1">SI</option>
+                                    <option value="0">NO</option>
+                                </select>
+                                <div class="buttons">
+                                    <button type="button" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>Success 🎉</h2>
+                                <p>Your information has been submitted successfully!</p>
+                                <div class="buttons">
+                                    <button type="button" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="finish_form_pasos_modal_btn" class="button_form_pasos_modal">Finish</button>
+                                    <!--<button type="submit" id="finish_form_pasos_modal_btn" class="button_form_pasos_modal">Finish</button>-->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div id="formularioMultiplesPasosModal" class="formModal hidden">
+                <div class="modal-formularioMultiplesPasos-content">
+                    <span id="closeModalBtn" class="close-btn">&times;</span>
+                    <!-- Formulario multipaso -->
+                    <div class="container_indicador_pasos">
+                        <div class="step-progress">
+                            <div class="step active" data-title="Rifa Info">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Sub Premios">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Pre Sorteos">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Pronto Pago">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Bono">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Bono Especial">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Bono Envio">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Hora Pago">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Tmp WhatsApp">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Success">
+                                <div class="circle">✓</div>
+                            </div>
+                        </div>
+            
+                        <form id="multiStepForm">
+                            <div class="form-step active">
+                                <h2>Informacion de la Rifa</h2>
+                                <input type="number" class="input_form_pasos_modal" id="edicion" min="1" placeholder="NUMERO DE EDICION">
+                                <input type="text" class="input_form_pasos_modal" id="emisiones" pattern="\d{6}" maxlength="6" inputmode="numeric" placeholder="NÚMERO DE EMISIONES" title="Por favor, ingresa solo números">
+                                <input type="text" class="input_form_pasos_modal" id="oportunidades" pattern="\d{6}" maxlength="6" inputmode="numeric" placeholder="NÚMERO DE OPORTUNIDADES" title="Por favor, ingresa solo números">
+                                <input type="text" class="input_form_pasos_modal" id="cantidad_boletos" pattern="\d{6}" maxlength="6" inputmode="numeric" placeholder="CANTIDAD DE BOLETOS" title="Por favor, ingresa solo números">
+                                <input type="date" class="input_form_pasos_modal" id="fecha" placeholder="FECHA">
+                                <input type="text" class="input_form_pasos_modal" id="premio" placeholder="PREMIO">
+                                ACTIVO: <select name="rifa_activa" id="rifa_activa" class="input_form_pasos_modal">
+                                    <option value="1">SI</option>
+                                    <option value="0">NO</option>
+                                </select>
+                                <!--<div class="buttons">
+                                        <button type="button" class="next">Next</button>
+                                    </div>-->
+                                <div class="buttons only-next">
+                                    <button type="button" class="button_form_pasos_modal next">Next</button>
+                                </div>
+            
+                            </div>
+                            <!--
+                            <div class="form-step">
+                                <h2>¿Se premiara al segundo, tercero, cuarto o quinto lugar?</h2>
+                                <select name="premios_por_lugar" id="premios_por_lugar" class="premios_por_lugar_modal_class">
+                                    <option value="0">NO</option>
+                                    <option value="1">SI</option>
+                                </select>
+                                <div class="buttons">
+                                    <button type="button" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            -->
+                            <div class="form-step">
+                                <h2>Premios al 2do, 3ero, 4to y 5to lugar</h2>
+                                <label for="segundo_label">Segundo Lugar:</label>
+                                <input type="text" class="input_form_pasos_modal" id="premio_2" placeholder="Ejemplo: IPHONE 16">
+                                <label for="tercero_label">Tercer Lugar:</label>
+                                <input type="text" class="input_form_pasos_modal" id="premio_3" placeholder="Ejemplo: SAMSUNG S25">
+                                <label for="cuarto_label">Cuarto Lugar:</label>
+                                <input type="text" class="input_form_pasos_modal" id="premio_4" placeholder="Ejemplo: IPAD">
+                                <label for="quinto_label">Quinto Lugar:</label>
+                                <input type="text" class="input_form_pasos_modal" id="premio_5" placeholder="Ejemplo: $10,000">
+                                <!--
+                                <div class="row">
+                                    <input type="text" class="input_form_pasos_modal" placeholder="City" required />
+                                    <input type="text" class="input_form_pasos_modal" placeholder="Zip Code" required />
+                                </div>
+                                -->
+                                <div class="buttons">
+                                    <button type="button" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>Pre Sorteo</h2>
+                                <label for="segundo_label">Fecha:</label>
+                                <input type="date" class="input_form_pasos_modal" id="fecha_preSorteo">
+                                <label for="segundo_label">Descripcion:</label>
+                                
+                                <!--
+                                <textarea name="info_preSorteo" id="info_preSorteo" class="input_form_pasos_modal textarea_panelSuperAdmin" 
+                                placeholder="Ejemplo 1: 
+12 LUGARES DE $5,000 CADA UNO 
+(PARTICIPAN TODOS LOS QUE TENGAN 
+BOLETOS COMPRADOS DE ESTA EDICION) 
+(NO ACUMULABLE). 
+
+Ejemplo:
+$100,000 MXN en 4 premios:
+
+1.- $25,000 MXN
+2.- $25,000 MXN
+3.- $25,000 MXN
+4.- $25,000 MXN"></textarea>-->
+                                <div class="buttons">
+                                    <button type="button" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>Payment Information</h2>
+                                <input type="text" class="input_form_pasos_modal" placeholder="Card Number" required />
+                                <input type="text" class="input_form_pasos_modal" placeholder="Cardholder Name" required />
+                                <div class="buttons">
+                                    <button type="button" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>Success 🎉</h2>
+                                <p>Your information has been submitted successfully!</p>
+                                <div class="buttons">
+                                    <button type="button" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="finish_form_pasos_modal_btn" class="button_form_pasos_modal">Finish</button>
+                                    <!--<button type="submit" id="finish_form_pasos_modal_btn" class="button_form_pasos_modal">Finish</button>-->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div id="info-modal-crearRifa-panel" class="modal-panel">
+                <div id="modal-crearRifa-content-panel" class="modal-content-panel">
+                    <span class="close-btn" id="close-person-modal">&times;</span>
+                    <h2>LLENA TUS DATOS Y DA CLICK EN APARTAR</h2>
+                    <div id="catidad_boletos_seleccionados_modal_person"></div>
+                    <div id="conflicto_al_guardar_modal_person"></div>
+                    <form action="#" id="form_personModal" class="form_personModal">
+                        <input type="number" class="input_personModal" id="edicion" min="1" placeholder="NUMERO DE EDICION">
+                        <input type="text" class="input_personModal" id="emisiones" pattern="\d{6}" maxlength="6" inputmode="numeric" placeholder="NÚMERO DE EMISIONES" title="Por favor, ingresa solo números">
+                        <input type="text" class="input_personModal" id="premio" placeholder="PREMIO">
+                        <input type="text" class="input_personModal" id="descripcion" placeholder="DESCRIPCION">
+                        <input type="text" class="input_personModal" id="fecha" placeholder="FECHA">
+                        ACTIVO: <select name="rifa_activa" id="rifa_activa" class="rifa_activa_class">
+                            <option value="1">SI</option>
+                            <option value="0">NO</option>
+                        </select>
+                        <div id="load_2" class="load_2" style="display: none;"><img src="/img/loading.gif" alt="GIF" style="width: 60px; height: 60px;"></div>
+                        <div id="reserve-tickets-modalPerson" class="reserve-tickets-modalPerson">
+                            <button id="crearRifa_modal_btn">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            -->
+
+
+
+            <!-- Modal - Editar Rifa-->
+            <div id="modal_panel_editar_rifa" class="modal-panel">
+                <div id="modal_content_panel_editarRifa" class="modal-content-panel">
+                    <div class="modal-header-panel">
+                        <!-- Aquí se pone el título para el modal -->
+                        <span class="close-modal-panel-class" id="close_modal_panel_editar_rifa">&times;</span>
+                    </div>
+            
+                    <!-- CONTROLES DE EDICIÓN --
+                    <div id="controls_editar" style="margin-bottom: 12px; display: flex; gap: 20px; align-items: center;">
+                        <!-- Color de texto --
+                        <div>
+                            <label for="color_picker_editar">Color Texto:</label>
+                            <input type="color" id="color_picker_editar" value="#000000">
+                        </div>
+            
+                        <!-- Color de fondo (highlight) --
+                        <div>
+                            <label for="bgcolor_picker_editar">Color Fondo:</label>
+                            <input type="color" id="bgcolor_picker_editar" value="#ffffff">
+                        </div>
+            
+                        <!-- Tamaño de fuente --
+                        <div>
+                            <label for="font_size_picker_editar">Tamaño Fuente:</label>
+                            <select id="font_size_picker_editar">
+                                <option value="">-- Selecciona --</option>
+                                <!-- Los valores 1 a 7 corresponden a tamaños predefinidos de execCommand --
+                                <option value="1">8px</option>
+                                <option value="2">10px</option>
+                                <option value="3">12px</option>
+                                <option value="4">16px</option>
+                                <option value="5">20px</option>
+                                <option value="6">24px</option>
+                                <option value="7">32px</option>
+                            </select>
+                        </div>
+                    </div>
+                    -->
+            
+                    <!-- Iframe editable -->
+                    <iframe id="vista_previa_editar" src="http://localhost:3000/lista-boletos-plantilla-editable-iframe"
+                        style="width:100%; height:600px; border: 1px solid #ccc;"></iframe>
+            
+                    <br>
+                    <button type="button" id="gurdar_cambios_editar_rifa" class="btn_editar_rifa">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <!-- Modal - Personalizado-->
+            <div id="info-modal-personalizado-panel" class="modal-panel">
+                <div class="modal-content-panel">
+                    <div class="modal-header-panel"> <!-- Aqui se pone el titulo para el modal--> <span class="close-modal-panel-class" id="close-modal-personalizado-panel">&times;</span></div>
+                    <div class="modal-body-panel" id="modal-personalizado-body-panel">
+                        <!-- Aquí se cargará la información del boleto -->
+                    </div>
+                    <!--
+                    <div class="modal-footer">
+                    </div>
+                    -->
+                </div>
+            </div>
+
+
+            <%- include('partials/footer_panel') %>
+    
+        </div>
+        
+
+        <script src="/config.js"></script>
+        <script src="/js/panel_super_admin.js"></script>
+        <script src="/js/navbar_panel_EJS.js"></script>
+        
+        
+    </body>
+</html>

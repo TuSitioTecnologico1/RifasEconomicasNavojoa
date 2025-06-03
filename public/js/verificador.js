@@ -346,6 +346,7 @@ btn_consultar.addEventListener("click", () => {
             } else {
                 // Muestra el indicador de carga
                 loadingIndicator.style.display = "block";
+                document.getElementById("loader_page_complete").style.setProperty("display", "flex", "important");
 
                 setTimeout(() => {
                     if (arr_numeros_apartados_verificados.length === 0) {
@@ -356,6 +357,7 @@ btn_consultar.addEventListener("click", () => {
 
                     // Oculta el indicador de carga después de procesar
                     loadingIndicator.style.display = "none";
+                    document.getElementById("loader_page_complete").style.setProperty("display", "none", "important");
                 }, 500); // Simula un pequeño retraso (500 ms)
             }
         } else {

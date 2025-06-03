@@ -6,10 +6,10 @@ const db = require('../db'); // Suponiendo que la base de datos está configurad
 const { getGeolocation } = require('../apis/geolocationApi');  // Importa las funciones de geolocationApi.js
 //const { catchErrors } = require('../apis/erroresApi');  // Importa las funciones de userApi.js
 const { getStatesBD, getStatesARRAY } = require('../apis/statesApi');  // Importa las funciones de stateApi.js
-const { saveUserInfo, savePurchasedTicketsUser } = require('../apis/userApi');  // Importa las funciones de userApi.js
+const { saveUserInfo, savePurchasedTicketsUser, verifyPhoneUserInfo, chatbotInfo } = require('../apis/userApi');  // Importa las funciones de userApi.js
 const { getNumbersBD, getNumbersPagination, changeStatusNumber, getNumersRandom, 
         searchNumber, changeStatusMultipleNumbers, getReservedNumbersBD, searchReservedTicket, 
-        paidReservedNumbersBD, deletePaidReservedNumbersBD, deleteReservedNumbersBD } = require('../apis/numbersApi');  // Importa las funciones de numerosApi.js
+        paidReservedNumbersBD, deletePaidReservedNumbersBD, deleteReservedNumbersBD, countNumbersBD } = require('../apis/numbersApi');  // Importa las funciones de numerosApi.js
 
 
 
@@ -56,6 +56,9 @@ router.post('/numeros/eliminar_pago_numeros_apartados', deletePaidReservedNumber
 // Ruta para eliminar numero(s) apartado(s)
 router.post('/numeros/eliminar_numeros_apartados', deleteReservedNumbersBD);  // Llamará a la API para eliminar pago numero(s) apartado(s)
 
+// Ruta para obtener los estados desde la base de datos
+router.get('/obtener_conteo_numeros', countNumbersBD);  // Llamará a la API para obtener estados de la base de datos
+
 
 
 // Ruta para obtener los estados desde la base de datos
@@ -71,6 +74,14 @@ router.post('/submit', saveUserInfo);  // Llamará a la API para recibir y guard
 
 // Ruta para recibir la info del usuario y los boletos que adquirio para guardarlos en la BD
 router.post('/adquirir_boleto', savePurchasedTicketsUser);  // Llamará a la API para recibir la info del usuario y los boletos que adquirio para guardarlos en la BD
+
+// Ruta para recibir y consultar la info del formulario en la BD
+router.post('/verificar_telefono_usuario', verifyPhoneUserInfo);  // Llamará a la API para recibir y consultar la info del formulario en la BD
+
+
+
+// Ruta para recibir y mandar informacion al chatbot
+router.post('/chatbot', chatbotInfo);
 
 
 

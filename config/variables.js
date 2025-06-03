@@ -1,6 +1,7 @@
 
 const local_url = 'http://localhost:3000';
 const online_url = 'https://rifaseconomicasnavojoa.site';
+const online_test_url= 'https://78f4-38-65-156-128.ngrok-free.app';
 const server_url = 'http://localhost:3000';
 const variables = {
     message: '0',

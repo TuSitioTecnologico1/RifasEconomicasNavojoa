@@ -7,6 +7,7 @@ const API_OBTENER_NUMEROS_APARTADOS_URL = config_API.OBTENER_NUMEROS_APARTADOS_U
 const API_PAGAR_NUMEROS_APARTADOS_URL = config_API.PAGAR_NUMEROS_APARTADOS_URL;
 const API_ELIMINAR_PAGO_NUMEROS_APARTADOS_URL = config_API.ELIMINAR_PAGO_NUMEROS_APARTADOS_URL;
 const API_ELIMINAR_NUMEROS_APARTADOS_URL = config_API.ELIMINAR_NUMEROS_APARTADOS_URL;
+const API_OBTENER_CONTEO_NUMEROS_URL = config_API.OBTENER_CONTEO_NUMEROS_URL;
 
 
 
@@ -242,8 +243,8 @@ async function get_reserved_numbers() {
         arr_numeros_apartados = data;
         //arr_numeros_apartados = data.filter(item => item.visible === 1); // Filtrar solo los visibles
 
-        console.log("arr_numeros_apartados:");
-        console.log(arr_numeros_apartados);
+        //console.log("arr_numeros_apartados:");
+        //console.log(arr_numeros_apartados);
         
         return arr_numeros_apartados;
     } catch (error) {
@@ -284,9 +285,21 @@ function generateTable(data) {
     const thead = document.createElement("thead");
     thead.id = "thead-verificador";
     thead.classList.add("theadClass_verificador");
+    /*
     thead.innerHTML = `
         <tr>
             <th><input type="checkbox" class="row-checkbox-panel" disabled style="cursor: pointer;"></th>
+            <th>Boleto</th>
+            <th>Pagado</th>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Fecha y Hora</th>
+        </tr>
+    `;
+    */
+    thead.innerHTML = `
+        <tr>
+            <th></th>
             <th>Boleto</th>
             <th>Pagado</th>
             <th>Nombre</th>
@@ -434,6 +447,48 @@ function getSelectedData(data) {
 
 
 
+// Función para contar los checkboxes seleccionados y manejar el estado de los botones
+function estadoBotones() {
+    const selectedCheckboxes = document.querySelectorAll(".row-checkbox-panel:checked"); // Checkboxes seleccionados
+    const selectedCount = selectedCheckboxes.length; // Contar los checkboxes seleccionados
+
+    // Botones a controlar
+    const btnDetalles = document.getElementById("btn_detalles_panel");
+    const btnPagado = document.getElementById("btn_pagado_panel");
+    const btnEliminarPago = document.getElementById("btn_eliminarPago_panel");
+    const btnEliminarApartado = document.getElementById("btn_eliminarApartado_panel");
+
+    btnEliminarApartado.disabled = selectedCount === 0;
+
+    // Control del botón "Detalles" (deshabilitar si hay más de 1 checkbox seleccionado o si no hay ningun checkbox seleccionado)
+    btnDetalles.disabled = selectedCount > 1 || selectedCount === 0;
+
+    // Variables para determinar si los botones "Pagado" y "Eliminar Pago" deben estar habilitados o deshabilitados
+    let hasPaid = false; // Indica si hay filas con "Pagado = SI"
+    let hasUnpaid = false; // Indica si hay filas con "Pagado = NO"
+
+    // Revisar las celdas "Pagado" de las filas seleccionadas
+    selectedCheckboxes.forEach((checkbox) => {
+        const row = checkbox.closest("tr"); // Obtener la fila del checkbox
+        const pagadoCell = row.querySelector("td:nth-child(3)"); // Celda "Pagado"
+
+        if (pagadoCell.textContent.trim() === "SI") {
+            hasPaid = true; // Hay una fila con "Pagado = SI"
+        } else if (pagadoCell.textContent.trim() === "NO") {
+            hasUnpaid = true; // Hay una fila con "Pagado = NO"
+        }
+    });
+
+    // Si hay una mezcla de "SI" y "NO", deshabilitar ambos botones
+    const hasMixedStates = hasPaid && hasUnpaid;
+
+    // Actualizar el estado de los botones "Pagado" y "Eliminar Pago"
+    btnPagado.disabled = hasMixedStates || hasPaid || selectedCount === 0; // Deshabilitar si hay mezcla, si todos son "SI" o no hay selección
+    btnEliminarPago.disabled = hasMixedStates || hasUnpaid || selectedCount === 0; // Deshabilitar si hay mezcla, si todos son "NO" o no hay selección
+}
+
+
+
 
 
 // Evento del botón para mostrar datos seleccionados
@@ -492,6 +547,7 @@ document.getElementById("btn_pagado_panel").addEventListener("click", () => {
 
 // Funcion para el botón "Pagado"
 async function pagarBoletos (data_pagados) {
+    console.log("-----> async function pagarBoletos (data_pagados) <-----");
 
     // Obtener todos los checkboxes seleccionados
     const selectedCheckboxes_ = document.querySelectorAll(".row-checkbox-panel:checked");
@@ -552,11 +608,10 @@ async function pagarBoletos (data_pagados) {
 
         //if (arr_boletos_ya_pagados.length == 0) {
         if(true) {
-            //console.log("arr_pago_boletos_ID:");
-            //console.log(arr_pago_boletos_ID);
-
-            //console.log("arr_pago_boletos_NUMERO:");
-            //console.log(arr_pago_boletos_NUMERO);
+            /*console.log("arr_pago_boletos_ID:");
+            console.log(arr_pago_boletos_ID);
+            console.log("arr_pago_boletos_NUMERO:");
+            console.log(arr_pago_boletos_NUMERO);*/
 
             const response = await fetch(API_PAGAR_NUMEROS_APARTADOS_URL, {
                 method: "POST",
@@ -591,12 +646,20 @@ async function pagarBoletos (data_pagados) {
                     // Encontrar la celda de la columna "Pagado"
                     const pagadoCell = row.querySelector("td:nth-child(3)");
 
-                    // Cambiar el texto a "SI"
-                    pagadoCell.textContent = "SI";
+                    if (pagadoCell) {
+                        // Cambiar el texto a "SI"
+                        pagadoCell.textContent = "SI";
 
-                    // Cambiar la clase para reflejar el cambio visualmente
-                    pagadoCell.className = "td_class_panel td_status_pagadoClass_verificador";
+                        // Cambiar la clase para reflejar el cambio visualmente
+                        pagadoCell.className = "td_class_panel td_status_pagadoClass_verificador";
+                    }
+
+                    // Deseleccionar el checkbox
+                    checkbox.checked = false;
                 });
+                estadoBotones(); // Actualiza el estado de los botones de accion
+                get_reserved_numbers(); // Actualiza el array de numeros apartados llamado "arr_numeros_apartados"
+                actualizar_conteo_boletos(); // Actualiza el conteo de los numeros Apartados, Pagados y Libres
             }
             if (!response.ok) {
                 console.log(response);
@@ -625,6 +688,7 @@ document.getElementById("btn_eliminarPago_panel").addEventListener("click", () =
 
 // Funcion para el botón "Eliminar Pago"
 async function eliminarPagoBoletos (data_eliminarPago) {
+    console.log("-----> async function eliminarPagoBoletos (data_eliminarPago) <-----");
 
     // Obtener todos los checkboxes seleccionados
     const selectedCheckboxes_ = document.querySelectorAll(".row-checkbox-panel:checked");
@@ -725,12 +789,21 @@ async function eliminarPagoBoletos (data_eliminarPago) {
                     // Encontrar la celda de la columna "Pagado"
                     const pagadoCell = row.querySelector("td:nth-child(3)");
 
-                    // Cambiar el texto a "NO"
-                    pagadoCell.textContent = "NO";
+                    
+                    if (pagadoCell) {
+                        // Cambiar el texto a "NO"
+                        pagadoCell.textContent = "NO";
 
-                    // Cambiar la clase para reflejar el cambio visualmente
-                    pagadoCell.className = "td_class_panel td_status_noPagadoClass_verificador";
+                        // Cambiar la clase para reflejar el cambio visualmente
+                        pagadoCell.className = "td_class_panel td_status_noPagadoClass_verificador";
+                    }
+
+                    // Deseleccionar el checkbox
+                    checkbox.checked = false;
                 });
+                estadoBotones(); // Actualiza el estado de los botones de accion
+                get_reserved_numbers(); // Actualiza el array de numeros apartados llamado "arr_numeros_apartados"
+                actualizar_conteo_boletos(); // Actualiza el conteo de los numeros Apartados, Pagados y Libres
             }
             if (!response.ok) {
                 console.log(response);
@@ -754,8 +827,9 @@ document.getElementById("btn_eliminarApartado_panel").addEventListener("click", 
     eliminarApartadoBoletos(selectedData);
 });
 
-// Funcion para el botón "Eliminar Pago"
+// Funcion para el botón "Eliminar Apartado"
 async function eliminarApartadoBoletos (data_eliminarApartado) {
+    console.log("-----> async function eliminarApartadoBoletos (data_eliminarApartado) <-----");
     //console.log("Datos seleccionados:");
     //console.log(data_eliminarApartado);
 
@@ -774,6 +848,48 @@ async function eliminarApartadoBoletos (data_eliminarApartado) {
         //console.log("arr_eliminar_apartado_boletos_NUMERO:");
         //console.log(arr_eliminar_apartado_boletos_NUMERO);
 
+        
+        // Obtener todos los checkboxes seleccionados
+        const selectedCheckboxes_ = document.querySelectorAll(".row-checkbox-panel:checked");
+
+        let arr_boletos_pagados = [];
+        let arr_boletos_no_pagados = [];
+
+        // Recorrer los checkboxes seleccionados
+        selectedCheckboxes_.forEach((checkbox) => {
+            // Encontrar la fila correspondiente al checkbox
+            const row = checkbox.closest("tr");
+
+            // Encontrar la celda de la columna "Boleto" que esta en la columna 2
+            const boletoCell = row.querySelector("td:nth-child(2)");
+
+            // Obtener el texto actual de la celda "Pagado"
+            const textoActual_boletoCell = boletoCell.textContent.trim();
+            //console.log("textoActual_boletoCell:");
+            //console.log(textoActual_boletoCell);
+
+            // Encontrar la celda de la columna "Pagado" que esta en la columna 3
+            const noPagadoCell = row.querySelector("td:nth-child(3)");
+
+            // Obtener el texto actual de la celda "Pagado"
+            const textoActual_PagadoCell = noPagadoCell.textContent.trim();
+            //console.log("textoActual_PagadoCell:");
+            //console.log(textoActual_PagadoCell);
+
+            if (textoActual_PagadoCell == "SI") {
+                arr_boletos_pagados.push(textoActual_boletoCell);
+            }
+            
+            if (textoActual_PagadoCell == "NO") {
+                arr_boletos_no_pagados.push(textoActual_boletoCell);
+            }
+            
+
+            // Mostrar el texto en la consola (o usarlo según tu necesidad)
+            //console.log(`Texto actual de la celda "Pagado": ${textoActual_noPagadoCell}`);
+        });
+
+
         // Se hace un peticion "POST" usando "fetch" para hacer eliminar el apartado de la BD
         const response = await fetch(API_ELIMINAR_NUMEROS_APARTADOS_URL, {
             method: "POST",
@@ -781,11 +897,19 @@ async function eliminarApartadoBoletos (data_eliminarApartado) {
             body: JSON.stringify({
                 received_arr_eliminar_boletos_ID: arr_eliminar_apartado_boletos_ID,
                 received_arr_eliminar_boletos_NUMERO: arr_eliminar_apartado_boletos_NUMERO,
+                arr_boletos_pagados,
+                arr_boletos_no_pagados,
             }),
         });
 
         if (response.ok) {
             openModal_personalizado("<p>Se ha eliminado el apartado de los boletos seleccionados.</p>");
+            console.log("response:");
+            console.log(response);
+
+            const data = await response.json();
+            console.log("data:");
+            console.log(data);
 
             // Eliminar dinamicamente la el boleto de la tabla HTML
             arr_eliminar_apartado_boletos_NUMERO.forEach(boleto => {
@@ -802,6 +926,10 @@ async function eliminarApartadoBoletos (data_eliminarApartado) {
             arr_numeros_apartados = arr_numeros_apartados.filter(boleto => !arr_eliminar_apartado_boletos_ID.includes(boleto.id_boleto));
 
             console.log("Array actualizado después de eliminar los boletos selecionados:", arr_numeros_apartados);
+
+            estadoBotones(); // Actualiza el estado de los botones de accion
+            get_reserved_numbers(); // Actualiza el array de numeros apartados llamado "arr_numeros_apartados"
+            actualizar_conteo_boletos(); // Actualiza el conteo de los numeros Apartados, Pagados y Libres
         }
         if (!response.ok) {
             openModal_personalizado("<p>Oopss! Ocurrio un error al eliminar el apartado de los boletos seleccionados.</p>");
@@ -863,3 +991,112 @@ document.getElementById("close-modal-panel").addEventListener("click", closeModa
 document.getElementById("close-modal-personalizado-panel").addEventListener("click", closeModal_personalizado);
 
 
+
+
+
+function verSeleccionados() {
+  // Selecciona todos los checkboxes con name="opcion" que están marcados
+  const seleccionados = document.querySelectorAll('input[name="opcion"]:checked');
+  
+  // Extrae los valores en un array
+  const valores = Array.from(seleccionados).map(cb => cb.value);
+
+  // Muestra los valores marcados
+  //console.log("Checkbox marcados:", valores);
+}
+
+
+
+
+
+let conteo_numeros = {};
+
+// Obtener el conteo de boletos
+async function get_conteo_numeros() {
+    console.log("-----> async function get_conteo_numeros() <-----");
+    try {
+        const response = await fetch(API_OBTENER_CONTEO_NUMEROS_URL);
+        const data = await response.json();
+
+        if (data.status === "Success") {
+            conteo_numeros = {
+                reservados: data.reservados,
+                pagados: data.pagados,
+                libres: data.libres,
+                id_sorteo: data.id_sorteo,
+                fecha_creacion: data.fecha_creacion,
+                fecha_actualizacion: data.fecha_actualizacion
+            };
+
+            //console.log("conteo_numeros:");
+            //console.log(conteo_numeros);
+
+            return conteo_numeros;
+        } else {
+            console.warn("Error desde API:", data.message);
+            return {};
+        }
+    } catch (error) {
+        const message_error = String(error).split(":")[1]?.trim() || "Error desconocido";
+        console.log({
+            function: "async function get_conteo_numeros()",
+            message_error
+        });
+        return {};
+    }
+}
+
+
+
+
+
+
+// Actulizar conteo de boletos Reservados, Pagados y Libres
+async function actualizar_conteo_boletos() {
+    console.log("-----> async function actualizar_conteo_boletos() <-----");
+    const conteo = await get_conteo_numeros();
+
+    /*console.log("Reservados:", conteo.reservados);
+    console.log("Pagados:", conteo.pagados);
+    console.log("Libres:", conteo.libres);
+    console.log("ID Sorteo:", conteo.id_sorteo);
+    console.log("Fecha de creación:", conteo.fecha_creacion);
+    console.log("Fecha de actualización:", conteo.fecha_actualizacion);*/
+
+    let contador_numeros_pagados = 0;
+    let contador_numeros_noPagados = 0;
+    let contador_total_numeros_apartados = 0;
+    //console.log("arr_numeros_apartados.lenght: "+ arr_numeros_apartados.length);
+    arr_numeros_apartados.forEach(element_numero_apartado => {
+        let id_boleto_apartado = element_numero_apartado.id_boleto;
+        let boleto_apartado = element_numero_apartado.boleto;
+        let id_usuario_apartado = element_numero_apartado.id_usuario;
+        let usuario_apartado = element_numero_apartado.usuario;
+        let telefono_apartado = element_numero_apartado.telefono;
+        let estado_apartado = element_numero_apartado.estado;
+        let pagado_apartado = element_numero_apartado.pagado;
+        let fecha_creacion_apartado = element_numero_apartado.fecha_creacion;
+        let fecha_modificacion_apartado = element_numero_apartado.fecha_modificacion;
+        //console.log("pagado_apartado: " + pagado_apartado);
+        if (pagado_apartado == "1") {
+            contador_numeros_pagados += 1;
+        }else{
+            contador_numeros_noPagados += 1;
+        }
+        contador_total_numeros_apartados += 1;
+    });
+
+    //console.log("contador_numeros_pagados: " + contador_numeros_pagados);
+    //console.log("contador_numeros_noPagados: " + contador_numeros_noPagados);
+    //console.log("contador_total_numeros_apartados: " + contador_total_numeros_apartados);
+
+    document.getElementById("reservados_id_nav").innerText = conteo.reservados;
+    document.getElementById("pagados_id_nav").innerText = conteo.pagados;
+    document.getElementById("libres_id_nav").innerText = conteo.libres;
+
+    document.getElementById("reservados_id_sidebar").innerText = conteo.reservados;
+    document.getElementById("pagados_id_sidebar").innerText = conteo.pagados;
+    document.getElementById("libres_id_sidebar").innerText = conteo.libres;
+}
+
+actualizar_conteo_boletos();

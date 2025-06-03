@@ -182,12 +182,24 @@
                 class="online_url_class"
                 required
                 readonly><br><br>
+            
+            <label for="online_test_url">Online TEST URL:</label><br>
+            <input 
+                type="url" 
+                id="online_test_url" 
+                name="online_test_url" 
+                value="<%= config.online_test_url %>" 
+                placeholder="https://example.com" 
+                class="online_test_url_class"
+                required
+                readonly><br><br>
 
             <label for="server_url">Server URL:</label><br>
             <select id="server_url" name="server_url" onchange="updateApiUrls()">
                 <option value=""> Selecciona el server . . . </option>
                 <option value="<%= config.local_url %>"> Local </option>
                 <option value="<%= config.online_url %>"> Online </option>
+                <option value="<%= config.online_test_url %>"> Online TEST </option>
                 <!--<option value="<%= config.local_url %>" <%= config.server_url === config.local_url ? 'selected' : '' %>>Local</option>-->
                 <!--<option value="<%= config.online_url %>" <%= config.server_url === config.online_url ? 'selected' : '' %>>Online</option>-->
             </select><br><br>
@@ -277,10 +289,14 @@
                 //console.log("input: ");
                 //console.log(input);
                 const input_data = input.value.toLowerCase(); // Convertir a minúsculas si no quieres que sea sensible a mayúsculas
+                const input_data_split = input_data.split("/");
+                //console.log("input_data_split:");
+                //console.log(input_data_split);
                 const endpoint = input_data.split('/').slice(-1)[0]; // Extraer el endpoint
                 //console.log("endpoint: ");
                 //console.log(endpoint);
-                if(endpoint == "cambiar_estado_numeros" && input_data != "#"){
+                //if(endpoint == "cambiar_estado_numeros" && input_data != "#"){
+                if(input_data_split.length == 6){
                     input.value = `${serverUrl}/api/numeros/${endpoint}`; // Actualizar la URL con el servidor seleccionado
                 }else{
                     input.value = `${serverUrl}/api/${endpoint}`; // Actualizar la URL con el servidor seleccionado
@@ -291,10 +307,13 @@
                 const input_data = input.value.toLowerCase(); // Convertir a minúsculas si no quieres que sea sensible a mayúsculas
                 const input_localURL = document.getElementById("local_url").value.toLowerCase(); // Texto que deseas buscar
                 const input_onlineURL = document.getElementById("online_url").value.toLowerCase(); // Texto que deseas buscar
+                const input_onlineTestURL = document.getElementById("online_test_url").value.toLowerCase(); // Texto que deseas buscar
                 
-                if (input_data.includes(input_localURL) || input_data.includes(input_onlineURL)) {
+                if (input_data.includes(input_localURL) || input_data.includes(input_onlineURL) || input_data.includes(input_onlineTestURL)) {
                     //console.log("El input contiene el texto deseado.");
                     const endpoint_split = input_data.split('/'); // Extraer el endpoint
+                    //console.log("endpoint_split: ");
+                    //console.log(endpoint_split);
                     let endpoint = "";
                     //console.log("endpoint_split.length: "+endpoint_split.length);
                     if(endpoint_split.length == 5){
@@ -302,18 +321,22 @@
                         //console.log("endpoint_split:");
                         //console.log(endpoint_split);
                         endpoint = endpoint_split[3]+"/"+endpoint_split[4];
+                        //console.log("endpoint:");
                         //console.log(endpoint);
                         let input_data_update = input.value = `${serverUrl}/${endpoint}`; // Actualizar la URL con el servidor seleccionado
+                        //console.log("input_data_update:");
                         //console.log(input_data_update);
                     }else{
                         //console.log("else - if(endpoint_split.length == 5){");
                         const endpoint = input.value.split('/').slice(-1)[0]; // Extraer el endpoint
+                        //console.log("endpoint:");
                         //console.log(endpoint);
                         let input_data_update = input.value = `${serverUrl}/${endpoint}`; // Actualizar la URL con el servidor seleccionado
+                        //console.log("input_data_update:");
                         //console.log(input_data_update);
                     }
                 } else {
-                    console.log("El input NO contiene el texto deseado.");
+                    //console.log("El input NO contiene el texto deseado.");
                 }
             });
         }
