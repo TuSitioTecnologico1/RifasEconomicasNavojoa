@@ -1,11 +1,11 @@
 
 const local_url = 'http://localhost:3000';
-const online_url = 'https://rifaseconomicasnavojoa.site';
+const online_url = 'https://rifaseconomicasnavojoa.com';
 const online_test_url = 'https://78f4-38-65-156-128.ngrok-free.app';
 const server_url = 'http://localhost:3000';
 const config = {
     local_url: 'http://localhost:3000',
-    online_url: 'https://rifaseconomicasnavojoa.site',
+    online_url: 'https://rifaseconomicasnavojoa.com',
     online_test_url: 'https://78f4-38-65-156-128.ngrok-free.app',
     server_url: 'http://localhost:3000',
     URL: 'http://localhost:3000/api/numeros',

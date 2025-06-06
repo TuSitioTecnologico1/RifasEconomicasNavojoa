@@ -180,7 +180,7 @@ app.post('/update-config', (req, res) => {
             ADQUIRIR_BOLETO_URL, NUMEROS_PAGINACION_URL, GEOLOCALIZACION_URL,
             CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, BUSCAR_APARTADOS_URL,
             PAGAR_NUMEROS_APARTADOS_URL, ELIMINAR_PAGO_NUMEROS_APARTADOS_URL, ELIMINAR_NUMEROS_APARTADOS_URL,
-            OBTENER_CONTEO_NUMEROS_URL, message, appName, companyName, currentYear, supportEmail, url_inicio, 
+            OBTENER_CONTEO_NUMEROS_URL, VERIFY_PHONE_DATA_URL, CHATBOT_URL, message, appName, companyName, currentYear, supportEmail, url_inicio, 
             url_preguntasFrecuentes, url_contacto, url_metodosDePago, url_verificador, 
             url_facebookPage, url_whatsappPage
         } = req.body;
@@ -194,7 +194,7 @@ app.post('/update-config', (req, res) => {
             "ADQUIRIR_BOLETO_URL", "NUMEROS_PAGINACION_URL", "GEOLOCALIZACION_URL",
             "CAPTURAR_ERRORES_URL", "OBTENER_NUMEROS_APARTADOS_URL", "BUSCAR_APARTADOS_URL",
             "PAGAR_NUMEROS_APARTADOS_URL", "ELIMINAR_PAGO_NUMEROS_APARTADOS_URL", "ELIMINAR_NUMEROS_APARTADOS_URL",
-            "OBTENER_CONTEO_NUMEROS_URL", "message", "appName", "companyName", "currentYear", "supportEmail", "url_inicio", 
+            "OBTENER_CONTEO_NUMEROS_URL", "VERIFY_PHONE_DATA_URL", "CHATBOT_URL", "message", "appName", "companyName", "currentYear", "supportEmail", "url_inicio", 
             "url_preguntasFrecuentes", "url_contacto", "url_metodosDePago", "url_verificador", "url_facebookPage", 
             "url_whatsappPage"
         ];
@@ -232,6 +232,8 @@ const config = {
     ELIMINAR_PAGO_NUMEROS_APARTADOS_URL: '${ELIMINAR_PAGO_NUMEROS_APARTADOS_URL}',
     ELIMINAR_NUMEROS_APARTADOS_URL: '${ELIMINAR_NUMEROS_APARTADOS_URL}',
     OBTENER_CONTEO_NUMEROS_URL: '${OBTENER_CONTEO_NUMEROS_URL}',
+    VERIFY_PHONE_DATA_URL: '${VERIFY_PHONE_DATA_URL}',
+    CHATBOT_URL: '${CHATBOT_URL}',
 };
 if (typeof module !== "undefined" && module.exports) {
     module.exports = config;
@@ -435,7 +437,7 @@ app.use((req, res) => {
 
 // Configuración de HTTPS si es necesario
 if (process.env.HTTPS_ENABLED === '1') {
-    const certPath = '/etc/letsencrypt/live/rifaseconomicasnavojoa.site/';
+    const certPath = '/etc/letsencrypt/live/rifaseconomicasnavojoa.com/';
     if (fs.existsSync(`${certPath}privkey.pem`) && fs.existsSync(`${certPath}fullchain.pem`)) {
         const options = {
             key: fs.readFileSync(`${certPath}privkey.pem`),
