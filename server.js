@@ -22,6 +22,7 @@ dotenv.config();
 // Importar el archivo de rutas
 const apiRoutes = require('./routes/apiRoutes');
 const webRoutes = require('./routes/webRoutes');
+const panelRoutes = require('./routes/panelRoutes');
 
 // Importar la conexión a la base de datos
 const db = require('./db'); // Conexión a la base de datos
@@ -60,21 +61,22 @@ app.use((req, res, next) => {
     next();
 });
 
-
-// Middleware
 // Middleware
 app.use(compression()); // Habilitar compresión
 app.use(express.json()); // Parsear JSON
 app.use(express.urlencoded({ extended: true })); // Parsear datos de formularios
 app.use(cors()); // Habilitar CORS
 
-
 // Usar las rutas API
 app.use('/api', apiRoutes); // Rutas para APIs
 app.use('/', webRoutes); // Rutas para páginas web (index.html u otras)
+app.use('/panel-control-rutas', panelRoutes); // Añadimos el panel para controlar rutas
 
 // Rutas públicas (páginas web estáticas)
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
 
 
 // Ruta para cargar el formulario de configuración
@@ -169,6 +171,9 @@ app.get('/config', (req, res) => {
         });
     }
 });
+
+
+
 
 
 // Ruta para manejar la actualización de la configuración
@@ -376,6 +381,7 @@ if (typeof module !== "undefined" && module.exports) {
 
 
 
+
 app.post('/test-data', (req, res) => {
     console.log('Datos recibidos:', req.body);
     const {
@@ -421,6 +427,7 @@ app.post('/test-data', (req, res) => {
 
     res.json({ message: 'Datos recibidos', data: req.body });
 });
+
 
 
 

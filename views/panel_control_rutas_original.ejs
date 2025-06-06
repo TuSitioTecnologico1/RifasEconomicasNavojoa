@@ -1,0 +1,108 @@
+<!-- views/panel_control_rutas.ejs -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Control de Rutas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #222;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .inactiva {
+            color: red;
+            font-weight: bold;
+        }
+
+        .activa {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Panel de Control de Rutas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Path</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% rutas.forEach(ruta => { %>
+                <tr>
+                    <td><%= ruta.nombre %></td>
+                    <td><%= ruta.path %></td>
+                    <td class="<%= ruta.activa ? 'activa' : 'inactiva' %>">
+                        <%= ruta.activa ? 'Activa' : 'Inactiva' %>
+                    </td>
+                    <td>
+                        <form action="/panel-control-rutas/toggle" method="POST">
+                            <input type="hidden" name="id" value="<%= ruta.id %>">
+                            <button type="submit">
+                                <%= ruta.activa ? 'Desactivar' : 'Activar' %>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

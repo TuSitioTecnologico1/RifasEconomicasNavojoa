@@ -202,6 +202,10 @@ body.dark-mode .chat-messages-class .message {
     /*background-color: #444; /* Color de fondo */
 }
 
+body.dark-mode .tableClass_panel_rutas th {
+    color: white; /* Color del texto */
+    background-color: #444; /* Color de fondo */
+}
 
 
 
@@ -4377,6 +4381,113 @@ textarea {
     ESTILOS PARA EL CHATBOT (Fin)
 --------------------------------------------------------------------------------------------------------------------------------------------------
 */
+
+
+
+
+
+/* Botón estilo "btn-outline-primary" */
+.btn_panel_rutas_class {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 2px solid #007bff; /* Borde azul */
+    padding: 0.375rem 0.75rem; /* Espaciado interno */
+    /*font-size: 1rem; /* Tamaño de la fuente */
+    /*font-size: 15px;*/ 
+    /*line-height: 1.5;*/
+    border-radius: 0.25rem; /* Bordes redondeados */
+    color: #007bff; /* Texto azul */
+    background-color: transparent; /* Fondo transparente */
+    text-decoration: none; /* Sin subrayado */
+    transition: all 0.2s ease-in-out; /* Animación suave */
+    cursor: pointer;
+    /*margin-bottom: 5px;*/
+    width: 150px;
+}
+
+/* Hover: Cambia el fondo y el texto */
+.btn_panel_rutas_class:hover {
+    background-color: #007bff; /* Fondo azul */
+    color: #fff; /* Texto blanco */
+}
+
+/* Activo: Efecto de presionar */
+.btn_panel_rutas_class:active {
+    background-color: #0056b3; /* Fondo más oscuro */
+    border-color: #004085; /* Borde más oscuro */
+    color: #fff; /* Texto blanco */
+    transform: scale(0.98); /* Pequeño efecto de "presionar" */
+}
+
+/* Botón deshabilitado */
+.btn_panel_rutas_class:disabled {
+    background-color: transparent; /* Fondo transparente */
+    color: #6c757d; /* Texto gris */
+    border-color: #6c757d; /* Borde gris */
+    cursor: not-allowed; /* Cursor no permitido */
+    opacity: 0.65; /* Más transparente */
+}
+
+
+
+
+.tableClass_panel_rutas {
+    /*position: fixed;
+    top: 330px;*/
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%; /* Asegura que el contenedor no exceda el ancho de la pantalla */
+    /*border: 1px solid #ddd; /* Borde opcional para resaltar */
+    overflow-x: auto; /* Activa el scroll horizontal */
+    white-space: nowrap; /* Evita el ajuste de líneas dentro de las celdas */
+    padding: 10px; /* Opcional: espacio alrededor de la tabla */
+    box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+}
+
+.tableClass_panel_rutas table {
+    width: 100%; /* Escala la tabla al tamaño del contenedor */
+    border: 1px solid #ccc;
+    border-collapse: collapse; /* Evita bordes dobles */
+    min-width: 1150px; /* Define un ancho mínimo para la tabla */
+}
+
+.tableClass_panel_rutas th,
+.tableClass_panel_rutas td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.tableClass_panel_rutas th {
+    color: #ffffff; /* Color del texto */
+    background-color: #222222; /* Color de fondo */
+}
+
+
+.td_status_disponibleClass_panel {
+    background-color: #28a745; /* Verde para "PAGADO" */
+    color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
+}
+
+.td_status_noDisponibleClass_panel {
+    background-color: #dc3545; /* Rojo para "NO_PAGADO" */
+    color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
+}
+
+.td_class_panel_rutas {
+    font-size: 16px; /* Reducir tamaño de texto */
+}
+
+
+
+
+
 
 
 
