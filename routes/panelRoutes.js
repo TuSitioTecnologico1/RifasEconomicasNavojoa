@@ -32,6 +32,61 @@ router.post('/toggle', async (req, res) => {
     }
 });
 
+
+
+// Ver registros de uso de APIs y bloqueos de rutas
+router.get('/registros', async (req, res) => {
+    try {
+        const { ip, metodo, fecha_inicio, fecha_fin } = req.query;
+
+        let condiciones = [];
+        let valores = [];
+
+        if (ip) {
+            condiciones.push('ip LIKE ?');
+            valores.push(`%${ip}%`);
+        }
+
+        if (metodo) {
+            condiciones.push('metodo LIKE ?');
+            valores.push(`%${metodo}%`);
+        }
+
+        if (fecha_inicio) {
+            condiciones.push('fecha >= ?');
+            valores.push(fecha_inicio + ' 00:00:00');
+        }
+
+        if (fecha_fin) {
+            condiciones.push('fecha <= ?');
+            valores.push(fecha_fin + ' 23:59:59');
+        }
+
+        const whereClause = condiciones.length ? 'WHERE ' + condiciones.join(' AND ') : '';
+
+        const [apis] = await db.query(`SELECT * FROM uso_apis ${whereClause} ORDER BY ultima_llamada DESC LIMIT 100`, valores);
+        const [bloqueos] = await db.query(`SELECT * FROM intentos_bloqueados ${whereClause} ORDER BY fecha DESC LIMIT 100`, valores);
+
+        // Convertir fecha a objeto Date
+        apis.forEach(api => api.ultima_llamada = new Date(api.ultima_llamada));
+        bloqueos.forEach(b => b.fecha = new Date(b.fecha));
+
+        res.render('panel_logs', {
+            apis,
+            bloqueos,
+            ip,
+            metodo,
+            fecha_inicio,
+            fecha_fin
+        });
+    } catch (err) {
+        console.error('Error cargando registros:', err);
+        res.status(500).send('Error al cargar los registros');
+    }
+});
+
+
+
 module.exports = router;
 
 

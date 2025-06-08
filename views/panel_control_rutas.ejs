@@ -86,6 +86,8 @@
                 color: green;
                 font-weight: bold;
             }
+
+            
             
         </style>
     </head>
@@ -138,11 +140,23 @@
 
                 <div id="loading" style="display: none;">Cargando...</div>
                 
+                <div id="filtros-panel-rutas" style="margin-bottom: 15px;">
+                    <input type="text" id="filtroNombre" placeholder="Filtrar por nombre" />
+                    <input type="text" id="filtroPath" placeholder="Filtrar por path" />
+                    <input type="text" id="filtroTipo" placeholder="Filtrar por tipo" />
+                    <select id="filtroEstado">
+                        <option value="">Todos los estados</option>
+                        <option value="Activa">Activa</option>
+                        <option value="Inactiva">Inactiva</option>
+                    </select>
+                </div>
+
                 <table id="table-panel" class="tableClass_panel_rutas">
                     <thead id="thead-verificador" class="theadClass_verificador">
                         <tr>
                             <th>Nombre</th>
                             <th>Path</th>
+                            <th>Tipo</th>
                             <th>Estado</th>
                             <th>Acción</th>
                         </tr>
@@ -155,6 +169,9 @@
                                 </td>
                                 <td id="td_class_panel_rutas">
                                     <%= ruta.path %>
+                                </td>
+                                <td>
+                                    <%= ruta.tipo %>
                                 </td>
                                 <td id="td_class_panel_rutas" class="<%= ruta.activa ? 'activa' : 'inactiva' %>" >
                                     <%= ruta.activa ? 'Activa' : 'Inactiva' %>

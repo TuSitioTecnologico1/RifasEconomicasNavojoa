@@ -4438,15 +4438,18 @@ textarea {
 .tableClass_panel_rutas {
     /*position: fixed;
     top: 330px;*/
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     border-collapse: collapse;
     width: 100%;
     max-width: 100%; /* Asegura que el contenedor no exceda el ancho de la pantalla */
     /*border: 1px solid #ddd; /* Borde opcional para resaltar */
     overflow-x: auto; /* Activa el scroll horizontal */
-    white-space: nowrap; /* Evita el ajuste de líneas dentro de las celdas */
+    /*white-space: nowrap; /* Evita el ajuste de líneas dentro de las celdas */
     padding: 10px; /* Opcional: espacio alrededor de la tabla */
     box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+    max-height: 500px; /* Ajusta según tu necesidad */
+    overflow-y: auto;  /* Scroll vertical si la tabla es muy alta */
+    display: block;    /* Necesario para aplicar scroll */
 }
 
 .tableClass_panel_rutas table {

@@ -18,7 +18,76 @@ const pixelRatio = window.devicePixelRatio; // Escala del dispositivo
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    
+    const inputNombre = document.getElementById("filtroNombre");
+    const inputPath = document.getElementById("filtroPath");
+    const inputTipo = document.getElementById("filtroTipo");
+    const selectEstado = document.getElementById("filtroEstado");
+
+    console.log("inputNombre: ", inputNombre);
+    console.log("inputPath: ", inputPath);
+    console.log("inputTipo: ", inputTipo);
+    console.log("selectEstado: ", selectEstado);
+
+    const filas = document.querySelectorAll("#table-panel tbody tr");
+
+    console.log("filas: ", filas);
+
+    function filtrarTabla() {
+        const nombreVal = inputNombre.value.toLowerCase();
+        const pathVal = inputPath.value.toLowerCase();
+        const tipoVal = inputTipo.value.toLowerCase();
+        const estadoFiltro = selectEstado.value.toLowerCase().trim();
+
+        filas.forEach(fila => {
+            const nombre = fila.children[0].textContent.toLowerCase();
+            const path = fila.children[1].textContent.toLowerCase();
+            const tipo = fila.children[2].textContent.toLowerCase();
+            const estado = fila.children[3].textContent.trim().toLowerCase();
+
+            const coincide = 
+                nombre.includes(nombreVal) &&
+                path.includes(pathVal) &&
+                tipo.includes(tipoVal) &&
+                (estadoFiltro === "" || estado === estadoFiltro);
+
+            fila.style.display = coincide ? "" : "none";
+        });
+    }
+
+
+    /*
+    function filtrarTabla() {
+        const nombreVal = inputNombre.value.toLowerCase();
+        const pathVal = inputPath.value.toLowerCase();
+        const tipoVal = inputTipo.value.toLowerCase();
+        const estadoVal = selectEstado.value;
+
+        console.log("nombreVal: ", nombreVal);
+        console.log("pathVal: ", pathVal);
+        console.log("tipoVal: ", tipoVal);
+        console.log("estadoVal: ", estadoVal);
+
+        filas.forEach(fila => {
+            const nombre = fila.children[0].textContent.toLowerCase();
+            const path = fila.children[1].textContent.toLowerCase();
+            const tipo = fila.children[2].textContent.toLowerCase();
+            const estado = fila.children[3].textContent;
+
+            console.log("estado: ", estado);
+
+            const coincide = nombre.includes(nombreVal) && path.includes(pathVal) && tipo.includes(tipoVal) && (estadoVal === "" || estado === estadoVal);
+
+            console.log("coincide: ", coincide);
+
+            fila.style.display = coincide ? "" : "none";
+        });
+    }
+    */
+
+    inputNombre.addEventListener("input", filtrarTabla);
+    inputPath.addEventListener("input", filtrarTabla);
+    inputTipo.addEventListener("input", filtrarTabla);
+    selectEstado.addEventListener("change", filtrarTabla);
 });
 
 
