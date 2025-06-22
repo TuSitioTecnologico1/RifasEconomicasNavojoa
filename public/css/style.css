@@ -1171,6 +1171,10 @@ button:hover {
     margin-bottom: -10px;
 }
 
+#label_txtPrecioBoletos{
+    color: #7fc241;
+}
+
 
 
 #div_sectionHazclickAbajo {
@@ -4375,12 +4379,202 @@ textarea {
     width: 100%;
 }
 
+.chat-option-btn {
+    margin: 6px 4px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.chat-option-btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+/* Animación de resalto */
+.resaltar-seccion {
+  /*animation: resaltarBrillo 2s ease-out;*/
+  /*animation: resaltarBrillo 2s ease-out 3; /* Se repite 3 veces */
+  /*animation: resaltarBrillo 2s ease-out infinite; /* Se repite indefinidamente; esto hará que la animación "brille" y se desvanezca una y otra vez */
+  animation: resaltarBrillo 1s ease-out infinite alternate; /* Hace que la animación rebote ida y vuelta (hacia adelante y luego al revés) */
+  box-shadow: 0 0 20px rgba(255, 208, 0, 0.8);
+  border: 2px solid gold;
+  z-index: 10;
+  position: relative;
+}
+
+@keyframes resaltarBrillo {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 208, 0, 0);
+    border-color: transparent;
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 208, 0, 1);
+    border-color: gold;
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 208, 0, 0);
+    border-color: transparent;
+  }
+}
+
+/* Mensaje flotante */
+.mensaje-flotante {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #222;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  opacity: 0;
+  animation: aparecerDesaparecer 4s forwards;
+}
+
+@keyframes aparecerDesaparecer {
+  0% { opacity: 0; top: 10px; }
+  10% { opacity: 1; top: 20px; }
+  90% { opacity: 1; }
+  100% { opacity: 0; top: 30px; }
+}
+
+/* Efecto blur en el fondo */
+.blur-fondo {
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Asegura que el contenido visible (main) se mantenga enfocado */
+#main-content {
+    filter: none !important;
+    pointer-events: auto !important;
+    user-select: auto !important;
+    position: relative;
+    z-index: 999;
+}
+
+
+
+
+.mensaje-flotante-personalizado {
+  position: absolute;
+  transform: translateX(-50%);
+  background-color: #222;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  opacity: 0;
+  animation: aparecerDesaparecerElemento 4s forwards;
+}
+
+.mensaje-flotante-personalizado::after {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* Posiciona la flecha debajo del mensaje */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: #222 transparent transparent transparent;
+}
+
+
+@keyframes aparecerDesaparecerElemento {
+  0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
+
+
+
+
+
 
 /*
 --------------------------------------------------------------------------------------------------------------------------------------------------
     ESTILOS PARA EL CHATBOT (Fin)
 --------------------------------------------------------------------------------------------------------------------------------------------------
 */
+
+
+
+
+
+
+
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------
+    ESTILOS PARA EL TOUR (Inicio)
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+.tour-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 9990;
+}
+
+.tour-tooltip {
+  position: absolute;
+  background: #222;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  max-width: 240px;
+  z-index: 9999;
+  box-shadow: 0 0 10px black;
+  transform: translate(-50%, -100%);
+}
+
+.tour-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #222 transparent transparent transparent;
+}
+
+.tour-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------
+    ESTILOS PARA EL TOUR (Fin)
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+
+
+
+
+
+
 
 
 

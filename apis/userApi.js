@@ -318,58 +318,122 @@ const verifyPhoneUserInfo = async (req, res) => {
 
 const chatbotInfo = async (req, res) => {
     try {
-        //console.log("Haz entrado a: /api/chatbot");
         const { userMsg } = req.body;
-        
-        let log_activity = logActivity(req, 'Visita a la API "/api/chatbotInfo" - Mensaje del usuario: '+userMsg+'.'); // Registrar acción
+
+        if (typeof userMsg === 'string') {
+            try {
+                const posibleObjeto = JSON.parse(userMsg);
+                if (typeof posibleObjeto === 'object' && posibleObjeto !== null && !Array.isArray(posibleObjeto)) {
+                    console.log('Era un string, pero contenía un objeto JSON');
+                    // Registrar el mensaje del usuario en los logs
+                    let log_activity = logActivity(req, `Visita a la API "/api/chatbotInfo" - Mensaje del usuario: ${JSON.stringify(userMsg)}.`);
+                    console.log("LOG ACTIVITY:");
+                    console.log(log_activity);
+                }
+            } catch (err) {
+                console.log('Es un string común, no JSON');
+                // Registrar el mensaje del usuario en los logs
+                let log_activity = logActivity(req, `Visita a la API "/api/chatbotInfo" - Mensaje del usuario: ${userMsg}.`);
+                console.log("LOG ACTIVITY:");
+                console.log(log_activity);
+            }
+            
+        } else if (typeof userMsg === 'object') {
+            console.log('Ya es un objeto');
+            // Registrar el mensaje del usuario en los logs
+            let log_activity = logActivity(req, `Visita a la API "/api/chatbotInfo" - Mensaje del usuario: ${JSON.stringify(userMsg)}.`);
+            console.log("LOG ACTIVITY:");
+            console.log(log_activity);
+        }
+
+        // Estructura base de respuesta del chatbot
+        let reply = {
+            type: "text", // Puede ser "text" o "buttons"
+            content: "Lo siento, no entendí eso."
+        };
+
+        // --- RESPUESTAS PERSONALIZADAS ---
+        // ✅ MENSAJE INICIAL (cuando se abre el asistente)
+        if (userMsg == "hola") {
+            reply = {
+                type: "buttons",
+                content: {
+                    text: "¡Hola! 👋 ¿En qué puedo ayudarte hoy?",
+                    action: 0,
+                    options: [
+                        { label: "¿Cómo comprar boletos?", value: "como comprar" },
+                        { label: "Ver precios de los boletos", value: "precio" },
+                        { label: "Metodos de pago", value: "metodos" }
+                    ]
+                }
+            };
+        } else if (userMsg.includes('precio')) {
+            reply = {
+                type: "text",
+                content: "Los precios de los boletos se encuentra justo debajo de la imagen donde se muestra el premio, donde dice 'PRECIO DE LOS BOLETOS'."
+            };
+        } else if (userMsg.includes('compra')) {
+            reply = {
+                type: "text",
+                content: `Tienes 3 formas para comprar boletos:<br><br>
+                        &nbsp;&nbsp;1. Puedes elegir la cantidad de boletos que tú quieras de la cuadrícula que está al final de la página.<br>
+                        &nbsp;&nbsp;2. Puedes buscar el número directamente en el apartado 'Buscar número'.<br>
+                        &nbsp;&nbsp;3. Puedes usar la 'Maquinita de la Suerte' para generar boletos al azar.<br><br>
+                        Cada boleto que selecciones se mostrará abajo, donde dice 'HAZ CLICK ABAJO EN TU NÚMERO DE LA SUERTE'.`
+            };
+        } else if (userMsg.includes('apartar')) {
+            reply = {
+                type: "text",
+                content: "Cuando termines de elegir tus boletos, haz clic en el botón 'APARTAR'. Se mostrará un formulario donde deberás ingresar tu nombre, apellido, teléfono y estado. Luego, se abrirá un chat de WhatsApp con los datos de tu compra, donde deberás enviar tu comprobante de pago."
+            };
+        } else if (userMsg.includes('metodos')) {
+            reply = {
+                type: "text",
+                content: "Para saber como enviar tu pago, puedes ir a la seccion <a href='/metodos-pago' target='_blank'><strong>Métodos de Pago</strong></a>, en la cual estarán las cuentas a donde puedes transferir o depositar el pago de tus boletos."
+            };
+        } else if (userMsg.includes('ayuda')) {
+            reply = {
+                type: "buttons",
+                content: {
+                    text: "Claro, estoy aquí para ayudarte. ¿Qué necesitas?",
+                    action: 1,
+                    options: [
+                        { label: "¿Cómo comprar?", value: "comprar" },
+                        { label: "Ver precios de los boletos", value: "precios" },
+                        { label: "Metodos de pago", value: "metodos" }
+                    ]
+                }
+            };
+        }
+
+        // Registrar la respuesta del chatbot en los logs
+        log_activity = logActivity(req, `Respuesta del CHATBOT: ${JSON.stringify(reply)}.`);
         console.log("LOG ACTIVITY:");
         console.log(log_activity);
-        
-        let reply = "Lo siento, no entendí eso.";
 
-        if (userMsg.includes('hola')) reply = "¡Hola! ¿En qué puedo ayudarte?";
-        else if (userMsg.includes('precio')) reply = "Puedes ver los precios en la sección 'Métodos de pago'.";
-        else if (userMsg.includes('compra')) reply = "Tienes 3 formas para comprar boletos: puedes elegir la cantidad de boletos " +
-                                                     "que tu quieras de la cuadricula que esta al final de la pagina, cada boleto " +
-                                                     "que selecciones se mostraran abajo de donde dice 'HAZ CLICK ABAJO EN TU NUMERO " +
-                                                     "DE LA SUERTE'. Otra manera de hacerlo sería escribiendo el numero que deses apartar " +
-                                                     "en el apartado que dice 'Buscar numero', cuando lo escribas te dirá si el numero esta " +
-                                                     "disponible o no, si esta disponible solo le das al boton 'Apartar' que te aparacera mas " +
-                                                     "abajito una vez escribas el numero que quieras apartar en el recuadro. Otra forma sería " +
-                                                     "dar click en el boton 'Maquinita de la Suerte' donde te aparecera una ventana en la cual  " +
-                                                     "tendras que elegir la cantidad de boletos que deseas apartar para despues darle click " +
-                                                     "donde dice 'HAZ CLICK AQUI PARA GENERAR BOLETOS AL AZAR', despues de un par de segundos " +
-                                                     "te aparecera la cantidad de boletos que seleccionaste para generar al azar, ya solo le " +
-                                                     "en el boton 'Apartar'.";
-        else if (userMsg.includes('como') && userMsg.includes('compra')) reply = "Cuando termines de elegir tus boletos le das click a boton 'APARTAR'," +
-                                                     "despues de eso te aparecera un formulario donde tendras que poner tus datos como el " +
-                                                     "'nombre, apellido, telefono y estado', le das nuevamente en el boton de 'APARTAR' y " +
-                                                     "te rediriga a alguno de nuestros chat de whatsapp donde se mostrara los datos de tu compra;"+
-                                                     "por ultimo tendras que mandar tu pago a una de nuestras cuentas y posteriormente enviarnos " +
-                                                     "tu comprobante de pago a nuestro whatsapp.";
-        else if (userMsg.includes('ayuda')) reply = "Claro, estoy aquí para ayudarte. ¿Qué necesitas?";
-        
-        
-        log_activity = logActivity(req, 'Respuesta del CHATBOT: '+reply+'.');
-        console.log("LOG ACTIVITY:");
-        console.log(log_activity);
-        
-
-        res.status(200).json({
-            status: "success",
-            message: "Chatbot te responde lo siguiente:",
-            chatbotMsg: reply,
-        });
+        // Enviar respuesta JSON al cliente
+        res.status(200).json(reply);
 
     } catch (error) {
         console.error("Error general en la API:", error);
-        const log_error = logError(req, `Error en la API "/api/chatbotInfo": ${error}`); // Registrar acción
+
+        // Registrar error en logs
+        const log_error = logError(req, `Error en la API "/api/chatbotInfo": ${error}`);
         console.log("LOG ERROR:");
         console.log(log_error);
-        res.status(500).json({ error: "Error interno del servidor" });
-        console.log("");
+
+        // Aquí decides si es error de disponibilidad
+        if (error.message && error.message.toLowerCase().includes("disponible") ) {
+            // Error 503: servicio no disponible temporalmente
+            await logError(req, `Error 503 en la API "/api/chatbotInfo": ${error}`);
+            return res.status(503).json({ type: "error", content: "Servicio no disponible, intenta más tarde." });
+        }
+
+        // Enviar respuesta de error
+        res.status(500).json({ type: "error", content: "Error interno del servidor" });
     }
 }
+
 
 
 
