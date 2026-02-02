@@ -1,11 +1,11 @@
 
 const local_url = 'http://localhost:3000';
-const online_url = 'https://rifaseconomicasnavojoa.site';
+const online_url = 'https://rifaseconomicasnavojoa.com';
 const online_test_url = 'https://78f4-38-65-156-128.ngrok-free.app';
 const server_url = 'http://localhost:3000';
 const config = {
     local_url: 'http://localhost:3000',
-    online_url: 'https://rifaseconomicasnavojoa.site',
+    online_url: 'https://rifaseconomicasnavojoa.com',
     online_test_url: 'https://78f4-38-65-156-128.ngrok-free.app',
     server_url: 'http://localhost:3000',
     URL: 'http://localhost:3000/api/numeros',
@@ -26,6 +26,9 @@ const config = {
     OBTENER_CONTEO_NUMEROS_URL: 'http://localhost:3000/api/obtener_conteo_numeros',
     VERIFY_PHONE_DATA_URL: 'http://localhost:3000/api/verificar_telefono_usuario',
     CHATBOT_URL: 'http://localhost:3000/api/chatbot',
+    GET_CONFIG_PAGE_URL: 'http://localhost:3000/api/obtener_configuracionPagina',
+    CREAR_SORTEO_URL: 'http://localhost:3000/api/crear_sorteo',
+    OBTENER_SORTEOS_URL: 'http://localhost:3000/api/obtener_sorteos',
 };
 if (typeof module !== "undefined" && module.exports) {
     module.exports = config;

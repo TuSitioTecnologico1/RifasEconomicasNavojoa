@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crear nueva rifa - Panel</title>
+    <link rel="stylesheet" href="/css/estilos.css"> <!-- Opcional -->
+</head>
+
+<body>
+    <h1>Crear nueva rifa</h1>
+
+    <form method="POST" action="/crear-rifa">
+        <label for="titulo">Título de la rifa:</label><br>
+        <input type="text" id="titulo" name="titulo" required><br><br>
+
+        <label for="descripcion">Descripción:</label><br>
+        <textarea id="descripcion" name="descripcion" required rows="5" cols="40"></textarea><br><br>
+
+        <label for="cantidad">Cantidad de boletos:</label><br>
+        <input type="number" id="cantidad" name="cantidad" required min="1"><br><br>
+
+        <button type="submit">Crear rifa</button>
+    </form>
+
+    <p><a href="/">← Volver al inicio</a></p>
+</body>
+
+</html>

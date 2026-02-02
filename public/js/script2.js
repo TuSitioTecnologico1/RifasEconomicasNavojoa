@@ -1,5 +1,15 @@
 // URLs del servidor backend
-const API_GEOLOCALIZACION_URL = "https://rifaseconomicasnavojoa.site/api/obtener_geolocalizacion";
+// URLs del servidor backend
+//const config_API = config_local;
+const config_API = config;
+
+//const API_URL = config_API.URL;
+//const API_GEOLOCALIZACION_URL = "https://rifaseconomicasnavojoa.site/api/obtener_geolocalizacion";
+const API_GEOLOCALIZACION_URL = config_API.GEOLOCALIZACION_URL;
+const API_GET_CONFIG_PAGE_URL = config_API.GET_CONFIG_PAGE_URL;
+
+console.log("API_GEOLOCALIZACION_URL: ", API_GEOLOCALIZACION_URL);
+console.log("API_GET_CONFIG_PAGE_URL: ", API_GET_CONFIG_PAGE_URL);
 
 
 
@@ -162,12 +172,14 @@ enableLocationButton.addEventListener('click', function() {
 
 
 
+let arr_configPage = [];
 
 document.addEventListener("DOMContentLoaded", function () {
     if (activate_desactivate_function_checkLocation == 1) {
         checkLocationPermissionAndGetData();
     }
     carousel_rifasAbiertas ();
+    initialize();
     //localStorage.clear();
     //console.log(localStorage.getItem('dark-mode'));
 });
@@ -228,6 +240,48 @@ document.getElementById('redirectButton').addEventListener('click', function() {
 
 
 
+async function initialize() {
+    try {
+        //console.log("Haz entrado a: async function initialize() ");
+        // Obtener números de la API
+        await getConfiPage();
+        
+    } catch (error) {
+        // (?.trim()) - Si el valor existe (es decir, no es undefined ni null), ejecuta el método .trim() y si el valor es undefined o null, la evaluación simplemente devuelve undefined y no intenta llamar a .trim().
+        const message_error = String(error).split(":")[1]?.trim() || "Error desconocido";
+        //console.log("message_error:");
+        //console.log(message_error);
+        let errorObj = {
+            function: "async function initialize()",
+            message_error
+        };
+        console.log(errorObj);
+    }
+    
+}
+
+
+
+async function getConfiPage() {
+    try {
+        const response = await fetch(API_GET_CONFIG_PAGE_URL);
+        const data = await response.json();
+        arr_configPage = data;
+        console.log("Datos cargados:", arr_configPage);
+    } catch (error) {
+        const message_error = String(error).split(":")[1]?.trim() || "Error desconocido";
+        console.log({
+            function: "function getConfiPage()",
+            message_error
+        });
+    }
+}
+
+
+
+
+
+
 
 // Datos para agregar dinámicamente secciones
 const data = [
@@ -241,9 +295,11 @@ const data = [
             '/img/VORT_X_300R_2024_2.webp',
             '/img/VORT_X_300R_2024_3.webp',
         ],
-        URL_listaBoletos: "https://rifaseconomicasnavojoa.site/lista-boletos/r1",
+        //URL_listaBoletos: "https://rifaseconomicasnavojoa.site/lista-boletos/r1",
+        URL_listaBoletos: "/lista-boletos/r1",
         URL_buscarMismosBoletos: "#",
-        URL_verificadorBoletos: "https://rifaseconomicasnavojoa.site/verificador/r1",
+        URL_verificadorBoletos: "/verificador/r1",
+        //URL_verificadorBoletos: "https://rifaseconomicasnavojoa.site/verificador/r1",
         visible: 1,
     },
     {
@@ -312,16 +368,45 @@ function createSection(item) {
             </div>
         `;
     
+
+    
+
+
     // Añadir eventos a los botones
     const buttons = section.querySelectorAll('.buttons-rifasAbiertas button');
+
+    let server_url = "";
+
     buttons[0].addEventListener('click', () => {
-        window.location.href = ''+item.URL_listaBoletos+''; // URL para "Lista disponible aquí"
+        if (server_url == "") {
+            arr_configPage.forEach(element => {
+                if (element.activa == 1) {
+                    server_url = element.valor;
+                }
+            });
+        }
+        
+        window.location.href = ''+server_url+item.URL_listaBoletos+''; // URL para "Lista disponible aquí"
     });
     buttons[1].addEventListener('click', () => {
-        window.location.href = ''+item.URL_buscarMismosBoletos+''; // URL para "Buscar los mismos números"
+         if (server_url == "") {
+            arr_configPage.forEach(element => {
+                if (element.activa == 1) {
+                    server_url = element.valor;
+                }
+            });
+        }
+        window.location.href = ''+server_url+item.URL_buscarMismosBoletos+''; // URL para "Buscar los mismos números"
     });
     buttons[2].addEventListener('click', () => {
-        window.location.href = ''+item.URL_verificadorBoletos+''; // URL para "Verificador"
+         if (server_url == "") {
+            arr_configPage.forEach(element => {
+                if (element.activa == 1) {
+                    server_url = element.valor;
+                }
+            });
+        }
+        window.location.href = ''+server_url+item.URL_verificadorBoletos+''; // URL para "Verificador"
     });
     
     return section;
@@ -333,6 +418,7 @@ const container = document.getElementById('container-rifasAbiertas');
 // Agregar dinámicamente las secciones
 data.forEach((item) => {
     if (item.visible == 1) {
+        console.log("item: ", item);
         const section = createSection(item);
         container.appendChild(section);
     } else {

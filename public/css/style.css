@@ -202,6 +202,92 @@ body.dark-mode .chat-messages-class .message {
     /*background-color: #444; /* Color de fondo */
 }
 
+body.dark-mode .tableClass_panel_rutas th {
+    color: white; /* Color del texto */
+    background-color: #444; /* Color de fondo */
+}
+
+
+
+body.dark-mode .tabla-contenedor {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .input-buscador-tablaSorteos-superPanel {
+    background-color: #2c2c2c;
+    color: #f1f1f1;
+    border: none;
+}
+
+body.dark-mode .tabla_sorteos caption {
+    background-color: #2a2a2a;
+    color: #f1f1f1;
+    border-bottom: 1px solid #444;
+}
+
+body.dark-mode .tabla_sorteos th {
+    background-color: #0062cc;
+    color: #fff;
+    border-bottom: 1px solid #444;
+}
+
+body.dark-mode .tabla_sorteos td {
+    color: #ddd;
+    border-bottom: 1px solid #333;
+}
+
+
+body.dark-mode .filtros-tablaSorteos {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+
+
+body.dark-mode .filtros-tablaSorteos input {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    border: none;
+}
+
+body.dark-mode .filtros-tablaSorteos label {
+    color: #e0e0e0;
+}
+
+body.dark-mode .filtros-tablaSorteos select {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    border: none;
+}
+
+
+
+body.dark-mode .tarjeta-item {
+    background-color: #1e1e1e;
+    color: #eee;
+    border-color: #444;
+}
+
+
+body.dark-mode .opcionesVistaTabla_class select {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    border: none;
+}
+
+
+body.dark-mode .typing-indicator {
+    color: #e0e0e0;
+}
+
+
+body.dark-mode .chat-panel {
+    background-color: #2c2c2c !important;
+    color: #e0e0e0 !important;
+    border: none !important;
+}
 
 
 
@@ -1165,6 +1251,10 @@ button:hover {
     font-size: 30px;
     margin-top: -10px;
     margin-bottom: -10px;
+}
+
+#label_txtPrecioBoletos{
+    color: #7fc241;
 }
 
 
@@ -3894,21 +3984,39 @@ textarea {
 }
 
 .modal-formularioMultiplesPasos-content {
-  background: #1e1e1e;
-  padding: 30px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 600px;
-  position: relative;
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 610px;
+    position: relative;
+    max-height: 95vh; /* Limita la altura al 95% del alto de pantalla */
+    overflow-y: auto; /* Agrega scroll si el contenido es muy alto */
+    box-sizing: border-box; /* Asegura que padding no rompa el tamaño */
+}
+
+@media (max-width: 480px) {
+    .modal-formularioMultiplesPasos-content {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .close-btn {
+        font-size: 20px;
+        top: 8px;
+        right: 10px;
+    }
 }
 
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
+  top: 0px;
+  right: 20px;
+  font-size: 35px;
   cursor: pointer;
 }
+
+
 
 /* Formulario multipaso */
 .container_indicador_pasos {
@@ -4371,12 +4479,1230 @@ textarea {
     width: 100%;
 }
 
+.chat-option-btn {
+    margin: 6px 4px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.chat-option-btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+/* Animación de resalto */
+.resaltar-seccion {
+  /*animation: resaltarBrillo 2s ease-out;*/
+  /*animation: resaltarBrillo 2s ease-out 3; /* Se repite 3 veces */
+  /*animation: resaltarBrillo 2s ease-out infinite; /* Se repite indefinidamente; esto hará que la animación "brille" y se desvanezca una y otra vez */
+  animation: resaltarBrillo 1s ease-out infinite alternate; /* Hace que la animación rebote ida y vuelta (hacia adelante y luego al revés) */
+  box-shadow: 0 0 20px rgba(255, 208, 0, 0.8);
+  border: 2px solid gold;
+  z-index: 10;
+  position: relative;
+}
+
+@keyframes resaltarBrillo {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 208, 0, 0);
+    border-color: transparent;
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 208, 0, 1);
+    border-color: gold;
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 208, 0, 0);
+    border-color: transparent;
+  }
+}
+
+/* Mensaje flotante */
+.mensaje-flotante {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #222;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  opacity: 0;
+  animation: aparecerDesaparecer 4s forwards;
+}
+
+@keyframes aparecerDesaparecer {
+  0% { opacity: 0; top: 10px; }
+  10% { opacity: 1; top: 20px; }
+  90% { opacity: 1; }
+  100% { opacity: 0; top: 30px; }
+}
+
+/* Efecto blur en el fondo */
+.blur-fondo {
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Asegura que el contenido visible (main) se mantenga enfocado */
+#main-content {
+    filter: none !important;
+    pointer-events: auto !important;
+    user-select: auto !important;
+    position: relative;
+    z-index: 999;
+}
+
+
+
+
+.mensaje-flotante-personalizado {
+  position: absolute;
+  transform: translateX(-50%);
+  background-color: #222;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  opacity: 0;
+  animation: aparecerDesaparecerElemento 4s forwards;
+}
+
+.mensaje-flotante-personalizado::after {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* Posiciona la flecha debajo del mensaje */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: #222 transparent transparent transparent;
+}
+
+
+@keyframes aparecerDesaparecerElemento {
+  0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
+
+
+
+
+
 
 /*
 --------------------------------------------------------------------------------------------------------------------------------------------------
     ESTILOS PARA EL CHATBOT (Fin)
 --------------------------------------------------------------------------------------------------------------------------------------------------
 */
+
+
+
+
+
+
+
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------
+    ESTILOS PARA EL TOUR (Inicio)
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+.tour-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 9990;
+}
+
+.tour-tooltip {
+  position: absolute;
+  background: #222;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  max-width: 240px;
+  z-index: 9999;
+  box-shadow: 0 0 10px black;
+  transform: translate(-50%, -100%);
+}
+
+.tour-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #222 transparent transparent transparent;
+}
+
+.tour-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------
+    ESTILOS PARA EL TOUR (Fin)
+--------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+/* Botón estilo "btn-outline-primary" */
+.btn_panel_rutas_class {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 2px solid #007bff; /* Borde azul */
+    padding: 0.375rem 0.75rem; /* Espaciado interno */
+    /*font-size: 1rem; /* Tamaño de la fuente */
+    /*font-size: 15px;*/ 
+    /*line-height: 1.5;*/
+    border-radius: 0.25rem; /* Bordes redondeados */
+    color: #007bff; /* Texto azul */
+    background-color: transparent; /* Fondo transparente */
+    text-decoration: none; /* Sin subrayado */
+    transition: all 0.2s ease-in-out; /* Animación suave */
+    cursor: pointer;
+    /*margin-bottom: 5px;*/
+    width: 150px;
+}
+
+/* Hover: Cambia el fondo y el texto */
+.btn_panel_rutas_class:hover {
+    background-color: #007bff; /* Fondo azul */
+    color: #fff; /* Texto blanco */
+}
+
+/* Activo: Efecto de presionar */
+.btn_panel_rutas_class:active {
+    background-color: #0056b3; /* Fondo más oscuro */
+    border-color: #004085; /* Borde más oscuro */
+    color: #fff; /* Texto blanco */
+    transform: scale(0.98); /* Pequeño efecto de "presionar" */
+}
+
+/* Botón deshabilitado */
+.btn_panel_rutas_class:disabled {
+    background-color: transparent; /* Fondo transparente */
+    color: #6c757d; /* Texto gris */
+    border-color: #6c757d; /* Borde gris */
+    cursor: not-allowed; /* Cursor no permitido */
+    opacity: 0.65; /* Más transparente */
+}
+
+
+
+
+.tableClass_panel_rutas {
+    /*position: fixed;
+    top: 330px;*/
+    /*margin-top: 20px;*/
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%; /* Asegura que el contenedor no exceda el ancho de la pantalla */
+    /*border: 1px solid #ddd; /* Borde opcional para resaltar */
+    overflow-x: auto; /* Activa el scroll horizontal */
+    /*white-space: nowrap; /* Evita el ajuste de líneas dentro de las celdas */
+    padding: 10px; /* Opcional: espacio alrededor de la tabla */
+    box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+    max-height: 500px; /* Ajusta según tu necesidad */
+    overflow-y: auto;  /* Scroll vertical si la tabla es muy alta */
+    display: block;    /* Necesario para aplicar scroll */
+}
+
+.tableClass_panel_rutas table {
+    width: 100%; /* Escala la tabla al tamaño del contenedor */
+    border: 1px solid #ccc;
+    border-collapse: collapse; /* Evita bordes dobles */
+    min-width: 1150px; /* Define un ancho mínimo para la tabla */
+}
+
+.tableClass_panel_rutas th,
+.tableClass_panel_rutas td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.tableClass_panel_rutas th {
+    color: #ffffff; /* Color del texto */
+    background-color: #222222; /* Color de fondo */
+}
+
+
+.td_status_disponibleClass_panel {
+    background-color: #28a745; /* Verde para "PAGADO" */
+    color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
+}
+
+.td_status_noDisponibleClass_panel {
+    background-color: #dc3545; /* Rojo para "NO_PAGADO" */
+    color: rgb(0, 0, 0); /* Texto blanco para mayor contraste */
+}
+
+.td_class_panel_rutas {
+    font-size: 16px; /* Reducir tamaño de texto */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* === Estilos generales del contenedor === */
+.tabla-contenedor-superPanel {
+    max-width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.05);
+    /*font-family: "Segoe UI", sans-serif;*/
+    font-family: "Poppins-SemiBold", serif;
+    /*background-color: white;*/
+    /*background-color: #383838;*/
+    /*color: #333;*/
+}
+
+
+
+/* Input de búsqueda */
+.input-buscador-tablaSorteos-superPanel {
+    max-width: 100%;
+    width: 40%;
+    padding: 10px 14px;
+    /*margin-bottom: 16px;*/
+    border: 2px solid #7fc241;
+    border-radius: 8px;
+    font-size: 15px;
+    /*outline-color: #7fc241;*/
+    /*background-color: #252525;*/
+    color: #000000;
+}
+
+.input-buscador-tablaSorteos-superPanel:hover {
+    /*background-color: #333;*/
+    /*background-color: #7fc241;*/
+    /*color: #fff;*/
+    /*transform: scale(1.1); /* Efecto de agrandar al pasar el mouse */
+    /*box-shadow: 0 0 15px 5px rgb(255, 255, 255); / Difuminado */
+    box-shadow: 0 0 15px 5px #7fc241; /* Difuminado */
+}
+
+.input-buscador-tablaSorteos-superPanel:focus {
+    box-shadow: 0 0 15px 5px #7fc241; /* Difuminado */
+    outline: none;
+}
+
+.select_filtro_tablaBoletos_class {
+  /* padding: 10px; */
+  /* margin: 10px 0; */
+  border-radius: 5px;
+  border: none;
+  background: #2c2c2c;
+  color: #fff;
+}
+
+
+
+
+
+
+
+/* Input de filtro de búsqueda */
+.input-filtros-tablaSorteos-superPanel {
+    border: 2px solid #7fc241;
+}
+
+.input-filtros-tablaSorteos-superPanel:hover {
+    box-shadow: 0 0 15px 5px #7fc241; /* Difuminado */
+}
+
+.input-filtros-tablaSorteos-superPanel:focus {
+    box-shadow: 0 0 15px 5px #7fc241; /* Difuminado */
+    outline: none;
+}
+
+
+/* Select de filtro de busqueda */
+.select-filtros-tablaSorteos-superPanel {
+    padding: 10px 14px;
+    border: 2px solid #7fc241;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #000000;
+}
+
+.select-filtros-tablaSorteos-superPanel:hover {
+    box-shadow: 0 0 15px 5px #7fc241; /* Difuminado */
+}
+
+.select-filtros-tablaSorteos-superPanel:focus {
+    box-shadow: 0 0 15px 5px #7fc241; /* Difuminado */
+    outline: none;
+}
+
+
+
+
+
+
+
+/* Botón toggle (móvil) */
+.btn_toggleFiltros {
+    margin-bottom: 10px;
+    /*padding: 8px 14px;*/
+    padding: 13px 20px;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Contenedor de filtros con animación de acordeón */
+#contenedorFiltros {
+    overflow: hidden;
+    max-height: 1000px; /* suficiente para mostrar todos los filtros */
+    transition: max-height 0.4s ease-in-out, padding 0.3s ease-in-out;
+}
+
+/* Estado colapsado con animación suave */
+#contenedorFiltros.colapsado {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Mostrar filtros en pantalla grande (>= 768px) */
+/*
+@media screen and (min-width: 768px) {
+    #contenedorFiltros {
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-height: none !important;
+    }
+
+    #toggleFiltros {
+        display: none;
+    }
+}
+*/
+
+
+
+
+
+
+/*
+.tarjetas-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding: 1rem;
+    scroll-padding-left: 1rem;
+    justify-content: start;
+}
+
+/* Estilo base para tarjetas *
+.tarjeta-item {
+    flex: 0 0 calc(100% - 2rem); /* Por defecto 1 tarjeta completa visible *
+    scroll-snap-align: center;
+    background-color: var(--tarjeta-bg, #f9f9f9);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+/* Hover animado *
+.tarjeta-item:hover {
+    transform: scale(1.02);
+}
+
+/* RESPONSIVE: Mostrar más tarjetas completas en pantallas grandes *
+@media (min-width: 600px) {
+    .tarjeta-item {
+        flex: 0 0 calc(50% - 1.5rem); /* 2 tarjetas completas *
+    }
+}
+
+@media (min-width: 900px) {
+    .tarjeta-item {
+        flex: 0 0 calc(33.33% - 1.5rem); /* 3 tarjetas completas *
+    }
+}
+
+@media (min-width: 1200px) {
+    .tarjeta-item {
+        flex: 0 0 calc(25% - 1.5rem); /* 4 tarjetas completas *
+    }
+}
+
+/* Dark mode *
+body.dark-mode .tarjeta-item {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+    border-color: #444;
+}
+*/
+
+
+
+
+
+/* Contenedor horizontal con scroll y centrado de tarjetas */
+.tarjetas-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding: 1rem;
+    scroll-padding: 1rem;
+    scroll-behavior: smooth; /* Esto hará que cuando el usuario desliza o cuando hagas scroll programado con JS, la animación sea fluida. */
+    -webkit-overflow-scrolling: touch; /* ← Esto es clave para móviles, hace que el scroll en iOS se sienta nativo */
+    scroll-behavior: smooth; /* animación suave */
+    cursor: grab; /* visual para escritorio */
+}
+
+/* Estilo de arrastre */
+.tarjetas-container.grabbing {
+    cursor: grabbing;
+    user-select: none;
+}
+
+/* Estilo para cada tarjeta individual */
+.tarjeta-item {
+    flex: 0 0 auto; /* Evita que se reduzcan automáticamente */
+    scroll-snap-align: center;
+    background-color: var(--tarjeta-bg, #f1f1f1);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    min-width: 250px;
+    max-width: 300px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+/* Animación suave al hacer hover */
+.tarjeta-item:hover {
+    transform: scale(1.02);
+}
+
+
+
+
+
+
+/*
+.tarjetas-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-top: 1rem;
+}
+
+.tarjeta-item {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: var(--tarjeta-bg, #fff);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+.tarjeta-item:hover {
+    transform: scale(1.02);
+}
+.tarjeta-item p {
+    margin: 4px 0;
+}
+*/
+
+
+
+
+
+
+
+.filtros-tablaSorteos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filtro-item-tablaSorteos {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 180px;
+    min-width: 180px;
+}
+
+.filtro-item-tablaSorteos label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.filtro-item-tablaSorteos input,
+.filtro-item-tablaSorteos select {
+    padding: 10px 14px;
+    border: 2px solid #7fc241;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #000000;
+    /*
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+    */
+}
+
+.filtro-botones-tablaSorteos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.filtro-botones-tablaSorteos .btn {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+#input_buscarTitulo{
+    max-width: 100%;
+    width: 40%;
+}
+
+/* Mostrar filtros en pantalla pequeña (<= 768px) */
+@media screen and (max-width: 852px) {
+    #input_buscarTitulo {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+/* Mostrar filtros en pantalla pequeña (<= 768px) */
+@media screen and (min-width: 1045px) {
+    #input_buscarTitulo {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+
+
+
+.select_vistaTabla_class {
+    padding: 10px 14px;
+    border: 2px solid #7fc241;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #000000;
+}
+
+
+
+
+/* Botón "Crear Sorteo" del SUPER PANEL CONTROL con estilo "btn-outline-primary" */
+#btn_crearRifa_panel {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 2px solid #28a745; /* Borde azul */
+    padding: 0.375rem 0.75rem; /* Espaciado interno */
+    /*font-size: 1rem; /* Tamaño de la fuente */
+    font-size: 15px; 
+    line-height: 1.5;
+    border-radius: 0.25rem; /* Bordes redondeados */
+    color: #28a745; /* Texto azul */
+    background-color: transparent; /* Fondo transparente */
+    text-decoration: none; /* Sin subrayado */
+    transition: all 0.2s ease-in-out; /* Animación suave */
+    cursor: pointer;
+    margin-bottom: 5px;
+    width: 150px;
+    font-size: 13px;
+}
+
+/* Hover: Cambia el fondo y el texto */
+#btn_crearRifa_panel:hover {
+    background-color: #28a745; /* Fondo azul */
+    color: #fff; /* Texto blanco */
+}
+
+/* Activo: Efecto de presionar */
+#btn_crearRifa_panel:active {
+    background-color: #1b6c2e; /* Fondo más oscuro */
+    border-color: #144e21; /* Borde más oscuro */
+    color: #fff; /* Texto blanco */
+    transform: scale(0.98); /* Pequeño efecto de "presionar" */
+}
+
+/* Botón deshabilitado */
+#btn_crearRifa_panel:disabled {
+    background-color: transparent; /* Fondo transparente */
+    color: #6c757d; /* Texto gris */
+    border-color: #6c757d; /* Borde gris */
+    cursor: not-allowed; /* Cursor no permitido */
+    opacity: 0.65; /* Más transparente */
+}
+
+
+
+/* Botón "Editar Sorteo" del SUPER PANEL CONTROL con estilo "btn-outline-primary" */
+#btn_editarMecanicaRifa_panel {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 2px solid #ffb20c; /* Borde azul */
+    padding: 0.375rem 0.75rem; /* Espaciado interno */
+    /*font-size: 1rem; /* Tamaño de la fuente */
+    font-size: 15px; 
+    line-height: 1.5;
+    border-radius: 0.25rem; /* Bordes redondeados */
+    color: #ffb20c; /* Texto azul */
+    background-color: transparent; /* Fondo transparente */
+    text-decoration: none; /* Sin subrayado */
+    transition: all 0.2s ease-in-out; /* Animación suave */
+    cursor: pointer;
+    margin-bottom: 5px;
+    width: 150px;
+    font-size: 13px;
+}
+
+/* Hover: Cambia el fondo y el texto */
+#btn_editarMecanicaRifa_panel:hover {
+    background-color: #ffb20c; /* Fondo azul */
+    color: #fff; /* Texto blanco */
+}
+
+/* Activo: Efecto de presionar */
+#btn_editarMecanicaRifa_panel:active {
+    background-color: #bc840b; /* Fondo más oscuro */
+    border-color: #93680a; /* Borde más oscuro */
+    color: #fff; /* Texto blanco */
+    transform: scale(0.98); /* Pequeño efecto de "presionar" */
+}
+
+/* Botón deshabilitado */
+#btn_editarMecanicaRifa_panel:disabled {
+    background-color: transparent; /* Fondo transparente */
+    color: #6c757d; /* Texto gris */
+    border-color: #6c757d; /* Borde gris */
+    cursor: not-allowed; /* Cursor no permitido */
+    opacity: 0.65; /* Más transparente */
+}
+
+
+
+/* Botón "Eliminar Sorteo" del SUPER PANEL CONTROL con estilo "btn-outline-primary" */
+#btn_eliminarRifa_panel {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 2px solid #dc3545; /* Borde azul */
+    padding: 0.375rem 0.75rem; /* Espaciado interno */
+    /*font-size: 1rem; /* Tamaño de la fuente */
+    font-size: 15px; 
+    line-height: 1.5;
+    border-radius: 0.25rem; /* Bordes redondeados */
+    color: #dc3545; /* Texto azul */
+    background-color: transparent; /* Fondo transparente */
+    text-decoration: none; /* Sin subrayado */
+    transition: all 0.2s ease-in-out; /* Animación suave */
+    cursor: pointer;
+    margin-bottom: 5px;
+    width: 150px;
+    font-size: 13px;
+}
+
+/* Hover: Cambia el fondo y el texto */
+#btn_eliminarRifa_panel:hover {
+    background-color: #dc3545; /* Fondo azul */
+    color: #fff; /* Texto blanco */
+}
+
+/* Activo: Efecto de presionar */
+#btn_eliminarRifa_panel:active {
+    background-color: #1b6c2e; /* Fondo más oscuro */
+    border-color: #144e21; /* Borde más oscuro */
+    color: #fff; /* Texto blanco */
+    transform: scale(0.98); /* Pequeño efecto de "presionar" */
+}
+
+/* Botón deshabilitado */
+#btn_eliminarRifa_panel:disabled {
+    background-color: transparent; /* Fondo transparente */
+    color: #6c757d; /* Texto gris */
+    border-color: #6c757d; /* Borde gris */
+    cursor: not-allowed; /* Cursor no permitido */
+    opacity: 0.65; /* Más transparente */
+}
+
+
+
+
+
+
+#table-listaSorteos-panel{
+    margin-top: 0px;
+}
+
+/* === Estilo de la tabla === */
+.tabla_sorteos {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+.tabla_sorteos caption {
+    font-size: 1.3em;
+    font-weight: 600;
+    padding: 12px;
+    text-align: center;
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #ddd;
+    color: #333;
+}
+
+.tabla_sorteos th {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #ddd;
+}
+
+.tabla_sorteos td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+/* Efecto hover */
+.tabla_sorteos tr:hover {
+    background-color: #f1f7ff;
+}
+
+/* Celdas ocultas */
+.tabla_sorteos .oculto {
+    display: none;
+}
+
+/* Alternancia de filas */
+.tabla_sorteos tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+
+
+.tabla_sorteos_superPanel caption {
+    font-size: 1.3em;
+    font-weight: 600;
+    padding: 12px;
+    text-align: center;
+    background-color: #252525;
+    border-bottom: 2px solid #ddd;
+    color: #ffffff;
+}
+
+.tabla_boletos_superPanel caption {
+    font-size: 1.3em;
+    font-weight: 600;
+    padding: 12px;
+    text-align: center;
+    background-color: #252525;
+    border-bottom: 2px solid #ddd;
+    color: #ffffff;
+}
+
+
+
+/* Oculta completamente celdas con esta clase, pero siguen estando en el DOM */
+.campo_oculto_tbl_sorteos {
+    display: none;
+}
+
+
+
+
+
+
+
+
+/* ========================================== */
+/* ===== PANEL DE CHAT SOPORTE (Messenger) === */
+/* ========================================== */
+
+
+/* ========================================== */
+/* ===== LAYOUT GENERAL SOPORTE ============== */
+/* ========================================== */
+
+.soporte-layout {
+    display: flex;
+    max-width: 1200px;
+    height: 75vh;
+    margin: 0 auto;
+    background: #f0f2f5;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+/* ========================================== */
+/* ===== COLUMNA IZQUIERDA (CLIENTES) ======== */
+/* ========================================== */
+
+.lista-clientes {
+    width: 300px;
+    background: #ffffff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.lista-clientes h3 {
+    padding: 15px;
+    margin: 0;
+    background: #1877f2;
+    color: #fff;
+    font-size: 16px;
+}
+
+/* Contenedor clientes */
+#clientes {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Cliente item */
+.cliente-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cliente-item:hover {
+    background: #e4e6eb;
+}
+
+.cliente-item.activo {
+    background: #dbeafe;
+    border-left: 4px solid #1877f2;
+}
+
+/* Avatar */
+.cliente-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #1877f2;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Info cliente */
+.cliente-info {
+    flex: 1;
+}
+
+.cliente-nombre {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.cliente-pagina {
+    font-size: 12px;
+    color: #65676b;
+}
+
+/* Botón */
+.btn-atender {
+    background: #31a24c;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-atender:hover {
+    background: #2a8d41;
+}
+
+/* ========================================== */
+/* ===== COLUMNA DERECHA (CHAT) ============== */
+/* ========================================== */
+
+.chat-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+}
+
+/* Header chat */
+#chat-header-agente-soporte {
+    padding: 15px;
+    background: #f0f2f5;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+/* Mensajes */
+#chat-mensajes {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Mensaje base */
+.mensaje {
+    max-width: 70%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.mensaje-autor {
+	font-weight:bold;
+}
+
+.mensaje-fecha {
+	font-size: 13px;
+	opacity:0.7;
+    margin-top: 4px;
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+}
+
+/* Cliente → fecha a la izquierda */
+.mensaje.cliente .mensaje-fecha {
+    text-align: left;
+}
+
+/* Soporte → fecha a la derecha */
+.mensaje.soporte .mensaje-fecha {
+    text-align: right;
+}
+
+.checks {
+    font-size: 12px;
+}
+
+.checks.enviado {
+    color: #999; /* gris */
+}
+
+.checks.entregado {
+    color: #9e9e9e; /* gris doble */
+}
+
+.checks.visto {
+    /*color: #22c55e; /* verde */
+    color: #9fff00;
+}
+
+/* Cliente */
+.mensaje.cliente {
+    background: #e4e6eb;
+    align-self: flex-start;
+}
+
+.typing {
+    font-size: 12px;
+    color: #666;
+    padding: 6px 10px;
+    font-style: italic;
+}
+
+.typing-indicator {
+    font-size: 12px;
+    color: #65676b;
+    padding: 6px 10px;
+    font-style: italic;
+}
+
+/* Soporte */
+.mensaje.soporte {
+    background: #1877f2;
+    color: #ffffff;
+    align-self: flex-end;
+}
+
+/* ========================================== */
+/* ===== INPUT ============================== */
+/* ========================================== */
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background: #f0f2f5;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.chat-input button {
+    margin-left: 10px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 20px;
+    background: #1877f2;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background: #145dbf;
+}
+
+
+
+/* Estado cliente */
+.cliente-item.conectado {
+    background: #e6f7ec;
+    border-left: 4px solid #22c55e;
+}
+
+.cliente-item.desconectado {
+    background: #fde8e8;
+    border-left: 4px solid #ef4444;
+    opacity: 0.7;
+}
+
+/* Badge mensajes */
+.badge {
+    background: #ef4444;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ========================================== */
+/* ===== PANEL DE CHAT SOPORTE (Fin) ========= */
+/* ========================================== */
+
+
+
 
 
 

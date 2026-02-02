@@ -318,58 +318,540 @@ const verifyPhoneUserInfo = async (req, res) => {
 
 const chatbotInfo = async (req, res) => {
     try {
-        //console.log("Haz entrado a: /api/chatbot");
         const { userMsg } = req.body;
-        
-        let log_activity = logActivity(req, 'Visita a la API "/api/chatbotInfo" - Mensaje del usuario: '+userMsg+'.'); // Registrar acción
+
+        if (typeof userMsg === 'string') {
+            try {
+                const posibleObjeto = JSON.parse(userMsg);
+                if (typeof posibleObjeto === 'object' && posibleObjeto !== null && !Array.isArray(posibleObjeto)) {
+                    console.log('Era un string, pero contenía un objeto JSON');
+                    // Registrar el mensaje del usuario en los logs
+                    let log_activity = logActivity(req, `Visita a la API "/api/chatbotInfo" - Mensaje del usuario: ${JSON.stringify(userMsg)}.`);
+                    console.log("LOG ACTIVITY:");
+                    console.log(log_activity);
+                }
+            } catch (err) {
+                console.log('Es un string común, no JSON');
+                // Registrar el mensaje del usuario en los logs
+                let log_activity = logActivity(req, `Visita a la API "/api/chatbotInfo" - Mensaje del usuario: ${userMsg}.`);
+                console.log("LOG ACTIVITY:");
+                console.log(log_activity);
+            }
+            
+        } else if (typeof userMsg === 'object') {
+            console.log('Ya es un objeto');
+            // Registrar el mensaje del usuario en los logs
+            let log_activity = logActivity(req, `Visita a la API "/api/chatbotInfo" - Mensaje del usuario: ${JSON.stringify(userMsg)}.`);
+            console.log("LOG ACTIVITY:");
+            console.log(log_activity);
+        }
+
+        // Estructura base de respuesta del chatbot
+        let reply = {
+            type: "text", // Puede ser "text" o "buttons"
+            content: "Lo siento, no entendí eso."
+        };
+
+        // --- RESPUESTAS PERSONALIZADAS ---
+        // ✅ MENSAJE INICIAL (cuando se abre el asistente)
+        if (userMsg == "hola") {
+            reply = {
+                type: "buttons",
+                content: {
+                    text: "¡Hola! 👋 ¿En qué puedo ayudarte hoy?",
+                    action: 0,
+                    options: [
+                        { label: "¿Cómo comprar boletos?", value: "como comprar" },
+                        { label: "Ver precios de los boletos", value: "precio" },
+                        { label: "Metodos de pago", value: "metodos" }
+                    ]
+                }
+            };
+        } else if (userMsg.includes('precio')) {
+            reply = {
+                type: "text",
+                content: "Los precios de los boletos se encuentra justo debajo de la imagen donde se muestra el premio, donde dice 'PRECIO DE LOS BOLETOS'."
+            };
+        } else if (userMsg.includes('compra')) {
+            reply = {
+                type: "text",
+                content: `Tienes 3 formas para comprar boletos:<br><br>
+                        &nbsp;&nbsp;1. Puedes elegir la cantidad de boletos que tú quieras de la cuadrícula que está al final de la página.<br>
+                        &nbsp;&nbsp;2. Puedes buscar el número directamente en el apartado 'Buscar número'.<br>
+                        &nbsp;&nbsp;3. Puedes usar la 'Maquinita de la Suerte' para generar boletos al azar.<br><br>
+                        Cada boleto que selecciones se mostrará abajo, donde dice 'HAZ CLICK ABAJO EN TU NÚMERO DE LA SUERTE'.`
+            };
+        } else if (userMsg.includes('apartar')) {
+            reply = {
+                type: "text",
+                content: "Cuando termines de elegir tus boletos, haz clic en el botón 'APARTAR'. Se mostrará un formulario donde deberás ingresar tu nombre, apellido, teléfono y estado. Luego, se abrirá un chat de WhatsApp con los datos de tu compra, donde deberás enviar tu comprobante de pago."
+            };
+        } else if (userMsg.includes('metodos') || userMsg.includes('pagar') || userMsg.includes('pago')) {
+            reply = {
+                type: "text",
+                content: "Para saber como enviar tu pago, puedes ir a la seccion <a href='/metodos-pago' target='_blank'><strong>Métodos de Pago</strong></a>, en la cual estarán las cuentas a donde puedes transferir o depositar el pago de tus boletos."
+            };
+        } else if (userMsg.includes('ayuda')) {
+            reply = {
+                type: "buttons",
+                content: {
+                    text: "Claro, estoy aquí para ayudarte. ¿Qué necesitas?",
+                    action: 1,
+                    options: [
+                        { label: "¿Cómo comprar?", value: "comprar" },
+                        { label: "Ver precios de los boletos", value: "precios" },
+                        { label: "Metodos de pago", value: "metodos" }
+                    ]
+                }
+            };
+        }
+
+        // Registrar la respuesta del chatbot en los logs
+        log_activity = logActivity(req, `Respuesta del CHATBOT: ${JSON.stringify(reply)}.`);
         console.log("LOG ACTIVITY:");
         console.log(log_activity);
-        
-        let reply = "Lo siento, no entendí eso.";
 
-        if (userMsg.includes('hola')) reply = "¡Hola! ¿En qué puedo ayudarte?";
-        else if (userMsg.includes('precio')) reply = "Puedes ver los precios en la sección 'Métodos de pago'.";
-        else if (userMsg.includes('compra')) reply = "Tienes 3 formas para comprar boletos: puedes elegir la cantidad de boletos " +
-                                                     "que tu quieras de la cuadricula que esta al final de la pagina, cada boleto " +
-                                                     "que selecciones se mostraran abajo de donde dice 'HAZ CLICK ABAJO EN TU NUMERO " +
-                                                     "DE LA SUERTE'. Otra manera de hacerlo sería escribiendo el numero que deses apartar " +
-                                                     "en el apartado que dice 'Buscar numero', cuando lo escribas te dirá si el numero esta " +
-                                                     "disponible o no, si esta disponible solo le das al boton 'Apartar' que te aparacera mas " +
-                                                     "abajito una vez escribas el numero que quieras apartar en el recuadro. Otra forma sería " +
-                                                     "dar click en el boton 'Maquinita de la Suerte' donde te aparecera una ventana en la cual  " +
-                                                     "tendras que elegir la cantidad de boletos que deseas apartar para despues darle click " +
-                                                     "donde dice 'HAZ CLICK AQUI PARA GENERAR BOLETOS AL AZAR', despues de un par de segundos " +
-                                                     "te aparecera la cantidad de boletos que seleccionaste para generar al azar, ya solo le " +
-                                                     "en el boton 'Apartar'.";
-        else if (userMsg.includes('como') && userMsg.includes('compra')) reply = "Cuando termines de elegir tus boletos le das click a boton 'APARTAR'," +
-                                                     "despues de eso te aparecera un formulario donde tendras que poner tus datos como el " +
-                                                     "'nombre, apellido, telefono y estado', le das nuevamente en el boton de 'APARTAR' y " +
-                                                     "te rediriga a alguno de nuestros chat de whatsapp donde se mostrara los datos de tu compra;"+
-                                                     "por ultimo tendras que mandar tu pago a una de nuestras cuentas y posteriormente enviarnos " +
-                                                     "tu comprobante de pago a nuestro whatsapp.";
-        else if (userMsg.includes('ayuda')) reply = "Claro, estoy aquí para ayudarte. ¿Qué necesitas?";
-        
-        
-        log_activity = logActivity(req, 'Respuesta del CHATBOT: '+reply+'.');
-        console.log("LOG ACTIVITY:");
-        console.log(log_activity);
-        
-
-        res.status(200).json({
-            status: "success",
-            message: "Chatbot te responde lo siguiente:",
-            chatbotMsg: reply,
-        });
+        // Enviar respuesta JSON al cliente
+        res.status(200).json(reply);
 
     } catch (error) {
         console.error("Error general en la API:", error);
-        const log_error = logError(req, `Error en la API "/api/chatbotInfo": ${error}`); // Registrar acción
+
+        // Registrar error en logs
+        const log_error = logError(req, `Error en la API "/api/chatbotInfo": ${error}`);
+        console.log("LOG ERROR:");
+        console.log(log_error);
+
+        // Aquí decides si es error de disponibilidad
+        if (error.message && error.message.toLowerCase().includes("disponible") ) {
+            // Error 503: servicio no disponible temporalmente
+            await logError(req, `Error 503 en la API "/api/chatbotInfo": ${error}`);
+            return res.status(503).json({ type: "error", content: "Servicio no disponible, intenta más tarde." });
+        }
+
+        // Enviar respuesta de error
+        res.status(500).json({ type: "error", content: "Error interno del servidor" });
+    }
+}
+
+
+
+
+
+// Ruta para obtener configuraciones de la pagina desde la base de datos
+const getConfigPageBD = async (req, res) => {
+    try {
+        const query = 'SELECT id, clave, valor, descripcion, activa FROM configuracion_pagina';
+        const [results] = await db.query(query); // Cambiado para usar await
+        
+        // Enviar respuesta JSON al cliente
+        res.status(200).json(results);
+    } catch (error) {
+        console.error("Error general en la API - /api/obtener_configuracionPagina:", error);
+        const log_error = logError(req, 'Error en la API "/api/obtener_configuracionPagina": ' + error.message); // Registrar acción
         console.log("LOG ERROR:");
         console.log(log_error);
         res.status(500).json({ error: "Error interno del servidor" });
         console.log("");
     }
+
 }
+
+
+
+
+
+// Función auxiliar para insertar boletos en bloques grandes
+async function insertarBoletos(connection, cantidad, idRifa) {
+    const CHUNK_SIZE = 10000; // Máximo de registros por bloque
+    let desde = 0;
+
+    while (desde < cantidad) {
+        const values = [];
+        const placeholders = [];
+
+        // Generar valores para este bloque
+        for (let i = desde; i < Math.min(desde + CHUNK_SIZE, cantidad); i++) {
+            const numero = i.toString().padStart(5, "0"); // Formato 00001, 00002...
+            values.push(numero, idRifa);
+            placeholders.push("(?, ?)");
+        }
+
+        // Ejecutar el insert por bloques
+        await connection.query(
+            `INSERT INTO boletos (numero, id_sorteo) VALUES ${placeholders.join(", ")}`,
+            values
+        );
+
+        desde += CHUNK_SIZE;
+    }
+
+    console.log(`✅ ${cantidad} boletos insertados para la rifa con ID ${idRifa}`);
+}
+
+
+// Ruta para guardar los datos del sorteo
+// Controlador para crear un sorteo
+const createLottery = async (req, res) => {
+    // 🔁 Obtener una conexión del pool de base de datos (usando mysql2/promise)
+    const connection = await db.getConnection();
+
+    try {
+
+        // 🔁 Validar que datosRifa existe
+        if (!req.body.datosRifa) {
+            return res.status(400).json({ error: "No se recibió datosRifa en el cuerpo del formulario." });
+        }
+
+        // 🔄 Paso 1: Parsear los datos del formulario que vienen como string en el campo "datosRifa"
+        const datos = JSON.parse(req.body.datosRifa);
+
+        // 🔄 Extraer las diferentes secciones del JSON
+        const { infoRifa, preSorteo, lugaresExtras, bonos } = datos;
+
+        // 📦 Obtener los archivos subidos desde Multer
+        const imagenes = req.files;
+
+        // 📝 Registrar actividad del usuario (opcional, útil para auditoría)
+        await logActivity(req, 'Visita a la API "/api/crear_sorteo"');
+
+        // 🔐 Iniciar una transacción para garantizar consistencia en caso de error
+        await connection.beginTransaction();
+
+        // 🧩 Insertar el sorteo en la base de datos
+        const [result] = await connection.execute(`
+            INSERT INTO sorteos (
+                titulo_sorteo, edicion, emisiones, oportunidades,
+                cantidad_boletos, fecha_sorteo, activo,
+                presorteo, fecha_presorteo, lugares, bonos
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `, [
+            infoRifa.titulo,                      // Título del sorteo
+            infoRifa.edicion,                     // Edición del sorteo
+            infoRifa.emisiones,                   // Número de emisiones
+            infoRifa.oportunidades,               // Número de oportunidades por boleto
+            infoRifa.cantidad_boletos,            // Cantidad total de boletos
+            infoRifa.fecha,                       // Fecha del sorteo
+            1,                                    // Estado activo por defecto
+            preSorteo.presorteo,                  // Si hay presorteo
+            preSorteo.fecha_presorteo,            // Fecha del presorteo
+            JSON.stringify(lugaresExtras),        // Lugares extra como JSON
+            JSON.stringify(bonos)                 // Bonos como JSON
+        ]);
+
+        // 💾 Guardar el ID del sorteo recién insertado
+        const id = result.insertId;
+
+        // 🌐 Generar URLs específicas para esta edición del sorteo
+        const ruta_lista = `/lista/r-${id}`;
+        const ruta_verificador = `/verificador/r-${id}`;
+        const ruta_buscar = `/buscar_mismos_numeros/r-${id}`;
+
+        // 🔄 Actualizar el registro del sorteo con las URLs generadas
+        await connection.execute(`
+            UPDATE sorteos
+            SET url_listaBoletos = ?, url_verificadorBoletos = ?, url_buscarMismosBoletos = ?
+            WHERE id = ?
+        `, [ruta_lista, ruta_verificador, ruta_buscar, id]);
+
+        // 🧩 Función auxiliar para insertar cada ruta en la tabla "rutas"
+        const insertarRuta = async (nombre, path) => {
+            await connection.execute(
+                'INSERT INTO rutas (nombre, path, tipo, clave) VALUES (?, ?, ?, ?)',
+                [nombre, path, "WEB", "NO_APLICA"]
+            );
+        };
+
+        // 🌐 Insertar las rutas generadas en la tabla "rutas"
+        await insertarRuta(`Lista de Boletos - Edición #${id}`, ruta_lista);
+        await insertarRuta(`Verificador de Boletos - Edición #${id}`, ruta_verificador);
+        await insertarRuta(`Buscar Mismos Números - Edición #${id}`, ruta_buscar);
+
+        // 🎟️ Insertar los boletos numerados relacionados con este sorteo
+        await insertarBoletos(connection, infoRifa.cantidad_boletos, id);
+
+        // 📊 Insertar conteo inicial de boletos (todos disponibles al inicio)
+        await connection.query(`
+            INSERT INTO boletos_conteo (reservados, pagados, libres, id_sorteo)
+            VALUES (?, ?, ?, ?)
+        `, [
+            '0',                           // Reservados
+            '0',                           // Pagados
+            infoRifa.cantidad_boletos.toString(), // Libres
+            id.toString()                  // ID del sorteo
+        ]);
+
+        // 🖼️ Insertar cada imagen subida en la tabla "imagenes"
+        const sqlImg = `
+            INSERT INTO imagenes (id_relacionado, tipo_relacion, ruta)
+            VALUES (?, 'sorteo', ?)
+        `;
+
+        for (let img of imagenes) {
+            const ruta = '/uploads/' + img.filename; // Ruta accesible desde frontend
+            await connection.execute(sqlImg, [id, ruta]);
+        }
+
+        // ✅ Si todo salió bien, confirmar transacción
+        await connection.commit();
+
+        // 📤 Enviar respuesta al cliente con datos útiles
+        res.status(200).json({
+            status: "success",
+            message: "Sorteo guardado exitosamente",
+            insertId: id,
+            ruta_lista_sorteo_creado: ruta_lista,
+            ruta_verificador_sorteo_creado: ruta_verificador,
+            ruta_buscarMismosNumeros_sorteo_creado: ruta_buscar
+        });
+
+    } catch (error) {
+        // ❌ Si ocurre un error, revertir todos los cambios
+        await connection.rollback();
+
+        // 🐞 Mostrar el error en consola
+        console.error("Error general en la API:", error);
+
+        // 📝 Registrar el error en logs
+        await logError(req, `Error en la API "/api/crear_sorteo": ${error}`);
+
+        // ❗ Enviar error al cliente
+        res.status(500).json({ error: "Error al crear el sorteo" });
+    } finally {
+        // 🔚 Liberar la conexión al pool de MySQL
+        connection.release();
+    }
+};
+
+/*
+const createLottery = async (req, res) => {
+    const connection = await db.getConnection(); // Obtener conexión del pool
+
+    try {
+        // Desestructurar el cuerpo de la petición
+        const { infoRifa, preSorteo, lugaresExtras, bonos } = req.body;
+
+        // Registrar actividad
+        await logActivity(req, 'Visita a la API "/api/crear_sorteo"');
+
+        // Iniciar transacción
+        await connection.beginTransaction();
+
+        console.log("infoRifa.cantidad_boletos: ", infoRifa.cantidad_boletos);
+
+        // 1. Insertar el sorteo
+        const [result] = await connection.execute(`
+            INSERT INTO sorteos (
+                titulo_sorteo, edicion, emisiones, oportunidades,
+                cantidad_boletos, fecha_sorteo, activo,
+                presorteo, fecha_presorteo, lugares, bonos
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `, [
+            infoRifa.titulo,
+            infoRifa.edicion,
+            infoRifa.emisiones,
+            infoRifa.oportunidades,
+            infoRifa.cantidad_boletos,
+            infoRifa.fecha,
+            1, // Siempre inicia como activo
+            preSorteo.presorteo,
+            preSorteo.fecha_presorteo,
+            JSON.stringify(lugaresExtras), // Convertimos a JSON
+            JSON.stringify(bonos)
+        ]);
+
+        const id = result.insertId; // ID autogenerado del sorteo
+        console.log("id: ", id);
+
+        // 2. Crear las URLs dinámicas
+        const ruta_lista = `/lista/r-${id}`;
+        const ruta_verificador = `/verificador/r-${id}`;
+        const ruta_buscar = `/buscar_mismos_numeros/r-${id}`;
+
+        // 3. Actualizar sorteo con las URLs
+        await connection.execute(`
+            UPDATE sorteos
+            SET url_listaBoletos = ?, url_verificadorBoletos = ?, url_buscarMismosBoletos = ?
+            WHERE id = ?
+        `, [ruta_lista, ruta_verificador, ruta_buscar, id]);
+
+        // 4. Registrar las rutas en la tabla "rutas"
+        const insertarRuta = async (nombre, path) => {
+            await connection.execute(
+                'INSERT INTO rutas (nombre, path, tipo, clave) VALUES (?, ?, ?, ?)',
+                [nombre, path, "WEB", "NO_APLICA"]
+            );
+        };
+
+        await insertarRuta(`Lista de Boletos - Edición #${id}`, ruta_lista);
+        await insertarRuta(`Verificador de Boletos - Edición #${id}`, ruta_verificador);
+        await insertarRuta(`Buscar Mismos Números - Edición #${id}`, ruta_buscar);
+        
+        // 5. Insertar los boletos asociados al sorteo
+        await insertarBoletos(connection, infoRifa.cantidad_boletos, id);
+
+        // 6. Insertar los valores iniciales en la tabla boletos_conteo
+        await connection.query(`
+            INSERT INTO boletos_conteo (reservados, pagados, libres, id_sorteo)
+            VALUES (?, ?, ?, ?)
+        `, [
+            '0', // Inicialmente no hay boletos reservados
+            '0', // Ni pagados
+            infoRifa.cantidad_boletos.toString(), // Todos están libres
+            id.toString()
+        ]);
+
+        // 7. Confirmar transacción
+        await connection.commit();
+
+        // 8. Enviar respuesta al cliente
+        res.status(200).json({
+            status: "success",
+            message: "Sorteo guardado exitosamente",
+            insertId: id,
+            ruta_lista_sorteo_creado: ruta_lista,
+            ruta_verificador_sorteo_creado: ruta_verificador,
+            ruta_buscarMismosNumeros_sorteo_creado: ruta_buscar
+        });
+
+    } catch (error) {
+        await connection.rollback(); // Si algo falla, revertir
+        console.error("Error general en la API:", error);
+        await logError(req, `Error en la API "/api/crear_sorteo": ${error}`); // Registrar error
+        res.status(500).json({ error: "Error al crear el sorteo" });
+    } finally {
+        connection.release(); // Liberar la conexión al pool
+    }
+};
+*/
+/*
+const insertarRuta = async (connection, nombre, path) => {
+    const [res] = await connection.query(
+        'INSERT INTO rutas (nombre, path, tipo, clave) VALUES (?, ?, ?, ?)',
+        [nombre, path, "WEB", "NO_APLICA"]
+    );
+    console.log("Nombre ruta creada:", nombre);
+    console.log("Ruta creada:", path);
+    console.log("");
+    return res.insertId;
+};
+*/
+
+
+
+
+
+// Obtener todos los sorteos
+// Controlador para obtener todos los sorteos junto con su imagen destacada
+const getLottery = async (req, res) => {
+    try {
+        // 📝 Registrar actividad del usuario que accede a esta API (opcional pero útil)
+        const log_activity = logActivity(req, 'Visita a la API - /api/getLottery');
+        console.log("LOG ACTIVITY:", log_activity);
+
+        // 📦 Consulta SQL que trae todos los campos del sorteo
+        // e incluye una subconsulta para obtener la PRIMERA imagen asociada al sorteo
+        const query = `
+            SELECT 
+                s.id,                             -- ID del sorteo
+                s.titulo_sorteo,                  -- Título del sorteo
+                s.edicion,                        -- Edición (ej. 1, 2, 3...)
+                s.emisiones,                      -- Número de emisiones
+                s.oportunidades,                  -- Oportunidades por boleto
+                s.cantidad_boletos,               -- Total de boletos
+                s.fecha_sorteo,                   -- Fecha oficial del sorteo
+                s.activo,                         -- Estado (1 = activo, 0 = inactivo)
+                s.presorteo,                      -- Detalle si hay presorteo
+                s.fecha_presorteo,                -- Fecha del presorteo si aplica
+                s.lugares,                        -- Información de premios para más lugares (JSON)
+                s.bonos,                          -- Bonos personalizados (JSON)
+                s.avisos,                         -- Mensajes o avisos extras
+                s.url_listaBoletos,               -- Ruta para ver la lista de boletos
+                s.url_verificadorBoletos,         -- Ruta para verificar boletos
+                s.url_buscarMismosBoletos,        -- Ruta para buscar boletos repetidos
+
+                -- 📸 Subconsulta para traer la PRIMERA imagen asociada como "imagen_destacada"
+                (
+                    SELECT ruta 
+                    FROM imagenes 
+                    WHERE tipo_relacion = 'sorteo' AND id_relacionado = s.id 
+                    ORDER BY id ASC 
+                    LIMIT 1
+                ) AS imagen_destacada
+            FROM sorteos s
+        `;
+
+        // 📡 Ejecutar la consulta en la base de datos
+        const [results] = await db.query(query);
+
+        // ✅ Si no hay sorteos, responder con un array vacío
+        if (results.length === 0) {
+            return res.status(200).json({
+                status: "success",
+                message: "No hay sorteos disponibles",
+                data: [],
+            });
+        }
+
+        // ✅ Si se encontraron sorteos, responder con ellos
+        res.status(200).json({
+            status: "success",
+            message: "Se han obtenido todos los sorteos exitosamente",
+            data: results,
+        });
+
+    } catch (error) {
+        // ❌ Si ocurre algún error en la API, lo mostramos en consola y registramos
+        console.error("Error general en la API:", error);
+
+        const log_error = logError(req, 'Error en la API "/api/getLottery": ' + error.message);
+        console.log("LOG ERROR:", log_error);
+
+        // ❗ Enviar error 500 al cliente
+        res.status(500).json({ error: "Error interno del servidor" });
+    }
+};
+
+/*
+const getLottery = async (req, res) => {
+    try {
+        const log_activity = logActivity(req, 'Visita a la API - /api/getLottery');
+        console.log("LOG ACTIVITY:", log_activity);
+
+        const query = `
+            SELECT 
+                id, titulo_sorteo, edicion, emisiones, oportunidades, cantidad_boletos,
+                fecha_sorteo, activo, presorteo, fecha_presorteo, lugares, bonos, avisos,
+                url_listaBoletos, url_verificadorBoletos, url_buscarMismosBoletos
+            FROM sorteos
+        `;
+
+        const [results] = await db.query(query);
+
+        if (results.length === 0) {
+            return res.status(200).json({
+                status: "success",
+                message: "No hay sorteos disponibles",
+                data: [],
+            });
+        }
+
+        res.status(200).json({
+            status: "success",
+            message: "Se han obtenido todos los sorteos exitosamente",
+            data: results,
+        });
+
+    } catch (error) {
+        console.error("Error general en la API:", error);
+        const log_error = logError(req, 'Error en la API "/api/getLottery": ' + error.message);
+        console.log("LOG ERROR:", log_error);
+        res.status(500).json({ error: "Error interno del servidor" });
+        console.log("");
+    }
+};
+*/
+
 
 
 
@@ -436,4 +918,6 @@ async function columnaExiste(baseDeDatos, tabla, columna) {
 
 
 
-module.exports = { saveUserInfo, savePurchasedTicketsUser, verifyPhoneUserInfo, chatbotInfo };
+module.exports = { saveUserInfo, savePurchasedTicketsUser, verifyPhoneUserInfo, chatbotInfo, getConfigPageBD,
+                    createLottery, getLottery
+                };
