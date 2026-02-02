@@ -15,10 +15,10 @@ async function verificarRuta(req, res, next) {
         const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         const metodo = req.method;
 
-        console.log("cleanPath: ", cleanPath);
+        //console.log("cleanPath: ", cleanPath);
 
         const [rows] = await db.query('SELECT activa, tipo FROM rutas WHERE path = ?', [cleanPath]);
-        console.log("rows: ", rows);
+        //console.log("rows: ", rows);
 
         // Si no está registrada, asumimos WEB y negamos acceso
         if (rows.length === 0) {
@@ -60,10 +60,13 @@ module.exports = verificarRuta;
 
 // 👇 Función para registrar intentos de acceso a rutas desactivadas
 async function registrarIntentoBloqueado(path, method, tipo, req) {
+    console.log("async function registrarIntentoBloqueado(path, method, tipo, req) {");
     try {
+        console.log("req.ip: ", req.ip);
+        console.log("req.get('User-Agent'): ", req.get('User-Agent'));
         await db.query(`
             INSERT INTO intentos_bloqueados (path, metodo, tipo, ip_usuario, user_agent)
-            VALUES (?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?)
         `, [
             path,
             method,

@@ -290,13 +290,18 @@
 
                         <!-- Ventana de chat -->
                         <div id="chat-box" class="chat-box-class" style="display: none;">
-                            <div id="chat-header" class="chat-header-class">
+                            <div id="chat-header-cliente" class="chat-header-class">
                                 <span>Asistente Virtual</span>
                                 <button onclick="toggleChat()">✖</button>
                             </div>
 
                             <!-- ✅ Contenedor de mensajes (aquí se agregan textos y botones) -->
                             <div id="chat-messages" class="chat-messages-class"></div>
+
+                            <!-- 🔹 INDICADOR DE SOPORTE CUANDO ESCRIBE -->
+                            <div id="soporte-typing" class="typing-indicator" style="display:none">
+                                Soporte está escribiendo…
+                            </div>
 
                             <!-- ✅ Campo de entrada -->
                             <input id="chat-input" class="chat-input-class" placeholder="Escribe tu mensaje..." onkeypress="handleKeyPress(event)" />
@@ -414,6 +419,11 @@
         <script src="/js/navbar_EJS.js"></script>
         <!-- Intro.js JS -->
         <script src="/intro-js/intro.min.js"></script>
+
+        <!-- Socket.IO CLIENTE -->
+        <script src="/socket.io/socket.io.js"></script>
+
+        <!-- Chatbot personalizado -->
         <script src="/js/chatbot.js"></script>
 
         <!--

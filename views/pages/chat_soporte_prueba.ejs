@@ -1,0 +1,637 @@
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Metatags para redes sociales (Open Graph) -->
+        <meta property="og:title" content="Rifas Economicas Navojoa" />
+        <!--<meta property="og:description" content="" />-->
+        <meta property="og:url" content="https://rifaseconomicasnavojoa.site/" />
+        <meta property="og:image" content="img/rifas_economicas_navojoa-logo.png" />
+        
+        <title>Rifas Economicas Navojoa</title>
+        
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!-- Favicon en formato PNG (para que el logo aparezca en navegadores) -->
+        <link rel="icon" type="image/png" href="/img/rifas_economicas_navojoa-logo.png">
+        <!-- Opcional: Favicon para dispositivos Apple  (para que el logo aparezca en navegadores apple) -->
+        <link rel="apple-touch-icon" href="/img/rifas_economicas_navojoa-logo.png">
+
+        <link rel="preload" href="/img/rifas_economicas_navojoa-logo.png" as="image">
+        <link rel="preload" href="/img/moto_italika_deportiva_vort-x250_2024_roja_2_11zon.webp" as="image">
+        <!--
+        <link rel="preload" href="img/loading.gif" as="image">
+        <link rel="preload" href="img/cancelar.png" as="image">
+        <link rel="preload" href="img/comprobar.png" as="image">
+        <link rel="preload" href="img/maquinitaDeLaSuerte.gif" as="image">
+        -->
+        
+    </head>
+    <body>
+        <div id="locationModal">
+            <div id="infoModal">
+                <p style="font-size: 21px;">Para poder utilizar nuestro servicio es necesario que permitas el acceso a tu ubicación para fines de seguridad.</p>
+                <button id="enableLocation">Continuar</button>
+            </div>
+        </div>
+        <div id="content_page">
+            <div class="div_header">
+                <button id="theme-dark-toggle" class="dark_mode_btn"></button>
+            </div>
+    
+            <div class="logo">
+                <img src="/img/rifas_economicas_navojoa-logo.png" alt="Logo" />
+            </div>
+    
+            <%- include('../partials/navbar') %>
+
+            <div class="div_espacio3"></div>
+    
+            
+            <div id="div_sectionHazclickAbajo_cerrado">
+                <div class="div_alinear">
+                    <div class="div_trianguloAbajo">
+                        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="10,30 50,80 90,30" fill="white" />
+                        </svg>
+                    </div>
+                    <div class="div_hazClickAbajo">
+                        <strong id="span_hazClickAbajo">PANEL DE SOPORTE</strong>
+                    </div>
+                    <div class="div_trianguloAbajo">
+                        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="10,30 50,80 90,30" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--
+            <main id="main-content" class="main-content" style="display: block;">
+                <div id="clientes"></div>
+                <hr>
+                <input id="mensaje" placeholder="Escribe mensaje..." />
+                <button onclick="enviarMensaje()">Enviar</button>
+            </main>
+            -->
+
+            <main id="main-content-soporteLayout" class="soporte-layout">
+
+                <!-- COLUMNA IZQUIERDA -->
+                <aside class="lista-clientes">
+                    <h3>Clientes</h3>
+                    <div id="clientes"></div>
+                </aside>
+
+                <!-- COLUMNA DERECHA -->
+                <section class="chat-panel">
+                    <div id="chat-header-agente-soporte">Selecciona un cliente</div>
+
+                    <div id="chat-mensajes"></div>
+
+                    <div id="typing-indicator" class="typing" style="display:none">
+                        Cliente está escribiendo…
+                    </div>
+
+                    <div class="chat-input">
+                        <input id="mensaje" placeholder="Escribe un mensaje..." />
+                        <button onclick="enviarMensaje()">Enviar</button>
+                    </div>
+                </section>
+
+            </main>
+
+
+            <!--
+            <main class="chat-panel">
+
+                <!-- Lista de clientes --
+                <div id="clientes" class="clientes-list"></div>
+
+                <!-- Conversación --
+                <div id="chat" class="chat-box"></div>
+
+                <!-- Input --
+                <div class="chat-input">
+                    <input id="mensaje" type="text" placeholder="Escribe un mensaje..." />
+                    <button onclick="enviarMensaje()">Enviar</button>
+                </div>
+
+            </main>
+            -->
+            
+            <div class="div_espacio5"></div>
+    
+            <%- include('../partials/footer') %>
+    
+        </div>
+        
+        
+        <script src="/config.js"></script>
+        <script src="/js/chat_soporte.js"></script>
+        <script src="/js/navbar_EJS.js"></script>
+
+        <!-- Socket.IO CLIENTE -->
+        <script src="/socket.io/socket.io.js"></script>
+
+        <script>
+            const socket = io();
+            socket.emit('soporte:register');
+            let clienteActual = null;
+            // 🧠 Historial por cliente
+            const conversaciones = {};  
+            // 🔴 Mensajes no leídos por cliente
+            const mensajesPendientes = {};
+            
+
+
+            // Renderiza mensajes en el chat
+            function agregarMensaje(texto, tipo, socketId, messageId) {
+                if (!conversaciones[socketId]) {
+                    conversaciones[socketId] = [];
+                }
+
+                conversaciones[socketId].push({
+                    id: messageId,
+                    texto,
+                    tipo,
+                    autor: tipo === 'cliente' ? 'Cliente' : 'Soporte',
+                    fecha: new Date(),
+                    entregado: false,
+                    visto: false
+                });
+                /*
+                conversaciones[socketId].push({
+                    texto,
+                    tipo,
+                    autor: tipo === 'cliente' ? 'Cliente' : 'Soporte',
+                    fecha: new Date()
+                });
+                */
+                //conversaciones[socketId].push({ texto, tipo });
+
+                // Solo renderiza si es el cliente activo
+                if (clienteActual === socketId) {
+                    renderizarChat(socketId);
+                }
+            }
+            /*
+            function agregarMensaje(texto, tipo) {
+                const chat = document.getElementById('chat-mensajes');
+                const div = document.createElement('div');
+                div.classList.add('mensaje', tipo);
+                div.textContent = texto;
+                chat.appendChild(div);
+                chat.scrollTop = chat.scrollHeight;
+            }
+            */
+
+            function renderizarChat(socketId) {
+                const chat = document.getElementById('chat-mensajes');
+                chat.innerHTML = '';
+
+                conversaciones[socketId]?.forEach(msg => {
+
+                    const wrapper = document.createElement('div');
+                    wrapper.classList.add('mensaje', msg.tipo);
+
+                    // 🔹 Autor (arriba)
+                    const autor = document.createElement('div');
+                    autor.className = 'mensaje-autor';
+                    autor.textContent = msg.autor;
+
+                    // 🔹 Texto principal
+                    const contenido = document.createElement('div');
+                    contenido.className = 'mensaje-texto';
+                    contenido.textContent = msg.texto;
+
+                    // 🔹 Fecha (abajo)
+                    const fecha = document.createElement('div');
+                    fecha.className = 'mensaje-fecha';
+                    
+                    if (msg.tipo === 'soporte') {
+
+                        let checks = '✔';
+                        let color = 'enviado';
+
+                        if (!msg.entregado) {
+                            // ✔ gris (chat cerrado)
+                            checks = '✔';
+                            color = 'enviado';
+                        }
+                        else if (msg.entregado && !msg.visto) {
+                            // ✔✔ gris (chat abierto, sin interacción)
+                            checks = '✔✔';
+                            color = 'entregado';
+                        }
+                        else if (msg.visto) {
+                            // ✔✔ verde (interacción real)
+                            checks = '✔✔';
+                            color = 'visto';
+                        }
+
+                        fecha.innerHTML = `
+                            <span>${formatearFecha(msg.fecha)}</span>
+                            <span class="checks ${color}">${checks}</span>
+                        `;
+                    }
+                    /*
+                    if (msg.tipo === 'soporte') {
+                        //const checks = msg.visto ? '✔✔' : '✔✔';
+                        const checks = msg.visto ? '✔✔' : '✔';
+                        const color = msg.visto ? 'visto' : 'enviado';
+
+                        fecha.innerHTML = `
+                            <span>${formatearFecha(msg.fecha)}</span>
+                            <span class="checks ${color}">${checks}</span>
+                        `;
+                    } else {
+                        fecha.textContent = formatearFecha(msg.fecha);
+                    }
+                    */
+
+                    wrapper.appendChild(autor);
+                    wrapper.appendChild(contenido);
+                    wrapper.appendChild(fecha);
+
+                    chat.appendChild(wrapper);
+                });
+
+                chat.scrollTop = chat.scrollHeight;
+            }
+
+            /*
+            function renderizarChat(socketId) {
+                const chat = document.getElementById('chat-mensajes');
+                chat.innerHTML = '';
+
+                conversaciones[socketId]?.forEach(msg => {
+                    const div = document.createElement('div');
+                    div.classList.add('mensaje', msg.tipo);
+                    div.textContent = msg.texto;
+                    chat.appendChild(div);
+                });
+
+                chat.scrollTop = chat.scrollHeight;
+            }
+            */
+
+
+            // Nuevos clientes
+            socket.on('soporte:nuevo-cliente', (data) => {
+
+                conversaciones[data.socketId] = [];
+                mensajesPendientes[data.socketId] = 0;
+
+                const div = document.createElement('div');
+                div.className = 'cliente-item conectado';
+                div.id = `cliente-${data.socketId}`;
+                // Guardamos el nombre del cliente(socketID) para reutilizarlo
+                div.setAttribute('data-nombre', data.socketId);
+
+                div.innerHTML = `
+                    <div class="cliente-avatar">👤</div>
+                    <div class="cliente-info">
+                        <div class="cliente-nombre">Cliente ${data.socketId.slice(0,6)}</div>
+                        <div class="cliente-pagina">${data.pagina}</div>
+                    </div>
+
+                    <span class="badge" style="display:none">0</span>
+
+                    <button class="btn-atender" onclick="seleccionar('${data.socketId}')">
+                        Atender
+                    </button>
+                `;
+
+                document.getElementById('clientes').appendChild(div);
+            });
+
+            /*
+            socket.on('soporte:nuevo-cliente', (data) => {
+                const div = document.createElement('div');
+                div.className = 'cliente-item conectado';
+                div.id = `cliente-${data.socketId}`;
+
+                div.innerHTML = `
+                    <div class="cliente-avatar">👤</div>
+                    <div class="cliente-info">
+                        <div class="cliente-nombre">Cliente</div>
+                        <div class="cliente-pagina">${data.pagina}</div>
+                    </div>
+                    <button class="btn-atender" onclick="seleccionar('${data.socketId}')">
+                        Atender
+                    </button>
+                `;
+
+                document.getElementById('clientes').appendChild(div);
+            });
+            */
+
+            // Mensajes del cliente
+            socket.on('soporte:mensaje-cliente', (data) => {
+                // Inicializar conversación si no existe
+                if (!conversaciones[data.socketId]) {
+                    conversaciones[data.socketId] = [];
+                    mensajesPendientes[data.socketId] = 0;
+                }
+                
+                agregarMensaje(data.mensaje, 'cliente', data.socketId);
+
+                // Si NO es el cliente activo → badge
+                if (clienteActual !== data.socketId) {
+                    incrementarBadge(data.socketId);
+                }
+            });
+
+            /*
+            socket.on('soporte:mensaje-cliente', (data) => {
+                if (data.socketId === clienteActual) {
+                    agregarMensaje(data.mensaje, 'cliente');
+                }
+            });
+            */
+            
+            socket.on('soporte:cliente-escribiendo', (data) => {
+                if (data.socketId === clienteActual) {
+                    document.getElementById('typing-indicator').style.display = 'block';
+                }
+            });
+
+            socket.on('soporte:cliente-dejo-escribir', (data) => {
+                if (data.socketId === clienteActual) {
+                    document.getElementById('typing-indicator').style.display = 'none';
+                }
+            });
+            
+            socket.on('soporte:mensaje-entregado', data => {
+                const mensajes = conversaciones[data.clienteId];
+                if (!mensajes) return;
+
+                const msg = mensajes.find(m => m.id === data.messageId);
+                if (msg) {
+                    msg.entregado = true;
+                    renderizarChat(data.clienteId);
+                }
+            });
+            /*
+            socket.on('soporte:mensaje-entregado', data => {
+                const mensajes = conversaciones[data.clienteId];
+                if (!mensajes) return;
+
+                mensajes.forEach(msg => {
+                    if (msg.tipo === 'soporte' && !msg.entregado) {
+                        msg.entregado = true;
+                    }
+                });
+
+                renderizarChat(data.clienteId);
+            });
+            */
+
+            socket.on('soporte:mensaje-visto', (data) => {
+                console.log("soporte:mensaje-visto - data: ", data);
+                const mensajes = conversaciones[data.clienteId];
+                if (!mensajes) return;
+
+                console.log("data.messageId: ", data.messageId);
+                
+                const msg = mensajes.find(m => m.id === data.messageId);
+                if (msg) {
+                    msg.visto = true;
+                    renderizarChat(data.clienteId);
+                }
+            });
+            /*
+            socket.on('soporte:mensaje-visto', (data) => {
+                const mensajes = conversaciones[clienteActual];
+                if (!mensajes) return;
+
+                const msg = mensajes.find(m => m.id === data.messageId);
+                if (msg) {
+                    msg.visto = true;
+                    renderizarChat(clienteActual);
+                }
+            });
+            */
+
+            socket.on('soporte:cliente-desconectado', (data) => {
+                const clienteDiv = document.getElementById(`cliente-${data.socketId}`);
+                if (clienteDiv) {
+                    clienteDiv.classList.remove('conectado');
+                    clienteDiv.classList.add('desconectado');
+                }
+                if (clienteActual === data.socketId) {
+                    document.getElementById('mensaje').disabled = true;
+                    document.querySelector('.chat-input button').disabled = true;
+                    document.getElementById('typing-indicator').style.display = 'none';
+                }
+            });
+            /*
+            socket.on('soporte:cliente-desconectado', (data) => {
+                const clienteDiv = document.getElementById(`cliente-${data.socketId}`);
+                if (clienteDiv) {
+                    clienteDiv.remove();
+                }
+
+                // Si estabas atendiendo a ese cliente
+                if (clienteActual === data.socketId) {
+                    alert('⚠️ El cliente "'+clienteActual+'" se desconectó');
+                    clienteActual = null;
+                }
+            });
+            */
+            
+            /**
+             * Selecciona un cliente para atenderlo en el panel de soporte.
+             * Esta funcion se ejecuta cuando le damos click al boton "Atender" del cliente deseado.
+             * 
+             * Esta función:
+             * 1️⃣ Marca al cliente como "activo" visualmente
+             * 2️⃣ Cambia el encabezado del chat con el nombre del cliente
+             * 3️⃣ Carga la conversación privada de ese cliente
+             * 4️⃣ Limpia el contador de mensajes no leídos (badge)
+             *
+             * @param {string} id - socket.id "completo" del cliente que se va a atender
+             */
+            function seleccionar(id) {
+
+                // Guardamos qué cliente estamos atendiendo actualmente
+                // Esto se usa para saber:
+                // - a quién enviar mensajes
+                // - qué conversación mostrar
+                clienteActual = id;
+
+
+                // Quitamos la clase "activo" de TODOS los clientes
+                // (porque solo uno puede estar seleccionado a la vez)
+                document.querySelectorAll('.cliente-item')
+                    .forEach(el => el.classList.remove('activo'));
+
+
+                // Obtenemos el div del cliente que fue seleccionado
+                // Ejemplo: cliente-cxFwDj
+                const seleccionado = document.getElementById(`cliente-${id}`);
+
+                if (seleccionado) {
+
+                    // Agregamos la clase "activo" al cliente seleccionado
+                    // Esto cambia su estilo visual (color, borde, etc.)
+                    seleccionado.classList.add('activo');
+
+
+                    // ================================
+                    // 🧾 ACTUALIZAR ENCABEZADO DEL CHAT
+                    // ================================
+
+                    // Recuperamos el nombre corto del cliente
+                    // (lo guardamos antes en data-nombre)
+                    const nombreCliente = seleccionado.getAttribute('data-nombre');
+
+                    // Cambiamos el texto del header del chat
+                    // Ejemplo: "Cliente cxFwDj"
+                    document.getElementById('chat-header-agente-soporte').textContent = "Cliente " + nombreCliente;
+
+
+                    // ================================
+                    // 🔴 LIMPIAR MENSAJES NO LEÍDOS
+                    // ================================
+
+                    // Buscamos el badge rojo (contador de mensajes)
+                    const badge = seleccionado.querySelector('.badge');
+
+                    // Si existe, lo ocultamos
+                    if (badge) badge.style.display = 'none';
+
+                    // Reiniciamos el contador interno de mensajes pendientes
+                    mensajesPendientes[id] = 0;
+                }
+
+
+                // ================================
+                // 💬 MOSTRAR CONVERSACIÓN PRIVADA
+                // ================================
+
+                // Renderizamos SOLO los mensajes de este cliente
+                // (cada cliente tiene su propio historial)
+                renderizarChat(id);
+            }
+
+            /*
+            function seleccionar(id) {
+                clienteActual = id;
+
+                document.querySelectorAll('.cliente-item')
+                    .forEach(el => el.classList.remove('activo'));
+
+                const seleccionado = document.getElementById(`cliente-${id}`);
+                if (seleccionado) {
+                    seleccionado.classList.add('activo');
+
+                    // 🔴 Reset badge
+                    const badge = seleccionado.querySelector('.badge');
+                    if (badge) badge.style.display = 'none';
+                    mensajesPendientes[id] = 0;
+                }
+
+                renderizarChat(id);
+            }
+            */
+            /*
+            function seleccionar(id) {
+                clienteActual = id;
+
+                document.querySelectorAll('.cliente-item')
+                    .forEach(el => el.classList.remove('activo'));
+
+                const seleccionado = document.getElementById(`cliente-${id}`);
+                if (seleccionado) {
+                    seleccionado.classList.add('activo');
+                }
+            }
+            */
+            /*
+            function seleccionar(id) {
+                clienteActual = id;
+                document.getElementById('chat').innerHTML = '';
+                alert('Atendiendo cliente: ' + id);
+            }
+            */
+
+            function enviarMensaje() {
+                const input = document.getElementById('mensaje');
+                const msg = input.value;
+                if (!msg || !clienteActual) return;
+
+                const messageId = crypto.randomUUID();
+
+                agregarMensaje(msg, 'soporte', clienteActual, messageId);
+                //agregarMensaje(msg, 'soporte', clienteActual);
+                //agregarMensaje(msg, 'soporte');
+
+                socket.emit('soporte:mensaje', {
+                    socketId: clienteActual,
+                    mensaje: msg,
+                    messageId
+                });
+
+                input.value = '';
+            }
+
+            document.getElementById('mensaje').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    enviarMensaje();
+                }
+            });
+
+            let soporteTypingTimeout = null;
+            document.getElementById('mensaje').addEventListener('input', () => {
+                if (!clienteActual) return;
+
+                socket.emit('soporte:soporte-typing', {
+                    socketId: clienteActual
+                });
+
+                clearTimeout(soporteTypingTimeout);
+                soporteTypingTimeout = setTimeout(() => {
+                    socket.emit('soporte:soporte-stop-typing', {
+                        socketId: clienteActual
+                    });
+                }, 1000);
+            });
+
+
+            function incrementarBadge(socketId) {
+                mensajesPendientes[socketId] = (mensajesPendientes[socketId] || 0) + 1;
+
+                const badge = document.querySelector(`#cliente-${socketId} .badge`);
+                if (badge) {
+                    badge.textContent = mensajesPendientes[socketId];
+                    badge.style.display = 'flex';
+                }
+            }
+
+            /**
+             * Formatea una fecha a:
+             * 24 ene 2026, 6:41:39 pm
+             */
+            function formatearFecha(fecha) {
+                return fecha.toLocaleString('es-MX', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                });
+            }
+
+
+        </script>
+
+        
+        
+    </body>
+</html>

@@ -9,6 +9,8 @@ const cors = require('cors');
 const compression = require('compression');
 const UAParser = require('ua-parser-js');
 const logActivity = require('./utils/log_activity_USANDO_ua_parser_js');
+const http = require('http');               // Agregado el 31-01-2026
+const { Server } = require('socket.io');    // Agregado el 31-01-2026
 
 // Importar el archivo de variables para las vistas EJS
 //const variables = require('./config/variables');
@@ -29,6 +31,14 @@ const db = require('./db'); // Conexión a la base de datos
 
 // Crear una instancia de la aplicación Express
 const app = express();
+
+
+// 👉 Crear server HTTP (por defecto) - 31-01-2026
+let server;
+
+// 👉 Socket.IO - 31-01-2026
+let io;
+
 
 // Habilitar confianza en el proxy
 app.set('trust proxy', true);
@@ -74,6 +84,12 @@ app.use('/panel-control-rutas', panelRoutes); // Añadimos el panel para control
 
 // Rutas públicas (páginas web estáticas)
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+// Ruta pública para acceder a las imágenes subidas
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+
 
 
 
@@ -181,27 +197,27 @@ app.post('/update-config', (req, res) => {
     try {
         const {
             local_url, online_url, online_test_url, server_url, URL, STATES_URL, GET_STATES_URL,
-            BUSCAR_URL, CAMBIAR_ESTADO_NUMEROS_URL, SAVE_PERSON_DATA_URL,
-            ADQUIRIR_BOLETO_URL, NUMEROS_PAGINACION_URL, GEOLOCALIZACION_URL,
-            CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, BUSCAR_APARTADOS_URL,
-            PAGAR_NUMEROS_APARTADOS_URL, ELIMINAR_PAGO_NUMEROS_APARTADOS_URL, ELIMINAR_NUMEROS_APARTADOS_URL,
-            OBTENER_CONTEO_NUMEROS_URL, VERIFY_PHONE_DATA_URL, CHATBOT_URL, message, appName, companyName, currentYear, supportEmail, url_inicio, 
-            url_preguntasFrecuentes, url_contacto, url_metodosDePago, url_verificador, 
-            url_facebookPage, url_whatsappPage
+            BUSCAR_URL, CAMBIAR_ESTADO_NUMEROS_URL, SAVE_PERSON_DATA_URL, ADQUIRIR_BOLETO_URL, 
+            NUMEROS_PAGINACION_URL, GEOLOCALIZACION_URL, CAPTURAR_ERRORES_URL, OBTENER_NUMEROS_APARTADOS_URL, 
+            BUSCAR_APARTADOS_URL, PAGAR_NUMEROS_APARTADOS_URL, ELIMINAR_PAGO_NUMEROS_APARTADOS_URL, 
+            ELIMINAR_NUMEROS_APARTADOS_URL, OBTENER_CONTEO_NUMEROS_URL, VERIFY_PHONE_DATA_URL, CHATBOT_URL, 
+            GET_CONFIG_PAGE_URL, CREAR_SORTEO_URL, OBTENER_SORTEOS_URL, message, appName, companyName, 
+            currentYear, supportEmail, url_inicio, url_preguntasFrecuentes, url_contacto, url_metodosDePago, 
+            url_verificador, url_facebookPage, url_whatsappPage
         } = req.body;
 
 
         // Lista de claves desestructuradas
         const expectedKeys = [
-            "DB_HOST", "DB_USER", "DB_PASS", "DATABASE", "PORT", "HTTPS_ENABLED",
+            "DB_HOST", "DB_USER", "DB_PASS", "DATABASE", "PORT", "HTTPS_ENABLED", 
             "local_url", "online_url", "online_test_url", "server_url", "URL", "STATES_URL", "GET_STATES_URL",
-            "BUSCAR_URL", "CAMBIAR_ESTADO_NUMEROS_URL", "SAVE_PERSON_DATA_URL",
-            "ADQUIRIR_BOLETO_URL", "NUMEROS_PAGINACION_URL", "GEOLOCALIZACION_URL",
-            "CAPTURAR_ERRORES_URL", "OBTENER_NUMEROS_APARTADOS_URL", "BUSCAR_APARTADOS_URL",
-            "PAGAR_NUMEROS_APARTADOS_URL", "ELIMINAR_PAGO_NUMEROS_APARTADOS_URL", "ELIMINAR_NUMEROS_APARTADOS_URL",
-            "OBTENER_CONTEO_NUMEROS_URL", "VERIFY_PHONE_DATA_URL", "CHATBOT_URL", "message", "appName", "companyName", "currentYear", "supportEmail", "url_inicio", 
-            "url_preguntasFrecuentes", "url_contacto", "url_metodosDePago", "url_verificador", "url_facebookPage", 
-            "url_whatsappPage"
+            "BUSCAR_URL", "CAMBIAR_ESTADO_NUMEROS_URL", "SAVE_PERSON_DATA_URL", "ADQUIRIR_BOLETO_URL", 
+            "NUMEROS_PAGINACION_URL", "GEOLOCALIZACION_URL", "CAPTURAR_ERRORES_URL", "OBTENER_NUMEROS_APARTADOS_URL", 
+            "BUSCAR_APARTADOS_URL", "PAGAR_NUMEROS_APARTADOS_URL", "ELIMINAR_PAGO_NUMEROS_APARTADOS_URL", 
+            "ELIMINAR_NUMEROS_APARTADOS_URL", "OBTENER_CONTEO_NUMEROS_URL", "VERIFY_PHONE_DATA_URL", "CHATBOT_URL", 
+            "GET_CONFIG_PAGE_URL", "CREAR_SORTEO_URL", "OBTENER_SORTEOS_URL", "message", "appName", "companyName", 
+            "currentYear", "supportEmail", "url_inicio", "url_preguntasFrecuentes", "url_contacto", "url_metodosDePago", 
+            "url_verificador", "url_facebookPage", "url_whatsappPage"
         ];
 
         // Actualizar .env
@@ -239,6 +255,9 @@ const config = {
     OBTENER_CONTEO_NUMEROS_URL: '${OBTENER_CONTEO_NUMEROS_URL}',
     VERIFY_PHONE_DATA_URL: '${VERIFY_PHONE_DATA_URL}',
     CHATBOT_URL: '${CHATBOT_URL}',
+    GET_CONFIG_PAGE_URL: '${GET_CONFIG_PAGE_URL}',
+    CREAR_SORTEO_URL: '${CREAR_SORTEO_URL}',
+    OBTENER_SORTEOS_URL: '${OBTENER_SORTEOS_URL}',
 };
 if (typeof module !== "undefined" && module.exports) {
     module.exports = config;
@@ -442,7 +461,275 @@ app.use((req, res) => {
     res.redirect('/'); // Redirige a la página de inicio
 });
 
+
+
 // Configuración de HTTPS si es necesario
+if (process.env.HTTPS_ENABLED === '1') {
+    const certPath = '/etc/letsencrypt/live/rifaseconomicasnavojoa.com/';
+    if (fs.existsSync(`${certPath}privkey.pem`) && fs.existsSync(`${certPath}fullchain.pem`)) {
+        const options = {
+            key: fs.readFileSync(`${certPath}privkey.pem`),
+            cert: fs.readFileSync(`${certPath}fullchain.pem`),
+        };
+
+        server = https.createServer(options, app);
+
+    } else {
+        console.error('Certificados HTTPS no encontrados.');
+        process.exit(1);
+    }
+} else {
+    server = http.createServer(app);
+}
+
+
+
+// 👉 Inicializar Socket.IO
+io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
+
+
+
+// ==================================================
+// 🔽 INICIO CÓDIGO AGREGADO
+// SOCKET.IO – SOPORTE HUMANO EN TIEMPO REAL
+// ==================================================
+
+// Manejo de conexiones Socket.IO
+// Cada cliente que entra al modo soporte se conecta aquí
+/*
+io.on('connection', (socket) => {
+
+    console.log("==================================================================");
+    console.log('🔌 Nuevo socket conectado:', socket.id);
+    console.log("==================================================================");
+
+    // El cliente solicita entrar a soporte humano
+    socket.on('soporte:join', (data) => {
+        console.log('📞 Cliente en espera de soporte humano');
+        console.log('📄 Datos del cliente:', data);
+        console.log('📄 Página:', data.pagina);
+        console.log('📅 Fecha:', data.fecha);
+
+        // Todos los clientes de soporte entran a la misma sala por ahora. Guardamos el socket en una sala de soporte
+        socket.join('cola-soporte');
+    });
+
+    // Mensajes enviados desde el cliente o el agente
+    socket.on('soporte:mensaje', (data) => {
+        console.log('💬 Mensaje de soporte:', data.mensaje);
+
+        // Reenviamos el mensaje a todos en la sala de soporte
+        
+        //io.to('cola-soporte').emit('soporte:mensaje', {
+            //mensaje: data.mensaje
+        //});
+        
+        // Envía a TODOS EXCEPTO el socket que emitió
+        socket.to('cola-soporte').emit('soporte:mensaje', {
+            mensaje: data.mensaje
+        });
+
+    });
+
+    // Detectar desconexión. Evento cuando el cliente se desconecta
+    socket.on('disconnect', () => {
+        console.log("******************************************************************");
+        console.log('❌ Socket desconectado:', socket.id);
+        console.log("******************************************************************");
+    });
+});
+*/
+// ==================================================
+// 🔼 FIN CÓDIGO AGREGADO
+// ==================================================
+
+
+
+
+
+// ==================================================
+// SOCKET.IO – SOPORTE HUMANO EN TIEMPO REAL (CORRECTO)
+// ==================================================
+
+const clientesSoporte = new Map();
+// socket.id → { pagina, fecha }
+
+let socketSoporte = null;
+
+io.on('connection', (socket) => {
+    console.log("==================================================================");
+    console.log('🔌 Nuevo socket conectado:', socket.id);
+    console.log("==================================================================");
+
+    /**
+     * CLIENTE solicita soporte humano
+     */
+    socket.on('soporte:join', (data) => {
+        clientesSoporte.set(socket.id, {
+            pagina: data.pagina,
+            fecha: data.fecha
+        });
+
+        console.log('📞 Cliente en espera de soporte humano:', socket.id);
+        console.log('📄 Datos del cliente:', data);
+        console.log(' ');
+
+        // Cada cliente usa SU PROPIA SALA (su socket.id)
+        socket.join(socket.id);
+
+        // Avisamos al panel que llegó un nuevo cliente
+        io.emit('soporte:nuevo-cliente', {
+            socketId: socket.id,
+            pagina: data.pagina,
+            fecha: data.fecha
+        });
+    });
+
+    /**
+     * MENSAJES (cliente ↔ soporte)
+     */
+    socket.on('soporte:mensaje', (data) => {
+
+        // 👉 MENSAJE DESDE SOPORTE HACIA CLIENTE
+        if (data.socketId) {
+
+            console.log('🎧 Soporte → Cliente:', data.socketId);
+            console.log('Mensaje: ', data.mensaje);
+            console.log(' ');
+
+            io.to(data.socketId).emit('soporte:mensaje', {
+                mensaje: data.mensaje,
+                messageId: data.messageId
+            });
+
+        } 
+        // 👉 MENSAJE DESDE CLIENTE HACIA SOPORTE
+        else {
+
+            console.log('👤 Cliente → Soporte:', socket.id);
+            console.log('Mensaje: ', data.mensaje);
+            console.log(' ');
+
+            io.emit('soporte:mensaje-cliente', {
+                socketId: socket.id,
+                mensaje: data.mensaje
+            });
+        }
+    });
+
+    /** 
+     * CLIENTE está escribiendo → SOPORTE
+     */ 
+    socket.on('soporte:typing', () => {
+        io.emit('soporte:cliente-escribiendo', {
+            socketId: socket.id
+        });
+    });
+
+    socket.on('soporte:stop-typing', () => {
+        io.emit('soporte:cliente-dejo-escribir', {
+            socketId: socket.id
+        });
+    });
+
+    /** 
+     * SOPORTE está escribiendo → CLIENTE
+     */ 
+    socket.on('soporte:soporte-typing', (data) => {
+        // data.socketId = cliente al que se le está escribiendo
+        io.to(data.socketId).emit('soporte:soporte-escribiendo');
+    });
+
+    socket.on('soporte:soporte-stop-typing', (data) => {
+        io.to(data.socketId).emit('soporte:soporte-dejo-escribir');
+    });
+
+    /**
+     * MENSAJE ENTREGADO
+     */
+    socket.on('soporte:mensaje-entregado', (data) => {
+        if (!socketSoporte) return;
+
+        io.to(socketSoporte).emit('soporte:mensaje-entregado', {
+            clienteId: socket.id,
+            messageId: data.messageId
+        });
+    });
+    /*
+    socket.on('soporte:mensaje-entregado', () => {
+        const socketSoporte = clientesSoporte[socket.id];
+        if (socketSoporte) {
+            socketSoporte.emit('soporte:mensaje-entregado', {
+                clienteId: socket.id
+            });
+        }
+    });
+    */
+
+    /**
+     * MENSAJE VISTO (WhatsApp style)
+     */
+    socket.on('soporte:mensaje-visto', (data) => {
+        console.log("soporte:mensaje-visto - data: ", data);
+        console.log("socketSoporte: ", socketSoporte);
+        console.log(" ");
+
+        if (!socketSoporte) return;
+
+        io.to(socketSoporte).emit('soporte:mensaje-visto', {
+            messageId: data.messageId,
+            clienteId: socket.id
+        });
+    });
+
+    socket.on('soporte:register', () => {
+        socketSoporte = socket.id;
+        console.log('🎧 Soporte conectado:', socketSoporte);
+    });
+
+
+    socket.on('disconnect', () => {
+        if (clientesSoporte.has(socket.id)) {
+            console.log("******************************************************************");
+            console.log('❌ Socket desconectado - Cliente salió:', socket.id);
+            console.log("******************************************************************");
+
+            // Quitamos del mapa
+            clientesSoporte.delete(socket.id);
+
+            // Avisamos al panel
+            io.emit('soporte:cliente-desconectado', {
+                socketId: socket.id
+            });
+        }
+    });
+
+    /*
+    socket.on('disconnect', () => {
+        console.log("******************************************************************");
+        console.log('❌ Socket desconectado:', socket.id);
+        console.log("******************************************************************");
+    });
+    */
+});
+
+
+
+
+
+// 👉 Arrancar servidor
+server.listen(process.env.PORT, '0.0.0.0', () => {
+    console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
+});
+
+
+
+/*
 if (process.env.HTTPS_ENABLED === '1') {
     const certPath = '/etc/letsencrypt/live/rifaseconomicasnavojoa.com/';
     if (fs.existsSync(`${certPath}privkey.pem`) && fs.existsSync(`${certPath}fullchain.pem`)) {
@@ -463,6 +750,10 @@ if (process.env.HTTPS_ENABLED === '1') {
         console.log(`Servidor HTTP corriendo en puerto ${process.env.PORT}`);
     });
 }
+*/
+
+
+
 
 
 

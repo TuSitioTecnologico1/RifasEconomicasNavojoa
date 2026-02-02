@@ -4,10 +4,12 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db'); // Suponiendo que la base de datos está configurada en db.js
 const verificarRuta = require('../middlewares/verificarRuta');
+const upload = require('../middlewares/subirImagen'); // <-- importamos multer
 const { getGeolocation } = require('../apis/geolocationApi');  // Importa las funciones de geolocationApi.js
 //const { catchErrors } = require('../apis/erroresApi');  // Importa las funciones de userApi.js
 const { getStatesBD, getStatesARRAY } = require('../apis/statesApi');  // Importa las funciones de stateApi.js
-const { saveUserInfo, savePurchasedTicketsUser, verifyPhoneUserInfo, chatbotInfo } = require('../apis/userApi');  // Importa las funciones de userApi.js
+const { saveUserInfo, savePurchasedTicketsUser, verifyPhoneUserInfo, 
+        chatbotInfo, getConfigPageBD, createLottery, getLottery } = require('../apis/userApi');  // Importa las funciones de userApi.js
 const { getNumbersBD, getNumbersPagination, changeStatusNumber, getNumersRandom, 
         searchNumber, changeStatusMultipleNumbers, getReservedNumbersBD, searchReservedTicket, 
         paidReservedNumbersBD, deletePaidReservedNumbersBD, deleteReservedNumbersBD, countNumbersBD } = require('../apis/numbersApi');  // Importa las funciones de numerosApi.js
@@ -95,6 +97,20 @@ router.post('/verificar_telefono_usuario', verifyPhoneUserInfo);  // Llamará a 
 // Ruta para recibir y mandar informacion al chatbot
 router.post('/chatbot', chatbotInfo);
 
+
+
+// Ruta para obtener configuraciones de la pagina desde la base de datos
+router.get('/obtener_configuracionPagina', getConfigPageBD);  // Llamará a la API para obtener configuraciones de la pagina desde la base de datos
+
+
+
+// Ruta para recibir y guardar la info del sorteo en la BD
+/*router.post('/crear_sorteo', createLottery);*/
+router.post('/crear_sorteo', upload.array('imagenes', 10), createLottery);
+
+
+// Ruta para obtener los sorteos creados en la BD
+router.get('/obtener_sorteos', getLottery);
 
 
 

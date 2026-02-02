@@ -25,6 +25,94 @@
         <link rel="preload" href="img/comprobar.png" as="image">
         <link rel="preload" href="img/maquinitaDeLaSuerte.gif" as="image">
         -->
+        <style>
+            /* Poner en la misma linea los inputs *
+            .input-inline-group {
+                display: flex;
+                gap: 10px; /* espacio entre inputs *
+            }
+            .input-inline-group input {
+                flex: 1;
+                min-width: 0; /* Importante para evitar desbordamiento *
+            }
+            */
+            .input-inline-group {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+            .input-inline-group input {
+                flex: 1 1 30%; /* ~3 por fila contando el gap */
+                min-width: 0;
+            }
+
+            .input-group {
+                flex: 1 1 30%;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .input-group label {
+                font-size: 13px;
+                color: #ffffff;
+                font-weight: bold;
+            }
+
+            /* Pantallas medianas: 2 por fila */
+            @media (max-width: 768px) {
+                .input-inline-group input {
+                    flex: 1 1 45%;
+                }
+                .input-group {
+                    flex: 1 1 45%;
+                }
+            }
+            /* Pantallas pequeñas: 1 por fila */
+            @media (max-width: 480px) {
+                .input-inline-group input {
+                    flex: 1 1 100%;
+                }
+                .input-group {
+                    flex: 1 1 100%;
+                }
+            }
+            
+
+            .select-group {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+            .select-group label {
+                white-space: nowrap;
+                font-size: 14px; /* opcional */
+            }
+
+
+            .input_form_pasos_modal[readonly] {
+                background-color: #111111;
+                cursor: not-allowed;
+                color: #666;
+            }
+
+
+            .input_tipoBono{
+                width: 50% !important;
+            }
+
+
+            .label_class_form_crearRifa{
+                white-space: normal !important;
+                word-wrap: break-word; /* o también: word-break: break-word; */
+            }
+
+
+            .div_bonos_class{
+                margin-top: 30px;
+            }
+        </style>
     </head>
     <body>
         <div id="locationModal">
@@ -57,7 +145,7 @@
                         </svg>
                     </div>
                     <div class="div_hazClickAbajo">
-                        <strong id="span_hazClickAbajo">PANEL DE CONTROL</strong>
+                        <strong id="span_hazClickAbajo">SUPER PANEL DE CONTROL</strong>
                     </div>
                     <div class="div_trianguloAbajo_panel_class">
                         <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -107,23 +195,37 @@
                 <!--
                 <iframe id="vista_previa" src="http://localhost:3000/lista-boletos/r1" style="width:100%; height:600px;"></iframe>
                 -->
-                <div class="div_conteiner_panel_class">
+                <div class="div_conteiner_panel_class" style="display: none;">
+                    <!--
                     <div class="div_section_panel_class">
+                        <div class="div_buttons">
+                            <button id="btn_crearRifa_panel" class="btn_panel_class">Crear Sorteo</button><br>
+                            <button id="btn_editarMecanicaRifa_panel" class="btn_panel_class" >Editar Sorteo</button><br>
+                            <button id="btn_eliminarRifa_panel" class="btn_panel_class" >Eliminar Sorteo</button><br>
+                        </div>
+                    </div>
+                    <div class="div_section_panel_class">
+                        <div class="div_buttons">
+                            <button id="btn_detallesSorteo_panel" class="btn_panel_class">Detalles Sorteo</button><br>
+                            <button id="btn_verBoletos_panel" class="btn_panel_class" >Lista Boletos</button><br>
+                        </div>
+                    </div>
+                    -->
+                    <div class="div_section_panel_class" style="display: none;" >
                         <div class="div_buttons">
                             <button id="btn_enviarWhatsapp_panel" class="btn_panel_class" disabled>Enviar Whatsapp</button><br>
                             <button id="btn_enviarBoleto_panel" class="btn_panel_class" disabled>Enviar Boleto</button><br>
                             <button id="btn_detalles_panel" class="btn_panel_class" disabled>Detalles</button><br>
-                            <button id="btn_crearRifa_panel" class="btn_panel_class">Crear Rifa</button>
                         </div>
                     </div>
-                    <div class="div_section_panel_class">
+                    <div class="div_section_panel_class" style="display: none;" >
                         <div class="div_buttons">
                             <button id="btn_pagado_panel" class="btn_panel_class" disabled>Pagado</button><br>
                             <button id="btn_eliminarPago_panel" class="btn_panel_class" disabled>Eliminar Pago</button><br>
                             <button id="btn_eliminarApartado_panel" class="btn_panel_class" disabled>Eliminar Apartado</button><br>
-                            <button id="btn_editarMecanicaRifa_panel" class="btn_panel_class" >Editar Rifa</button>
                         </div>
                     </div>
+                    
                 </div>
                 <!--
                 <div class="div_conteiner_filtros_panel_class">
@@ -221,7 +323,102 @@
                 </div>
                 -->
                 <div id="loading" style="display: none;">Cargando...</div>
-                <div id="table-panel" class="tableClass_panel"></div>
+                <div class="tabla-contenedor-superPanel">
+                    <div id="div_input_filtro_tablaSorteos" style="padding-left: 10px; margin-bottom: -20px;">
+                        <div class="select-group" style="display: block;">
+                            <input type="text" id="filtroTablaSorteos" placeholder="🔍 Buscar en la tabla..." class="input-buscador-tablaSorteos-superPanel" style="display: none;">
+                            <!--
+                            <label id="label_filtro_tablaBoletos" for="select_filtro_tablaBoletos">Filtrar por :&nbsp;</label>
+                            <select name="select_filtro_tablaBoletos" id="select_filtro_tablaBoletos" class="select_filtro_tablaBoletos_class">
+                                <option value="">. . .</option>
+                                <option value="activo">Sorteo Activo</option>
+                                <option value="edicion"># Edicion</option>
+                                <option value="titulo">Titulo</option>
+                                <option value="emisiones"># Emisiones</option>
+                                <option value="oportunidades"># Oportunidades</option>
+                                <option value="cantidad_boletos">Cantidad de Boletos</option>
+                                <option value="fecha_sorteo">Fecha del Sorteo</option>
+                            </select>
+                            -->
+                            <div class="filtro-botones-tablaSorteos">
+                                <button id="btn_crearRifa_panel" class="btn_panel_class">Crear Sorteo</button>
+                                <button id="btn_editarMecanicaRifa_panel" class="btn_panel_class">Editar Sorteo</button>
+                                <button id="btn_eliminarRifa_panel" class="btn_panel_class">Eliminar Sorteo</button>
+                                <button id="btn_detallesSorteo_panel" class="btn_panel_class">Detalles Sorteo</button>
+                                <button id="btn_verBoletos_panel" class="btn_panel_class">Lista Boletos</button>
+                            </div>
+                            <!-- Selec para el tipo de vista de la tabla Sorteos -->
+                            <div id="opcionesVistaTabla" class="opcionesVistaTabla_class" style="display: inline-block; margin-left: 5px; margin-bottom: 15px; margin-right: 15px;">
+                                <label for="select_vistaTabla">Vista:</label>
+                                <select id="select_vistaTabla" name="select_vistaTabla" class="select-filtros-tablaSorteos-superPanel">
+                                    <option value="tabla">Tabla</option>
+                                    <option value="tarjetas">Tarjetas</option>
+                                </select>
+                            </div>
+                            <!-- Botón para mostrar/ocultar filtros -->
+                            <button id="toggleFiltros" class="btn_toggleFiltros">🔽 Filtros</button>
+                            <!-- Contenedor de filtros (colapsable) -->
+                            <div id="contenedorFiltros" class="filtros-tablaSorteos colapsado">
+                                <div class="filtro-item-tablaSorteos">
+                                    <label for="input_buscarEdicion">Edición:</label>
+                                    <input type="text" id="input_buscarEdicion" class="input-filtros-tablaSorteos-superPanel" placeholder="🔍 Buscar en la tabla...">
+                                </div>
+                                <div class="filtro-item-tablaSorteos">
+                                    <label for="select_filtroActivo">Activo:</label>
+                                    <select id="select_filtroActivo" class="select-filtros-tablaSorteos-superPanel">
+                                        <option value="todos">Todos</option>
+                                        <option value="1">Sí</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                                <div class="filtro-item-tablaSorteos">
+                                    <label for="select_filtroYear">Año:</label>
+                                    <select id="select_filtroYear" class="select-filtros-tablaSorteos-superPanel">
+                                        <option value="">Seleccionar año</option>
+                                    </select>
+                                </div>
+                                <div class="filtro-item-tablaSorteos">
+                                    <label for="select_filtroMes">Mes:</label>
+                                    <select id="select_filtroMes" class="select-filtros-tablaSorteos-superPanel">
+                                        <option value="">Seleccionar mes</option>
+                                        <option value="enero">Enero</option>
+                                        <option value="febrero">Febrero</option>
+                                        <option value="marzo">Marzo</option>
+                                        <option value="abril">Abril</option>
+                                        <option value="mayo">Mayo</option>
+                                        <option value="junio">Junio</option>
+                                        <option value="julio">Julio</option>
+                                        <option value="agosto">Agosto</option>
+                                        <option value="septiembre">Septiembre</option>
+                                        <option value="octubre">Octubre</option>
+                                        <option value="noviembre">Noviembre</option>
+                                        <option value="diciembre">Diciembre</option>
+                                    </select>
+                                </div>
+                                <div class="filtro-item-tablaSorteos">
+                                    <label for="input_buscarTitulo">Título:</label>
+                                    <input type="text" id="input_buscarTitulo" class="input-filtros-tablaSorteos-superPanel" placeholder="🔍 Buscar en la tabla...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="table-listaSorteos-panel" class="tableClass_panel"></div>
+                </div>
+                <div class="tabla-contenedor-superPanel">
+                    <div id="div_input_filtro_tablaBoletos" style="padding: 10px;">
+                        <input type="text" id="filtroTablaBoletos" placeholder="🔍 Buscar en la tabla..." class="input-buscador-tablaSorteos-superPanel">
+                        
+                    </div>
+                    <div id="table-listaBoletos-panel" class="tableClass_panel"></div>
+                </div>
+                <!--
+                <div class="tabla-contenedor-superPanel">
+                    <input type="text" id="filtroTablaSorteos" placeholder="🔍 Buscar en la tabla..." class="input-buscador-tablaSorteos-superPanel">
+                    <div id="table-listaSorteos-panel" class="tabla_panel"></div>
+                </div>
+                <div id="table-listaBoletos-panel" class="tableClass_panel"></div>
+                -->
+
             </main>
             
             <!--<div class="div_espacio5"></div>-->
@@ -239,7 +436,7 @@
                     -->
                 </div>
             </div>
-
+            
             <!-- Modal - Crear Rifa-->
             <div id="formularioMultiplesPasosModal" class="formModal hidden">
                 <div class="modal-formularioMultiplesPasos-content">
@@ -247,45 +444,362 @@
                     <!-- Formulario multipaso -->
                     <div class="container_indicador_pasos">
                         <div class="step-progress">
-                            <div class="step active" data-title="Plantilla Pagina">
+                            <div class="step active" data-title="Rifa Info">
                                 <div class="circle">✓</div>
                             </div>
-                            <div class="step" data-title="Rifa Info">
+                            <div class="step" data-title="Precio Boletos">
                                 <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="PreSorteo">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Cantidad Lugares">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Premio Lugares">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Bonos">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Detalles Bonos">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Mensajes">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="Detalles Mensajes">
+                                <div class="circle">✓</div>
+                            </div>
+                            <div class="step" data-title="">
+                                <!--
+                                <div class="circle">✓</div>
+                                -->
                             </div>
                             <div class="step" data-title="Success">
                                 <div class="circle">✓</div>
                             </div>
                         </div>
-            
-                        <form id="multiStepForm">
+                        
+                        <form id="multiStepForm" enctype="multipart/form-data">
                             <div class="form-step active">
-                                <h2>Plantilla Pagina Boletos</h2>
-                                <iframe id="vista_previa" src="http://localhost:3000/lista-boletos-plantilla-editable-iframe" style="width:100%; height:600px;"></iframe>
+                                <h2>Informacion de la Rifa</h2>
+                                <div class="input-group">
+                                    <label for="edicion">TITULO:</label>
+                                    <input type="text" class="input_form_pasos_modal" id="titulo" name="titulo" placeholder="TITULO">
+                                </div>
+                                <div class="input-inline-group">
+                                    <div class="input-group">
+                                        <label for="edicion">EDICIÓN:</label>
+                                        <input type="number" class="input_form_pasos_modal" name="edicion" id="edicion"
+                                            value="<%= ultima_emision %>" min="1" placeholder="EDICION" readonly>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="emisiones">EMISIONES:</label>
+                                        <input type="text" class="input_form_pasos_modal" name="emisiones" id="emisiones" pattern="\d{6}"
+                                            min="1" maxlength="6" inputmode="numeric" placeholder="EMISIONES"
+                                            title="Por favor, ingresa solo números">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="oportunidades">OPORTUNIDADES:</label>
+                                        <input type="text" class="input_form_pasos_modal" name="oportunidades" id="oportunidades"
+                                            pattern="\d{6}" min="1" maxlength="6" inputmode="numeric" placeholder="OPORTUNIDADES"
+                                            title="Por favor, ingresa solo números">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="cantidad_boletos">CANTIDAD DE BOLETOS:</label>
+                                        <input type="text" class="input_form_pasos_modal" name="cantidad_boletos" id="cantidad_boletos"
+                                            pattern="\d{6}" min="1" maxlength="6" inputmode="numeric" placeholder="CANTIDAD DE BOLETOS"
+                                            title="Por favor, ingresa solo números" readonly>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="fecha">FECHA:</label>
+                                        <input type="date" class="input_form_pasos_modal" name="fecha" id="fecha" placeholder="FECHA">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="rifa_activa">ACTIVA:</label>
+                                        <select name="rifa_activa" id="rifa_activa" class="input_form_pasos_modal">
+                                            <option value="1">SI</option>
+                                            <option value="0">NO</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="imagenes">SUBIR IMAGEN (HASTA 10):</label>
+                                        <input type="file" id="imagenes" name="imagenes" class="input_form_pasos_modal" accept="image/*" multiple required><br>
+                                    </div>
+                                </div>
+                                <!--
+                                <input type="text" class="input_form_pasos_modal" id="premio" placeholder="PREMIO">
+                                -->
                                 <div class="buttons only-next">
-                                    <button type="button" class="button_form_pasos_modal next">Next</button>
+                                    <button type="button" id="button_next_RifaInfo" class="button_form_pasos_modal next">Next</button>
                                 </div>
                             </div>
                             <div class="form-step">
-                                <h2>Informacion de la Rifa</h2>
-                                <input type="number" class="input_form_pasos_modal" id="edicion" min="1" placeholder="NUMERO DE EDICION">
-                                <input type="text" class="input_form_pasos_modal" id="emisiones" pattern="\d{6}" maxlength="6" inputmode="numeric" placeholder="NÚMERO DE EMISIONES" title="Por favor, ingresa solo números">
-                                <input type="text" class="input_form_pasos_modal" id="oportunidades" pattern="\d{6}" maxlength="6" inputmode="numeric" placeholder="NÚMERO DE OPORTUNIDADES" title="Por favor, ingresa solo números">
-                                <input type="text" class="input_form_pasos_modal" id="cantidad_boletos" pattern="\d{6}" maxlength="6" inputmode="numeric" placeholder="CANTIDAD DE BOLETOS" title="Por favor, ingresa solo números">
-                                <input type="date" class="input_form_pasos_modal" id="fecha" placeholder="FECHA">
-                                <input type="text" class="input_form_pasos_modal" id="premio" placeholder="PREMIO">
-                                ACTIVO: <select name="rifa_activa" id="rifa_activa" class="input_form_pasos_modal">
-                                    <option value="1">SI</option>
-                                    <option value="0">NO</option>
-                                </select>
+                                <h2>PRECIO DE LOS BOLETOS</h2>
+                                
+                                <div class="select-group" style="display: block;">
+                                    <label id="label_precioBoletos">¿Cu&aacute;l ser&aacute; el precio por boleto? </label>
+                                    <label id="simbolo_de_pesos" style="font-size: 25px;">$</label>
+                                    <input type="text" class="input_form_pasos_modal" id="precio_boleto" name="precio_boleto" placeholder="PRECIO POR BOLETO">
+                                    <label id="label_tipoMoneda" style="font-size: 20px;">MXN</label>
+                                </div>
+                                <div class="select-group" style="display: block;">
+                                    <label id="label_quieresPromoBoletos" for="select_quieresPromoBoletos">¿Quieres incluir promociones a los boleto? </label>
+                                    <select name="select_quieresPromoBoletos" id="select_quieresPromoBoletos" class="input_form_pasos_modal">
+                                        <option value="0">No</option>
+                                        <option value="1">Si</option>
+                                    </select>
+                                </div>
+                                <div id="div_tipoPromoBoletos" class="select-group" style="display: none;">
+                                    <label id="label_tipoPromoBoletos" for="select_tipoPromoBoletos">¿Cu&aacute;l es el tipo de promoci&oacute;n que quieres? </label>
+                                    <select name="select_tipoPromoBoletos" id="select_tipoPromoBoletos" class="input_form_pasos_modal">
+                                        <option value="">. . .</option>
+                                        <option value="2x1">2x1</option>
+                                        <option value="3x2">3x2</option>
+                                        <option value="4x3">4x3</option>
+                                        <option value="promo_personalizada">Promo personalizada</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="input_form_pasos_modal" id="tipo_promoPersonalizada" name="tipo_promoPersonalizada" placeholder="DETALLES DE LA PROMOCION" style="display: none;">
+                                <div class="buttons">
+                                    <button type="button" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="button_next_precioBoletos" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>PRESORTEO</h2>
+                                <div class="select-group">
+                                    <label id="label_presorteo" for="select_presorteo">¿Habr&aacute; un PreSorteo? </label>
+                                    <select name="select_presorteo" id="select_presorteo" class="input_form_pasos_modal">
+                                        <option value="0">NO</option>
+                                        <option value="1">SI</option>
+                                    </select>
+                                </div>
+                                <div id="div_presorteo" class="input-group" style="display: none;">
+                                    <label for="edicion">DETALLES DEL PRESORTEO:</label>
+                                    <input type="text" class="input_form_pasos_modal" id="presorteo" name="presorteo" placeholder="Detalles del PRESORTEO" >
+                                </div>
+                                <div id="div_fechaPresorteo" class="input-group" style="display: none;">
+                                    <label for="edicion">FECHA PRESORTEO:</label>
+                                    <input type="date" class="input_form_pasos_modal" id="fechaPresorteo" name="fechaPresorteo" placeholder="FECHA PRESORTEO">
+                                </div>
+                                <div class="buttons">
+                                    <button type="button" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="button_next_PreSorteo" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>GANADORES</h2>
+                                <div class="select-group">
+                                    <label id="label_masLugares" for="select_masLugares">¿Habr&aacute; premios para el 2do, 3er, 4to y 5to lugar? </label>
+                                    <select name="select_masLugares" id="select_masLugares" class="input_form_pasos_modal">
+                                        <option value="0">NO</option>
+                                        <option value="1">SI</option>
+                                    </select>
+                                </div>
+                                <div id="div_select_cantidadLugares" class="select-group" style="display: none;">
+                                    <label id="label_cantidadLugares" for="select_cantidadLugares">Elige la cantidad de lugares extras que desees: </label>
+                                    <select name="select_cantidadLugares" id="select_cantidadLugares" class="input_form_pasos_modal">
+                                        <option value="">. . .</option>
+                                        <option value="2">1</option>
+                                        <option value="3">2</option>
+                                        <option value="4">3</option>
+                                        <option value="5">4</option>
+                                    </select>
+                                </div>
+                                <!--
+                                <div class="buttons only-next">
+                                    <button type="button" id="button_next_CantidadLugares" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                                -->
+                                <div class="buttons">
+                                    <button type="button" id="button_back_CantidadLugares" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="button_next_CantidadLugares" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>PREMIOS PARA LOS OTROS LUGARES</h2>
+                                <div id="div_inputGroup_lugar_2" class="input-group">
+                                    <label for="lugar_2">2do. Lugar :</label>
+                                    <input type="text" class="input_form_pasos_modal" name="lugar_2" id="lugar_2" placeholder="PREMIO PARA EL 2DO LUGAR">
+                                </div>
+                                <div id="div_inputGroup_lugar_3" class="input-group">
+                                    <label for="lugar_3">3er. Lugar :</label>
+                                    <input type="text" class="input_form_pasos_modal" name="lugar_3" id="lugar_3" placeholder="PREMIO PARA EL 3ER LUGAR">
+                                </div>
+                                <div id="div_inputGroup_lugar_4" class="input-group">
+                                    <label for="lugar_4">4to. Lugar :</label>
+                                    <input type="text" class="input_form_pasos_modal" name="lugar_4" id="lugar_4" placeholder="PREMIO PARA EL 4TO LUGAR">
+                                </div>
+                                <div id="div_inputGroup_lugar_5" class="input-group">
+                                    <label for="lugar_5">5to. Lugar :</label>
+                                    <input type="text" class="input_form_pasos_modal" name="lugar_5" id="lugar_5" placeholder="PREMIO PARA EL 5TO LUGAR">
+                                </div>
+                                <!--
+                                <div class="buttons only-next">
+                                    <button type="button" id="button_next_PremioLugares" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                                -->
+                                <div class="buttons">
+                                    <button type="button" id="button_back_PremioLugares" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="button_next_PremioLugares" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>BONOS</h2>
+                                <div class="select-group">
+                                    <label id="label_bonos" class="label_class_form_crearRifa" for="select_bonos">¿Habr&aacute; bono de pronto pago, bono de envío, bono por comprar "X" cantidad de boletos, bono por seguir alguna red social o algun otro bono? </label>
+                                    <select name="select_bonos" id="select_bonos" class="input_form_pasos_modal">
+                                        <option value="0">NO</option>
+                                        <option value="1">SI</option>
+                                    </select>
+                                </div>
+                                <div id="div_select_cantidadBonos" class="select-group div_bonos_class" style="display: none;">
+                                    <label id="label_cantidadBonos" for="select_cantidadBonos">Elige la cantidad de bonos que desees: </label>
+                                    <select name="select_cantidadBonos" id="select_cantidadBonos" class="input_form_pasos_modal">
+                                        <option value="">. . .</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <!--
+                                <div class="buttons only-next">
+                                    <button type="button" id="button_next_bonos" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                                -->
+                                <div class="buttons">
+                                    <button type="button" id="button_back_bonos" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="button_next_bonos" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>DETALLES DE LOS BONOS</h2>
+                                <!--
+                                <input type="text" class="input_form_pasos_modal" id="bono_prontoPago" placeholder="Detalles del BONO de PRONTO PAGO">
+                                <input type="text" class="input_form_pasos_modal" id="bono_cantidadBoletos" placeholder="Detalles del BONO por comprar 'X' CANTIDAD de BOLETOS">
+                                <input type="text" class="input_form_pasos_modal" id="bono_envio" placeholder="Detalles del BONO de ENVIO">
+                                <input type="text" class="input_form_pasos_modal" id="bono_redSocial" placeholder="Detalles del BONO de por seguir alguna RED SOCIAL">
+                                -->
+                                <input type="text" class="input_form_pasos_modal input_tipoBono" name="tipo_bono_personalizado_1" id="tipo_bono_personalizado_1" placeholder="Tipo de BONO 1">
+                                <input type="text" class="input_form_pasos_modal" name="bono_personalizado_1" id="bono_personalizado_1" placeholder="Detalles del BONO 1">
+                                <input type="text" class="input_form_pasos_modal input_tipoBono" name="tipo_bono_personalizado_2" id="tipo_bono_personalizado_2" placeholder="Tipo de BONO 2">
+                                <input type="text" class="input_form_pasos_modal" name="bono_personalizado_2" id="bono_personalizado_2" placeholder="Detalles del BONO 2">
+                                <input type="text" class="input_form_pasos_modal input_tipoBono" name="tipo_bono_personalizado_3" id="tipo_bono_personalizado_3" placeholder="Tipo de BONO 3">
+                                <input type="text" class="input_form_pasos_modal" name="bono_personalizado_3" id="bono_personalizado_3" placeholder="Detalles del BONO 3">
+                                <input type="text" class="input_form_pasos_modal input_tipoBono" name="tipo_bono_personalizado_4" id="tipo_bono_personalizado_4" placeholder="Tipo de BONO 4">
+                                <input type="text" class="input_form_pasos_modal" name="bono_personalizado_4" id="bono_personalizado_4" placeholder="Detalles del BONO 4">
+                                <input type="text" class="input_form_pasos_modal input_tipoBono" name="tipo_bono_personalizado_5" id="tipo_bono_personalizado_5" placeholder="Tipo de BONO 5">
+                                <input type="text" class="input_form_pasos_modal" name="bono_personalizado_5" id="bono_personalizado_5" placeholder="Detalles del BONO 5">
+                                <div class="buttons">
+                                    <button type="button" id="button_back_detallesBonos" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="button_next_detallesBonos" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>MENSAJES</h2>
+                                <div class="select-group">
+                                    <label id="label_mensajes" class="label_class_form_crearRifa" for="select_mensajes">¿Quieres agregar algun otro mensaje extra? </label>
+                                    <select name="select_mensajes" id="select_mensajes" class="input_form_pasos_modal">
+                                        <option value="0">NO</option>
+                                        <option value="1">SI</option>
+                                    </select>
+                                </div>
+                                <div id="div_select_cantidadMensajes" class="select-group div_bonos_class" style="display: none;">
+                                    <label id="label_cantidadMensajes" for="select_cantidadMensajes">Elige la cantidad de mesnajes que desees: </label>
+                                    <select name="select_cantidadMensajes" id="select_cantidadMensajes" class="input_form_pasos_modal">
+                                        <option value="">. . .</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="buttons">
+                                    <button type="button" id="button_back_mensajes" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="button_next_mensajes" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>DETALLES DE LOS MENSAJES</h2>
+                                <div id="div_inputGroup_mensaje_1" class="input-group">
+                                    <label for="mensaje_1">MENSAJE 1 :</label>
+                                    <input type="text" class="input_form_pasos_modal" name="mensaje_1" id="mensaje_1" placeholder="ESCRIBE AQUI EL MENSAJE 1">
+                                </div>
+                                <div id="div_inputGroup_mensaje_2" class="input-group">
+                                    <label for="mensaje_2">MENSAJE 2 :</label>
+                                    <input type="text" class="input_form_pasos_modal" name="mensaje_2" id="mensaje_2" placeholder="ESCRIBE AQUI EL MENSAJE 2">
+                                </div>
+                                <div id="div_inputGroup_mensaje_3" class="input-group">
+                                    <label for="mensaje_3">MENSAJE 3 :</label>
+                                    <input type="text" class="input_form_pasos_modal" name="mensaje_3" id="mensaje_3" placeholder="ESCRIBE AQUI EL MENSAJE 3">
+                                </div>
+                                <div id="div_inputGroup_mensaje_4" class="input-group">
+                                    <label for="mensaje_4">MENSAJE 4 :</label>
+                                    <input type="text" class="input_form_pasos_modal" name="mensaje_4" id="mensaje_4" placeholder="ESCRIBE AQUI EL MENSAJE 4">
+                                </div>
+                                <div id="div_inputGroup_mensaje_5" class="input-group">
+                                    <label for="mensaje_5">MENSAJE 5 :</label>
+                                    <input type="text" class="input_form_pasos_modal" name="mensaje_5" id="mensaje_5" placeholder="ESCRIBE AQUI EL MENSAJE 5">
+                                </div>
+                                <!--
+                                <div class="buttons only-next">
+                                    <button type="button" id="button_next_PremioLugares" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                                -->
+                                <div class="buttons">
+                                    <button type="button" id="button_back_detallesMensajes" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="button_next_detallesMensajes" class="button_form_pasos_modal next">Next</button>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="form-step">
+                                <h2>Plantilla Pagina Boletos</h2>
+                                <iframe id="vista_previa" src="http://localhost:3000/lista-boletos-plantilla-editable-iframe" style="width:100%; height:600px;"></iframe>
                                 <div class="buttons">
                                     <button type="button" class="button_form_pasos_modal prev">Back</button>
                                     <button type="button" class="button_form_pasos_modal next">Next</button>
                                 </div>
                             </div>
+                            -->
                             <div class="form-step">
-                                <h2>Success 🎉</h2>
-                                <p>Your information has been submitted successfully!</p>
+                                <!--<h2>Success 🎉</h2>-->
+                                <!-- Barra de progreso visual -->
+                                <div id="barra-contenedor" style="
+                                    width: 100%;
+                                    background: #eee;
+                                    border-radius: 8px;
+                                    overflow: hidden;
+                                    height: 30px;
+                                    margin-bottom: 15px;
+                                    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+                                    position: relative;
+                                ">
+                                    <div id="barra-progreso" style="
+                                    height: 100%;
+                                    width: 0%;
+                                    background: linear-gradient(to right, #4caf50, #81c784);
+                                    text-align: center;
+                                    color: white;
+                                    font-weight: bold;
+                                    line-height: 30px;
+                                    transition: width 0.3s ease;
+                                ">0%</div>
+                                </div>
+                                <div class="buttons">
+                                    <button type="button" class="button_form_pasos_modal prev">Back</button>
+                                    <button type="button" id="button_next_cargando" class="button_form_pasos_modal next" style="display: none;">Next</button>
+                                </div>
+                            </div>
+                            <div class="form-step">
+                                <h2>¡&Eacute;xito! 🎉</h2>
+                                <p>¡Su p&aacute;gina se ha creado correctamente!</p>
+                                <p>Puede verla dando clic en la siguiente liga:</p>
+                                <a href="http://localhost:3000/lista-boletos/r1" target="_blank">http://localhost:3000/lista-boletos/r1</a>
                                 <div class="buttons">
                                     <button type="button" class="button_form_pasos_modal prev">Back</button>
                                     <button type="button" id="finish_form_pasos_modal_btn" class="button_form_pasos_modal">Finish</button>
@@ -550,6 +1064,8 @@ $100,000 MXN en 4 premios:
 
         <script src="/config.js"></script>
         <script src="/js/panel_super_admin.js"></script>
+        <script src="/js/table_listaSorteos.js"></script>
+        <script src="/js/table_listaBoletos.js"></script>
         <script src="/js/navbar_panel_EJS.js"></script>
         
         

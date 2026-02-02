@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%= rifa.titulo %> - Rifas Económicas Navojoa
+    </title>
+    <link rel="stylesheet" href="/css/estilos.css"> <!-- Opcional -->
+</head>
+
+<body>
+    <h1>
+        <%= rifa.titulo %>
+    </h1>
+    <p><strong>Descripción:</strong>
+        <%= rifa.descripcion %>
+    </p>
+
+    <h2>Boletos disponibles:</h2>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% boletos.forEach(boleto=> { %>
+                <tr>
+                    <td>
+                        <%= boleto.numero %>
+                    </td>
+                    <td>
+                        <% if (boleto.estado==='disponible' ) { %>
+                            <span style="color: green;">
+                                <%= boleto.estado %>
+                            </span>
+                            <% } else if (boleto.estado==='vendido' ) { %>
+                                <span style="color: red;">
+                                    <%= boleto.estado %>
+                                </span>
+                                <% } else { %>
+                                    <span style="color: orange;">
+                                        <%= boleto.estado %>
+                                    </span>
+                                    <% } %>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+    <p><a href="/">← Volver al inicio</a></p>
+</body>
+
+</html>

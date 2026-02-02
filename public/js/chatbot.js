@@ -4,6 +4,29 @@ const API_CHATBOT_URL = config_API.CHATBOT_URL;
 // 🔁 Variable global para saber si ya se abrió el chat alguna vez
 let chatOpenedOnce = false;
 
+
+// ========================
+// VARIABLES PARA CONTROL DE SOPORTE HUMANO - Agregadas el 31-01-2026
+// ========================
+
+// Indica si el chat ya pasó del bot a un humano
+let modoSoporte = false;
+
+// Cuenta cuántas veces el bot no entendió al usuario
+let intentosFallidos = 0;
+
+// Número máximo de errores del bot antes de pasar a soporte
+const MAX_INTENTOS_BOT = 2;
+
+// Socket.IO (solo se inicializa cuando se activa soporte humano)
+let socket = null;
+
+const mensajesSoportePendientes = [];
+
+
+
+
+
 /**
  * Función que muestra u oculta la ventana del chat.
  * También envía automáticamente el mensaje "hola" la primera vez para recibir las opciones del asistente.
@@ -32,73 +55,30 @@ function toggleChat() {
         // ❌ Ocultamos el botón flotante mientras el chat está abierto
         btn_chat.style.display = 'none';
 
+        marcarMensajesSoporteComoVistos();
+
         // 💬 Solo enviamos el mensaje de bienvenida y las opciones la PRIMERA VEZ
         if (!chatOpenedOnce) {
             // ⏳ Esperamos un poco para que se vea más natural
             setTimeout(() => {
-                // 💬 Mostramos el mensaje de bienvenida
-                //appendMessage('Asistente', '¡Hola! 👋 ¿En qué puedo ayudarte hoy?');
 
-                // 🧠 Simulamos que el usuario escribió "hola" para obtener las opciones del backend
                 fetch(API_CHATBOT_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ userMsg: 'hola' })  // 👈 Esto puede activar respuestas con botones
+                    body: JSON.stringify({ userMsg: 'hola' })
                 })
                 .then(response => response.json())
                 .then(data => {
-                    //console.log("data:");
-                    //console.log(data);
                     appendMessage('Asistente', {'type': 'text', 'content': '¡Hola! 👋 ¿En qué puedo ayudarte hoy?'});
-                    // ✅ Mostramos la respuesta del backend (puede ser texto o array de opciones)
                     appendMessage('Asistente', data);
                 })
-               /*
-                .then(data => {
-                    console.log("data:");
-                    console.log(data);
-
-                    if (data.type === "text") {
-                        // Respuesta tipo texto simple
-                        appendMessage('Asistente', data.content);
-                    } else if (data.type === "buttons") {
-                        // Respuesta con botones: muestra el texto y las opciones
-                        appendMessage('Asistente', data.content.text);
-
-                        // Aquí puedes crear botones en el chat o mostrarlos en algún contenedor
-                        // Ejemplo sencillo para mostrar opciones como botones:
-                        const chatBox = document.getElementById('chat-box');
-
-                        const buttonsContainer = document.createElement('div');
-                        buttonsContainer.className = 'chat-buttons';
-
-                        data.content.options.forEach(option => {
-                            const btn = document.createElement('button');
-                            btn.textContent = option.label;
-                            btn.onclick = () => {
-                                // Acción al pulsar cada botón, p.ej. enviar el valor al backend
-                                enviarMensaje(option.value);
-                            };
-                            buttonsContainer.appendChild(btn);
-                        });
-
-                        chatBox.appendChild(buttonsContainer);
-                    } else if (data.type === "error") {
-                        appendError(data.content || "Error desconocido");
-                    } else {
-                        appendMessage('Asistente', "Respuesta no reconocida.");
-                    }
-                })
-                */
                 .catch(error => {
-                    // ⚠️ Si hay un error en la solicitud, lo mostramos en consola y en el chat
                     console.error("❌ Error al cargar opciones iniciales:", error);
                     appendError("No se pudieron cargar las opciones iniciales.");
                 });
 
             }, 500);
 
-            // 🔒 Marcamos que ya se abrió una vez y no debe repetirse este proceso
             chatOpenedOnce = true;
         }
     }
@@ -108,122 +88,245 @@ function toggleChat() {
 
 
 
+// ========================
+// 🔽 INICIO CÓDIGO AGREGADO
+// ACTIVAR SOPORTE HUMANO
+// ========================
+
+/**
+ * Cambia el chat del modo BOT a modo SOPORTE HUMANO.
+ * Inicializa Socket.IO y muestra mensaje informativo al usuario.
+ */
+function activarSoporteHumano() {
+    try {
+        console.log("function activarSoporteHumano() {");
+        modoSoporte = true;
+
+        appendMessage('Asistente', {
+            type: 'text',
+            content: '🔔 Te estoy comunicando con un agente de soporte humano. Por favor espera...'
+        });
+
+        socket = io();
+
+        socket.emit('soporte:join', {
+            pagina: window.location.pathname,
+            fecha: new Date()
+        });
+        
+        socket.on('soporte:mensaje', data => {
+
+            appendMessage('Soporte', {
+                type: 'text',
+                content: data.mensaje
+            });
+
+            mensajesSoportePendientes.push(data);
+
+            // ✅ AVISAR ENTREGA (SIEMPRE)
+            socket.emit('soporte:mensaje-entregado', {
+                messageId: data.messageId
+            });
+
+            // ❌ NO marcar visto aquí
+        });
+
+        /*
+        socket.on('soporte:mensaje', data => {
+            appendMessage('Soporte', {
+                type: 'text',
+                content: data.mensaje
+            });
+
+            console.log('📩 messageId recibido:', data.messageId);
+
+            mensajesSoportePendientes.push(data);
+
+            // Si el chat YA está abierto → marcar visto
+            if (document.getElementById('chat-box').style.display !== 'none') {
+                marcarMensajesSoporteComoVistos();
+            }
+        });
+        */
+
+        // =======================================
+        // SOPORTE está escribiendo (UI CLIENTE)
+        // =======================================
+
+        socket.on('soporte:soporte-escribiendo', () => {
+            document.getElementById('soporte-typing').style.display = 'block';
+        });
+
+        socket.on('soporte:soporte-dejo-escribir', () => {
+            document.getElementById('soporte-typing').style.display = 'none';
+        });
+
+    } catch (error) {
+        console.log("try {} catch (error) {} - LINEA 119");
+        console.log("Error: ", error);
+    }
+    
+}
+
+// ========================
+// 🔼 FIN CÓDIGO AGREGADO
+// ========================
+
+
+
+function marcarMensajesSoporteComoVistos() {
+    mensajesSoportePendientes.forEach(msg => {
+        socket.emit('soporte:mensaje-visto', {
+            messageId: msg.messageId
+        });
+    });
+
+    mensajesSoportePendientes.length = 0;
+}
+
+
+
+
+
+// ========================
+// PASO 5 - INTERACCIÓN REAL DEL USUARIO
+// ========================
+
+const chatBox = document.getElementById('chat-box');
+const chatInput = document.getElementById('chat-input');
+
+function usuarioInteractuoConChat() {
+    if (!modoSoporte || !socket) return;
+
+    // Solo marcar si hay mensajes pendientes
+    if (mensajesSoportePendientes.length > 0) {
+        marcarMensajesSoporteComoVistos();
+    }
+}
+
+// Click en cualquier parte del chat
+chatBox.addEventListener('click', usuarioInteractuoConChat);
+
+// Focus en el input
+chatInput.addEventListener('focus', usuarioInteractuoConChat);
+
+
+
+
+
+
 
 async function handleKeyPress(event) {
-    //console.log(" ----------> async function handleKeyPress(event){} <----------");
 
-    // Verifica si la tecla presionada es Enter
     if (event.key === 'Enter') {
-        // Obtiene el input del chat
+        console.log("if (event.key === 'Enter') {");
         let input = document.getElementById('chat-input');
-
-        // Obtiene y limpia el mensaje del usuario
         let userMsg = input.value.trim();
-
-        // Si el mensaje está vacío, no hace nada
         if (!userMsg) return;
 
-        // Estructura el mensaje en formato esperado
+        
+        try {
+            // ========================
+            // 🔽 INICIO CÓDIGO AGREGADO
+            // SI YA ESTAMOS EN SOPORTE HUMANO
+            // ========================
+            if (modoSoporte) {
+                //console.log("============================================================================");
+                console.log("if (modoSoporte) {");
+                //console.log("============================================================================");
+                appendMessage('Tú', { type: 'text', content: userMsg });
+
+                socket.emit('soporte:mensaje', {
+                    mensaje: userMsg
+                });
+
+                input.value = '';
+                return;
+            }
+            // ========================
+            // 🔼 FIN CÓDIGO AGREGADO
+            // ========================
+        } catch (error) {
+            console.log("try {} catch (error) {} - LINEA 158");
+            appendError("Ocurrió un error inesperado. Intenta de nuevo.");
+        }
+
+
+
         userMsg = { 'type': 'text', 'content': userMsg };
-
-        // Muestra el mensaje del usuario en el chat
         appendMessage('Tú', userMsg);
-
-        // Convierte el contenido a minúsculas para estandarizar
         userMsg.content = input.value.trim().toLowerCase();
-
-        // Limpia el campo de entrada
         input.value = '';
 
-        if (typeof userMsg === 'string') {
-            try {
-                const posibleObjeto = JSON.parse(userMsg);
-                if (typeof posibleObjeto === 'object' && posibleObjeto !== null && !Array.isArray(posibleObjeto)) {
-                    //console.log('Era un string, pero contenía un objeto JSON');
-                }
-            } catch (err) {
-                //console.log('Es un string común, no JSON');
-            }
-            
-        } else if (typeof userMsg === 'object') {
-            //console.log('Ya es un objeto');
+        if (typeof userMsg === 'object') {
+            console.log("if (typeof userMsg === 'object') {");
             userMsg = userMsg.content;
         }
 
-
         try {
-            // Marca el tiempo antes de hacer la solicitud (para medir duración)
-            const startTime = performance.now();
-
-            // Envía el mensaje al backend mediante fetch
             const response = await fetch(API_CHATBOT_URL, {
-                method: "POST",                              // Método POST
-                headers: { "Content-Type": "application/json" }, // Indica que se envía JSON
-                body: JSON.stringify({ userMsg })            // Convierte el mensaje a JSON
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userMsg })
             });
-            
-            // Si la respuesta tiene otro código de error (distinto de 2xx)
-            if (!response.ok) {
-                //console.log("response: ", response);
-                //appendError("Ocurrió un error inesperado. Código: " + statusCode);
-                //return;
-            }
 
-            // Marca el tiempo al recibir la respuesta
-            const endTime = performance.now();
-            const duration = endTime - startTime;
-
-            // Obtiene el código de estado HTTP de la respuesta
             const statusCode = response.status;
-
-            // Imprime en consola cuánto tardó la petición
-            //console.log(`Tiempo de respuesta fetch: ${duration.toFixed(2)} ms`);
-
-            // Intenta parsear el cuerpo de la respuesta como JSON
             const data = await response.json();
-            
-            // Manejo de error 500 (problema interno del servidor)
-            if (statusCode === 500) {
-                appendError("Estamos teniendo un problema técnico. Intenta nuevamente en unos momentos.");
-                return;
-            }
 
-            // Manejo de error 503 (mantenimiento en curso)
-            if (statusCode === 503 && data?.chatbotMsg === "MANTENIMIENTO_ACTIVO") {
-                appendError("El asistente virtual está en mantenimiento temporal. Intenta más tarde.");
-                return;
-            }
-
-            // Si todo salió bien (código 200)
             if (statusCode === 200) {
-                //console.log("data: ", data);
+                console.log("if (statusCode === 200) {");
+                appendMessage('Asistente', data);
 
-                // Si la respuesta fue rápida, añade un pequeño retraso para naturalidad
-                if (duration < 1000) {
-                    setTimeout(() => {
-                        //appendMessage('Asistente', data.chatbotMsg);
-                        appendMessage('Asistente', data);
-                    }, 500);
-                } else {
-                    //appendMessage('Asistente', data.chatbotMsg);
-                    appendMessage('Asistente', data);
+
+// ========================
+// 🔽 INICIO CÓDIGO AGREGADO
+// DETECTAR CUANDO EL BOT NO ENTIENDE
+// ========================
+                if (data.type === 'text' && data.content.toLowerCase().includes('no entend')) {
+                    console.log("if (data.type === 'text' && data.content.toLowerCase().includes('no entend')) {");
+                    intentosFallidos++;
+
+                    if (intentosFallidos >= MAX_INTENTOS_BOT) {
+                        activarSoporteHumano();
+                        return;
+                    }
+                }else{
+                    console.log("else - DETECTAR CUANDO EL BOT NO ENTIENDE");
                 }
+// ========================
+// 🔼 FIN CÓDIGO AGREGADO
+// ========================
+
             }
 
         } catch (error) {
-            // NOTA: Cuando haces una solicitud con fetch, y el navegador no puede ni siquiera conectar, por ejemplo por estar sin red, 
-            // obtienes un error del tipo TypeError con un mensaje como "Failed to fetch".
-            
-            // Si hay un error de red (por ejemplo, sin conexión)
-            if (error instanceof TypeError && error.message.includes("Failed to fetch")) {
-                appendError("Parece que no tienes conexión a internet. Revisa tu red e intenta nuevamente.");
-            } else {
-                // Para cualquier otro error no controlado
-                appendError("Ocurrió un error inesperado. Intenta de nuevo.");
-            }
+            console.log("try {} catch (error) {} - LINEA 204");
+            appendError("Ocurrió un error inesperado. Intenta de nuevo.");
         }
     }
 }
+
+
+
+
+
+let typingTimeout = null;
+
+document.getElementById('chat-input').addEventListener('input', () => {
+    if (!modoSoporte || !socket) return;
+
+    socket.emit('soporte:typing');
+
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+        socket.emit('soporte:stop-typing');
+    }, 1000);
+});
+
+
+
+
+
 
 
 
