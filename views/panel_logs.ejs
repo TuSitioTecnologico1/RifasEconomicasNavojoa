@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Registros</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .filtros {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filtros input,
+        .filtros button {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .filtros button {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filtros button:hover {
+            background-color: #2980b9;
+        }
+
+        .tabla-logs {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabla-logs thead {
+            background-color: #2980b9;
+            color: white;
+        }
+
+        .tabla-logs th,
+        .tabla-logs td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tabla-logs tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Panel de Registros</h1>
+
+        <div class="filtros">
+            <input type="text" id="filtroIP" placeholder="Filtrar por IP">
+            <input type="text" id="filtroMetodo" placeholder="Filtrar por método">
+            <input type="date" id="filtroFecha">
+            <button onclick="filtrar()">Aplicar Filtros</button>
+        </div>
+
+        <h2>Uso de APIs</h2>
+        <table class="tabla-logs" id="tablaApis">
+            <thead>
+                <tr>
+                    <th>Ruta</th>
+                    <th>Método</th>
+                    <th>IP</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% apis.forEach(api=> { %>
+                    <tr>
+                        <td>
+                            <%= api.path %>
+                        </td>
+                        <td>
+                            <%= api.metodo %>
+                        </td>
+                        <td>
+                            <%= api.ip %>
+                        </td>
+                        <td>
+                            <%= api.ultima_llamada.toLocaleString() %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+
+        <h2>Intentos Bloqueados</h2>
+        <table class="tabla-logs" id="tablaBloqueos">
+            <thead>
+                <tr>
+                    <th>Ruta</th>
+                    <th>Método</th>
+                    <th>IP</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% bloqueos.forEach(item=> { %>
+                    <tr>
+                        <td>
+                            <%= item.ruta %>
+                        </td>
+                        <td>
+                            <%= item.metodo %>
+                        </td>
+                        <td>
+                            <%= item.ip %>
+                        </td>
+                        <td>
+                            <%= item.fecha.toLocaleString() %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filtrar() {
+            const ip = document.getElementById('filtroIP').value.toLowerCase();
+            const metodo = document.getElementById('filtroMetodo').value.toLowerCase();
+            const fecha = document.getElementById('filtroFecha').value;
+
+            document.querySelectorAll('#tablaApis tbody tr, #tablaBloqueos tbody tr').forEach(row => {
+                const [ruta, metodoTd, ipTd, fechaTd] = row.children;
+                const visible =
+                    (!ip || ipTd.textContent.toLowerCase().includes(ip)) &&
+                    (!metodo || metodoTd.textContent.toLowerCase().includes(metodo)) &&
+                    (!fecha || fechaTd.textContent.startsWith(fecha));
+                row.style.display = visible ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+
+</html>

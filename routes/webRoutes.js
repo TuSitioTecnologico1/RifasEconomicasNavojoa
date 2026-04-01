@@ -1,14 +1,15 @@
-// webRoutes.js
+// webRoutes.js -> /routes/webRoutes.js
 
 const express = require('express');
 const router = express.Router();
 const logActivity = require('../utils/log_activity_USANDO_ua_parser_js');
 const logError = require('../utils/log_error'); // Importar el módulo de logs para los ERRORES de la pagina
+const verificarRuta = require('../middlewares/verificarRuta');
 
 
 
 // Ruta para la página principal
-router.get('/', (req, res) => {
+router.get('/', verificarRuta, (req, res) => {
     try {
         //const log_activity = logActivity(req, 'Visita a la Pagina de Inicio(index.html)'); // Registrar acción
         const log_activity = logActivity(req, 'Visita a la Pagina de Inicio(index.ejs)'); // Registrar acción
@@ -28,7 +29,7 @@ router.get('/', (req, res) => {
 });
 
 // Ruta para la página donde estan los boletos - https://rifaseconomicasnavojoa.site/lista-boletos/r1
-router.get('/lista-boletos/r1', (req, res) => {
+router.get('/lista-boletos/r1', verificarRuta, (req, res) => {
     try {
         //const log_activity = logActivity(req, 'Visita a la pagina r1_lista.html'); // Registrar acción
         const log_activity = logActivity(req, 'Visita a la pagina r1_lista.ejs'); // Registrar acción
@@ -49,7 +50,7 @@ router.get('/lista-boletos/r1', (req, res) => {
 });
 
 // Ruta para la página donde estan los boletos - https://rifaseconomicasnavojoa.site/lista-boletos-plantilla-editable-iframe
-router.get('/lista-boletos-plantilla-editable-iframe', (req, res) => {
+router.get('/lista-boletos-plantilla-editable-iframe', verificarRuta, (req, res) => {
     try {
         //const log_activity = logActivity(req, 'Visita a la pagina r1_lista.html'); // Registrar acción
         const log_activity = logActivity(req, 'Visita a la pagina r1_lista_editable_iframe.ejs'); // Registrar acción
@@ -69,7 +70,7 @@ router.get('/lista-boletos-plantilla-editable-iframe', (req, res) => {
 });
 
 // Ruta para la página donde estan el verificador de boletos - https://rifaseconomicasnavojoa.site/verificador/r1
-router.get('/verificador/r1', (req, res) => {
+router.get('/verificador/r1', verificarRuta, (req, res) => {
     try {
         //const log_activity = logActivity(req, 'Visita a la pagina r1_verificador.html'); // Registrar acción
         const log_activity = logActivity(req, 'Visita a la pagina r1_verificador.ejs'); // Registrar acción
@@ -90,7 +91,7 @@ router.get('/verificador/r1', (req, res) => {
 });
 
 // Ruta para la página donde estan los metodos de pago - https://rifaseconomicasnavojoa.site/metodos-pago
-router.get('/metodos-pago', (req, res) => {
+router.get('/metodos-pago', verificarRuta, (req, res) => {
     try {
         //const log_activity = logActivity(req, 'Visita a la pagina metodos_pago.html'); // Registrar acción
         const log_activity = logActivity(req, 'Visita a la pagina metodos_pago.ejs'); // Registrar acción
@@ -111,7 +112,7 @@ router.get('/metodos-pago', (req, res) => {
 });
 
 // Ruta para la página donde estan las preguntas frecuentes - https://rifaseconomicasnavojoa.site/preguntas-frecuentes
-router.get('/preguntas-frecuentes', (req, res) => {
+router.get('/preguntas-frecuentes', verificarRuta, (req, res) => {
     try {
         const log_activity = logActivity(req, 'Visita a la pagina preguntas_frecuentes.ejs'); // Registrar acción
         console.log("LOG ACTIVITY:");
@@ -131,7 +132,7 @@ router.get('/preguntas-frecuentes', (req, res) => {
 });
 
 // Ruta para la página donde esta el contacto - https://rifaseconomicasnavojoa.site/contacto
-router.get('/contacto', (req, res) => {
+router.get('/contacto', verificarRuta, (req, res) => {
     try {
         const log_activity = logActivity(req, 'Visita a la pagina contacto.ejs'); // Registrar acción
         console.log("LOG ACTIVITY:");
@@ -150,8 +151,8 @@ router.get('/contacto', (req, res) => {
     }
 });
 
-// Ruta para la página que indica que la rifa esta cerrada
-router.get('/cerrado', (req, res) => {
+// Ruta para la página que indica que la rifa esta cerrada - https://rifaseconomicasnavojoa.site/cerrado
+router.get('/cerrado', verificarRuta, (req, res) => {
     try {
         const log_activity = logActivity(req, 'Visita a la pagina cerrado.html'); // Registrar acción
         console.log("LOG ACTIVITY:");
@@ -171,7 +172,7 @@ router.get('/cerrado', (req, res) => {
 });
 
 // Ruta para la página donde esta el panel de control - https://rifaseconomicasnavojoa.site/panel-control
-router.get('/panel-control', (req, res) => {
+router.get('/panel-control', verificarRuta, (req, res) => {
     try {
         const log_activity = logActivity(req, 'Visita a la pagina panel.ejs'); // Registrar acción
         console.log("LOG ACTIVITY:");
@@ -190,7 +191,7 @@ router.get('/panel-control', (req, res) => {
 });
 
 // Ruta para la página donde esta el panel de control - https://rifaseconomicasnavojoa.site/panel-control-super_admin
-router.get('/panel-control-super-admin', (req, res) => {
+router.get('/panel-control-super-admin', verificarRuta, (req, res) => {
     try {
         const log_activity = logActivity(req, 'Visita a la pagina panel_super_admin.ejs - Ruta: "/panel-control-super-admin"'); // Registrar acción
         console.log("LOG ACTIVITY:");
